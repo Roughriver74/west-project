@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Отчет IT-отдела компании West</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .header p {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            padding: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+            gap: 10px;
+        }
+
+        .tab {
+            padding: 15px 25px;
+            background: transparent;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+            color: #7f8c8d;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            min-width: fit-content;
+        }
+
+        .tab:hover {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-title {
+            font-size: 1.3em;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .status-badge {
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-active {
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
+            color: white;
+        }
+
+        .status-testing {
+            background: linear-gradient(135deg, #f39c12, #e67e22);
+            color: white;
+        }
+
+        .status-planning {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+        }
+
+        .status-problem {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+        }
+
+        .project-description {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .project-details {
+            display: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .project-details.show {
+            display: block;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; max-height: 0; }
+            to { opacity: 1; max-height: 200px; }
+        }
+
+        .project-details ul {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .project-details li {
+            margin-bottom: 8px;
+            padding-left: 20px;
+            position: relative;
+            color: #34495e;
+        }
+
+        .project-details li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .summary-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .summary-number {
+            font-size: 3em;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .summary-label {
+            color: #7f8c8d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .problems-list {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .problems-list h3 {
+            color: #e74c3c;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .problem-item {
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .problem-item h4 {
+            color: #c0392b;
+            margin-bottom: 8px;
+        }
+
+        .plans-list {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .plans-list h3 {
+            color: #2ecc71;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .plan-item {
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #2ecc71;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .plan-item h4 {
+            color: #27ae60;
+            margin-bottom: 8px;
+        }
+
+        .conclusions {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+
+        .conclusions h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            text-align: center;
+        }
+
+        .conclusions p {
+            color: #34495e;
+            line-height: 1.8;
+            font-size: 1.1em;
+            text-align: justify;
+        }
+
+        .expand-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+                gap: 5px;
+            }
+            
+            .tab {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Отчет для учредителей компании West</h1>
+            <p>Обзор текущих проектов и планов по развитию IT-отдела</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('overview')">Обзор</button>
+            <button class="tab" onclick="showTab('projects')">Проекты</button>
+            <button class="tab" onclick="showTab('problems')">Проблемы</button>
+            <button class="tab" onclick="showTab('plans')">Планы</button>
+            <button class="tab" onclick="showTab('conclusions')">Выводы</button>
+        </div>
+
+        <div id="overview" class="tab-content active">
+            <div class="summary-cards">
+                <div class="summary-card">
+                    <div class="summary-number">15</div>
+                    <div class="summary-label">Активных проектов</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number">7</div>
+                    <div class="summary-label">Проблемных областей</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number">5</div>
+                    <div class="summary-label">Планов развития</div>
+                </div>
+                <div class="summary-card">
+                    <div class="summary-number">3</div>
+                    <div class="summary-label">Месяца до внедрения</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="projects" class="tab-content">
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">
+                        Система заявок ("Стенды заявок")
+                        <span class="status-badge status-active">Активна</span>
+                    </div>
+                    <div class="project-description">
+                        Полностью функционирующая система для обработки заявок IT-отдела, сайтов, отчетов, юридического и финансового отделов.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Запущена и полностью функционирует</li>
+                            <li>Обрабатывает заявки IT-отдела, сайтов, отчетов</li>
+                            <li>Используется юридическим и финансовым отделами</li>
+                            <li>Необходимо завершить внедрение для юридического и финансового отделов</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Платежный календарь
+                        <span class="status-badge status-planning">Готов к внедрению</span>
+                    </div>
+                    <div class="project-description">
+                        Система для создания заявок пользователями, согласования с финансовым отделом и передачи в бухгалтерию.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Функционал разработан и готов</li>
+                            <li>Внедрение еще не завершено</li>
+                            <li>Заявки создаются пользователями и согласовываются с финансовым отделом</li>
+                            <li>Необходимо завершить разработку и внедрить в систему</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Мобильный кассир
+                        <span class="status-badge status-testing">Тестирование</span>
+                    </div>
+                    <div class="project-description">
+                        Система формирования чеков для компании "Вест" с интеграцией в Business.ru.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Начато тестирование формирования чеков</li>
+                            <li>Интеграция с системой Business.ru</li>
+                            <li>Передача информации в Business.ru уже происходит</li>
+                            <li>Основная сложность — тестирование каждого курьера</li>
+                            <li>Планируется алгоритм создания учетной записи для каждого кассира</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Разработка бизнес-процессов (BPMN)
+                        <span class="status-badge status-active">В разработке</span>
+                    </div>
+                    <div class="project-description">
+                        Создание процессов для тендерного отдела, отдела продаж и учебного центра.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Начата разработка для тендерного отдела, продаж и учебного центра</li>
+                            <li>Созданы описания и технические задания</li>
+                            <li>Продолжается разработка бизнес-процессов</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Интеграция помощника закупок
+                        <span class="status-badge status-problem">Проблемы</span>
+                    </div>
+                    <div class="project-description">
+                        Интеграция завершена, но возникли проблемы с настройкой.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Интеграция завершена</li>
+                            <li>Проблемы с настройкой</li>
+                            <li>Негативная обратная связь</li>
+                            <li>Планируется донастройка под конкретную номенклатуру</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Проект IT-аутсорсинга
+                        <span class="status-badge status-testing">Тестирование</span>
+                    </div>
+                    <div class="project-description">
+                        Тестирование перехода на аутсорсинг в филиалах компании.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Тестируется переход на аутсорсинг в филиалах</li>
+                            <li>Планируется тестирование в основном филиале</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Перенос сервера 1C
+                        <span class="status-badge status-planning">Планируется</span>
+                    </div>
+                    <div class="project-description">
+                        Перенос на новое оборудование с завершением в августе-сентябре.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Закуплено новое оборудование</li>
+                            <li>Планируется завершить в августе-сентябре</li>
+                            <li>Необходимо перенести сервер 1C на новое оборудование</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Проект по расшифровке сообщений
+                        <span class="status-badge status-active">Первая ТЗ версия готова</span>
+                    </div>
+                    <div class="project-description">
+                        Система для улучшения работы менеджеров по обработке заказов с распознаванием изображений.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Направлен на улучшение работы менеджеров</li>
+                            <li>Готово техническое задание, срок внедрения — 3 месяца</li>
+                            <li>Распознавание фотографий и автозаполнение позиций</li>
+                            <li>Завершена первая версия ТЗ</li>
+                            <li>Необходимо завершить внедрение</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Система отправки ссылок клиентам
+                        <span class="status-badge status-planning">Анализ</span>
+                    </div>
+                    <div class="project-description">
+                        Доработка системы с возможностью частичной оплаты или доплаты заказа.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Планируется доработка с возможностью частичной оплаты</li>
+                            <li>Формирование ссылки для оплаты по карте</li>
+                            <li>Необходимо доработать систему отправки ссылок</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Отчеты по закупкам и продажам
+                        <span class="status-badge status-active">В процессе</span>
+                    </div>
+                    <div class="project-description">
+                        Создание дашборда по планированию и подключение отчетов по топ-товарам.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Создание дашборда по планированию</li>
+                            <li>Подключаются отчеты по закупкам и продажам (топ-товары)</li>
+                            <li>Дорабатывается дашборд по динамическому ПДЗ</li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Приложение для визитной активности
+                        <span class="status-badge status-active">Готово</span>
+                    </div>
+                    <div class="project-description">
+                        Приложение для продажи конечному клиенту с возможностью интеграции с CRM.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                           
+                            <li>Цель — создание продукта для продажи</li>
+                            <li>Интеграция с CRM с возможностью работы без CRM</li>
+                            <li>Помощь в работе торговых представителей и менеджеров</li>
+                            <li>Планиурется доработка поиощника заполнения адресов</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Аналитика и прогнозирование
+                        <span class="status-badge status-active">Внешний подрядчик</span>
+                    </div>
+                    <div class="project-description">
+                        Создание отчетов по ПДЗ и прогнозирование на основе данных о продажах.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Внешний подрядчик работает над отчетами по ПДЗ</li>
+                            <li>Прогнозирование на основе данных о продажах</li>
+                            <li>Выявление ключевых моментов для внимания</li>
+                            <li>Возможно подключение аналитики с нейросетями</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Настройка Bitrix24
+                        <span class="status-badge status-active">В процессе</span>
+                    </div>
+                    <div class="project-description">
+                        Создание процессов, формирование заявок и автоматизация в Bitrix24.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            <li>Руководитель IT настраивает Bitrix24</li>
+                            <li>Создание процессов и формирование заявок</li>
+                            <li>Автоматизация процессов</li>
+                            <li>Необходимо настроить автоматизацию бизнес-процессов</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-title">
+                        Внедрение Power BI
+                        <span class="status-badge status-active">Внедрено</span>
+                    </div>
+                    <div class="project-description">
+                        Внедрение сервера Power BI для создания отчетов из 1C и SQL систем.
+                    </div>
+                    <button class="expand-btn" onclick="toggleDetails(this)">Подробнее</button>
+                    <div class="project-details">
+                        <ul>
+                            
+                            <li>Внедрен сервер Power BI</li>
+                            <li>Создание отчетов из 1C или SQL систем</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="problems" class="tab-content">
+            <div class="problems-list">
+                <h3>Проблемы и области для улучшения</h3>
+                
+                <div class="problem-item">
+                    <h4>Проблемы с планированием и управлением задачами</h4>
+                    <p>Наблюдаются сложности с планированием задач и сроков, а также неопределенность и хаос в работе.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Проблемы с Интернетом</h4>
+                    <p>Частые перебои с интернетом негативно влияют на работу, особенно в Bitrix, приводя к перезаполнению данных и обрывам сессий.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Отсутствие четкой системы задач</h4>
+                    <p>Необходимо построить четкую систему обработки задач без прямого вовлечения руководителя. Задачи должны приниматься, обрабатываться и выполняться ответственными лицами.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Проблемы с настройкой помощника закупок</h4>
+                    <p>Интеграция завершена, но есть проблемы с настройкой, что приводит к негативной обратной связи от пользователей.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Сложность тестирования мобильного кассира</h4>
+                    <p>Предстоит большая работа по тестированию и интеграции каждого курьера в систему мобильного кассира.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Отсутствие формализованной стратегии развития</h4>
+                    <p>Нет четкой сформулированной стратегии развития IT-отдела, есть лишь общее представление о необходимости развития.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Недостаточность знаний в области информационной безопасности</h4>
+                    <p>Требуется развитие сотрудников и пользователей знаниями по ИБ.</p>
+                </div>
+                
+                <div class="problem-item">
+                    <h4>Недостаточность документации</h4>
+                    <p>Проблемы с созданием инструкций и документации по проектам, что затрудняет передачу знаний и поддержку систем.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="plans" class="tab-content">
+            <div class="plans-list">
+                <h3>Планы на будущее</h3>
+                
+                <div class="plan-item">
+                    <h4>Внедрение Scrum в IT-отделе</h4>
+                    <p>Планируется переработка внутренних процессов IT-отдела с возможным внедрением методологии Scrum для улучшения работы над задачами.</p>
+                </div>
+                
+                <div class="plan-item">
+                    <h4>Повышение мотивации сотрудников</h4>
+                    <p>Руководитель IT-отдела стремится улучшить свои навыки в управлении и мотивации сотрудников для повышения их вовлеченности в выполнение задач.</p>
+                </div>
+                
+                <div class="plan-item">
+                    <h4>Разработка инструкций по приоритизации проектов</h4>
+                    <p>Необходимо создать четкие инструкции для приоритизации проектов и распределения ресурсов.</p>
+                </div>
+                
+                <div class="plan-item">
+                    <h4>Формирование стратегии развития IT-отдела</h4>
+                    <p>Требуется сформулировать долгосрочную стратегию развития IT-отдела с четкими целями и метриками.</p>
+                </div>
+                
+                <div class="plan-item">
+                    <h4>Развитие компетенций</h4>
+                    <p>Руководитель IT-отдела планирует дальнейшее развитие своих soft skills и технических навыков, включая углубление знаний в ITIL, нейросетях и языках программирования.</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="conclusions" class="tab-content">
+            <div class="conclusions">
+                <h3>Выводы</h3>
+                <p>
+                    Компания West активно внедряет новые IT-решения и оптимизирует бизнес-процессы. В настоящее время реализуется 15 крупных проектов, большинство из которых находятся в стадии активной разработки или внедрения. 
+                </p>
+                <br>
+                <p>
+                    Особое внимание уделяется интеграции систем и автоматизации процессов, что свидетельствует о стратегическом подходе к цифровизации бизнеса. Успешно функционирует система заявок, завершается разработка платежного календаря, активно тестируется мобильный кассир.
+                </p>
+                <br>
+                <p>
+                    Однако выявлены критические области, требующие немедленного внимания: организационные вопросы, планирование задач, создание документации и повышение компетенций в области информационной безопасности. Проблемы с интернет-соединением создают дополнительные операционные риски.
+                </p>
+                <br>
+                <p>
+                    Перспективы развития включают внедрение методологии Scrum, формирование четкой стратегии развития IT-отдела и систематическое повышение квалификации команды. Это позволит не только устранить текущие проблемы, но и создать основу для масштабируемого роста IT-инфраструктуры компании.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tab contents
+            const tabContents = document.querySelectorAll('.tab-content');
+            tabContents.forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        function toggleDetails(element) {
+            // Find the closest project card
+            const card = element.closest('.project-card');
+            const details = card.querySelector('.project-details');
+            const btn = card.querySelector('.expand-btn');
+            
+            if (details.classList.contains('show')) {
+                details.classList.remove('show');
+                btn.textContent = 'Подробнее';
+                card.style.transform = '';
+            } else {
+                // Close all other details first
+                document.querySelectorAll('.project-details.show').forEach(detail => {
+                    detail.classList.remove('show');
+                    detail.parentNode.querySelector('.expand-btn').textContent = 'Подробнее';
+                    detail.parentNode.style.transform = '';
+                });
+                
+                details.classList.add('show');
+                btn.textContent = 'Скрыть';
+                card.style.transform = 'scale(1.02)';
+            }
+        }
+
+        // Add some interactive animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.project-card, .summary-card');
+            
+            cards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.1}s`;
+                card.style.animation = 'fadeIn 0.6s ease forwards';
+            });
+        });
+
+        // Add click animation to buttons
+        document.querySelectorAll('.expand-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+    </script>
+</body>
+</html>
