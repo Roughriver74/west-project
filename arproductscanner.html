@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AR Product Scanner - Умное распознавание товаров</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            overflow-x: hidden;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+        
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 18px 36px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .phone-mockup {
+            position: relative;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .phone-frame {
+            width: 100%;
+            height: 600px;
+            background: #1a1a1a;
+            border-radius: 40px;
+            padding: 20px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .phone-screen {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, #1e3c72, #2a5298);
+            border-radius: 25px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .camera-interface {
+            width: 200px;
+            height: 200px;
+            border: 3px solid #00ff88;
+            border-radius: 20px;
+            position: relative;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); border-color: #00ff88; }
+            50% { transform: scale(1.05); border-color: #00d4ff; }
+        }
+        
+        .scan-corners {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+        }
+        
+        .scan-corners::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: #00ff88;
+        }
+        
+        .scan-corners::after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 100%;
+            background: #00ff88;
+        }
+        
+        .corner-tl {
+            top: -3px;
+            left: -3px;
+        }
+        
+        .corner-tr {
+            top: -3px;
+            right: -3px;
+            transform: rotate(90deg);
+        }
+        
+        .corner-bl {
+            bottom: -3px;
+            left: -3px;
+            transform: rotate(-90deg);
+        }
+        
+        .corner-br {
+            bottom: -3px;
+            right: -3px;
+            transform: rotate(180deg);
+        }
+        
+        .scan-text {
+            color: white;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeInOut 2s ease-in-out infinite;
+        }
+        
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+        
+        .features {
+            padding: 100px 0;
+            background: #f8fafc;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        .tech-stack {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+        }
+        
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 60px;
+        }
+        
+        .tech-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
+        }
+        
+        .demo-section {
+            padding: 100px 0;
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+        }
+        
+        .demo-mockup {
+            max-width: 800px;
+            margin: 60px auto 0;
+            position: relative;
+        }
+        
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .step {
+            position: relative;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .footer {
+            padding: 60px 0;
+            background: #0f172a;
+            color: white;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-subtitle {
+            font-size: 1.2rem;
+            text-align: center;
+            opacity: 0.8;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            
+            .phone-frame {
+                height: 500px;
+            }
+            
+            .camera-interface {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .features-grid,
+            .tech-grid,
+            .workflow-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>AR Product Scanner</h1>
+                    <p class="subtitle">Умное распознавание товаров с камеры для мгновенного добавления в корзину</p>
+                    <button class="cta-button" onclick="scrollToDemo()">
+                        Посмотреть демо
+                    </button>
+                </div>
+                <div class="phone-mockup">
+                    <div class="phone-frame">
+                        <div class="phone-screen">
+                            <div class="camera-interface">
+                                <div class="scan-corners corner-tl"></div>
+                                <div class="scan-corners corner-tr"></div>
+                                <div class="scan-corners corner-bl"></div>
+                                <div class="scan-corners corner-br"></div>
+                            </div>
+                            <p class="scan-text">Наведите камеру на товар</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Ключевые возможности</h2>
+            <p class="section-subtitle">Революционная технология для современной торговли</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Мобильное распознавание</h3>
+                    <p>Работает на любых мобильных устройствах через браузер без установки приложений</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🔍</div>
+                    <h3>AI распознавание</h3>
+                    <p>Точное определение товаров с помощью машинного обучения и компьютерного зрения</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">💾</div>
+                    <h3>Интеграция с 1С</h3>
+                    <p>Прямая синхронизация с базой товаров, цен и остатков из 1С:Предприятие</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🛒</div>
+                    <h3>Умная корзина</h3>
+                    <p>Автоматическое формирование корзины с передачей на основной сайт</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Быстрая интеграция</h3>
+                    <p>Модульное решение для 1С-Bitrix через iframe или отдельную страницу</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Аналитика в реальном времени</h3>
+                    <p>Мгновенная проверка наличия, цен и характеристик товара</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tech-stack">
+        <div class="container">
+            <h2 class="section-title">Техническое решение</h2>
+            <p class="section-subtitle">Современный стек технологий для максимальной производительности</p>
+            
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>🎯 Computer Vision</h3>
+                    <p>TensorFlow.js / MediaPipe для распознавания объектов в браузере</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>📱 Progressive Web App</h3>
+                    <p>Работает как нативное приложение на всех устройствах</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>🔄 REST API</h3>
+                    <p>Быстрая интеграция с 1С через веб-сервисы или OData</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>⚡ WebRTC</h3>
+                    <p>Прямой доступ к камере без дополнительных разрешений</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>🗄️ Кэширование</h3>
+                    <p>Офлайн-режим для работы без интернета</p>
+                </div>
+                
+                <div class="tech-item">
+                    <h3>🔐 Безопасность</h3>
+                    <p>Шифрование данных и защищенные API-ключи</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="demo-section" id="demo">
+        <div class="container">
+            <h2 class="section-title">Как это работает</h2>
+            <p class="section-subtitle">Простой процесс от сканирования до заказа</p>
+            
+            <div class="workflow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Откройте сканер</h3>
+                    <p>Нажмите кнопку на сайте или перейдите по ссылке</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Наведите камеру</h3>
+                    <p>Направьте камеру на товар для распознавания</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Получите информацию</h3>
+                    <p>Система покажет цену, наличие и характеристики</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Добавьте в корзину</h3>
+                    <p>Одним нажатием добавляйте товары в заказ</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <h3>Оформите заказ</h3>
+                    <p>Корзина автоматически передается на основной сайт</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <button class="cta-button" onclick="requestDemo()">
+                    Заказать демонстрацию
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>AR Product Scanner</h3>
+            <p>Готовы внедрить будущее торговли в ваш бизнес?</p>
+            <div style="margin-top: 30px;">
+                <button class="cta-button" onclick="requestDemo()">
+                    Связаться с нами
+                </button>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function scrollToDemo() {
+            document.getElementById('demo').scrollIntoView({ 
+                behavior: 'smooth' 
+            });
+        }
+        
+        function requestDemo() {
+            alert('Демонстрация запрошена! В реальном проекте здесь будет форма обратной связи или переход на страницу контактов.');
+        }
+        
+        // Добавляем интерактивности для мобильных устройств
+        document.addEventListener('DOMContentLoaded', function() {
+            // Анимация появления элементов при скролле
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+            
+            // Применяем анимацию к карточкам
+            document.querySelectorAll('.feature-card, .tech-item').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(30px)';
+                card.style.transition = 'all 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
