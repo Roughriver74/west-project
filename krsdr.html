@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Краснодарский филиал - Год успеха</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #fff;
+        }
+
+        /* Анимации */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Hero секция */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,165.3C384,171,480,149,576,138.7C672,128,768,128,864,138.7C960,149,1056,171,1152,165.3C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom no-repeat;
+            background-size: cover;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(90deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            opacity: 0.95;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            margin-bottom: 3rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .hero-stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Основной контент */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 6rem;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ffed4e);
+            border-radius: 2px;
+        }
+
+        /* Карточки метрик */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            animation: slideInLeft 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 3s infinite;
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .metric-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            box-shadow: 0 10px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .metric-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .metric-growth {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.2);
+            color: #4caf50;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-weight: 600;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+
+        /* График прогресса */
+        .progress-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 30px;
+            padding: 3rem;
+            margin: 4rem 0;
+            backdrop-filter: blur(5px);
+        }
+
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 3rem 0;
+            position: relative;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, rgba(255,215,0,0.3), rgba(255,215,0,0.8));
+            z-index: -1;
+        }
+
+        .timeline-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-value {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffd700;
+        }
+
+        /* Highlights секция */
+        .highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .highlight-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(255,237,78,0.1));
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+            border: 2px solid rgba(255,215,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight-card::before {
+            content: '★';
+            position: absolute;
+            top: -20px;
+            right: 20px;
+            font-size: 80px;
+            opacity: 0.1;
+            transform: rotate(15deg);
+        }
+
+        .highlight-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .highlight-value {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(90deg, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            background: rgba(0,0,0,0.2);
+            margin-top: 6rem;
+        }
+
+        .footer-text {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 900;
+            margin-top: 1rem;
+            background: linear-gradient(90deg, #ffd700, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-stats {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .timeline {
+                flex-direction: column;
+            }
+            
+            .timeline::before {
+                display: none;
+            }
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(-20px);
+            }
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            fill: rgba(255,255,255,0.6);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>КРАСНОДАРСКИЙ ФИЛИАЛ</h1>
+        <p class="subtitle">Год стремительного роста и развития</p>
+        
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">173.2</div>
+                <div class="hero-stat-label">млн рублей выручки</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">8,634</div>
+                <div class="hero-stat-label">отгруженных заказа</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">+297%</div>
+                <div class="hero-stat-label">рост заказов</div>
+            </div>
+        </div>
+
+        <div class="scroll-indicator">
+            <svg viewBox="0 0 24 24">
+                <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Ключевые метрики -->
+        <section class="section">
+            <h2 class="section-title">Ключевые показатели за год</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">📅</div>
+                    <div class="metric-value">Август 2024</div>
+                    <div class="metric-label">Старт масштабной работы</div>
+                    <div class="metric-growth">Первая отгрузка: 322 заказа</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">💰</div>
+                    <div class="metric-value">20,065₽</div>
+                    <div class="metric-label">Средний чек</div>
+                    <div class="metric-growth">Стабильный показатель</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">👥</div>
+                    <div class="metric-value">3,319</div>
+                    <div class="metric-label">Активных клиентов (АКБ)</div>
+                    <div class="metric-growth">758 новых клиентов</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">📈</div>
+                    <div class="metric-value">26.9%</div>
+                    <div class="metric-label">Средний месячный рост</div>
+                    <div class="metric-growth">Стабильная динамика</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🏆</div>
+                    <div class="metric-value">Июль 2025</div>
+                    <div class="metric-label">Рекордный месяц</div>
+                    <div class="metric-growth">27.7 млн руб • 1,278 заказов</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🎯</div>
+                    <div class="metric-value">470</div>
+                    <div class="metric-label">АКБ в июне 2025</div>
+                    <div class="metric-growth">Максимум за период</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- График прогресса -->
+        <section class="progress-section">
+            <h2 class="section-title">Динамика развития по кварталам</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Q3 2024</div>
+                    <div class="timeline-value">16.7M₽</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">958 заказов</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Q4 2024</div>
+                    <div class="timeline-value">31.2M₽</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">1,739 заказов</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Q1 2025</div>
+                    <div class="timeline-value">61.9M₽</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">2,857 заказов</div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Q2 2025</div>
+                    <div class="timeline-value">67.1M₽</div>
+                    <div style="font-size: 0.9rem; opacity: 0.8;">3,297 заказов</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Highlights -->
+        <section class="section">
+            <h2 class="section-title">Главные достижения</h2>
+            
+            <div class="highlights">
+                <div class="highlight-card">
+                    <div class="highlight-title">Общий объем бизнеса</div>
+                    <div class="highlight-value">176.9M₽</div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-title">Новые клиенты</div>
+                    <div class="highlight-value">805</div>
+                </div>
+                
+                <div class="highlight-card">
+                    <div class="highlight-title">Рост продаж</div>
+                    <div class="highlight-value">x4</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Сравнительная аналитика -->
+        <section class="section">
+            <h2 class="section-title">Сравнение периодов</h2>
+            
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-icon">📊</div>
+                    <div class="metric-label">Июль 2024</div>
+                    <div class="metric-value" style="font-size: 1.8rem;">3.7M₽</div>
+                    <div style="opacity: 0.8; margin-top: 0.5rem;">217 заказов • 101 АКБ</div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-icon">🚀</div>
+                    <div class="metric-label">Июль 2025</div>
+                    <div class="metric-value" style="font-size: 1.8rem;">27.7M₽</div>
+                    <div style="opacity: 0.8; margin-top: 0.5rem;">1,278 заказов • 470 АКБ</div>
+                    <div class="metric-growth">Рост выручки: +641%</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p class="footer-text">Аналитика подготовлена на основе данных за период</p>
+        <p class="footer-text">Август 2024 — Июль 2025</p>
+        <div class="footer-logo">КРАСНОДАРСКИЙ ФИЛИАЛ</div>
+    </footer>
+
+    <script>
+        // Анимация чисел при скролле
+        const animateValue = (element, start, end, duration) => {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value.toLocaleString('ru-RU');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        };
+
+        // Intersection Observer для анимаций при скролле
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Применяем observer ко всем карточкам
+        document.querySelectorAll('.metric-card, .timeline-item, .highlight-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        // Плавный скролл
+        document.querySelector('.scroll-indicator')?.addEventListener('click', () => {
+            window.scrollTo({
+                top: window.innerHeight,
+                behavior: 'smooth'
+            });
+        });
+    </script>
+</body>
+</html>
