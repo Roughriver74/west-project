@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Генератор SSCC кодов</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+        
+        .info-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20capitalize;
+            margin-bottom: 30px;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .info-row:last-child {
+            border-bottom: none;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #666;
+        }
+        
+        .info-value {
+            color: #333;
+            font-family: monospace;
+            font-size: 1.1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: #555;
+            font-size: 1.1rem;
+        }
+        
+        select, input {
+            width: 100%;
+            padding: 12px 15px;
+            font-size: 1rem;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            transition: border-color 0.3s;
+            background: white;
+        }
+        
+        select:focus, input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        button {
+            padding: 12px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .generate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .generate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .reset-btn {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .reset-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(108, 117, 125, 0.4);
+        }
+        
+        .result-section {
+            display: none;
+            background: #e8f5e9;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .result-section.active {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .result-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+        
+        .sscc-code {
+            font-family: 'Courier New', monospace;
+            font-size: 1.8rem;
+            color: #1b5e20;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 2px solid #4caf50;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 8px 15px;
+            background: #4caf50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        
+        .copy-btn:hover {
+            background: #45a049;
+        }
+        
+        .structure-breakdown {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .structure-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .structure-item:last-child {
+            border-bottom: none;
+        }
+        
+        .structure-part {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 15px;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        .part-ai { background: #ff6b6b; }
+        .part-ext { background: #4ecdc4; }
+        .part-prefix { background: #45b7d1; }
+        .part-serial { background: #96ceb4; }
+        .part-check { background: #feca57; }
+        
+        .structure-description {
+            flex: 1;
+            color: #666;
+        }
+        
+        .batch-section {
+            margin-top: 30px;
+            padding: 25px;
+            background: #f0f7ff;
+            border-radius: 10px;
+        }
+        
+        .batch-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .batch-codes {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        .batch-code {
+            font-family: monospace;
+            padding: 8px;
+            margin: 5px 0;
+            background: #f5f5f5;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .batch-code:hover {
+            background: #e8e8e8;
+        }
+        
+        .export-btn {
+            width: 100%;
+            margin-top: 15px;
+            background: #1976d2;
+            color: white;
+        }
+        
+        .export-btn:hover {
+            background: #1565c0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(25, 118, 210, 0.4);
+        }
+        
+        .tooltip {
+            position: fixed;
+            background: #333;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 1000;
+        }
+        
+        .tooltip.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏷️ Генератор SSCC кодов</h1>
+        
+        <div class="info-section">
+            <div class="info-row">
+                <span class="info-label">GLN компании:</span>
+                <span class="info-value">4622235048990</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Префикс компании GS1:</span>
+                <span class="info-value">462223504</span>
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="extensionDigit">Цифра расширения (тип упаковки):</label>
+            <select id="extensionDigit">
+                <option value="0">0 - Коробка (стандартная)</option>
+                <option value="1">1 - Паллета</option>
+                <option value="2">2 - Коробка (тип 2)</option>
+                <option value="3">3 - Коробка (тип 3)</option>
+                <option value="4">4 - Коробка (тип 4)</option>
+                <option value="5">5 - Коробка (тип 5)</option>
+                <option value="6">6 - Коробка (тип 6)</option>
+                <option value="7">7 - Коробка (тип 7)</option>
+                <option value="8">8 - Коробка (тип 8)</option>
+                <option value="9">9 - Коробка (тип 9)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="startSerial">Начальный серийный номер:</label>
+            <input type="number" id="startSerial" value="1" min="1" max="9999999">
+        </div>
+        
+        <div class="form-group">
+            <label for="quantity">Количество кодов для генерации:</label>
+            <input type="number" id="quantity" value="1" min="1" max="1000">
+        </div>
+        
+        <div class="button-group">
+            <button class="generate-btn" onclick="generateSSCC()">Сгенерировать SSCC</button>
+            <button class="reset-btn" onclick="resetForm()">Сброс счётчика</button>
+        </div>
+        
+        <div id="resultSection" class="result-section">
+            <div class="result-title">✅ SSCC код сгенерирован</div>
+            <div id="singleResult"></div>
+        </div>
+        
+        <div id="batchSection" class="batch-section" style="display: none;">
+            <div class="batch-title">📦 Пакетная генерация SSCC кодов</div>
+            <div id="batchCodes" class="batch-codes"></div>
+            <button class="export-btn" onclick="exportCodes()">📥 Экспортировать в CSV</button>
+        </div>
+    </div>
+    
+    <div id="tooltip" class="tooltip"></div>
+    
+    <script>
+        // GLN компании и префикс
+        const GLN = '4622235048990';
+        const GS1_PREFIX = '462223504'; // Первые 9 цифр GLN
+        
+        // Счётчики для каждой цифры расширения
+        let serialCounters = {
+            '0': 1, '1': 1, '2': 1, '3': 1, '4': 1,
+            '5': 1, '6': 1, '7': 1, '8': 1, '9': 1
+        };
+        
+        // Загрузка сохранённых счётчиков из localStorage
+        function loadCounters() {
+            const saved = localStorage.getItem('ssccCounters');
+            if (saved) {
+                serialCounters = JSON.parse(saved);
+                updateStartSerial();
+            }
+        }
+        
+        // Сохранение счётчиков в localStorage
+        function saveCounters() {
+            localStorage.setItem('ssccCounters', JSON.stringify(serialCounters));
+        }
+        
+        // Обновление начального серийного номера при смене типа упаковки
+        function updateStartSerial() {
+            const extensionDigit = document.getElementById('extensionDigit').value;
+            document.getElementById('startSerial').value = serialCounters[extensionDigit];
+        }
+        
+        // Вычисление контрольной цифры по алгоритму GS1
+        function calculateCheckDigit(code) {
+            let sum = 0;
+            for (let i = 0; i < code.length; i++) {
+                const digit = parseInt(code[i]);
+                // Чётные позиции (с 0) умножаем на 3, нечётные на 1
+                sum += digit * (i % 2 === 0 ? 3 : 1);
+            }
+            const checkDigit = (10 - (sum % 10)) % 10;
+            return checkDigit.toString();
+        }
+        
+        // Форматирование серийного номера (добавление нулей слева)
+        function formatSerial(serial) {
+            return serial.toString().padStart(7, '0');
+        }
+        
+        // Генерация одного SSCC кода
+        function generateSingleSSCC(extensionDigit, serialNumber) {
+            const ai = '00'; // Application Identifier
+            const formattedSerial = formatSerial(serialNumber);
+            
+            // Собираем код без контрольной цифры
+            const codeWithoutCheck = extensionDigit + GS1_PREFIX + formattedSerial;
+            
+            // Вычисляем контрольную цифру
+            const checkDigit = calculateCheckDigit(codeWithoutCheck);
+            
+            // Полный SSCC код
+            const fullSSCC = ai + codeWithoutCheck + checkDigit;
+            
+            return {
+                full: fullSSCC,
+                ai: ai,
+                extension: extensionDigit,
+                prefix: GS1_PREFIX,
+                serial: formattedSerial,
+                check: checkDigit,
+                withoutAI: codeWithoutCheck + checkDigit
+            };
+        }
+        
+        // Основная функция генерации
+        function generateSSCC() {
+            const extensionDigit = document.getElementById('extensionDigit').value;
+            const startSerial = parseInt(document.getElementById('startSerial').value);
+            const quantity = parseInt(document.getElementById('quantity').value);
+            
+            if (startSerial > 9999999) {
+                alert('Серийный номер не может быть больше 9999999');
+                return;
+            }
+            
+            const codes = [];
+            
+            for (let i = 0; i < quantity; i++) {
+                const serialNumber = startSerial + i;
+                if (serialNumber > 9999999) {
+                    alert(`Достигнут максимальный серийный номер. Сгенерировано ${i} кодов из ${quantity}`);
+                    break;
+                }
+                codes.push(generateSingleSSCC(extensionDigit, serialNumber));
+            }
+            
+            // Обновляем счётчик для следующей генерации
+            serialCounters[extensionDigit] = startSerial + codes.length;
+            saveCounters();
+            updateStartSerial();
+            
+            // Отображаем результаты
+            if (quantity === 1) {
+                showSingleResult(codes[0]);
+            } else {
+                showBatchResults(codes);
+            }
+        }
+        
+        // Отображение одного результата
+        function showSingleResult(ssccData) {
+            const resultSection = document.getElementById('resultSection');
+            const singleResult = document.getElementById('singleResult');
+            const batchSection = document.getElementById('batchSection');
+            
+            singleResult.innerHTML = `
+                <div class="sscc-code">
+                    ${ssccData.full}
+                    <button class="copy-btn" onclick="copyToClipboard('${ssccData.full}')">📋 Копировать</button>
+                </div>
+                
+                <div class="structure-breakdown">
+                    <h3 style="margin-bottom: 15px; color: #666;">Структура кода:</h3>
+                    <div class="structure-item">
+                        <span class="structure-part part-ai">${ssccData.ai}</span>
+                        <span class="structure-description">Идентификатор применения (всегда 00)</span>
+                    </div>
+                    <div class="structure-item">
+                        <span class="structure-part part-ext">${ssccData.extension}</span>
+                        <span class="structure-description">Цифра расширения (тип упаковки)</span>
+                    </div>
+                    <div class="structure-item">
+                        <span class="structure-part part-prefix">${ssccData.prefix}</span>
+                        <span class="structure-description">Префикс компании GS1</span>
+                    </div>
+                    <div class="structure-item">
+                        <span class="structure-part part-serial">${ssccData.serial}</span>
+                        <span class="structure-description">Серийный номер упаковки</span>
+                    </div>
+                    <div class="structure-item">
+                        <span class="structure-part part-check">${ssccData.check}</span>
+                        <span class="structure-description">Контрольная цифра</span>
+                    </div>
+                </div>
+            `;
+            
+            resultSection.classList.add('active');
+            batchSection.style.display = 'none';
+        }
+        
+        // Отображение пакетных результатов
+        function showBatchResults(codes) {
+            const resultSection = document.getElementById('resultSection');
+            const batchSection = document.getElementById('batchSection');
+            const batchCodes = document.getElementById('batchCodes');
+            
+            // Сохраняем коды для экспорта
+            window.generatedCodes = codes;
+            
+            let html = '';
+            codes.forEach((code, index) => {
+                html += `
+                    <div class="batch-code">
+                        <span>${index + 1}. ${code.full}</span>
+                        <button class="copy-btn" onclick="copyToClipboard('${code.full}')" style="position: static; transform: none;">📋</button>
+                    </div>
+                `;
+            });
+            
+            batchCodes.innerHTML = html;
+            
+            resultSection.classList.remove('active');
+            batchSection.style.display = 'block';
+        }
+        
+        // Копирование в буфер обмена
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                showTooltip('Скопировано!');
+            });
+        }
+        
+        // Показ всплывающей подсказки
+        function showTooltip(text) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.textContent = text;
+            tooltip.style.left = event.pageX + 'px';
+            tooltip.style.top = (event.pageY - 30) + 'px';
+            tooltip.classList.add('show');
+            
+            setTimeout(() => {
+                tooltip.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Экспорт в CSV
+        function exportCodes() {
+            if (!window.generatedCodes || window.generatedCodes.length === 0) {
+                alert('Нет кодов для экспорта');
+                return;
+            }
+            
+            let csv = 'SSCC код,Без AI,Цифра расширения,Серийный номер\n';
+            window.generatedCodes.forEach(code => {
+                csv += `${code.full},${code.withoutAI},${code.extension},${code.serial}\n`;
+            });
+            
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            const url = URL.createObjectURL(blob);
+            
+            const now = new Date();
+            const timestamp = now.toISOString().replace(/[:.]/g, '-').slice(0, -5);
+            
+            link.setAttribute('href', url);
+            link.setAttribute('download', `SSCC_codes_${timestamp}.csv`);
+            link.style.visibility = 'hidden';
+            
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        // Сброс счётчиков
+        function resetForm() {
+            if (confirm('Вы уверены, что хотите сбросить все счётчики? Это действие нельзя отменить.')) {
+                serialCounters = {
+                    '0': 1, '1': 1, '2': 1, '3': 1, '4': 1,
+                    '5': 1, '6': 1, '7': 1, '8': 1, '9': 1
+                };
+                saveCounters();
+                updateStartSerial();
+                document.getElementById('resultSection').classList.remove('active');
+                document.getElementById('batchSection').style.display = 'none';
+                alert('Счётчики успешно сброшены!');
+            }
+        }
+        
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCounters();
+            
+            // Обновление серийного номера при смене типа упаковки
+            document.getElementById('extensionDigit').addEventListener('change', updateStartSerial);
+            
+            // Обработка Enter в полях ввода
+            document.querySelectorAll('input').forEach(input => {
+                input.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        generateSSCC();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
