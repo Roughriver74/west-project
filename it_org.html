@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактируемая оргструктура IT-отдела</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f2f5;
+            font-family: 'Inter', sans-serif;
+            padding: 16px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            padding: 24px;
+            width: 100%;
+            max-width: 1200px;
+        }
+        .mermaid svg {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-xl md:text-2xl font-bold text-center text-gray-800 mb-6">Организационная структура IT-отдела</h1>
+        <div class="mermaid">
+            graph TD
+                %% --- 1. ОПРЕДЕЛЕНИЕ УЗЛОВ (СОТРУДНИКИ) ---
+                %% Просто добавьте новую строку с уникальным ID и текстом для нового сотрудника.
+                %% Формат: ID["Имя<br/>(Должность)"]
+                %% Например: H["Иван Иванов<br/>(Стажер)"]
+
+                A["<br/>(Руководитель IT-отдела)"]
+                
+                B["Ринат<br/>(Руководитель отдела разработки 1С)"]
+                C["Денис<br/>(Специалист по бизнес-процессам)"]
+                D["Никита Колегов<br/>(Аналитик данных)"]
+                E["Александр Волков<br/>(Администратор и Helpdesk)"]
+                F["Разработчики веб-приложений"]
+                 H["Разработчики AI"]
+                G["Аутсорс-разработчики 1С"]
+                
+                B1["Разработчик 1С"]
+                B2["Программист 1С"]
+                C1["Евгения Садыкова<br/>(Специалист по настройке CRM)"]
+                D1["Аутсорсеры по BI-системам"]
+                E1["Подрядчики по оргтехнике"]
+                E2["Подрядчики по серверам"]
+                G1["Аутсорсер 1С (Склад)"]
+                G2["Аутсорсер 1С (Маршрутизация)"]
+
+
+                %% --- 2. ПОСТРОЕНИЕ ИЕРАРХИИ (СВЯЗИ) ---
+                %% Добавьте новую связь "руководитель --> подчиненный".
+                %% Например, чтобы добавить Ивана Иванова под ваше руководство: A --> H
+
+                A --> B & C & D & E & F & G & H
+                B --> B1 & B2
+                C --> C1
+                D --> D1
+                E --> E1 & E2
+                G --> G1 & G2
+
+
+                %% --- 3. СТИЛИЗАЦИЯ БЛОКОВ ---
+                %% Этот раздел лучше не трогать. Здесь заданы цвета и скругление.
+                classDef boss       fill:#2c3e50,stroke:#fff,stroke-width:2px,color:#fff,font-weight:bold,rx:8px,ry:8px;
+                classDef lead       fill:#2980b9,stroke:#fff,stroke-width:1px,color:#fff,rx:8px,ry:8px;
+                classDef staff      fill:#3498db,stroke:#fff,color:#fff,rx:8px,ry:8px;
+                classDef external   fill:#27ae60,stroke:#fff,color:#fff,rx:8px,ry:8px;
+
+                %% --- 4. НАЗНАЧЕНИЕ СТИЛЕЙ ---
+                %% Присвойте класс новому сотруднику по его ID.
+                %% Например: class H staff;
+                class A boss;
+                class B,C,D,E,F lead;
+                class B1,B2,C1 staff;
+                class G,D1,E1,E2,G1,G2 external;
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+
+</body>
+</html>
