@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный отчет IT-отдела: Q3 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Warm Neutrals -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard with a sticky top navigation to switch between four core views: "Обзор Q3", "Анализ Инцидентов", "Планы на Q4", and a new "AI-Аналитик" section. This structure empowers users to quickly access information and leverage AI for deeper insights. The AI section provides generative summaries and strategic recommendations based on the report data, triggered by user interaction. -->
+    <!-- Visualization & Content Choices: 
+        1. Q3 Key Metrics: Goal: Inform -> Method: "Stat cards". -> Interaction: None. -> Justification: High-impact summary. -> Library/Method: HTML/CSS. NO SVG.
+        2. Q3 Achievements Grid: Goal: Organize -> Method: Thematic content cards. -> Interaction: Hover effects. -> Justification: Scannable categories. -> Library/Method: HTML/CSS. NO SVG.
+        3. Incident Breakdown: Goal: Compare -> Method: Bar Chart. -> Interaction: Hover tooltips. -> Justification: Clear comparison across departments. -> Library/Method: Chart.js on Canvas. NO SVG.
+        4. Q4 Strategic Plan: Goal: Organize/Explore -> Method: Interactive Tabs. -> Interaction: Click to reveal details. -> Justification: Engages user and reduces cognitive load. -> Library/Method: HTML/CSS/JS. NO SVG/Mermaid.
+        5. Gemini AI Analysis: Goal: Synthesize/Recommend -> Method: Generative text blocks. -> Interaction: Button click to call API. -> Justification: Adds a layer of intelligent analysis, providing summaries and strategic advice directly from report data. -> Library/Method: JS Fetch API to Gemini.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F5F5F4;
+            color: #44403C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 500px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 450px;
+            }
+        }
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+        }
+        .nav-link.active {
+            color: #1c1917;
+            border-bottom-color: #78716C;
+        }
+        .plan-tab.active {
+            background-color: #78716C;
+            color: #FFFFFF;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #78716C;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="container mx-auto px-4 sm:px-6 lg:px-8">
+
+        <header class="py-6 text-center">
+            <h1 class="text-4xl font-bold text-stone-800">Отчет IT-отдела</h1>
+            <p class="text-lg text-stone-600 mt-1">Итоги 3 квартала и планы на 4 квартал 2025 года</p>
+        </header>
+
+        <nav class="sticky top-0 z-10 bg-stone-100/80 backdrop-blur-md border-b border-stone-300">
+            <div class="flex justify-center items-center space-x-2 sm:space-x-8">
+                <a href="#overview" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-2 text-sm sm:text-base font-semibold">Обзор Q3</a>
+                <a href="#incidents" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-2 text-sm sm:text-base font-semibold">Анализ Инцидентов</a>
+                <a href="#plans" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-2 text-sm sm:text-base font-semibold">Планы на Q4</a>
+                <a href="#ai-analyst" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-2 text-sm sm:text-base font-semibold">✨ AI-Аналитик</a>
+            </div>
+        </nav>
+
+        <main class="py-8 md:py-12">
+            <section id="overview" class="app-section space-y-12">
+                <div>
+                    <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Ключевые показатели Q3 2025</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow-md text-center border-t-4 border-stone-400">
+                            <p class="text-5xl font-bold text-stone-800">1033</p>
+                            <p class="text-base text-stone-600 mt-2">Обработано инцидентов</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md text-center border-t-4 border-stone-400">
+                            <p class="text-5xl font-bold text-stone-800">31</p>
+                            <p class="text-base text-stone-600 mt-2">Описано бизнес-процессов</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md text-center border-t-4 border-stone-400">
+                            <p class="text-5xl font-bold text-stone-800">25+</p>
+                            <p class="text-base text-stone-600 mt-2">Отчетов перенесено в Power BI</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md text-center border-t-4 border-stone-400">
+                            <p class="text-5xl font-bold text-stone-800">5000+</p>
+                            <p class="text-base text-stone-600 mt-2">Визитов через WestVisit</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="achievements-data">
+                    <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Основные достижения</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-stone-800 mb-3">Автоматизация и оптимизация</h3>
+                            <p class="text-stone-600">Повышена прозрачность и эффективность работы через централизацию заявок в Битрикс24, внедрение流程 для финансовых согласований и формализацию 31 ключевого бизнес-процесса.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-stone-800 mb-3">Развитие клиентских сервисов</h3>
+                            <p class="text-stone-600">Улучшено качество взаимодействия с клиентами благодаря внедрению интернет-эквайринга (T-pay, Sber-pay) и подготовке к запуску AI-помощника в WhatsApp для автоматизации заказов.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-stone-800 mb-3">Аналитика и отчетность (BI)</h3>
+                            <p class="text-stone-600">Осуществлен переход на управление, основанное на данных. Успешный перенос более 25 отчетов в Power BI обеспечивает руководство наглядной аналитикой для принятия решений.</p>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg shadow-md">
+                            <h3 class="text-xl font-semibold text-stone-800 mb-3">Модернизация склада</h3>
+                            <p class="text-stone-600">Повышена скорость и точность складских операций за счет внедрения улучшений для операторов и интеграции с системой маркировки "Честный знак".</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="incidents" class="app-section hidden">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-2">Анализ инцидентов за 3 квартал</h2>
+                <p id="incidents-data" class="text-center text-stone-600 max-w-3xl mx-auto mb-8">Централизованная система заявок позволила собрать детальную статистику по обращениям. Анализ показывает, что наибольшая нагрузка приходится на отделы, непосредственно работающие с клиентами и финансовыми операциями, что указывает на приоритетные области для дальнейшей стабилизации.</p>
+                <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                    <div class="chart-container">
+                        <canvas id="incidentsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="plans" class="app-section hidden">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Стратегические планы на 4 квартал</h2>
+                <div class="flex flex-col md:flex-row gap-8">
+                    <div class="w-full md:w-1/3">
+                        <div id="plan-tabs" class="flex md:flex-col gap-2">
+                             <button data-target="plan-1" class="plan-tab w-full text-left p-4 rounded-md bg-white hover:bg-stone-200 transition-colors shadow-sm">1. Склад и Логистика</button>
+                             <button data-target="plan-2" class="plan-tab w-full text-left p-4 rounded-md bg-white hover:bg-stone-200 transition-colors shadow-sm">2. Продажи и CRM</button>
+                             <button data-target="plan-3" class="plan-tab w-full text-left p-4 rounded-md bg-white hover:bg-stone-200 transition-colors shadow-sm">3. Аналитика и AI</button>
+                             <button data-target="plan-4" class="plan-tab w-full text-left p-4 rounded-md bg-white hover:bg-stone-200 transition-colors shadow-sm">4. Инфраструктура</button>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <div id="plan-content-data" class="bg-white p-6 rounded-lg shadow-md min-h-[250px]">
+                            <div id="plan-1-content" class="plan-content-panel">
+                                <h3 class="text-2xl font-semibold text-stone-800 mb-4">Приоритет 1: Склад и Логистика</h3>
+                                <p class="text-stone-600 mb-4">Ключевая задача — повышение качества и скорости сборки заказов, а также автоматизация управления маршрутами.</p>
+                                <ul class="list-disc list-inside text-stone-700 space-y-2">
+                                    <li><b>Внедрение ТСД (Терминалы сбора данных):</b> Основной проект для повышения точности комплектации заказов.</li>
+                                    <li><b>Веб-сервис для логистов:</b> Завершение разработки для автоматизации расчета зарплат и оптимизации маршрутов.</li>
+                                </ul>
+                            </div>
+                            <div id="plan-2-content" class="plan-content-panel hidden">
+                                <h3 class="text-2xl font-semibold text-stone-800 mb-4">Приоритет 2: Продажи и CRM</h3>
+                                <p class="text-stone-600 mb-4">Фокус на создании единой среды для управления взаимоотношениями с клиентами и унификации каналов коммуникации.</p>
+                                <ul class="list-disc list-inside text-stone-700 space-y-2">
+                                    <li><b>Полноценное внедрение CRM:</b> Активное использование Битрикс24 для отдела продаж и его тесная интеграция с 1С.</li>
+                                    <li><b>Омниканальность:</b> Объединение телефонии, мессенджеров и других каналов в единую систему для 360-градусного обзора клиента.</li>
+                                </ul>
+                            </div>
+                             <div id="plan-3-content" class="plan-content-panel hidden">
+                                <h3 class="text-2xl font-semibold text-stone-800 mb-4">Приоритет 3: Аналитика и AI</h3>
+                                <p class="text-stone-600 mb-4">Развитие предиктивной аналитики и интеллектуальной автоматизации для поддержки принятия решений и оптимизации внутренних процессов.</p>
+                                <ul class="list-disc list-inside text-stone-700 space-y-2">
+                                    <li><b>Прогнозирование продаж:</b> Запуск AI-проекта для формирования точных планов по выручке на основе анализа исторических данных.</li>
+                                    <li><b>AI-агент для IT-отдела:</b> Разработка внутреннего помощника для автоматической классификации и распределения заявок.</li>
+                                </ul>
+                            </div>
+                            <div id="plan-4-content" class="plan-content-panel hidden">
+                                 <h3 class="text-2xl font-semibold text-stone-800 mb-4">Приоритет 4: Инфраструктура</h3>
+                                <p class="text-stone-600 mb-4">Обеспечение стабильности и производительности ключевых бизнес-систем компании.</p>
+                                <ul class="list-disc list-inside text-stone-700 space-y-2">
+                                    <li><b>Перенос сервера 1С:</b> Завершение миграции базы 1С на новое, более производительное оборудование для повышения скорости работы.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="ai-analyst" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">✨ AI-Аналитик Gemini</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-3">Ключевые выводы по отчету</h3>
+                        <p class="text-stone-600 mb-4">Нажмите кнопку, чтобы AI проанализировал данные из разделов Q3 и Q4 и сформировал краткое резюме по основным достижениям, проблемам и целям.</p>
+                        <button id="get-summary-btn" class="bg-stone-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-stone-700 transition-colors">✨ Сгенерировать выводы</button>
+                        <div id="summary-loader" class="hidden mt-4 flex justify-center"><div class="loader"></div></div>
+                        <div id="summary-result" class="mt-4 p-4 bg-stone-50 rounded-lg text-stone-700 border border-stone-200 whitespace-pre-wrap"></div>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-3">Рекомендации по плану на Q4</h3>
+                        <p class="text-stone-600 mb-4">Получите от AI стратегические рекомендации, оценку потенциальных рисков и предложения по KPI для успешной реализации планов на следующий квартал.</p>
+                        <button id="get-recommendations-btn" class="bg-stone-600 text-white font-bold py-2 px-4 rounded-lg hover:bg-stone-700 transition-colors">✨ Получить рекомендации</button>
+                        <div id="recommendations-loader" class="hidden mt-4 flex justify-center"><div class="loader"></div></div>
+                        <div id="recommendations-result" class="mt-4 p-4 bg-stone-50 rounded-lg text-stone-700 border border-stone-200 whitespace-pre-wrap"></div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sections = document.querySelectorAll('.app-section');
+            const apiKey = "";
+
+            function updateActiveNav(targetId) {
+                navLinks.forEach(link => {
+                    link.classList.toggle('active', link.getAttribute('href') === `#${targetId}`);
+                });
+                sections.forEach(section => {
+                    section.classList.toggle('hidden', section.id !== targetId);
+                });
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.getAttribute('href').substring(1);
+                    updateActiveNav(targetId);
+                });
+            });
+
+            updateActiveNav('overview');
+
+            const planTabs = document.querySelectorAll('.plan-tab');
+            const planContents = document.querySelectorAll('.plan-content-panel');
+
+            function updateActivePlanTab(targetId) {
+                planTabs.forEach(tab => {
+                     tab.classList.toggle('active', tab.dataset.target === targetId);
+                });
+                planContents.forEach(content => {
+                    content.classList.toggle('hidden', content.id !== `${targetId}-content`);
+                });
+            }
+            
+            planTabs.forEach(tab => {
+                tab.addEventListener('click', (e) => {
+                    updateActivePlanTab(e.currentTarget.dataset.target);
+                });
+            });
+
+            updateActivePlanTab('plan-1');
+            
+            const incidentsCtx = document.getElementById('incidentsChart');
+            if(incidentsCtx) {
+                const incidentsChart = new Chart(incidentsCtx.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Розничный отдел', 'Бухгалтерия', 'Краснодарский филиал', 'Склад', 'Отдел закупки'],
+                        datasets: [{
+                            label: 'Количество инцидентов',
+                            data: [176, 93, 73, 67, 48],
+                            backgroundColor: '#A8A29E',
+                            borderColor: '#78716C',
+                            borderWidth: 1,
+                            borderRadius: 4,
+                            barPercentage: 0.6
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        indexAxis: 'y',
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: function(tooltipItems) {
+                                        const item = tooltipItems[0];
+                                        let label = item.chart.data.labels[item.dataIndex];
+                                        if (Array.isArray(label)) {
+                                          return label.join(' ');
+                                        } else {
+                                          return label;
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        scales: {
+                             x: {
+                                beginAtZero: true,
+                                grid: {
+                                    color: '#E7E5E4'
+                                },
+                                ticks: {
+                                    color: '#57534E'
+                                }
+                            },
+                             y: {
+                                grid: {
+                                    display: false
+                                },
+                                ticks: {
+                                    color: '#57534E'
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+            
+            async function callGeminiAPI(prompt, resultContainer, loader) {
+                loader.classList.remove('hidden');
+                resultContainer.textContent = '';
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                const payload = {
+                    contents: [{ parts: [{ text: prompt }] }],
+                };
+
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const text = result.candidates?.[0]?.content?.parts?.[0]?.text;
+
+                    if (text) {
+                        resultContainer.textContent = text;
+                    } else {
+                        resultContainer.textContent = 'Не удалось получить ответ от AI. Пожалуйста, попробуйте еще раз.';
+                    }
+                } catch (error) {
+                    resultContainer.textContent = `Произошла ошибка: ${error.message}`;
+                } finally {
+                    loader.classList.add('hidden');
+                }
+            }
+
+            const getSummaryBtn = document.getElementById('get-summary-btn');
+            getSummaryBtn.addEventListener('click', () => {
+                const achievementsContext = document.getElementById('achievements-data').innerText;
+                const incidentsContext = document.getElementById('incidents-data').innerText;
+                const plansContext = document.getElementById('plan-content-data').innerText;
+                
+                const prompt = `Проанализируй следующий отчет IT-отдела и предоставь краткие ключевые выводы в виде маркированного списка. Сформулируй основные достижения, главную проблему по инцидентам и стратегические цели на следующий квартал. Отчет:\n\nДОСТИЖЕНИЯ Q3:\n${achievementsContext}\n\nИНЦИДЕНТЫ Q3:\n${incidentsContext}\n\nПЛАНЫ НА Q4:\n${plansContext}`;
+                
+                callGeminiAPI(prompt, document.getElementById('summary-result'), document.getElementById('summary-loader'));
+            });
+
+            const getRecommendationsBtn = document.getElementById('get-recommendations-btn');
+            getRecommendationsBtn.addEventListener('click', () => {
+                const plansContext = document.getElementById('plan-content-data').innerText;
+                
+                const prompt = `Действуй как IT-консультант. Проанализируй следующие планы IT-отдела на Q4. Предоставь три конкретные рекомендации для успешной реализации, определи два потенциальных риска, которые не были упомянуты, и предложи по одному ключевому показателю эффективности (KPI) для каждого из четырех направлений. Ответ дай в виде маркированных списков. Планы:\n\n${plansContext}`;
+
+                callGeminiAPI(prompt, document.getElementById('recommendations-result'), document.getElementById('recommendations-loader'));
+            });
+
+        });
+    </script>
+</body>
+</html>
+
