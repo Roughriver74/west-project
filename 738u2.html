@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Аналитический отчёт Q3 2025</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #bdbdbd 0%, #e0e0e0 50%, #f5f5f5 100%);
+            color: #2c2c2c;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveGrid 20s linear infinite;
+        }
+
+        @keyframes moveGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 1000px;
+        }
+
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+            animation: fadeInUp 1s ease 0.3s both;
+            color: #424242;
+        }
+
+        .critical-alerts {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .alert-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(189, 189, 189, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .alert-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .alert-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .alert-value {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+
+        .alert-label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            color: #616161;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            animation: fadeIn 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: #616161;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 3px solid #9e9e9e;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: #757575;
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+        }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .metric-card {
+            background: linear-gradient(135deg, #9e9e9e 0%, #bdbdbd 50%, #e0e0e0 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transition: all 0.5s ease;
+        }
+
+        .metric-card:hover::before {
+            transform: scale(1.2);
+        }
+
+        .metric-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+        }
+
+        .metric-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric-change {
+            font-size: 1rem;
+            opacity: 0.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .trend-up {
+            color: #ff6b6b;
+        }
+
+        .trend-down {
+            color: #51cf66;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 400px;
+            margin: 2rem 0;
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+        }
+
+        th, td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e9ecef;
+        }
+
+        th {
+            background: linear-gradient(135deg, #9e9e9e 0%, #bdbdbd 100%);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .recommendation {
+            background: linear-gradient(135deg, #c5cae9 0%, #b0bec5 50%, #90a4ae 100%);
+            color: #263238;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 5px solid #78909c;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .recommendation h4 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .priority-badge {
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .priority-1 {
+            background: #757575;
+            color: white;
+        }
+
+        .priority-2 {
+            background: #bdbdbd;
+            color: #333;
+        }
+
+        .priority-3 {
+            background: #e0e0e0;
+            color: #333;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .nav-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+        }
+
+        .nav-bar.visible {
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: #757575;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #424242;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.8rem; }
+            .section { padding: 1.5rem; }
+            .dashboard { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar" id="navBar">
+        <div class="nav-links">
+            <a href="#overview">Обзор</a>
+            <a href="#performance">Производительность</a>
+            <a href="#quality">Качество</a>
+            <a href="#finance">Финансы</a>
+            <a href="#recommendations">Рекомендации</a>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <div class="hero-content">
+            <h1>📊 АНАЛИТИЧЕСКИЙ ОТЧЁТ</h1>
+            <p>Глубокий анализ эффективности складского комплекса<br>Q3 2025 (Июль–Сентябрь)</p>
+            
+            <div class="critical-alerts">
+                <div class="alert-card">
+                    <div class="alert-icon">🔴</div>
+                    <div class="alert-value">-20%</div>
+                    <div class="alert-label">Падение производительности</div>
+                </div>
+                <div class="alert-card">
+                    <div class="alert-icon">⏱️</div>
+                    <div class="alert-value">+16.4%</div>
+                    <div class="alert-label">Рост времени обработки</div>
+                </div>
+                <div class="alert-card">
+                    <div class="alert-icon">📈</div>
+                    <div class="alert-value">+49%</div>
+                    <div class="alert-label">Рост претензий</div>
+                </div>
+                <div class="alert-card">
+                    <div class="alert-icon">💰</div>
+                    <div class="alert-value">+11%</div>
+                    <div class="alert-label">Рост стоимости заказа</div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div style="font-size: 2rem;">↓</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="section" id="overview">
+            <h2>📋 Executive Summary</h2>
+            
+            <div style="background: #e0e0e0; padding: 2rem; border-radius: 15px; border-left: 5px solid #9e9e9e; margin: 2rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <h3 style="color: #424242; margin-top: 0;">🔍 Ключевое открытие</h3>
+                <p style="font-size: 1.1rem; color: #424242;">
+                    <strong>Текущее покрытие персоналом ДОСТАТОЧНОЕ</strong> (23 человека в пик 15:00-17:00).
+                    Проблема не в количестве, а в эффективности работы каждого сборщика.
+                    Каждый заказ обрабатывается на <strong>3,5 минуты дольше</strong>, чем в июле.
+                </p>
+            </div>
+
+            <div class="dashboard">
+                <div class="metric-card">
+                    <div class="metric-label">⏱️ Время на заказ</div>
+                    <div class="metric-value">24.5 мин</div>
+                    <div class="metric-change trend-up">↑ +16.4% от июля</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">📦 Строк/час (общая)</div>
+                    <div class="metric-value">20.28</div>
+                    <div class="metric-change trend-up">↓ -11.2% от июля</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">🎯 Заказов/час</div>
+                    <div class="metric-value">2.45</div>
+                    <div class="metric-change trend-up">↓ -14.0% от июля</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">⏰ Время сброса</div>
+                    <div class="metric-value">10:53</div>
+                    <div class="metric-change trend-down">✓ -5.6% от июля</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="performance">
+            <h2>⚡ Динамика производительности</h2>
+            
+            <div class="chart-container">
+                <canvas id="productivityChart"></canvas>
+            </div>
+
+            <h3>Время обработки заказа по месяцам</h3>
+            <div class="chart-container">
+                <canvas id="processingTimeChart"></canvas>
+            </div>
+
+            <h3>📊 Ключевые показатели производительности</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Показатель</th>
+                            <th>Июль</th>
+                            <th>Август</th>
+                            <th>Сентябрь</th>
+                            <th>Изменение</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Строк в час (общая)</strong></td>
+                            <td>22.83</td>
+                            <td style="color: #ff6b6b; font-weight: bold;">18.26</td>
+                            <td>20.28</td>
+                            <td style="color: #ff6b6b; font-weight: bold;">-11.2%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Заказов в час</strong></td>
+                            <td>2.85</td>
+                            <td>2.19</td>
+                            <td>2.45</td>
+                            <td style="color: #ff6b6b; font-weight: bold;">-14.0%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Время на заказ</strong></td>
+                            <td>21.0 мин</td>
+                            <td style="color: #ff6b6b; font-weight: bold;">27.5 мин</td>
+                            <td>24.5 мин</td>
+                            <td style="color: #ff6b6b; font-weight: bold;">+16.4%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Заказов на сборщика</strong></td>
+                            <td>26.34</td>
+                            <td>17.58</td>
+                            <td>20.40</td>
+                            <td style="color: #ff6b6b; font-weight: bold;">-22.5%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="background: #e0e0e0; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 5px solid #9e9e9e; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <h3 style="color: #424242; margin-top: 0;">🔴 Критическая корреляция</h3>
+                <div class="chart-container">
+                    <canvas id="correlationChart"></canvas>
+                </div>
+                <p style="font-size: 1.1rem; color: #424242; margin-top: 1rem;">
+                    Резкое сокращение отмены проверки с <strong>29%</strong> до <strong>16%</strong> (-42.7%) 
+                    совпало с падением производительности на <strong>20%</strong>.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="quality">
+            <h2>✅ Показатели качества</h2>
+            
+            <div class="chart-container">
+                <canvas id="qualityChart"></canvas>
+            </div>
+
+            <div style="background: #e0e0e0; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 5px solid #9e9e9e; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <h3 style="color: #424242; margin-top: 0;">⚠️ Парадокс качества</h3>
+                <p style="font-size: 1.1rem; color: #424242;">
+                    Увеличение проверки с <strong>71%</strong> до <strong>84%</strong> НЕ снизило претензии.
+                    Претензии выросли с <strong>3.9</strong> до <strong>5.8</strong> на 1000 заказов (+49%).
+                    <br><br>
+                    <strong>Вывод:</strong> Качество определяется на этапе сборки, а не проверки.
+                </p>
+            </div>
+
+            <h3>📈 Динамика претензий</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Показатель</th>
+                            <th>Июль</th>
+                            <th>Август</th>
+                            <th>Сентябрь</th>
+                            <th>Тренд</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Претензий (всего)</td>
+                            <td>53</td>
+                            <td>70</td>
+                            <td>79</td>
+                            <td style="color: #ff6b6b;">↑ +49.1%</td>
+                        </tr>
+                        <tr>
+                            <td>Среднее в день</td>
+                            <td>2.79</td>
+                            <td>3.89</td>
+                            <td>4.16</td>
+                            <td style="color: #ff6b6b;">↑ +57.7%</td>
+                        </tr>
+                        <tr>
+                            <td>На 1000 заказов</td>
+                            <td>3.9</td>
+                            <td>5.8</td>
+                            <td>5.8</td>
+                            <td style="color: #ff6b6b;">↑ +59.0%</td>
+                        </tr>
+                        <tr>
+                            <td>% проверки</td>
+                            <td>71.2%</td>
+                            <td>80.9%</td>
+                            <td>83.8%</td>
+                            <td style="color: #51cf66;">↑ +17.7%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" id="finance">
+            <h2>💰 Финансовые показатели</h2>
+            
+            <div class="dashboard">
+                <div class="metric-card">
+                    <div class="metric-label">💵 Общий ФОТ</div>
+                    <div class="metric-value">2.91М ₽</div>
+                    <div class="metric-change trend-up">↑ +10.9%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">📦 ФОТ на заказ</div>
+                    <div class="metric-value">214 ₽</div>
+                    <div class="metric-change trend-up">↑ +11.1%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">📝 ФОТ на строку</div>
+                    <div class="metric-value">26 ₽</div>
+                    <div class="metric-change trend-up">↑ +7.4%</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-label">⏰ Потери времени</div>
+                    <div class="metric-value">26.4%</div>
+                    <div class="metric-change trend-up">↑ +2.6%</div>
+                </div>
+            </div>
+
+            <h3>📊 Динамика стоимости обработки</h3>
+            <div class="chart-container">
+                <canvas id="costChart"></canvas>
+            </div>
+
+            <div style="background: #e0e0e0; padding: 2rem; border-radius: 15px; margin: 2rem 0; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+                <h4 style="color: #424242;">🔴 Критическая проблема</h4>
+                <p style="color: #424242; font-size: 1.1rem;">
+                    Компания теряет <strong>четверть потенциального рабочего времени</strong> (26.4%) 
+                    на отпуска и больничные. В августе 22 человека (81% штата) одновременно были в отпуске.
+                </p>
+            </div>
+        </section>
+
+        <section class="section" id="recommendations">
+            <h2>🎯 Рекомендации</h2>
+
+            <div class="recommendation">
+                <h4><span class="priority-badge priority-1">ПРИОРИТЕТ 1</span> Восстановление отмены проверки</h4>
+                <p><strong>Текущее:</strong> 16.2% без проверки</p>
+                <p><strong>Целевое:</strong> 25-30% без проверки</p>
+                <p style="margin-top: 1rem;">
+                    <strong>Ожидаемый эффект:</strong><br>
+                    • Экономия 60-70 часов в месяц<br>
+                    • Рост производительности на 15-20%<br>
+                    • Возврат к показателям июля (22-23 строки/час)
+                </p>
+            </div>
+
+            <div class="recommendation">
+                <h4><span class="priority-badge priority-1">ПРИОРИТЕТ 2</span> Программа "Пиковый час" 15:00-17:00</h4>
+                <p><strong>Проблема:</strong> 23 сборщика не справляются с 81 заказом/час</p>
+                <p style="margin-top: 1rem;">
+                    <strong>Решение:</strong><br>
+                    • Усиление 2 самозанятыми на пик<br>
+                    • Обязательная отмена проверки 40% заказов<br>
+                    • Приоритизация простых заказов
+                </p>
+                <p style="margin-top: 1rem;">
+                    <strong>Ожидаемый эффект:</strong><br>
+                    • Производительность в пик: с 1.7 до 3.2 заказа/ч (+88%)<br>
+                    • Сокращение накопления очереди на 75-83%
+                </p>
+            </div>
+
+            <div class="recommendation">
+                <h4><span class="priority-badge priority-2">ПРИОРИТЕТ 3</span> Анализ причин претензий</h4>
+                <p><strong>Срок:</strong> 2 недели</p>
+                <p style="margin-top: 1rem;">
+                    <strong>Действия:</strong><br>
+                    • Детальная классификация через систему 1С<br>
+                    • Сегментация по сборщикам и типам ошибок<br>
+                    • Временной анализ (пиковые vs спокойные часы)
+                </p>
+            </div>
+
+            <h3>🎯 Целевые показатели Q4 2025</h3>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Показатель</th>
+                            <th>Текущее (сентябрь)</th>
+                            <th>Цель Q4 2025</th>
+                            <th>Улучшение</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Время на заказ</strong></td>
+                            <td>24.5 мин</td>
+                            <td style="color: #51cf66; font-weight: bold;">21.0 мин</td>
+                            <td>-14%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Строк/час (общая)</strong></td>
+                            <td>20.28</td>
+                            <td style="color: #51cf66; font-weight: bold;">23.00</td>
+                            <td>+13%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Время сброса</strong></td>
+                            <td>10:53</td>
+                            <td style="color: #51cf66; font-weight: bold;">10:00</td>
+                            <td>-8%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Претензии на 1000</strong></td>
+                            <td>5.8</td>
+                            <td style="color: #51cf66; font-weight: bold;">4.5</td>
+                            <td>-22%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>% отмены проверки</strong></td>
+                            <td>16.2%</td>
+                            <td style="color: #51cf66; font-weight: bold;">25.0%</td>
+                            <td>+54%</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ФОТ на заказ</strong></td>
+                            <td>214 ₽</td>
+                            <td style="color: #51cf66; font-weight: bold;">195 ₽</td>
+                            <td>-9%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section" style="background: linear-gradient(135deg, #9e9e9e 0%, #bdbdbd 50%, #e0e0e0 100%); color: #2c2c2c;">
+            <h2 style="color: #2c2c2c; border-color: #757575;">🎓 Заключение</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8;">
+                Q3 2025 года выявил критические проблемы эффективности склада. Главный вывод: 
+                <strong>проблема не в недостатке персонала, а в неэффективном использовании имеющихся ресурсов.</strong>
+            </p>
+            <div style="background: rgba(255,255,255,0.3); padding: 2rem; border-radius: 15px; margin-top: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <h3 style="color: #2c2c2c; margin-top: 0;">Ключевое открытие</h3>
+                <p style="font-size: 1.1rem;">
+                    Резкое сокращение использования отмены проверки (с 29% до 16%) совпало с падением 
+                    производительности на 20%. Это указывает на то, что отмена проверки — не угроза качеству, 
+                    а необходимый инструмент гибкости при пиковых нагрузках.
+                </p>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // Navigation bar on scroll
+        window.addEventListener('scroll', function() {
+            const navBar = document.getElementById('navBar');
+            if (window.scrollY > window.innerHeight) {
+                navBar.classList.add('visible');
+            } else {
+                navBar.classList.remove('visible');
+            }
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Chart configurations
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                    labels: { font: { size: 14 } }
+                }
+            },
+            scales: {
+                y: { beginAtZero: false }
+            }
+        };
+
+        // Productivity Chart
+        new Chart(document.getElementById('productivityChart'), {
+            type: 'line',
+            data: {
+                labels: ['Июль', 'Август', 'Сентябрь'],
+                datasets: [{
+                    label: 'Строк/час (общая)',
+                    data: [22.83, 18.26, 20.28],
+                    borderColor: '#9e9e9e',
+                    backgroundColor: 'rgba(158, 158, 158, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 3
+                }, {
+                    label: 'Заказов/час',
+                    data: [2.85, 2.19, 2.45],
+                    borderColor: '#757575',
+                    backgroundColor: 'rgba(117, 117, 117, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 3
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Processing Time Chart
+        new Chart(document.getElementById('processingTimeChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Июль', 'Август', 'Сентябрь'],
+                datasets: [{
+                    label: 'Время на заказ (минут)',
+                    data: [21.0, 27.5, 24.5],
+                    backgroundColor: [
+                        'rgba(189, 189, 189, 0.8)',
+                        'rgba(117, 117, 117, 0.8)',
+                        'rgba(158, 158, 158, 0.8)'
+                    ],
+                    borderColor: [
+                        '#bdbdbd',
+                        '#757575',
+                        '#9e9e9e'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Correlation Chart
+        new Chart(document.getElementById('correlationChart'), {
+            type: 'line',
+            data: {
+                labels: ['Июль', 'Август', 'Сентябрь'],
+                datasets: [{
+                    label: '% отмены проверки',
+                    data: [29.1, 19.2, 16.2],
+                    borderColor: '#bdbdbd',
+                    backgroundColor: 'rgba(189, 189, 189, 0.2)',
+                    yAxisID: 'y',
+                    tension: 0.4,
+                    borderWidth: 3
+                }, {
+                    label: 'Строк/час',
+                    data: [22.83, 18.26, 20.28],
+                    borderColor: '#757575',
+                    backgroundColor: 'rgba(117, 117, 117, 0.2)',
+                    yAxisID: 'y1',
+                    tension: 0.4,
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: { color: '#424242', font: { size: 14 } }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: '% отмены проверки', color: '#424242' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: 'Строк/час', color: '#424242' },
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        // Quality Chart
+        new Chart(document.getElementById('qualityChart'), {
+            type: 'line',
+            data: {
+                labels: ['Июль', 'Август', 'Сентябрь'],
+                datasets: [{
+                    label: 'Претензии на 1000 заказов',
+                    data: [3.9, 5.8, 5.8],
+                    borderColor: '#757575',
+                    backgroundColor: 'rgba(117, 117, 117, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 3,
+                    yAxisID: 'y'
+                }, {
+                    label: '% проверки',
+                    data: [71.2, 80.9, 83.8],
+                    borderColor: '#bdbdbd',
+                    backgroundColor: 'rgba(189, 189, 189, 0.1)',
+                    tension: 0.4,
+                    fill: true,
+                    borderWidth: 3,
+                    yAxisID: 'y1'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'top' }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: { display: true, text: 'Претензии на 1000' }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: { display: true, text: '% проверки' },
+                        grid: { drawOnChartArea: false }
+                    }
+                }
+            }
+        });
+
+        // Cost Chart
+        new Chart(document.getElementById('costChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Июль', 'Август', 'Сентябрь'],
+                datasets: [{
+                    label: 'ФОТ на заказ (руб)',
+                    data: [192.90, 251.87, 214.32],
+                    backgroundColor: [
+                        'rgba(189, 189, 189, 0.8)',
+                        'rgba(117, 117, 117, 0.8)',
+                        'rgba(158, 158, 158, 0.8)'
+                    ],
+                    borderColor: [
+                        '#bdbdbd',
+                        '#757575',
+                        '#9e9e9e'
+                    ],
+                    borderWidth: 2
+                }]
+            },
+            options: chartOptions
+        });
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.8s ease';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
