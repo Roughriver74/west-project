@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, maximum-scale=1.0">
+    <title>Стоматолог ловит зубы</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            touch-action: none;
+            overflow: hidden;
+        }
+        
+        #gameContainer {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            max-width: 100%;
+        }
+        
+        #gameCanvas {
+            border: 4px solid #2c3e50;
+            border-radius: 15px;
+            display: block;
+            background: linear-gradient(180deg, #e3f9ff 0%, #fff 50%, #f0f8ff 100%);
+            touch-action: none;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        #gameInfo {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .info-item {
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            flex: 1;
+            min-width: 80px;
+            text-align: center;
+        }
+        
+        #startBtn {
+            margin-top: 10px;
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            touch-action: manipulation;
+        }
+        
+        #startBtn:active {
+            transform: scale(0.95);
+        }
+        
+        #startBtn:disabled {
+            background: #95a5a6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .controls {
+            margin-top: 10px;
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+        }
+        
+        @media (max-width: 500px) {
+            #gameContainer {
+                padding: 10px;
+                border-radius: 15px;
+            }
+            
+            .info-item {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+            
+            #startBtn {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas" width="450" height="650"></canvas>
+        <div id="gameInfo">
+            <div class="info-item">🏆 <span id="score">0</span></div>
+            <div class="info-item">❤️ <span id="lives">3</span></div>
+            <div class="info-item">⭐ <span id="level">1</span></div>
+        </div>
+        <button id="startBtn">🦷 Начать игру</button>
+        <div class="controls">
+            📱 Касайтесь экрана / ⌨️ Стрелки или A D
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('gameCanvas');
+        const ctx = canvas.getContext('2d');
+        const scoreEl = document.getElementById('score');
+        const livesEl = document.getElementById('lives');
+        const levelEl = document.getElementById('level');
+        const startBtn = document.getElementById('startBtn');
+
+        let gameRunning = false;
+        let score = 0;
+        let lives = 3;
+        let level = 1;
+        let gameSpeed = 2.5;
+        let spawnRate = 80;
+        let frameCount = 0;
+        let particles = [];
+        
+        // Адаптивный размер canvas
+        let scale = 1;
+        let canvasWidth = 450;
+        let canvasHeight = 650;
+        
+        function resizeCanvas() {
+            const container = document.getElementById('gameContainer');
+            const maxWidth = Math.min(window.innerWidth - 40, 450);
+            const maxHeight = window.innerHeight - 200;
+            
+            scale = Math.min(maxWidth / canvasWidth, maxHeight / canvasHeight, 1);
+            
+            canvas.style.width = (canvasWidth * scale) + 'px';
+            canvas.style.height = (canvasHeight * scale) + 'px';
+        }
+        
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        const dentist = {
+            x: canvasWidth / 2 - 50,
+            y: canvasHeight - 130,
+            width: 100,
+            height: 110,
+            speed: 8,
+            targetX: canvasWidth / 2 - 50
+        };
+
+        let teeth = [];
+        const keys = {};
+        let touchActive = false;
+        
+        // Клавиатурное управление
+        document.addEventListener('keydown', (e) => {
+            keys[e.key] = true;
+        });
+        
+        document.addEventListener('keyup', (e) => {
+            keys[e.key] = false;
+        });
+        
+        // Сенсорное управление
+        function getTouchPos(e) {
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0] || e.changedTouches[0];
+            return {
+                x: (touch.clientX - rect.left) / scale,
+                y: (touch.clientY - rect.top) / scale
+            };
+        }
+        
+        canvas.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            touchActive = true;
+            const pos = getTouchPos(e);
+            dentist.targetX = pos.x - dentist.width / 2;
+        });
+        
+        canvas.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            if (touchActive) {
+                const pos = getTouchPos(e);
+                dentist.targetX = pos.x - dentist.width / 2;
+            }
+        });
+        
+        canvas.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            touchActive = false;
+        });
+        
+        canvas.addEventListener('touchcancel', (e) => {
+            e.preventDefault();
+            touchActive = false;
+        });
+        
+        // Предотвращаем скролл и zoom
+        document.addEventListener('touchmove', (e) => {
+            if (e.target === canvas) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.vx = (Math.random() - 0.5) * 6;
+                this.vy = (Math.random() - 0.5) * 6 - 3;
+                this.life = 50;
+                this.maxLife = 50;
+                this.size = Math.random() * 6 + 3;
+                const hue = Math.random() * 60 + 180;
+                this.color = `hsl(${hue}, 80%, 70%)`;
+            }
+
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vy += 0.25;
+                this.life--;
+            }
+
+            draw() {
+                const alpha = this.life / this.maxLife;
+                ctx.save();
+                ctx.globalAlpha = alpha;
+                ctx.fillStyle = this.color;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Блик на частице
+                ctx.fillStyle = 'white';
+                ctx.beginPath();
+                ctx.arc(this.x - 1, this.y - 1, this.size * 0.4, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
+            }
+
+            isDead() {
+                return this.life <= 0;
+            }
+        }
+
+        class Tooth {
+            constructor() {
+                this.width = 55;
+                this.height = 55;
+                this.x = Math.random() * (canvasWidth - this.width);
+                this.y = -this.height;
+                this.speed = gameSpeed + Math.random() * 2;
+                this.rotation = Math.random() * 360;
+                this.rotationSpeed = (Math.random() - 0.5) * 6;
+                this.type = Math.floor(Math.random() * 3);
+                this.wobble = Math.random() * Math.PI * 2;
+            }
+
+            update() {
+                this.y += this.speed;
+                this.rotation += this.rotationSpeed;
+                this.wobble += 0.05;
+                this.x += Math.sin(this.wobble) * 0.5;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.translate(this.x + this.width / 2, this.y + this.height / 2);
+                ctx.rotate(this.rotation * Math.PI / 180);
+                
+                // Тень
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+                ctx.beginPath();
+                ctx.ellipse(3, 10, 20, 9, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                if (this.type === 0) {
+                    this.drawIncisor();
+                } else if (this.type === 1) {
+                    this.drawCanine();
+                } else {
+                    this.drawMolar();
+                }
+                
+                ctx.restore();
+            }
+
+            drawIncisor() {
+                // Основной градиент
+                const grad = ctx.createLinearGradient(-14, -22, 14, 12);
+                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0.4, '#fafafa');
+                grad.addColorStop(1, '#f0f0f0');
+                
+                ctx.fillStyle = grad;
+                ctx.strokeStyle = '#c0c0d0';
+                ctx.lineWidth = 2.5;
+                
+                // Коронка
+                ctx.beginPath();
+                ctx.moveTo(-14, 2);
+                ctx.lineTo(-14, -16);
+                ctx.bezierCurveTo(-14, -22, -8, -25, 0, -26);
+                ctx.bezierCurveTo(8, -25, 14, -22, 14, -16);
+                ctx.lineTo(14, 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                
+                // Главный блик
+                const highlight = ctx.createRadialGradient(-6, -16, 0, -6, -16, 12);
+                highlight.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+                highlight.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                ctx.fillStyle = highlight;
+                ctx.beginPath();
+                ctx.ellipse(-6, -16, 7, 12, -0.3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Маленький блик
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.beginPath();
+                ctx.arc(5, -18, 3, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Корень
+                ctx.fillStyle = '#f8f5e6';
+                ctx.strokeStyle = '#d0d0d8';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(-10, 2);
+                ctx.lineTo(-7, 14);
+                ctx.lineTo(7, 14);
+                ctx.lineTo(10, 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            drawCanine() {
+                const grad = ctx.createLinearGradient(-12, -28, 12, 12);
+                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0.5, '#fafafa');
+                grad.addColorStop(1, '#f0f0f0');
+                
+                ctx.fillStyle = grad;
+                ctx.strokeStyle = '#c0c0d0';
+                ctx.lineWidth = 2.5;
+                
+                // Острый клык
+                ctx.beginPath();
+                ctx.moveTo(0, -28);
+                ctx.lineTo(-12, -12);
+                ctx.lineTo(-12, 2);
+                ctx.lineTo(12, 2);
+                ctx.lineTo(12, -12);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                
+                // Блики
+                const highlight = ctx.createRadialGradient(-4, -16, 0, -4, -16, 10);
+                highlight.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+                highlight.addColorStop(1, 'rgba(255, 255, 255, 0)');
+                ctx.fillStyle = highlight;
+                ctx.beginPath();
+                ctx.ellipse(-4, -16, 5, 10, -0.5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(4, -20, 2.5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Корень
+                ctx.fillStyle = '#f8f5e6';
+                ctx.strokeStyle = '#d0d0d8';
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.moveTo(-9, 2);
+                ctx.lineTo(-6, 16);
+                ctx.lineTo(6, 16);
+                ctx.lineTo(9, 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            drawMolar() {
+                const grad = ctx.createRadialGradient(0, -14, 5, 0, -14, 22);
+                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0.6, '#fafafa');
+                grad.addColorStop(1, '#f0f0f0');
+                
+                ctx.fillStyle = grad;
+                ctx.strokeStyle = '#c0c0d0';
+                ctx.lineWidth = 2.5;
+                
+                // Широкая коронка
+                ctx.beginPath();
+                ctx.arc(-7, -14, 10, 0, Math.PI * 2);
+                ctx.arc(7, -14, 10, 0, Math.PI * 2);
+                ctx.rect(-17, -14, 34, 16);
+                ctx.fill();
+                ctx.stroke();
+                
+                // Бугорки
+                ctx.beginPath();
+                ctx.arc(-7, -18, 5, 0, Math.PI);
+                ctx.arc(7, -18, 5, 0, Math.PI);
+                ctx.fill();
+                ctx.stroke();
+                
+                // Блики на бугорках
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.beginPath();
+                ctx.arc(-7, -20, 3.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(7, -20, 3.5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Дополнительные блики
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
+                ctx.beginPath();
+                ctx.arc(-10, -12, 4, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(10, -12, 4, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Корни
+                ctx.fillStyle = '#f8f5e6';
+                ctx.strokeStyle = '#d0d0d8';
+                ctx.lineWidth = 2;
+                
+                ctx.beginPath();
+                ctx.moveTo(-12, 2);
+                ctx.lineTo(-10, 14);
+                ctx.lineTo(-6, 14);
+                ctx.lineTo(-4, 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+                
+                ctx.beginPath();
+                ctx.moveTo(4, 2);
+                ctx.lineTo(6, 14);
+                ctx.lineTo(10, 14);
+                ctx.lineTo(12, 2);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+            }
+
+            isOffScreen() {
+                return this.y > canvasHeight;
+            }
+
+            collidesWith(dentist) {
+                return this.x < dentist.x + dentist.width &&
+                       this.x + this.width > dentist.x &&
+                       this.y < dentist.y + dentist.height &&
+                       this.y + this.height > dentist.y;
+            }
+        }
+
+        function drawDentist() {
+            ctx.save();
+            ctx.translate(dentist.x + dentist.width / 2, dentist.y + dentist.height / 2);
+            
+            // Тень
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.15)';
+            ctx.beginPath();
+            ctx.ellipse(0, 48, 38, 11, 0, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Медицинская шапочка
+            const capGrad = ctx.createLinearGradient(0, -35, 0, -22);
+            capGrad.addColorStop(0, '#5ba3d0');
+            capGrad.addColorStop(1, '#4a90e2');
+            ctx.fillStyle = capGrad;
+            ctx.beginPath();
+            ctx.arc(0, -30, 24, Math.PI, 2 * Math.PI);
+            ctx.fill();
+            ctx.fillRect(-24, -30, 48, 10);
+            
+            // Полоска на шапочке
+            ctx.strokeStyle = '#3a7fc0';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(-20, -28);
+            ctx.lineTo(20, -28);
+            ctx.stroke();
+            
+            // Голова
+            const skinGrad = ctx.createRadialGradient(-6, -24, 8, 0, -20, 22);
+            skinGrad.addColorStop(0, '#ffd4a3');
+            skinGrad.addColorStop(1, '#ffb380');
+            ctx.fillStyle = skinGrad;
+            ctx.beginPath();
+            ctx.arc(0, -20, 20, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Очки - оправа
+            ctx.strokeStyle = '#2c3e50';
+            ctx.lineWidth = 2.5;
+            ctx.fillStyle = 'rgba(200, 230, 255, 0.3)';
+            
+            ctx.beginPath();
+            ctx.arc(-9, -22, 7, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.arc(9, -22, 7, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            
+            // Перемычка очков
+            ctx.beginPath();
+            ctx.moveTo(-2, -22);
+            ctx.lineTo(2, -22);
+            ctx.stroke();
+            
+            // Дужки очков
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(-16, -22);
+            ctx.lineTo(-22, -20);
+            ctx.moveTo(16, -22);
+            ctx.lineTo(22, -20);
+            ctx.stroke();
+            
+            // Глаза за очками
+            ctx.fillStyle = '#2c3e50';
+            ctx.beginPath();
+            ctx.arc(-9, -22, 2.5, 0, Math.PI * 2);
+            ctx.arc(9, -22, 2.5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Блики на очках
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.5)';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.arc(-12, -25, 2, 0, Math.PI * 2);
+            ctx.arc(6, -25, 2, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // Медицинская маска
+            ctx.fillStyle = '#e3f9ff';
+            ctx.strokeStyle = '#4a90e2';
+            ctx.lineWidth = 1.5;
+            ctx.beginPath();
+            ctx.moveTo(-16, -14);
+            ctx.lineTo(-18, -6);
+            ctx.quadraticCurveTo(-10, -3, 0, -4);
+            ctx.quadraticCurveTo(10, -3, 18, -6);
+            ctx.lineTo(16, -14);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            
+            // Складки на маске
+            ctx.strokeStyle = '#b3d9f0';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(-13, -11);
+            ctx.lineTo(13, -11);
+            ctx.moveTo(-11, -8);
+            ctx.lineTo(11, -8);
+            ctx.stroke();
+            
+            // Завязки маски
+            ctx.strokeStyle = '#4a90e2';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(-16, -14);
+            ctx.bezierCurveTo(-20, -16, -22, -18, -24, -16);
+            ctx.moveTo(16, -14);
+            ctx.bezierCurveTo(20, -16, 22, -18, 24, -16);
+            ctx.stroke();
+            
+            // Тело - медицинский халат
+            const coatGrad = ctx.createLinearGradient(-32, 0, 32, 45);
+            coatGrad.addColorStop(0, '#ffffff');
+            coatGrad.addColorStop(0.5, '#f8f8ff');
+            coatGrad.addColorStop(1, '#f0f8ff');
+            ctx.fillStyle = coatGrad;
+            ctx.strokeStyle = '#4a90e2';
+            ctx.lineWidth = 2.5;
+            
+            ctx.beginPath();
+            ctx.moveTo(-32, -3);
+            ctx.lineTo(-32, 42);
+            ctx.quadraticCurveTo(-32, 48, -28, 48);
+            ctx.lineTo(28, 48);
+            ctx.quadraticCurveTo(32, 48, 32, 42);
+            ctx.lineTo(32, -3);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            
+            // Воротник
+            ctx.fillStyle = '#e3f9ff';
+            ctx.beginPath();
+            ctx.moveTo(-22, -3);
+            ctx.lineTo(-18, 7);
+            ctx.lineTo(18, 7);
+            ctx.lineTo(22, -3);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            
+            // Пуговицы
+            ctx.fillStyle = '#4a90e2';
+            for (let i = 0; i < 4; i++) {
+                ctx.beginPath();
+                ctx.arc(0, 12 + i * 11, 3.5, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Блик на пуговице
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+                ctx.beginPath();
+                ctx.arc(-1, 11 + i * 11, 1.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#4a90e2';
+            }
+            
+            // Эмблема - красный крест
+            const crossGrad = ctx.createLinearGradient(-4, 14, 4, 22);
+            crossGrad.addColorStop(0, '#ff6b6b');
+            crossGrad.addColorStop(1, '#e74c3c');
+            ctx.fillStyle = crossGrad;
+            ctx.fillRect(-4, 14, 8, 12);
+            ctx.fillRect(-7, 17, 14, 6);
+            
+            // Тень на эмблеме
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+            ctx.fillRect(-4, 22, 8, 2);
+            
+            // Руки
+            ctx.fillStyle = '#ffd4a3';
+            ctx.strokeStyle = '#4a90e2';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(-38, 18, 9, 0, Math.PI * 2);
+            ctx.arc(38, 18, 9, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            
+            // Перчатки
+            ctx.fillStyle = '#a0d8f0';
+            ctx.beginPath();
+            ctx.arc(-38, 20, 7, 0, Math.PI * 2);
+            ctx.arc(38, 20, 7, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            
+            // Лоток/корзина
+            const trayGrad = ctx.createLinearGradient(-28, 40, 28, 50);
+            trayGrad.addColorStop(0, '#b0bec5');
+            trayGrad.addColorStop(1, '#90a4ae');
+            ctx.fillStyle = trayGrad;
+            ctx.strokeStyle = '#78909c';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.moveTo(-28, 40);
+            ctx.lineTo(-30, 50);
+            ctx.lineTo(30, 50);
+            ctx.lineTo(28, 40);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+            
+            // Ручки лотка
+            ctx.strokeStyle = '#78909c';
+            ctx.lineWidth = 2.5;
+            ctx.beginPath();
+            ctx.arc(-30, 44, 6, 0, Math.PI);
+            ctx.arc(30, 44, 6, 0, Math.PI);
+            ctx.stroke();
+            
+            // Блики на лотке
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+            ctx.beginPath();
+            ctx.moveTo(-26, 41);
+            ctx.lineTo(-28, 48);
+            ctx.lineTo(-24, 48);
+            ctx.lineTo(-22, 41);
+            ctx.closePath();
+            ctx.fill();
+            
+            ctx.restore();
+        }
+
+        function updateGame() {
+            if (!gameRunning) return;
+
+            ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+
+            // Управление стоматологом
+            if ((keys['ArrowLeft'] || keys['a'] || keys['A']) && dentist.x > 0) {
+                dentist.x -= dentist.speed;
+            }
+            if ((keys['ArrowRight'] || keys['d'] || keys['D']) && dentist.x < canvasWidth - dentist.width) {
+                dentist.x += dentist.speed;
+            }
+            
+            // Плавное движение к касанию
+            if (touchActive) {
+                const dx = dentist.targetX - dentist.x;
+                dentist.x += dx * 0.2;
+                if (dentist.x < 0) dentist.x = 0;
+                if (dentist.x > canvasWidth - dentist.width) dentist.x = canvasWidth - dentist.width;
+            }
+
+            frameCount++;
+            if (frameCount % spawnRate === 0) {
+                teeth.push(new Tooth());
+            }
+
+            for (let i = teeth.length - 1; i >= 0; i--) {
+                teeth[i].update();
+                teeth[i].draw();
+
+                if (teeth[i].collidesWith(dentist)) {
+                    score += 10;
+                    scoreEl.textContent = score;
+                    
+                    // Создать больше частиц
+                    for (let j = 0; j < 20; j++) {
+                        particles.push(new Particle(
+                            teeth[i].x + teeth[i].width / 2,
+                            teeth[i].y + teeth[i].height / 2
+                        ));
+                    }
+                    
+                    teeth.splice(i, 1);
+                    
+                    if (score % 100 === 0) {
+                        level++;
+                        levelEl.textContent = level;
+                        gameSpeed += 0.5;
+                        spawnRate = Math.max(35, spawnRate - 8);
+                    }
+                }
+                else if (teeth[i].isOffScreen()) {
+                    lives--;
+                    livesEl.textContent = lives;
+                    teeth.splice(i, 1);
+                    
+                    if (lives <= 0) {
+                        gameOver();
+                    }
+                }
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                particles[i].update();
+                particles[i].draw();
+                
+                if (particles[i].isDead()) {
+                    particles.splice(i, 1);
+                }
+            }
+
+            drawDentist();
+
+            requestAnimationFrame(updateGame);
+        }
+
+        function gameOver() {
+            gameRunning = false;
+            startBtn.disabled = false;
+            startBtn.textContent = '🦷 Играть снова';
+            
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.75)';
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('Игра окончена! 🏁', canvasWidth / 2, canvasHeight / 2 - 60);
+            ctx.font = '36px Arial';
+            ctx.fillText('Очки: ' + score, canvasWidth / 2, canvasHeight / 2);
+            ctx.font = '28px Arial';
+            ctx.fillText('Уровень: ' + level, canvasWidth / 2, canvasHeight / 2 + 50);
+            ctx.font = '20px Arial';
+            ctx.fillStyle = '#4a90e2';
+            ctx.fillText('Нажмите "Играть снова"', canvasWidth / 2, canvasHeight / 2 + 90);
+        }
+
+        function startGame() {
+            gameRunning = true;
+            score = 0;
+            lives = 3;
+            level = 1;
+            gameSpeed = 2.5;
+            spawnRate = 80;
+            frameCount = 0;
+            teeth = [];
+            particles = [];
+            dentist.x = canvasWidth / 2 - 50;
+            dentist.targetX = dentist.x;
+            
+            scoreEl.textContent = score;
+            livesEl.textContent = lives;
+            levelEl.textContent = level;
+            
+            startBtn.disabled = true;
+            startBtn.textContent = '🎮 Игра идёт...';
+            
+            updateGame();
+        }
+
+        startBtn.addEventListener('click', startGame);
+        startBtn.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            if (!startBtn.disabled) {
+                startGame();
+            }
+        });
+
+        // Начальный экран
+        drawDentist();
+        
+        ctx.fillStyle = 'rgba(0, 0, 0, 0.6)';
+        ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+        
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 40px Arial';
+        ctx.textAlign = 'center';
+        ctx.fillText('🦷 Стоматолог', canvasWidth / 2, canvasHeight / 2 - 60);
+        ctx.fillText('ловит зубы! 🦷', canvasWidth / 2, canvasHeight / 2 - 15);
+        ctx.font = '24px Arial';
+        ctx.fillStyle = '#4a90e2';
+        ctx.fillText('Нажмите "Начать игру"', canvasWidth / 2, canvasHeight / 2 + 40);
+        ctx.font = '18px Arial';
+        ctx.fillText('Ловите красивые зубы!', canvasWidth / 2, canvasHeight / 2 + 75);
+    </script>
+</body>
+</html>
