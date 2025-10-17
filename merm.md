@@ -1,42 +1,5 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Редактируемая оргструктура IT-отдела</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        body, html {
-            height: auto;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f2f5;
-            font-family: 'Inter', sans-serif;
-            padding: 16px;
-        }
-        .container {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            padding: 24px;
-            width: auto;
-            height: auto;
-            
-        }
-        .mermaid svg {
-            width: 800px;
-            height: 200px;
-        }
-    </style>
-</head>
-<body>
-
-    <div class="container">
-        <h1 class="text-xl md:text-2xl font-bold   text-center text-gray-900 mb-6 font-sans">Организационная структура IT-отдела</h1>
-        <div class="mermaid">
-            graph TD
+```mermaid
+graph TD
                 %% --- 1. ОПРЕДЕЛЕНИЕ УЗЛОВ (СОТРУДНИКИ) ---
                 %% Просто добавьте новую строку с уникальным ID и текстом для нового сотрудника.
                 %% Формат: ID["Имя<br/>(Должность)"]
@@ -88,13 +51,4 @@
                 class B,C,D,E,F lead;
                 class B1,B2,C1 staff;
                 class G,D1,E1,E2,G1,G2 external;
-        </div>
-    </div>
-
-    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
-    <script>
-        mermaid.initialize({ startOnLoad: true });
-    </script>
-
-</body>
-</html>
+```
