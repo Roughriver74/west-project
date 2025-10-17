@@ -36,7 +36,8 @@
             border: 4px solid #2c3e50;
             border-radius: 15px;
             display: block;
-            background: linear-gradient(180deg, #e3f9ff 0%, #fff 50%, #f0f8ff 100%);
+            /* ИЗМЕНЕНИЕ: Фон стал более "стерильным" */
+            background: linear-gradient(180deg, #f0f8ff 0%, #e6f2f2 100%);
             touch-action: none;
             max-width: 100%;
             height: auto;
@@ -228,17 +229,18 @@
             }
         }, { passive: false });
 
+        // ИЗМЕНЕНИЕ: Частицы стали "искорками" (меньше, быстрее, желтее)
         class Particle {
             constructor(x, y) {
                 this.x = x;
                 this.y = y;
-                this.vx = (Math.random() - 0.5) * 6;
-                this.vy = (Math.random() - 0.5) * 6 - 3;
-                this.life = 50;
-                this.maxLife = 50;
-                this.size = Math.random() * 6 + 3;
-                const hue = Math.random() * 60 + 180;
-                this.color = `hsl(${hue}, 80%, 70%)`;
+                this.vx = (Math.random() - 0.5) * 4;
+                this.vy = (Math.random() - 0.5) * 4 - 2;
+                this.life = 35;
+                this.maxLife = 35;
+                this.size = Math.random() * 3 + 2;
+                const hue = Math.random() * 20 + 45; // Желтые/светло-оранжевые
+                this.color = `hsl(${hue}, 100%, 85%)`;
             }
 
             update() {
@@ -257,11 +259,7 @@
                 ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
                 ctx.fill();
                 
-                // Блик на частице
-                ctx.fillStyle = 'white';
-                ctx.beginPath();
-                ctx.arc(this.x - 1, this.y - 1, this.size * 0.4, 0, Math.PI * 2);
-                ctx.fill();
+                // ИЗМЕНЕНИЕ: Убран дополнительный блик с частицы для простоты
                 ctx.restore();
             }
 
@@ -312,15 +310,16 @@
                 ctx.restore();
             }
 
+            // ИЗМЕНЕНИЕ: Цвета зубов (коронка, корень, контур, блики)
             drawIncisor() {
-                // Основной градиент
+                // Основной градиент (слоновая кость)
                 const grad = ctx.createLinearGradient(-14, -22, 14, 12);
-                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0, '#fffbf5'); // Светлее
                 grad.addColorStop(0.4, '#fafafa');
-                grad.addColorStop(1, '#f0f0f0');
+                grad.addColorStop(1, '#f0ede5'); // Темнее/серее
                 
                 ctx.fillStyle = grad;
-                ctx.strokeStyle = '#c0c0d0';
+                ctx.strokeStyle = '#a09a8e'; // Более мягкий контур
                 ctx.lineWidth = 2.5;
                 
                 // Коронка
@@ -334,9 +333,9 @@
                 ctx.fill();
                 ctx.stroke();
                 
-                // Главный блик
+                // Главный блик (менее яркий)
                 const highlight = ctx.createRadialGradient(-6, -16, 0, -6, -16, 12);
-                highlight.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+                highlight.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
                 highlight.addColorStop(1, 'rgba(255, 255, 255, 0)');
                 ctx.fillStyle = highlight;
                 ctx.beginPath();
@@ -344,14 +343,14 @@
                 ctx.fill();
                 
                 // Маленький блик
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.5)';
                 ctx.beginPath();
                 ctx.arc(5, -18, 3, 0, Math.PI * 2);
                 ctx.fill();
                 
                 // Корень
-                ctx.fillStyle = '#f8f5e6';
-                ctx.strokeStyle = '#d0d0d8';
+                ctx.fillStyle = '#f5eec9'; // Чуть желтее
+                ctx.strokeStyle = '#b0a89a'; // Мягкий контур
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 ctx.moveTo(-10, 2);
@@ -363,14 +362,15 @@
                 ctx.stroke();
             }
 
+            // ИЗМЕНЕНИЕ: Цвета зубов (коронка, корень, контур, блики)
             drawCanine() {
                 const grad = ctx.createLinearGradient(-12, -28, 12, 12);
-                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0, '#fffbf5');
                 grad.addColorStop(0.5, '#fafafa');
-                grad.addColorStop(1, '#f0f0f0');
+                grad.addColorStop(1, '#f0ede5');
                 
                 ctx.fillStyle = grad;
-                ctx.strokeStyle = '#c0c0d0';
+                ctx.strokeStyle = '#a09a8e';
                 ctx.lineWidth = 2.5;
                 
                 // Острый клык
@@ -386,7 +386,7 @@
                 
                 // Блики
                 const highlight = ctx.createRadialGradient(-4, -16, 0, -4, -16, 10);
-                highlight.addColorStop(0, 'rgba(255, 255, 255, 0.9)');
+                highlight.addColorStop(0, 'rgba(255, 255, 255, 0.7)');
                 highlight.addColorStop(1, 'rgba(255, 255, 255, 0)');
                 ctx.fillStyle = highlight;
                 ctx.beginPath();
@@ -399,8 +399,8 @@
                 ctx.fill();
                 
                 // Корень
-                ctx.fillStyle = '#f8f5e6';
-                ctx.strokeStyle = '#d0d0d8';
+                ctx.fillStyle = '#f5eec9';
+                ctx.strokeStyle = '#b0a89a';
                 ctx.lineWidth = 2;
                 ctx.beginPath();
                 ctx.moveTo(-9, 2);
@@ -412,14 +412,15 @@
                 ctx.stroke();
             }
 
+            // ИЗМЕНЕНИЕ: Цвета зубов (коронка, корень, контур, блики)
             drawMolar() {
                 const grad = ctx.createRadialGradient(0, -14, 5, 0, -14, 22);
-                grad.addColorStop(0, '#ffffff');
+                grad.addColorStop(0, '#fffbf5');
                 grad.addColorStop(0.6, '#fafafa');
-                grad.addColorStop(1, '#f0f0f0');
+                grad.addColorStop(1, '#f0ede5');
                 
                 ctx.fillStyle = grad;
-                ctx.strokeStyle = '#c0c0d0';
+                ctx.strokeStyle = '#a09a8e';
                 ctx.lineWidth = 2.5;
                 
                 // Широкая коронка
@@ -438,7 +439,7 @@
                 ctx.stroke();
                 
                 // Блики на бугорках
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
                 ctx.beginPath();
                 ctx.arc(-7, -20, 3.5, 0, Math.PI * 2);
                 ctx.fill();
@@ -456,8 +457,8 @@
                 ctx.fill();
                 
                 // Корни
-                ctx.fillStyle = '#f8f5e6';
-                ctx.strokeStyle = '#d0d0d8';
+                ctx.fillStyle = '#f5eec9';
+                ctx.strokeStyle = '#b0a89a';
                 ctx.lineWidth = 2;
                 
                 ctx.beginPath();
@@ -491,6 +492,7 @@
             }
         }
 
+        // ИЗМЕНЕНИЕ: Цветовая палитра стоматолога
         function drawDentist() {
             ctx.save();
             ctx.translate(dentist.x + dentist.width / 2, dentist.y + dentist.height / 2);
@@ -501,10 +503,10 @@
             ctx.ellipse(0, 48, 38, 11, 0, 0, Math.PI * 2);
             ctx.fill();
             
-            // Медицинская шапочка
+            // Медицинская шапочка (бирюзовая)
             const capGrad = ctx.createLinearGradient(0, -35, 0, -22);
-            capGrad.addColorStop(0, '#5ba3d0');
-            capGrad.addColorStop(1, '#4a90e2');
+            capGrad.addColorStop(0, '#40a0a0'); // Светлее
+            capGrad.addColorStop(1, '#008080'); // Темнее
             ctx.fillStyle = capGrad;
             ctx.beginPath();
             ctx.arc(0, -30, 24, Math.PI, 2 * Math.PI);
@@ -512,17 +514,17 @@
             ctx.fillRect(-24, -30, 48, 10);
             
             // Полоска на шапочке
-            ctx.strokeStyle = '#3a7fc0';
+            ctx.strokeStyle = '#006060'; // Темно-бирюзовый
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(-20, -28);
             ctx.lineTo(20, -28);
             ctx.stroke();
             
-            // Голова
+            // Голова (более естественный тон кожи)
             const skinGrad = ctx.createRadialGradient(-6, -24, 8, 0, -20, 22);
-            skinGrad.addColorStop(0, '#ffd4a3');
-            skinGrad.addColorStop(1, '#ffb380');
+            skinGrad.addColorStop(0, '#f2c8a8');
+            skinGrad.addColorStop(1, '#e6b08c');
             ctx.fillStyle = skinGrad;
             ctx.beginPath();
             ctx.arc(0, -20, 20, 0, Math.PI * 2);
@@ -573,9 +575,9 @@
             ctx.arc(6, -25, 2, 0, Math.PI * 2);
             ctx.stroke();
             
-            // Медицинская маска
-            ctx.fillStyle = '#e3f9ff';
-            ctx.strokeStyle = '#4a90e2';
+            // Медицинская маска (светло-бирюзовая)
+            ctx.fillStyle = '#e6f2f2';
+            ctx.strokeStyle = '#008080';
             ctx.lineWidth = 1.5;
             ctx.beginPath();
             ctx.moveTo(-16, -14);
@@ -588,7 +590,7 @@
             ctx.stroke();
             
             // Складки на маске
-            ctx.strokeStyle = '#b3d9f0';
+            ctx.strokeStyle = '#a0c0c0'; // Приглушенный цвет
             ctx.lineWidth = 1;
             ctx.beginPath();
             ctx.moveTo(-13, -11);
@@ -598,7 +600,7 @@
             ctx.stroke();
             
             // Завязки маски
-            ctx.strokeStyle = '#4a90e2';
+            ctx.strokeStyle = '#008080';
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.moveTo(-16, -14);
@@ -607,13 +609,13 @@
             ctx.bezierCurveTo(20, -16, 22, -18, 24, -16);
             ctx.stroke();
             
-            // Тело - медицинский халат
+            // Тело - медицинский халат (контур серый)
             const coatGrad = ctx.createLinearGradient(-32, 0, 32, 45);
             coatGrad.addColorStop(0, '#ffffff');
             coatGrad.addColorStop(0.5, '#f8f8ff');
             coatGrad.addColorStop(1, '#f0f8ff');
             ctx.fillStyle = coatGrad;
-            ctx.strokeStyle = '#4a90e2';
+            ctx.strokeStyle = '#b0b0b0'; // Нейтральный серый контур
             ctx.lineWidth = 2.5;
             
             ctx.beginPath();
@@ -627,8 +629,8 @@
             ctx.fill();
             ctx.stroke();
             
-            // Воротник
-            ctx.fillStyle = '#e3f9ff';
+            // Воротник (в цвет маски)
+            ctx.fillStyle = '#e6f2f2';
             ctx.beginPath();
             ctx.moveTo(-22, -3);
             ctx.lineTo(-18, 7);
@@ -638,8 +640,8 @@
             ctx.fill();
             ctx.stroke();
             
-            // Пуговицы
-            ctx.fillStyle = '#4a90e2';
+            // Пуговицы (бирюзовые)
+            ctx.fillStyle = '#008080';
             for (let i = 0; i < 4; i++) {
                 ctx.beginPath();
                 ctx.arc(0, 12 + i * 11, 3.5, 0, Math.PI * 2);
@@ -650,13 +652,13 @@
                 ctx.beginPath();
                 ctx.arc(-1, 11 + i * 11, 1.5, 0, Math.PI * 2);
                 ctx.fill();
-                ctx.fillStyle = '#4a90e2';
+                ctx.fillStyle = '#008080'; // Восстанавливаем цвет
             }
             
-            // Эмблема - красный крест
+            // Эмблема - бирюзовый крест
             const crossGrad = ctx.createLinearGradient(-4, 14, 4, 22);
-            crossGrad.addColorStop(0, '#ff6b6b');
-            crossGrad.addColorStop(1, '#e74c3c');
+            crossGrad.addColorStop(0, '#40a0a0');
+            crossGrad.addColorStop(1, '#008080');
             ctx.fillStyle = crossGrad;
             ctx.fillRect(-4, 14, 8, 12);
             ctx.fillRect(-7, 17, 14, 6);
@@ -665,9 +667,9 @@
             ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
             ctx.fillRect(-4, 22, 8, 2);
             
-            // Руки
-            ctx.fillStyle = '#ffd4a3';
-            ctx.strokeStyle = '#4a90e2';
+            // Руки (тон кожи)
+            ctx.fillStyle = '#f2c8a8';
+            ctx.strokeStyle = '#b0b0b0'; // Контур в цвет халата
             ctx.lineWidth = 2;
             ctx.beginPath();
             ctx.arc(-38, 18, 9, 0, Math.PI * 2);
@@ -675,15 +677,15 @@
             ctx.fill();
             ctx.stroke();
             
-            // Перчатки
-            ctx.fillStyle = '#a0d8f0';
+            // Перчатки (нитриловый синий)
+            ctx.fillStyle = '#60a0d0';
             ctx.beginPath();
             ctx.arc(-38, 20, 7, 0, Math.PI * 2);
             ctx.arc(38, 20, 7, 0, Math.PI * 2);
             ctx.fill();
             ctx.stroke();
             
-            // Лоток/корзина
+            // Лоток/корзина (металлик - без изменений)
             const trayGrad = ctx.createLinearGradient(-28, 40, 28, 50);
             trayGrad.addColorStop(0, '#b0bec5');
             trayGrad.addColorStop(1, '#90a4ae');
@@ -813,7 +815,7 @@
             ctx.font = '28px Arial';
             ctx.fillText('Уровень: ' + level, canvasWidth / 2, canvasHeight / 2 + 50);
             ctx.font = '20px Arial';
-            ctx.fillStyle = '#4a90e2';
+            ctx.fillStyle = '#667eea'; // Цвет кнопки
             ctx.fillText('Нажмите "Играть снова"', canvasWidth / 2, canvasHeight / 2 + 90);
         }
 
@@ -860,7 +862,7 @@
         ctx.fillText('🦷 Стоматолог', canvasWidth / 2, canvasHeight / 2 - 60);
         ctx.fillText('ловит зубы! 🦷', canvasWidth / 2, canvasHeight / 2 - 15);
         ctx.font = '24px Arial';
-        ctx.fillStyle = '#4a90e2';
+        ctx.fillStyle = '#667eea'; // Цвет кнопки
         ctx.fillText('Нажмите "Начать игру"', canvasWidth / 2, canvasHeight / 2 + 40);
         ctx.font = '18px Arial';
         ctx.fillText('Ловите красивые зубы!', canvasWidth / 2, canvasHeight / 2 + 75);
