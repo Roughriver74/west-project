@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=104678098', 'ym');
+
+    ym(104678098, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анализ работы склада West: Q3 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F5F5F4 0%, #E7E5E4 100%);
+            color: #44403C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #1c1917;
+            border-bottom-color: #78716C;
+            font-weight: 600;
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F4 100%);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #E7E5E4;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #78716C 0%, #A8A29E 100%);
+            transition: width 1s ease-out;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-success { background-color: #86EFAC; color: #166534; }
+        .badge-warning { background-color: #FCD34D; color: #92400E; }
+        .badge-danger { background-color: #FCA5A5; color: #991B1B; }
+        .badge-info { background-color: #A5B4FC; color: #3730A3; }
+        .metric-good { color: #16A34A; }
+        .metric-bad { color: #DC2626; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+
+        <header class="py-8 text-center">
+            <div class="inline-block mb-4 px-4 py-2 bg-stone-800 text-white rounded-full text-sm font-semibold">
+                Компания WEST
+            </div>
+            <h1 class="text-5xl font-bold text-stone-800 mb-2">Отчет по работе склада</h1>
+            <p class="text-xl text-stone-600">Анализ Q3 2025 и стратегия на Q4</p>
+            <div class="mt-4 flex justify-center gap-4 text-sm text-stone-500">
+                <span>📅 Период: Июль - Сентябрь 2025</span>
+                <span>•</span>
+                <span>📦 Обработано: 39,160 заказов</span>
+            </div>
+        </header>
+
+        <nav class="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-stone-300 shadow-sm mb-8">
+            <div class="flex justify-center items-center overflow-x-auto">
+                <div class="flex space-x-1 sm:space-x-4 px-4">
+                    <a href="#overview" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">📊 Обзор</a>
+                    <a href="#operations" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">📦 Операции</a>
+                    <a href="#productivity" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">⚡ Производительность</a>
+                    <a href="#personnel" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">👥 Персонал</a>
+                    <a href="#timing" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">⏱️ Время</a>
+                    <a href="#quality" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">✅ Качество</a>
+                    <a href="#finance" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">💰 Финансы</a>
+                    <a href="#action-plan" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">🎯 План</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="pb-12">
+            <!-- OVERVIEW SECTION -->
+            <section id="overview" class="app-section space-y-8">
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-center text-stone-700 mb-6">Executive Summary</h2>
+                    <div class="bg-gradient-to-r from-stone-800 to-stone-600 text-white p-8 rounded-xl shadow-xl mb-8">
+                        <p class="text-lg leading-relaxed">
+                            В Q3 2025 склад компании West обработал <strong>39,160 заказов</strong> и <strong>321,358 строк</strong>. Выявлен критический парадокс: усиление контроля качества (проверка выросла с 71% до 84%) <strong>НЕ снизило претензии</strong>, которые выросли на 49%. Корневая причина - неточный товарный учет на этапе сборки, а также увеличение поступающих претензий в 1С (ранее поступали на почту и в Битрикс). Далее прогнозируется увеличение использования окна подачи в 1С, т.к. данное окно планируется единственным для подачи в 4 квартале. Объемы в августе временно снизились (-12%), но в сентябре восстановились до июльского уровня. Стратегический найм персонала (+14,8%) оправдался.
+                        </p>
+                        <p class="text-lg leading-relaxed mt-4">
+                            <strong>В Q4 фокус:</strong> 90% проверка заказов, улучшение товарного учета до 99,5% точности, внедрение ТСД и упрощение процесса сборки. 
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Ключевые показатели Q3 2025</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-amber-500 card">
+                            <p class="text-5xl font-bold text-stone-800">39,160</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Заказов обработано</p>
+                            <div class="mt-3 text-xs text-green-600">±0% к июлю (стабильно)</div>
+                        </div>
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-blue-500 card">
+                            <p class="text-5xl font-bold text-stone-800">321K</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Строк собрано</p>
+                            <div class="mt-3 text-xs text-green-600">8,2 строк/заказ</div>
+                        </div>
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-red-500 card">
+                            <p class="text-5xl font-bold text-stone-800">+49%</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Рост претензий</p>
+                            <div class="mt-3 text-xs metric-bad">5,8 на 1000 заказов</div>
+                        </div>
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-green-500 card">
+                            <p class="text-5xl font-bold text-stone-800">10:53</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Среднее время сброса</p>
+                            <div class="mt-3 text-xs metric-good">-5,4% к июлю</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-xl shadow-lg border-2 border-red-200">
+                    <h3 class="text-2xl font-bold text-red-900 mb-4 text-center">🔴 Ключевая проблема Q3</h3>
+                    <div class="text-center mb-6">
+                        <div class="text-6xl font-bold text-red-600 mb-2">ПАРАДОКС КАЧЕСТВА</div>
+                        <p class="text-lg text-red-800">Усиление контроля НЕ помогло снизить претензии</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 text-center">
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-green-600 mb-2">+13%</div>
+                            <div class="text-sm text-stone-700">Рост проверки заказов</div>
+                            <div class="text-xs text-stone-500 mt-1">71% → 84%</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-3xl font-bold text-red-600 mb-2">+49%</div>
+                            <div class="text-sm text-stone-700">Рост претензий клиентов</div>
+                            <div class="text-xs text-stone-500 mt-1">3,9 → 5,8 на 1000</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-white p-4 rounded-lg">
+                        <p class="text-center text-stone-800 font-semibold">
+                            💡 Вывод: Проблема в неточном товарном учете на этапе СБОРКИ, а не в недостатке контроля. Увеличение использования 1С при подаче претензий.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-2xl mr-2">📈</span> Динамика производительности
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Сборка (строк/час)</span>
+                                    <span class="font-semibold text-stone-800 metric-bad">31,2 / 35,9 (июль)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 87%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Упаковка (строк/час)</span>
+                                    <span class="font-semibold text-stone-800 metric-good">57,9 / 57,9</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Проверка заказов</span>
+                                    <span class="font-semibold text-stone-800 metric-good">83,8%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 83.8%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-2xl mr-2">🎯</span> Критические выводы
+                        </h3>
+                        <ul class="space-y-3 text-sm text-stone-700">
+                            <li class="flex items-start">
+                                <span class="text-red-600 mr-2">⚠️</span>
+                                <span><strong>Парадокс качества:</strong> Проверка ↑13%, но претензии ↑49%</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-orange-600 mr-2">⚠️</span>
+                                <span><strong>Перерасход ФОТ:</strong> 1,0 млн руб. (стратегическая инвестиция)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-blue-600 mr-2">ℹ️</span>
+                                <span><strong>Август:</strong> +14,8% персонала - оправдано восстановлением объемов</span>
+                            </li>
+                            <li class="flex items-start">
+                                <span class="text-green-600 mr-2">✓</span>
+                                <span><strong>Решение:</strong> 100% проверка + товарный учет</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- OPERATIONS SECTION -->
+            <section id="operations" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Операционные показатели</h2>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Динамика объемов по месяцам</h3>
+                    <div class="chart-container">
+                        <canvas id="volumeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4 text-center">Июль 2025</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Заказов:</span>
+                                <span class="font-semibold">13,602</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Строк:</span>
+                                <span class="font-semibold">108,855</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Упаковок:</span>
+                                <span class="font-semibold">552,748</span>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <span class="badge badge-success">Эталонный месяц</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4 text-center">Август 2025</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Заказов:</span>
+                                <span class="font-semibold">11,985 <span class="text-red-600 text-xs">-12%</span></span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Строк:</span>
+                                <span class="font-semibold">100,154 <span class="text-red-600 text-xs">-8%</span></span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Упаковок:</span>
+                                <span class="font-semibold">536,597 <span class="text-red-600 text-xs">-3%</span></span>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <span class="badge badge-warning">Подготовка к пику</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4 text-center">Сентябрь 2025</h4>
+                        <div class="space-y-3">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Заказов:</span>
+                                <span class="font-semibold">13,573 <span class="text-green-600 text-xs">±0%</span></span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Строк:</span>
+                                <span class="font-semibold">112,349 <span class="text-green-600 text-xs">+3%</span></span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-stone-600">Упаковок:</span>
+                                <span class="font-semibold">566,749 <span class="text-green-600 text-xs">+3%</span></span>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-center">
+                            <span class="badge badge-success">Восстановление</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Сравнение ключевых операционных метрик</h3>
+                    <div class="chart-container">
+                        <canvas id="operationsComparisonChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Структура заказа</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Среднее строк в заказе:</span>
+                                    <span class="font-semibold text-stone-800">8,0</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 80%"></div>
+                                </div>
+                            </div>
+                            <div class="text-xs text-stone-500 mt-4">
+                                <p>• Июль: 8,0 строк/заказ</p>
+                                <p>• Август: 8,4 строк/заказ (+5%)</p>
+                                <p>• Сентябрь: 8,3 строк/заказ (+3,8%)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Тренды обработки</h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center">
+                                <span class="text-green-600 mr-2 text-xl">≈</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Заказов: -0,2%</div>
+                                    <div class="text-xs text-stone-500">13 602 → 13 573 (стабильно)</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-green-600 mr-2 text-xl">↑</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Строк: +3,2%</div>
+                                    <div class="text-xs text-stone-500">108 855 → 112 349</div>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <span class="text-green-600 mr-2 text-xl">↑</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Упаковок: +2,5%</div>
+                                    <div class="text-xs text-stone-500">552 748 → 566 749</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PRODUCTIVITY SECTION -->
+            <section id="productivity" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Анализ производительности</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4">Сборка (строк/час)</h3>
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="pickingChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4">Упаковка (строк/час)</h3>
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="packingChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border-2 border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">📊 Почему упала производительность в августе?</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-stone-800 mb-2">❌ НЕ из-за проверки</h4>
+                            <p class="text-sm text-stone-700">
+                                Увеличение проверки с 71% до 84% было правильным решением для контроля качества и НЕ является причиной падения эффективности.
+                            </p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-stone-800 mb-2">✅ Реальные причины</h4>
+                            <ul class="text-sm text-stone-700 space-y-1">
+                                <li>• Заказов -11,9%</li>
+                                <li>• Персонала +14,8%</li>
+                                <li>• Подготовка к пику</li>
+                                <li>• Адаптация новых</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PERSONNEL SECTION -->
+            <section id="personnel" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Анализ персонала и покрытия</h2>
+
+                <div class="bg-gradient-to-br from-amber-50 to-orange-100 p-8 rounded-xl shadow-lg border-2 border-amber-300">
+                    <h3 class="text-2xl font-bold text-amber-900 mb-6 text-center">💡 Ключевой вывод</h3>
+                    <div class="bg-white p-6 rounded-lg">
+                        <p class="text-lg text-stone-800 text-center font-semibold">
+                            Проблема НЕ в недостатке персонала (покрытие достаточное), <br>
+                            А в качестве их работы и эффективности каждого сборщика
+                        </p>
+                        <p class="text-center text-stone-600 mt-4">
+                            В среднем 21.7 сборщиков в пик 15:00-17:00 — достаточно для обработки 75-80 заказов/час при правильной организации
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4 text-center">Штат (среднее Q3)</h4>
+                        <div class="text-center mb-4">
+                            <div class="text-5xl font-bold text-stone-800">25.3</div>
+                            <div class="text-sm text-stone-600 mt-2">штатных сотрудников</div>
+                            <div class="text-xs text-stone-500 mt-1">июль: 23.5 | август: 27 | сентябрь: 25.5</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-blue-600">+2.2</div>
+                            <div class="text-sm text-stone-600 mt-1">самозанятых ежедневно</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4 text-center">Пиковое покрытие (среднее Q3)</h4>
+                        <div class="text-center mb-4">
+                            <div class="text-5xl font-bold text-green-600">21.7</div>
+                            <div class="text-sm text-stone-600 mt-2">сборщиков в пик (15-17:00)</div>
+                            <div class="text-xs text-stone-500 mt-1">июль: 20 | август: 23 | сентябрь: 22</div>
+                        </div>
+                        <div class="text-center">
+                            <span class="badge badge-success">Достаточно ✓</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4 text-center">Потери времени (среднее Q3)</h4>
+                        <div class="text-center mb-4">
+                            <div class="text-5xl font-bold text-red-600">20,1%</div>
+                            <div class="text-sm text-stone-600 mt-2">отпуска + больничные</div>
+                            <div class="text-xs text-stone-500 mt-1">июль: 14.2% | август: 26.4% | сентябрь: 19.8%</div>
+                        </div>
+                        <div class="text-center">
+                            <span class="badge badge-danger">Критично</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Покрытие по часам</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-stone-100">
+                                <tr>
+                                    <th class="p-3 text-left">Время</th>
+                                    <th class="p-3 text-center">Персонал</th>
+                                    <th class="p-3 text-center">Нагрузка (заказов/час)</th>
+                                    <th class="p-3 text-center">Статус</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-200">
+                                <tr>
+                                    <td class="p-3">08:00-09:00</td>
+                                    <td class="p-3 text-center font-semibold">16 чел.</td>
+                                    <td class="p-3 text-center">1 заказ</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">✓ Избыток</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">09:00-12:00</td>
+                                    <td class="p-3 text-center font-semibold">19-20 чел.</td>
+                                    <td class="p-3 text-center">9-51 заказов</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">✓ Норма</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">12:00-15:00</td>
+                                    <td class="p-3 text-center font-semibold">20-23 чел.</td>
+                                    <td class="p-3 text-center">51-81 заказов</td>
+                                    <td class="p-3 text-center"><span class="badge badge-warning">⚠️ Накопление</span></td>
+                                </tr>
+                                <tr class="bg-red-50">
+                                    <td class="p-3 font-bold">15:00-17:00 ПИК</td>
+                                    <td class="p-3 text-center font-bold text-red-700">23 чел.</td>
+                                    <td class="p-3 text-center font-bold text-red-700">81 заказ/час</td>
+                                    <td class="p-3 text-center"><span class="badge badge-danger">🔴 Критично</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">17:00-20:00</td>
+                                    <td class="p-3 text-center font-semibold">15-23 чел.</td>
+                                    <td class="p-3 text-center">1-12 заказов</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">✓ Ликвидация</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">20:00-23:00</td>
+                                    <td class="p-3 text-center font-semibold">9-12 чел.</td>
+                                    <td class="p-3 text-center">&lt;1 заказ</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">✓ Дособирание</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-50 to-red-100 p-6 rounded-xl shadow-lg border-2 border-red-200">
+                    <h3 class="text-xl font-semibold text-red-900 mb-4">🔥 Проблема пикового периода 15:00-17:00</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-red-600 mb-2">142</div>
+                            <div class="text-sm text-stone-700">заказа поступает за 2 часа</div>
+                            <div class="text-xs text-stone-500 mt-1">(81 заказ/час в 17:00)</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-orange-600 mb-2">82</div>
+                            <div class="text-sm text-stone-700">заказа обрабатывается</div>
+                            <div class="text-xs text-stone-500 mt-1">(23 сборщика работают)</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-3xl font-bold text-red-700 mb-2">-60</div>
+                            <div class="text-sm text-stone-700">дефицит обработки</div>
+                            <div class="text-xs text-stone-500 mt-1">(накапливается очередь)</div>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-white p-4 rounded-lg">
+                        <p class="text-center text-stone-800">
+                            <strong>Требуемая производительность:</strong> 3,5 заказа/час на сборщика<br>
+                            <strong class="text-red-600">Фактическая:</strong> ~1,7 заказа/час (дефицит 2x)
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Динамика численности и ФОТ на человека</h3>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="staffChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Потери рабочего времени Q3 2025</h4>
+                        <div class="space-y-4">
+                            <div class="border-b border-stone-200 pb-3">
+                                <div class="font-semibold text-stone-700 mb-2">Июль 2025</div>
+                                <div class="space-y-2 pl-4">
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="text-stone-600">Отпуска:</span>
+                                        <div class="text-right">
+                                            <span class="font-semibold text-stone-800">8 человек</span>
+                                            <span class="text-xs text-stone-500 ml-1">(56 дней)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="text-stone-600">Больничные:</span>
+                                        <div class="text-right">
+                                            <span class="font-semibold text-stone-800">5 человек</span>
+                                            <span class="text-xs text-stone-500 ml-1">(28 дней)</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right text-xs text-orange-600 font-semibold">Потери: 14,2%</div>
+                                </div>
+                            </div>
+                            <div class="border-b border-stone-200 pb-3">
+                                <div class="font-semibold text-stone-700 mb-2">Август 2025</div>
+                                <div class="space-y-2 pl-4">
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="text-stone-600">Отпуска:</span>
+                                        <div class="text-right">
+                                            <span class="font-semibold text-stone-800">22 человека</span>
+                                            <span class="text-xs text-stone-500 ml-1">(143 смены)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="text-stone-600">Больничные:</span>
+                                        <div class="text-right">
+                                            <span class="font-semibold text-stone-800">9 человек</span>
+                                            <span class="text-xs text-stone-500 ml-1">(45 дней)</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right text-xs text-red-600 font-semibold">Потери: 26,4%</div>
+                                </div>
+                            </div>
+                            <div class="pb-3">
+                                <div class="font-semibold text-stone-700 mb-2">Сентябрь 2025</div>
+                                <div class="space-y-2 pl-4">
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="text-stone-600">Отпуска:</span>
+                                        <div class="text-right">
+                                            <span class="font-semibold text-stone-800">10 человек</span>
+                                            <span class="text-xs text-stone-500 ml-1">(65 дней)</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="text-stone-600">Больничные:</span>
+                                        <div class="text-right">
+                                            <span class="font-semibold text-stone-800">13 человек</span>
+                                            <span class="text-xs text-stone-500 ml-1">(74 дня)</span>
+                                        </div>
+                                    </div>
+                                    <div class="text-right text-xs text-orange-600 font-semibold">Потери: 19,8%</div>
+                                </div>
+                            </div>
+                            <div class="pt-3 border-t-2 border-stone-300">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-stone-700 font-semibold">Средние потери Q3:</span>
+                                    <div class="text-right">
+                                        <div class="font-bold text-red-600 text-xl">20,1%</div>
+                                        <div class="text-xs text-stone-500">от потенциала</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Структура графиков работы</h4>
+                        <div class="space-y-2 text-sm">
+                            <div class="flex justify-between">
+                                <span class="text-stone-600">Сменный график 2/2:</span>
+                                <span class="font-semibold">6 чел. (3 ежедневно)</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-stone-600">Утренняя смена 08-15:</span>
+                                <span class="font-semibold">4 чел.</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-stone-600">Вечерняя смена 15-23:</span>
+                                <span class="font-semibold">4 чел.</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-stone-600">День-вечер 13-23:</span>
+                                <span class="font-semibold">3 чел.</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-stone-600">Полный день 08-18:</span>
+                                <span class="font-semibold">10 чел.</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-stone-600">Расширенный день 08-20:</span>
+                                <span class="font-semibold">2 чел.</span>
+                            </div>
+                            <div class="flex justify-between border-t border-stone-200 pt-2 mt-2">
+                                <span class="text-stone-700 font-semibold">Самозанятые 18-23:</span>
+                                <span class="font-bold text-blue-600">2 чел. (ежедневно)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Динамика изменения статусов заказов -->
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Среднесуточная динамика изменения статусов заказов (Q3 2025)</h3>
+                    <div class="chart-container">
+                        <canvas id="orderStatusChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-center text-sm text-stone-500">
+                        <p>📊 Данные представлены как среднесуточные значения за 92 дня Q3 2025 (июль-сентябрь)</p>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-900 mb-2">📊 Пиковые моменты (в среднем за день)</h4>
+                            <ul class="text-sm text-stone-700 space-y-1">
+                                <li>• 10:00-11:00 - макс. заказов у продаж (~86 заказов)</li>
+                                <li>• 16:00-17:00 - пик передачи на склад (~79 заказов)</li>
+                                <li>• 10:00-11:00 - пик сборки (~43 заказа)</li>
+                            </ul>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-orange-900 mb-2">📉 Критические точки</h4>
+                            <ul class="text-sm text-stone-700 space-y-1">
+                                <li>• 17:00-18:00 - резкое снижение активности</li>
+                                <li>• 18:00-23:00 - минимальная активность (1-22 заказа)</li>
+                                <li>• После 21:00 - завершение процессов</li>
+                            </ul>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg">
+                            <h4 class="font-semibold text-green-900 mb-2">✅ Выводы</h4>
+                            <ul class="text-sm text-stone-700 space-y-1">
+                                <li>• Основной поток 09:00-18:00</li>
+                                <li>• Сборка равномерна (30-40 заказов/час)</li>
+                                <li>• Вечерняя смена обрабатывает остатки</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TIMING SECTION -->
+            <section id="timing" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Анализ времени обработки</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-red-500 card">
+                        <p class="text-5xl font-bold text-stone-800">24,5</p>
+                        <p class="text-base text-stone-600 mt-2 font-medium">минут на заказ</p>
+                        <div class="mt-3 text-xs metric-bad">+16,4% к июлю</div>
+                    </div>
+                    <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-blue-500 card">
+                        <p class="text-5xl font-bold text-stone-800">15,9</p>
+                        <p class="text-base text-stone-600 mt-2 font-medium">минут на сборку (60%)</p>
+                        <div class="mt-3 text-xs text-stone-500">13,7 мин в июле</div>
+                    </div>
+                    <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-green-500 card">
+                        <p class="text-5xl font-bold text-stone-800">8,6</p>
+                        <p class="text-base text-stone-600 mt-2 font-medium">минут на упаковку (40%)</p>
+                        <div class="mt-3 text-xs text-stone-500">7,4 мин в июле</div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-50 to-red-100 p-8 rounded-xl shadow-lg border-2 border-red-200">
+                    <h3 class="text-2xl font-bold text-red-900 mb-4 text-center">⚠️ Критический рост времени обработки</h3>
+                    <div class="text-center mb-6">
+                        <p class="text-lg text-red-800">
+                            Каждый заказ обрабатывается на <strong class="text-3xl">3,5 минуты</strong> дольше, чем в июле
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-3 gap-4">
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-green-600 mb-1">21,0 мин</div>
+                            <div class="text-xs text-stone-600">Июль (эталон)</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-red-600 mb-1">27,5 мин</div>
+                            <div class="text-xs text-stone-600">Август (+30,5%)</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-2xl font-bold text-orange-600 mb-1">24,5 мин</div>
+                            <div class="text-xs text-stone-600">Сентябрь (+16,4%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Динамика времени обработки заказа</h3>
+                    <div class="chart-container">
+                        <canvas id="processingTimeChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Время сброса последнего заказа</h3>
+                    <div class="chart-container" style="height: 300px;">
+                        <canvas id="dropTimeChart"></canvas>
+                    </div>
+                    <div class="mt-6 grid grid-cols-3 gap-4">
+                        <div class="text-center p-4 bg-orange-50 rounded-lg">
+                            <div class="text-3xl font-bold text-orange-600">11:32</div>
+                            <div class="text-sm text-stone-600 mt-1">Июль</div>
+                        </div>
+                        <div class="text-center p-4 bg-blue-50 rounded-lg">
+                            <div class="text-3xl font-bold text-blue-600">10:56</div>
+                            <div class="text-sm text-stone-600 mt-1">Август (-5,1%)</div>
+                        </div>
+                        <div class="text-center p-4 bg-green-50 rounded-lg">
+                            <div class="text-3xl font-bold text-green-600">10:53</div>
+                            <div class="text-sm text-stone-600 mt-1">Сентябрь (-5,6%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border-2 border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">🎯 Целевые показатели на Q4</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-900 mb-3">Время обработки заказа:</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-stone-600">Текущее:</span>
+                                <span class="font-semibold text-red-600">24,5 минут</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-stone-600">Целевое Q4:</span>
+                                <span class="font-semibold text-green-600">21,0 минут</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-stone-600">Улучшение:</span>
+                                <span class="font-bold text-blue-600">-3,5 мин (-14%)</span>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-blue-900 mb-3">Время сброса:</h4>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-stone-600">Текущее:</span>
+                                <span class="font-semibold text-orange-600">10:53</span>
+                            </div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-sm text-stone-600">Целевое Q4:</span>
+                                <span class="font-semibold text-green-600">10:00</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-stone-600">Улучшение:</span>
+                                <span class="font-bold text-blue-600">-53 мин (-8%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Пути сокращения времени обработки (-3,5 мин)</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-lg border-2 border-green-200">
+                            <div class="flex items-center mb-2">
+                                <span class="text-2xl mr-3">📊</span>
+                                <div>
+                                    <div class="font-semibold text-green-900">Улучшение товарного учета</div>
+                                    <div class="text-sm text-green-700">До 99,5% точности</div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <span class="text-2xl font-bold text-green-700">-1,2 мин</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-lg border-2 border-blue-200">
+                            <div class="flex items-center mb-2">
+                                <span class="text-2xl mr-3">🗺️</span>
+                                <div>
+                                    <div class="font-semibold text-blue-900">Оптимизация маршрутов</div>
+                                    <div class="text-sm text-blue-700">ABC-размещение товара</div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <span class="text-2xl font-bold text-blue-700">-1,0 мин</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-lg border-2 border-purple-200">
+                            <div class="flex items-center mb-2">
+                                <span class="text-2xl mr-3">👥</span>
+                                <div>
+                                    <div class="font-semibold text-purple-900">Повышение квалификации</div>
+                                    <div class="text-sm text-purple-700">Обучение и опыт</div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <span class="text-2xl font-bold text-purple-700">-0,8 мин</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 bg-gradient-to-br from-orange-50 to-orange-100 rounded-lg border-2 border-orange-200">
+                            <div class="flex items-center mb-2">
+                                <span class="text-2xl mr-3">⚡</span>
+                                <div>
+                                    <div class="font-semibold text-orange-900">Устранение простоев</div>
+                                    <div class="text-sm text-orange-700">Процессные улучшения</div>
+                                </div>
+                            </div>
+                            <div class="mt-3 text-center">
+                                <span class="text-2xl font-bold text-orange-700">-0,5 мин</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUALITY SECTION -->
+            <section id="quality" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Контроль качества</h2>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Динамика проверки и претензий</h3>
+                    <div class="chart-container">
+                        <canvas id="qualityChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl shadow-lg border-2 border-purple-300">
+                    <h3 class="text-2xl font-bold text-purple-900 mb-6 text-center">💡 Политика качества на Q4 2025</h3>
+                    <div class="bg-white p-6 rounded-lg mb-6">
+                        <div class="text-center mb-4">
+                            <div class="text-5xl font-bold text-purple-700 mb-2">100%</div>
+                            <div class="text-lg text-purple-900 font-semibold">ПРОВЕРКА ВСЕХ ЗАКАЗОВ</div>
+                        </div>
+                        <p class="text-stone-700 text-center">
+                            Целевой процесс до достижения 99,5% точности товарного учета
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-900 mb-3">🎯 Обоснование:</h4>
+                            <ul class="text-sm text-stone-700 space-y-2">
+                                <li>• Отмена проверки → рост претензий</li>
+                                <li>• Экономия времени минимальна</li>
+                                <li>• Риски репутации > выгода скорости</li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-900 mb-3">✅ Условия для отмены:</h4>
+                            <ul class="text-sm text-stone-700 space-y-2">
+                                <li>• Точность учета 99,5%+</li>
+                                <li>• Регулярные инвентаризации</li>
+                                <li>• Упрощенный процесс сборки</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Динамика претензий</h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <div>
+                                    <div class="text-sm text-stone-600">Июль</div>
+                                    <div class="text-xs text-stone-500">Среднее: 2,79/день</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-700">53</div>
+                                    <div class="text-xs text-stone-500">3,9 на 1000</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+                                <div>
+                                    <div class="text-sm text-stone-600">Август</div>
+                                    <div class="text-xs text-stone-500">Среднее: 3,89/день</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-orange-700">70</div>
+                                    <div class="text-xs text-stone-500">5,8 на 1000 <span class="text-red-600">+49%</span></div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-red-50 rounded-lg">
+                                <div>
+                                    <div class="text-sm text-stone-600">Сентябрь</div>
+                                    <div class="text-xs text-stone-500">Среднее: 4,16/день</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-red-700">79</div>
+                                    <div class="text-xs text-stone-500">5,8 на 1000</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Корневые причины претензий</h4>
+                        <div class="space-y-3">
+                            <div class="flex items-start">
+                                <span class="text-red-600 mr-2 text-lg">🔴</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Неточный товарный учет</div>
+                                    <div class="text-xs text-stone-500">~95% точность → нужно 99,5%</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-orange-600 mr-2 text-lg">🟠</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Путаница в номенклатуре</div>
+                                    <div class="text-xs text-stone-500">Похожие артикулы</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-yellow-600 mr-2 text-lg">🟡</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Низкая квалификация новых</div>
+                                    <div class="text-xs text-stone-500">4 новых сотрудника в августе</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-green-600 mr-2 text-lg">🟢</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Улучшение учета претензий</div>
+                                    <div class="text-xs text-stone-500">Окно подачи через 1С (Q3)</div>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <span class="text-blue-600 mr-2 text-lg">🔵</span>
+                                <div>
+                                    <div class="font-semibold text-stone-800">Спешка в пиковые часы</div>
+                                    <div class="text-xs text-stone-500">15:00-17:00 давление скорости</div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg border-2 border-amber-300">
+                    <h3 class="text-xl font-semibold text-amber-900 mb-4">📈 Анализ влияния отмены проверки</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-sm text-stone-600 mb-2">Июль</div>
+                            <div class="text-3xl font-bold text-green-600 mb-2">29,1%</div>
+                            <div class="text-xs text-stone-500">строк без проверки</div>
+                            <div class="mt-3 pt-3 border-t border-stone-200">
+                                <div class="text-lg font-semibold text-stone-700">0,70 мин</div>
+                                <div class="text-xs text-stone-500">экономия на заказ</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-sm text-stone-600 mb-2">Август</div>
+                            <div class="text-3xl font-bold text-orange-600 mb-2">19,2%</div>
+                            <div class="text-xs text-stone-500">строк без проверки <span class="text-red-600">-39%</span></div>
+                            <div class="mt-3 pt-3 border-t border-stone-200">
+                                <div class="text-lg font-semibold text-stone-700">0,48 мин</div>
+                                <div class="text-xs text-stone-500">экономия на заказ</div>
+                            </div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-sm text-stone-600 mb-2">Сентябрь</div>
+                            <div class="text-3xl font-bold text-red-600 mb-2">16,2%</div>
+                            <div class="text-xs text-stone-500">строк без проверки <span class="text-red-600">-44%</span></div>
+                            <div class="mt-3 pt-3 border-t border-stone-200">
+                                <div class="text-lg font-semibold text-stone-700">0,40 мин</div>
+                                <div class="text-xs text-stone-500">экономия на заказ</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-6 bg-white p-4 rounded-lg">
+                        <p class="text-center text-stone-800">
+                            <strong class="text-red-600">Корреляция:</strong> Снижение отмены проверки с 29% до 16% → падение производительности на 11%<br>
+                            <strong class="text-blue-600">НО:</strong> Отмена проверки возможна только после достижения 99,5% точности учета
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Сравнение проверки и претензий по месяцам</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-stone-100">
+                                <tr>
+                                    <th class="p-3 text-left">Период</th>
+                                    <th class="p-3 text-center">Проверено строк</th>
+                                    <th class="p-3 text-center">% проверки</th>
+                                    <th class="p-3 text-center">Претензий (всего)</th>
+                                    <th class="p-3 text-center">На 1000 заказов</th>
+                                    <th class="p-3 text-center">Вывод</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-200">
+                                <tr class="bg-green-50">
+                                    <td class="p-3 font-semibold">Июль</td>
+                                    <td class="p-3 text-center">77 485</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">71,0%</span></td>
+                                    <td class="p-3 text-center">53</td>
+                                    <td class="p-3 text-center font-semibold text-green-600">3,9</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">Баланс ✓</span></td>
+                                </tr>
+                                <tr class="bg-orange-50">
+                                    <td class="p-3 font-semibold">Август</td>
+                                    <td class="p-3 text-center">80 898</td>
+                                    <td class="p-3 text-center"><span class="badge badge-warning">80,8%</span></td>
+                                    <td class="p-3 text-center">70</td>
+                                    <td class="p-3 text-center font-semibold text-orange-600">5,8</td>
+                                    <td class="p-3 text-center"><span class="badge badge-warning">↑ проверка, ↑ претензии</span></td>
+                                </tr>
+                                <tr class="bg-red-50">
+                                    <td class="p-3 font-semibold">Сентябрь</td>
+                                    <td class="p-3 text-center">94 175</td>
+                                    <td class="p-3 text-center"><span class="badge badge-danger">83,8%</span></td>
+                                    <td class="p-3 text-center">79</td>
+                                    <td class="p-3 text-center font-semibold text-red-600">5,8</td>
+                                    <td class="p-3 text-center"><span class="badge badge-danger">↑↑ проверка, = претензии</span></td>
+                                </tr>
+                                <tr class="bg-purple-50">
+                                    <td class="p-3 font-bold">Цель Q4</td>
+                                    <td class="p-3 text-center">—</td>
+                                    <td class="p-3 text-center"><span class="badge badge-info">100%</span></td>
+                                    <td class="p-3 text-center">≤79</td>
+                                    <td class="p-3 text-center font-bold text-green-600">≤5,8</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">Уровень сентября</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-6 bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-lg border-2 border-purple-200">
+                        <h4 class="font-semibold text-purple-900 mb-3 text-center">🎯 Цель Q4 2025</h4>
+                        <p class="text-center text-stone-800 mb-3">
+                            <strong>Сохранить объем претензий на уровне сентября (5,8 на 1000 заказов)</strong> при переходе на единое окно подачи претензий в 1С
+                        </p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                            <div class="bg-white p-4 rounded-lg">
+                                <h5 class="font-semibold text-stone-700 mb-2">📊 Ключевые метрики:</h5>
+                                <ul class="text-sm text-stone-600 space-y-1">
+                                    <li>• Проверка заказов: 100%</li>
+                                    <li>• Претензии: ≤79 в месяц</li>
+                                    <li>• На 1000 заказов: ≤5,8</li>
+                                    <li>• Точность учета: 99,5%</li>
+                                </ul>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <h5 class="font-semibold text-stone-700 mb-2">⚠️ Вызовы:</h5>
+                                <ul class="text-sm text-stone-600 space-y-1">
+                                    <li>• Все претензии через 1С (100%)</li>
+                                    <li>• Ожидается рост видимости претензий</li>
+                                    <li>• Необходим жесткий контроль качества</li>
+                                    <li>• Требуется внедрение ТСД</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- FINANCE SECTION -->
+            <section id="finance" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Финансовый анализ</h2>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Динамика ФОТ</h3>
+                    <div class="chart-container">
+                        <canvas id="fotChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-red-100 to-red-200 p-8 rounded-xl shadow-xl border-2 border-red-400">
+                    <h3 class="text-2xl font-bold text-red-900 mb-6 text-center">💸 Итоговый перерасход за Q3 2025</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="bg-white p-6 rounded-lg text-center">
+                            <div class="text-4xl font-bold text-red-600 mb-2">1,0 млн ₽</div>
+                            <div class="text-sm text-stone-700">Общий перерасход</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg text-center">
+                            <div class="text-4xl font-bold text-orange-600 mb-2">707 тыс ₽</div>
+                            <div class="text-sm text-stone-700">Август</div>
+                        </div>
+                        <div class="bg-white p-6 rounded-lg text-center">
+                            <div class="text-4xl font-bold text-red-700 mb-2">291 тыс ₽</div>
+                            <div class="text-sm text-stone-700">Сентябрь</div>
+                        </div>
+                    </div>
+                    
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Стоимость обработки</h4>
+                        <div class="space-y-4">
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm text-stone-600">ФОТ на заказ:</span>
+                                    <div class="text-right">
+                                        <div class="font-semibold text-stone-800">214 ₽</div>
+                                        <div class="text-xs text-red-600">+11,1% от июля</div>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-gradient-to-r from-red-500 to-red-400" style="width: 111%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm text-stone-600">ФОТ на строку:</span>
+                                    <div class="text-right">
+                                        <div class="font-semibold text-stone-800">26 ₽</div>
+                                        <div class="text-xs text-red-600">+7,4% от июля</div>
+                                    </div>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill bg-gradient-to-r from-orange-500 to-orange-400" style="width: 107%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-4 p-3 bg-blue-50 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-stone-700 font-semibold">Целевое значение Q4:</span>
+                                <span class="text-lg font-bold text-blue-700">195 ₽</span>
+                            </div>
+                            <div class="text-xs text-stone-500 text-center mt-1">Возврат к показателям июля</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h4 class="text-lg font-semibold text-stone-800 mb-4">Динамика ФОТ на человека</h4>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <div>
+                                    <div class="text-sm text-stone-600">Июль</div>
+                                    <div class="text-xs text-stone-500">27 человек</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-green-700">97,2</div>
+                                    <div class="text-xs text-stone-500">тыс ₽/чел</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-orange-50 rounded-lg">
+                                <div>
+                                    <div class="text-sm text-stone-600">Август</div>
+                                    <div class="text-xs text-stone-500">31 человек (+15%)</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-orange-700">97,4</div>
+                                    <div class="text-xs text-stone-500">тыс ₽/чел</div>
+                                </div>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <div>
+                                    <div class="text-sm text-stone-600">Сентябрь</div>
+                                    <div class="text-xs text-stone-500">31 человек</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-2xl font-bold text-blue-700">91,4</div>
+                                    <div class="text-xs text-stone-500">тыс ₽/чел (-6%)</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">Детальная структура перерасхода</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-stone-100">
+                                <tr>
+                                    <th class="p-3 text-left">Месяц</th>
+                                    <th class="p-3 text-center">Штатный ФОТ</th>
+                                    <th class="p-3 text-center">Самозанятые</th>
+                                    <th class="p-3 text-center">Общий ФОТ</th>
+                                    <th class="p-3 text-center">ФОТ/заказ</th>
+                                    <th class="p-3 text-center">Перерасход</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-200">
+                                <tr class="bg-green-50">
+                                    <td class="p-3 font-semibold">Июль</td>
+                                    <td class="p-3 text-center">2 624 тыс</td>
+                                    <td class="p-3 text-center">0</td>
+                                    <td class="p-3 text-center font-semibold">2 624 тыс</td>
+                                    <td class="p-3 text-center">193 ₽</td>
+                                    <td class="p-3 text-center"><span class="badge badge-success">Эталон</span></td>
+                                </tr>
+                                <tr class="bg-orange-50">
+                                    <td class="p-3 font-semibold">Август</td>
+                                    <td class="p-3 text-center">3 019 тыс</td>
+                                    <td class="p-3 text-center">0</td>
+                                    <td class="p-3 text-center font-semibold">3 019 тыс</td>
+                                    <td class="p-3 text-center">252 ₽</td>
+                                    <td class="p-3 text-center"><span class="badge badge-warning">+291 тыс</span></td>
+                                </tr>
+                                <tr class="bg-red-50">
+                                    <td class="p-3 font-semibold">Сентябрь</td>
+                                    <td class="p-3 text-center">2 832 тыс</td>
+                                    <td class="p-3 text-center">77 тыс</td>
+                                    <td class="p-3 text-center font-semibold">2 909 тыс</td>
+                                    <td class="p-3 text-center">214 ₽</td>
+                                    <td class="p-3 text-center"><span class="badge badge-danger">+965 тыс</span></td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 gap-6">
+                        <div class="p-4 bg-gradient-to-r from-red-50 to-red-100 rounded-lg border-2 border-red-200">
+                            <div class="text-center">
+                                <div class="text-sm text-stone-600 mb-2">Перерасход за Q3</div>
+                                <div class="text-4xl font-bold text-red-700 mb-1">1,0 млн ₽</div>
+                                <div class="text-xs text-stone-500">Август 707 + Сентябрь 291</div>
+                            </div>
+                        </div>
+                        <div class="p-4 bg-gradient-to-r from-green-50 to-green-100 rounded-lg border-2 border-green-200">
+                            <div class="text-center">
+                                <div class="text-sm text-stone-600 mb-2">Целевая экономия Q4</div>
+                                <div class="text-4xl font-bold text-green-700 mb-1">1,53 млн ₽</div>
+                                <div class="text-xs text-stone-500">509 тыс × 3 месяца</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border-2 border-blue-200">
+                    <h3 class="text-xl font-semibold text-blue-900 mb-4">📊 Причины роста ФОТ в августе</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-stone-800 mb-3">Факторы:</h4>
+                            <ul class="text-sm text-stone-700 space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 mr-2">•</span>
+                                    <span>Рост персонала с 27 до 31 (+15%)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-orange-600 mr-2">•</span>
+                                    <span>Снижение объемов на 12%</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-purple-600 mr-2">•</span>
+                                    <span>Массовые отпуска (22 человека)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-green-600 mr-2">•</span>
+                                    <span>Подготовка к пиковому сезону</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <h4 class="font-semibold text-stone-800 mb-3">Результат:</h4>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-stone-600">Падение производительности:</span>
+                                    <span class="font-semibold text-red-600">-20%</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-stone-600">Время на заказ:</span>
+                                    <span class="font-semibold text-red-600">+30,5%</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <span class="text-sm text-stone-600">ФОТ на заказ:</span>
+                                    <span class="font-semibold text-red-600">+30,6%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 bg-white p-4 rounded-lg">
+                        <p class="text-center text-stone-800">
+                            <strong class="text-blue-700">Важно:</strong> Это стратегическое решение, а не ошибка. Опережающий найм персонала подготовил склад к пиковому сезону.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">👥 Штатное расписание склада - 3 квартал 2025</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-stone-100">
+                                <tr>
+                                    <th class="p-3 text-left">Должность</th>
+                                    <th class="p-3 text-center">Июль</th>
+                                    <th class="p-3 text-center">Август</th>
+                                    <th class="p-3 text-center">Сентябрь</th>
+                                    <th class="p-3 text-center">Динамика</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-200">
+                                <tr>
+                                    <td class="p-3">Старший кладовщик/учетчик</td>
+                                    <td class="p-3 text-center">6</td>
+                                    <td class="p-3 text-center">7</td>
+                                    <td class="p-3 text-center">7</td>
+                                    <td class="p-3 text-center"><span class="text-blue-600 font-semibold">+1</span></td>
+                                </tr>
+                                <tr class="bg-stone-50">
+                                    <td class="p-3">Учетчик склада</td>
+                                    <td class="p-3 text-center">10</td>
+                                    <td class="p-3 text-center">11</td>
+                                    <td class="p-3 text-center">11</td>
+                                    <td class="p-3 text-center"><span class="text-blue-600 font-semibold">+1</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Кладовщик</td>
+                                    <td class="p-3 text-center">34</td>
+                                    <td class="p-3 text-center">37</td>
+                                    <td class="p-3 text-center">37</td>
+                                    <td class="p-3 text-center"><span class="text-blue-600 font-semibold">+3</span></td>
+                                </tr>
+                                <tr class="bg-stone-50">
+                                    <td class="p-3">Клининг</td>
+                                    <td class="p-3 text-center">1</td>
+                                    <td class="p-3 text-center">1</td>
+                                    <td class="p-3 text-center">1</td>
+                                    <td class="p-3 text-center"><span class="text-stone-500">—</span></td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Администрация</td>
+                                    <td class="p-3 text-center">3</td>
+                                    <td class="p-3 text-center">3</td>
+                                    <td class="p-3 text-center">3</td>
+                                    <td class="p-3 text-center"><span class="text-stone-500">—</span></td>
+                                </tr>
+                                 <tr>
+                                    <td class="p-3">Грузчик</td>
+                                    <td class="p-3 text-center">4</td>
+                                    <td class="p-3 text-center">4</td>
+                                    <td class="p-3 text-center">4</td>
+                                    <td class="p-3 text-center"><span class="text-stone-500">—</span></td>
+                                </tr>
+                                <tr class="bg-blue-100 font-semibold">
+                                    <td class="p-3">Итого основной персонал</td>
+                                    <td class="p-3 text-center">58</td>
+                                    <td class="p-3 text-center">63</td>
+                                    <td class="p-3 text-center">63</td>
+                                    <td class="p-3 text-center"><span class="text-blue-700 font-bold">+5 (+8,6%)</span></td>
+                                </tr>
+                                <tr class="bg-green-50 font-bold">
+                                    <td class="p-3">ФОТ склада</td>
+                                    <td class="p-3 text-center">6,28 млн ₽</td>
+                                    <td class="p-3 text-center">6,41 млн ₽</td>
+                                    <td class="p-3 text-center">6,03 млн ₽</td>
+                                    <td class="p-3 text-center"><span class="text-green-700">-250 тыс ₽</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-blue-50 p-4 rounded-lg border border-blue-200">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-blue-700 mb-1">+5 человек</div>
+                                <div class="text-xs text-stone-600">Рост штата в августе</div>
+                            </div>
+                        </div>
+                        <div class="bg-orange-50 p-4 rounded-lg border border-orange-200">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-orange-700 mb-1">+2,1%</div>
+                                <div class="text-xs text-stone-600">Рост ФОТ июль → август</div>
+                            </div>
+                        </div>
+                        <div class="bg-green-50 p-4 rounded-lg border border-green-200">
+                            <div class="text-center">
+                                <div class="text-2xl font-bold text-green-700 mb-1">-5,9%</div>
+                                <div class="text-xs text-stone-600">Снижение ФОТ август → сентябрь</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mt-4 p-4 bg-gradient-to-r from-blue-50 to-purple-50 rounded-lg border-2 border-blue-200">
+                        <p class="text-center text-stone-800">
+                            <strong class="text-blue-700">Вывод:</strong> Основной рост штата произошёл в августе (+5 человек), что связано с подготовкой к пиковому сезону. В сентябре численность стабилизировалась при снижении ФОТ на 380 тыс ₽.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACTION PLAN SECTION -->
+            <section id="action-plan" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">План действий на Q4 2025</h2>
+
+                <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-8 rounded-xl shadow-xl border-2 border-blue-300">
+                    <h3 class="text-2xl font-bold text-center text-blue-900 mb-6">🎯 Стратегические приоритеты</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-3xl mb-2">📊</div>
+                            <div class="font-semibold text-blue-900">Приоритет 1</div>
+                            <div class="text-sm text-stone-700 mt-2">Товарный учет 99,5%</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-3xl mb-2">📦</div>
+                            <div class="font-semibold text-green-900">Приоритет 2</div>
+                            <div class="text-sm text-stone-700 mt-2">Упрощение сборки</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-3xl mb-2">✅</div>
+                            <div class="font-semibold text-purple-900">Приоритет 3</div>
+                            <div class="text-sm text-stone-700 mt-2">100% проверка</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg text-center">
+                            <div class="text-3xl mb-2">👥</div>
+                            <div class="font-semibold text-orange-900">Приоритет 4</div>
+                            <div class="text-sm text-stone-700 mt-2">Обучение персонала</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-6">📊 Целевые KPI на Q4 2025</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead class="bg-stone-100">
+                                <tr>
+                                    <th class="p-3 text-left">Показатель</th>
+                                    <th class="p-3 text-center">Сентябрь</th>
+                                    <th class="p-3 text-center">Цель Q4</th>
+                                    <th class="p-3 text-center">Δ</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-stone-200">
+                                <tr>
+                                    <td class="p-3">Строк/час сборка</td>
+                                    <td class="p-3 text-center">31,20</td>
+                                    <td class="p-3 text-center font-semibold text-green-600">35,00</td>
+                                    <td class="p-3 text-center text-green-600">+12,2%</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Претензии на 1000</td>
+                                    <td class="p-3 text-center">5,8</td>
+                                    <td class="p-3 text-center font-semibold text-green-600">4,0</td>
+                                    <td class="p-3 text-center text-green-600">-31%</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">ФОТ месяц</td>
+                                    <td class="p-3 text-center">2,83 млн</td>
+                                    <td class="p-3 text-center font-semibold text-green-600">2,40 млн</td>
+                                    <td class="p-3 text-center text-green-600">-15%</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-3">Проверка заказов</td>
+                                    <td class="p-3 text-center">83,8%</td>
+                                    <td class="p-3 text-center font-semibold text-green-600">100%</td>
+                                    <td class="p-3 text-center text-green-600">+16,2 п.п.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                
+
+                <div class="bg-white p-6 rounded-xl shadow-lg">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-6">Критические меры (внедрить немедленно)</h3>
+                    <div class="space-y-6">
+                        <!-- Приоритет 1 -->
+                        <div class="p-6 bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl border-2 border-blue-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-4xl mr-4">📊</div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-blue-900">Приоритет 1: Товарный учет до 99,5%</h4>
+                                    <p class="text-sm text-blue-700">Срок: 4 недели | Ответственный: Руководитель склада + IT-отдел</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <p class="text-sm text-stone-700 mb-3"><strong>Проблема:</strong> Неточный учет → ошибки на сборке → рост претензий на 49%</p>
+                                <p class="text-sm font-semibold text-stone-800 mb-2">Действия:</p>
+                                <ul class="text-sm text-stone-700 space-y-1 ml-4">
+                                    <li>✓ Полная инвентаризация всех зон склада</li>
+                                    <li>✓ Внедрение системы ежедневной сверки остатков</li>
+                                    <li>✓ Исправление всех расхождений в базе 1С</li>
+                                    <li>✓ Создание процедуры мгновенного обновления остатков</li>
+                                </ul>
+                                <div class="mt-4 grid grid-cols-3 gap-4">
+                                    <div class="text-center p-3 bg-green-50 rounded-lg">
+                                        <div class="font-bold text-green-700">-30%</div>
+                                        <div class="text-xs text-stone-600">Время поиска товара</div>
+                                    </div>
+                                    <div class="text-center p-3 bg-blue-50 rounded-lg">
+                                        <div class="font-bold text-blue-700">-60%</div>
+                                        <div class="text-xs text-stone-600">Ошибки комплектации</div>
+                                    </div>
+                                    <div class="text-center p-3 bg-purple-50 rounded-lg">
+                                        <div class="font-bold text-purple-700">-31%</div>
+                                        <div class="text-xs text-stone-600">Претензии клиентов</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Приоритет 2 -->
+                        <div class="p-6 bg-gradient-to-r from-green-50 to-green-100 rounded-xl border-2 border-green-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-4xl mr-4">📦</div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-green-900">Приоритет 2: Упрощение процесса сборки</h4>
+                                    <p class="text-sm text-green-700">Срок: 6 недель | Инвестиции: 150 тыс. руб.</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <p class="text-sm text-stone-700 mb-3"><strong>Проблема:</strong> Время сборки выросло на 16% (с 13,7 до 15,9 мин/заказ)</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div>
+                                        <p class="text-sm font-semibold text-stone-800 mb-2">Действия:</p>
+                                        <ul class="text-sm text-stone-700 space-y-1 ml-4">
+                                            <li>• Аудит маршрутов сборщиков</li>
+                                            <li>• ABC-анализ товара</li>
+                                            <li>• Визуальные подсказки в зонах</li>
+                                            <li>• Цветовое кодирование</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm font-semibold text-stone-800 mb-2">Ожидаемый эффект:</p>
+                                        <ul class="text-sm text-stone-700 space-y-1 ml-4">
+                                            <li>• Маршрут: -25%</li>
+                                            <li>• Время: 24,5 → 23,0 мин (-6%)</li>
+                                            <li>• Производ-ть: +8%</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Приоритет 3 -->
+                        <div class="p-6 bg-gradient-to-r from-purple-50 to-purple-100 rounded-xl border-2 border-purple-300">
+                            <div class="flex items-center mb-4">
+                                <div class="text-4xl mr-4">✅</div>
+                                <div>
+                                    <h4 class="text-xl font-bold text-purple-900">Приоритет 3: 100% проверка + контроль качества</h4>
+                                    <p class="text-sm text-purple-700">Постоянно | Ответственный: Начальник отдела качества</p>
+                                </div>
+                            </div>
+                            <div class="bg-white p-4 rounded-lg">
+                                <p class="text-sm text-stone-700 mb-3"><strong>Политика Q4:</strong> 90% проверка всех заказов (временно до улучшения учета)</p>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <div class="space-y-2">
+                                        <p class="text-sm font-semibold text-stone-800">Система обратной связи:</p>
+                                        <ul class="text-sm text-stone-700 space-y-1 ml-4">
+                                            <li>• Анализ претензий по категориям</li>
+                                            <li>• Обратная связь в тот же день</li>
+                                            <li>• База типовых ошибок</li>
+                                        </ul>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                       
+                </div>
+
+                
+                </div>
+            </section>
+        </main>
+
+        <footer class="py-8 text-center text-stone-600 border-t border-stone-300 mt-12">
+            <p class="mb-2 font-semibold">Складской отдел компании WEST | Q3 2025</p>
+            <p class="text-xs text-stone-400 mt-2">Версия от 16 октября 2025 года</p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+            
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+            
+            function init() {
+                initNavigation();
+                initCharts();
+            }
+            
+            function initNavigation() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                const sections = document.querySelectorAll('.app-section');
+
+                function updateActiveNav(targetId) {
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href === '#' + targetId) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+                    
+                    sections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                }
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const href = this.getAttribute('href');
+                        const targetId = href.replace('#', '');
+                        updateActiveNav(targetId);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+
+                updateActiveNav('overview');
+            }
+            
+            function initCharts() {
+                const volumeCtx = document.getElementById('volumeChart');
+                if (volumeCtx && typeof Chart !== 'undefined') {
+                    new Chart(volumeCtx.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь'],
+                            datasets: [{
+                                label: 'Заказов',
+                                data: [13602, 11985, 13573],
+                                borderColor: '#78716C',
+                                backgroundColor: 'rgba(120, 113, 108, 0.1)',
+                                tension: 0.4,
+                                fill: true
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: { beginAtZero: true }
+                            }
+                        }
+                    });
+                }
+
+                const pickingCtx = document.getElementById('pickingChart');
+                if (pickingCtx && typeof Chart !== 'undefined') {
+                    new Chart(pickingCtx.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь', 'Цель Q4'],
+                            datasets: [{
+                                label: 'Строк/час',
+                                data: [35.87, 31.19, 31.20, 35.00],
+                                backgroundColor: ['#86EFAC', '#FCA5A5', '#FCD34D', '#A5B4FC'],
+                                borderRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+
+                const packingCtx = document.getElementById('packingChart');
+                if (packingCtx && typeof Chart !== 'undefined') {
+                    new Chart(packingCtx.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь', 'Цель Q4'],
+                            datasets: [{
+                                label: 'Строк/час',
+                                data: [57.88, 59.71, 57.95, 62.00],
+                                backgroundColor: ['#86EFAC', '#86EFAC', '#86EFAC', '#A5B4FC'],
+                                borderRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+
+                const qualityCtx = document.getElementById('qualityChart');
+                if (qualityCtx && typeof Chart !== 'undefined') {
+                    new Chart(qualityCtx.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь'],
+                            datasets: [
+                                {
+                                    label: 'Проверка (%)',
+                                    data: [71.0, 80.8, 83.8],
+                                    borderColor: '#16A34A',
+                                    yAxisID: 'y'
+                                },
+                                {
+                                    label: 'Претензии (на 1000)',
+                                    data: [3.9, 5.6, 5.8],
+                                    borderColor: '#DC2626',
+                                    yAxisID: 'y1'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    type: 'linear',
+                                    position: 'left',
+                                    title: { display: true, text: 'Проверка (%)' }
+                                },
+                                y1: {
+                                    type: 'linear',
+                                    position: 'right',
+                                    title: { display: true, text: 'Претензии' },
+                                    grid: { drawOnChartArea: false }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                const fotCtx = document.getElementById('fotChart');
+                if (fotCtx && typeof Chart !== 'undefined') {
+                    new Chart(fotCtx.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь', 'Цель Q4'],
+                            datasets: [{
+                                label: 'ФОТ (млн ₽)',
+                                data: [2.62, 3.02, 2.83, 2.40],
+                                backgroundColor: ['#86EFAC', '#FCA5A5', '#FCD34D', '#A5B4FC'],
+                                borderRadius: 6
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: { y: { beginAtZero: true } }
+                        }
+                    });
+                }
+
+                // Operations Comparison Chart
+                const opsCompCtx = document.getElementById('operationsComparisonChart');
+                if (opsCompCtx && typeof Chart !== 'undefined') {
+                    new Chart(opsCompCtx.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь'],
+                            datasets: [
+                                {
+                                    label: 'Заказов',
+                                    data: [13602, 11985, 13573],
+                                    borderColor: '#78716C',
+                                    backgroundColor: 'rgba(120, 113, 108, 0.1)',
+                                    tension: 0.4,
+                                    fill: false,
+                                    yAxisID: 'y'
+                                },
+                                {
+                                    label: 'Строк',
+                                    data: [108855, 100154, 112349],
+                                    borderColor: '#3B82F6',
+                                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                    tension: 0.4,
+                                    fill: false,
+                                    yAxisID: 'y1'
+                                },
+                                {
+                                    label: 'Упаковок (x1000)',
+                                    data: [552.7, 536.6, 566.7],
+                                    borderColor: '#10B981',
+                                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                    tension: 0.4,
+                                    fill: false,
+                                    yAxisID: 'y2'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: {
+                                mode: 'index',
+                                intersect: false
+                            },
+                            scales: {
+                                y: {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'left',
+                                    title: { display: true, text: 'Заказов' }
+                                },
+                                y1: {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'right',
+                                    title: { display: true, text: 'Строк' },
+                                    grid: { drawOnChartArea: false }
+                                },
+                                y2: {
+                                    type: 'linear',
+                                    display: false,
+                                    position: 'right'
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Staff Chart
+                const staffCtx = document.getElementById('staffChart');
+                if (staffCtx && typeof Chart !== 'undefined') {
+                    new Chart(staffCtx.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь'],
+                            datasets: [
+                                {
+                                    label: 'Численность',
+                                    data: [27, 31, 31],
+                                    backgroundColor: '#3B82F6',
+                                    borderRadius: 6,
+                                    yAxisID: 'y'
+                                },
+                                {
+                                    label: 'ФОТ на человека (тыс ₽)',
+                                    data: [97.2, 97.4, 91.4],
+                                    backgroundColor: '#10B981',
+                                    borderRadius: 6,
+                                    yAxisID: 'y1'
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    type: 'linear',
+                                    position: 'left',
+                                    title: { display: true, text: 'Численность' },
+                                    beginAtZero: true
+                                },
+                                y1: {
+                                    type: 'linear',
+                                    position: 'right',
+                                    title: { display: true, text: 'ФОТ на человека' },
+                                    grid: { drawOnChartArea: false },
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Order Status Chart - Динамика статусов заказов
+                const orderStatusCtx = document.getElementById('orderStatusChart');
+                if (orderStatusCtx && typeof Chart !== 'undefined') {
+                    new Chart(orderStatusCtx.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: ['8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00'],
+                            datasets: [
+                                {
+                                    label: 'В работе у отдела продаж (в среднем за день)',
+                                    data: [2.7, 23.2, 84.2, 86.2, 81.2, 78.3, 75.1, 80.7, 81.2, 63.3, 13.4, 4.5, 1.3, 0.3, 0.1, 0],
+                                    borderColor: '#3B82F6',
+                                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                },
+                                {
+                                    label: 'Передано на склад (в среднем за день)',
+                                    data: [1.0, 9.2, 37.6, 41.3, 47.9, 49.8, 51.9, 62.2, 76.2, 79.4, 10.1, 1.8, 0.6, 0, 0, 0],
+                                    borderColor: '#F59E0B',
+                                    backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                },
+                                {
+                                    label: 'Собрано (в среднем за день)',
+                                    data: [30.5, 36.5, 43.4, 38.1, 29.2, 37.5, 37.2, 39.9, 39.7, 37.9, 18.1, 22.5, 17.4, 12.8, 18.0, 1.1],
+                                    borderColor: '#10B981',
+                                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                    tension: 0.4,
+                                    fill: true
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: {
+                                mode: 'index',
+                                intersect: false
+                            },
+                            plugins: {
+                                legend: {
+                                    position: 'top'
+                                },
+                                tooltip: {
+                                    mode: 'index',
+                                    intersect: false
+                                }
+                            },
+                            scales: {
+                                y: {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'left',
+                                    title: { display: true, text: 'Количество заказов' },
+                                    beginAtZero: true
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Processing Time Chart
+                const procTimeCtx = document.getElementById('processingTimeChart');
+                if (procTimeCtx && typeof Chart !== 'undefined') {
+                    new Chart(procTimeCtx.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь', 'Цель Q4'],
+                            datasets: [
+                                {
+                                    label: 'Время на заказ (мин)',
+                                    data: [21.0, 27.5, 24.5, 21.0],
+                                    backgroundColor: ['#86EFAC', '#FCA5A5', '#FCD34D', '#A5B4FC'],
+                                    borderRadius: 6
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    title: { display: true, text: 'Минут' }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Drop Time Chart
+                const dropTimeCtx = document.getElementById('dropTimeChart');
+                if (dropTimeCtx && typeof Chart !== 'undefined') {
+                    new Chart(dropTimeCtx.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: ['Июль', 'Август', 'Сентябрь', 'Цель Q4'],
+                            datasets: [{
+                                label: 'Время сброса (часы)',
+                                data: [11.53, 10.94, 10.88, 10.00],
+                                borderColor: '#10B981',
+                                backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                tension: 0.4,
+                                fill: true,
+                                borderWidth: 3,
+                                pointRadius: 6,
+                                pointHoverRadius: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                y: {
+                                    beginAtZero: false,
+                                    min: 9,
+                                    max: 12,
+                                    title: { display: true, text: 'Часы' }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    display: true,
+                                    position: 'top'
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        })();
+    </script>
+
+   
+</body>
+</html>
