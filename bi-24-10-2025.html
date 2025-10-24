@@ -192,6 +192,9 @@
             <button class="nav-link px-4 py-3 rounded-xl text-sm font-semibold hover:bg-blue-50 transition-all" onclick="showTab('kpi')">
                 📊 KPI
             </button>
+            <button class="nav-link px-4 py-3 rounded-xl text-sm font-semibold hover:bg-blue-50 transition-all" onclick="showTab('brief')">
+                📝 Бриф на отчет
+            </button>
         </div>
     </nav>
 
@@ -1691,6 +1694,312 @@
                     <div class="mt-4 text-blue-100">
                         Чистая экономия за год: <span class="font-black text-white">₽1,040,000</span>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BRIEF TAB -->
+        <section id="brief" class="tab-content">
+            <div class="glass-card rounded-2xl p-8 mb-8">
+                <h2 class="text-3xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                    <span class="text-4xl">📝</span>
+                    Бриф на создание отчета Power BI
+                </h2>
+
+                <div class="bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg mb-8">
+                    <p class="text-slate-700 leading-relaxed">
+                        <strong class="text-blue-900">Для заказа нового отчета</strong> заполните краткую форму ниже.
+                        Это поможет аналитикам создать отчет, который точно решит вашу задачу.
+                        Поля отмеченные <span class="text-red-500 font-bold">*</span> обязательны для заполнения.
+                    </p>
+                </div>
+
+                <!-- Brief Form -->
+                <div class="space-y-8">
+
+                    <!-- Section 1: Basic Info -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-200">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">1</span>
+                            Базовая информация
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Название отчета <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text"
+                                       class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                       placeholder="Например: Анализ продаж по регионам">
+                                <p class="text-xs text-slate-500 mt-1">Краткое и понятное название</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Цель отчета <span class="text-red-500">*</span>
+                                </label>
+                                <textarea
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                    rows="3"
+                                    placeholder="Например: Контролировать выполнение плана продаж, выявлять проблемные регионы"></textarea>
+                                <p class="text-xs text-slate-500 mt-1">Что вы хотите понять/контролировать с помощью отчета?</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Кто будет использовать <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text"
+                                       class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                       placeholder="Например: Отдел продаж, Руководитель департамента">
+                                <p class="text-xs text-slate-500 mt-1">Должность или отдел пользователей</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 2: Data & Metrics -->
+                    <div class="bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl p-6 border border-green-200">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">2</span>
+                            Данные и показатели
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Какие показатели нужны <span class="text-red-500">*</span>
+                                </label>
+                                <textarea
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                    rows="3"
+                                    placeholder="Например: Сумма продаж, количество заказов, средний чек, выполнение плана в %"></textarea>
+                                <p class="text-xs text-slate-500 mt-1">Перечислите через запятую все нужные метрики</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Период анализа <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <label class="flex items-center gap-2 p-3 border border-slate-300 rounded-lg hover:bg-blue-50 cursor-pointer transition-all">
+                                        <input type="checkbox" class="w-4 h-4">
+                                        <span class="text-sm">День</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border border-slate-300 rounded-lg hover:bg-blue-50 cursor-pointer transition-all">
+                                        <input type="checkbox" class="w-4 h-4">
+                                        <span class="text-sm">Неделя</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border border-slate-300 rounded-lg hover:bg-blue-50 cursor-pointer transition-all">
+                                        <input type="checkbox" class="w-4 h-4">
+                                        <span class="text-sm">Месяц</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border border-slate-300 rounded-lg hover:bg-blue-50 cursor-pointer transition-all">
+                                        <input type="checkbox" class="w-4 h-4">
+                                        <span class="text-sm">Год</span>
+                                    </label>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Можно выбрать несколько вариантов</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Источники данных <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text"
+                                       class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                       placeholder="Например: 1С, Excel файл, CRM система">
+                                <p class="text-xs text-slate-500 mt-1">Откуда брать данные для отчета</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 3: Details -->
+                    <div class="bg-gradient-to-r from-purple-50 to-violet-50 rounded-xl p-6 border border-purple-200">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">3</span>
+                            Детализация (опционально)
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Группировка данных
+                                </label>
+                                <input type="text"
+                                       class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                       placeholder="Например: по регионам, по менеджерам, по категориям товаров">
+                                <p class="text-xs text-slate-500 mt-1">По каким параметрам группировать информацию?</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Фильтры
+                                </label>
+                                <input type="text"
+                                       class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                       placeholder="Например: период, регион, менеджер, статус заказа">
+                                <p class="text-xs text-slate-500 mt-1">Какие фильтры нужны для выборки данных?</p>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Сравнения
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                    <label class="flex items-center gap-2 p-3 border border-slate-300 rounded-lg hover:bg-purple-50 cursor-pointer transition-all">
+                                        <input type="checkbox" class="w-4 h-4">
+                                        <span class="text-sm">С прошлым периодом</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border border-slate-300 rounded-lg hover:bg-purple-50 cursor-pointer transition-all">
+                                        <input type="checkbox" class="w-4 h-4">
+                                        <span class="text-sm">С планом</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border border-slate-300 rounded-lg hover:bg-purple-50 cursor-pointer transition-all">
+                                        <input type="checkbox" class="w-4 h-4">
+                                        <span class="text-sm">Динамика изменений</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 4: Visualization -->
+                    <div class="bg-gradient-to-r from-orange-50 to-amber-50 rounded-xl p-6 border border-orange-200">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-orange-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">4</span>
+                            Визуализация и приоритет
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Предпочитаемый формат <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                    <label class="flex items-center gap-3 p-4 border-2 border-slate-300 rounded-lg hover:bg-orange-50 hover:border-orange-400 cursor-pointer transition-all">
+                                        <input type="radio" name="format" class="w-5 h-5">
+                                        <div>
+                                            <div class="font-semibold text-sm">📊 Графики</div>
+                                            <div class="text-xs text-slate-500">Столбцы, линии, круги</div>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-4 border-2 border-slate-300 rounded-lg hover:bg-orange-50 hover:border-orange-400 cursor-pointer transition-all">
+                                        <input type="radio" name="format" class="w-5 h-5">
+                                        <div>
+                                            <div class="font-semibold text-sm">📋 Таблицы</div>
+                                            <div class="text-xs text-slate-500">Детальные данные</div>
+                                        </div>
+                                    </label>
+                                    <label class="flex items-center gap-3 p-4 border-2 border-slate-300 rounded-lg hover:bg-orange-50 hover:border-orange-400 cursor-pointer transition-all">
+                                        <input type="radio" name="format" class="w-5 h-5">
+                                        <div>
+                                            <div class="font-semibold text-sm">💳 Карточки</div>
+                                            <div class="text-xs text-slate-500">Ключевые показатели</div>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Приоритет <span class="text-red-500">*</span>
+                                </label>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                                    <label class="flex items-center gap-2 p-3 border-2 border-slate-300 rounded-lg hover:bg-blue-50 cursor-pointer transition-all">
+                                        <input type="radio" name="priority" class="w-4 h-4">
+                                        <span class="text-sm font-semibold">🔵 Низкий</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border-2 border-slate-300 rounded-lg hover:bg-yellow-50 cursor-pointer transition-all">
+                                        <input type="radio" name="priority" class="w-4 h-4">
+                                        <span class="text-sm font-semibold">🟡 Средний</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border-2 border-slate-300 rounded-lg hover:bg-orange-50 cursor-pointer transition-all">
+                                        <input type="radio" name="priority" class="w-4 h-4">
+                                        <span class="text-sm font-semibold">🟠 Высокий</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 p-3 border-2 border-slate-300 rounded-lg hover:bg-red-50 cursor-pointer transition-all">
+                                        <input type="radio" name="priority" class="w-4 h-4">
+                                        <span class="text-sm font-semibold">🔴 Критический</span>
+                                    </label>
+                                </div>
+                                <p class="text-xs text-slate-500 mt-1">Критический = требуется в течение недели, Высокий = 2 недели, Средний = месяц</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Section 5: Additional -->
+                    <div class="bg-gradient-to-r from-slate-50 to-gray-50 rounded-xl p-6 border border-slate-200">
+                        <h3 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <span class="bg-slate-500 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm">5</span>
+                            Дополнительная информация (опционально)
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Примеры или референсы
+                                </label>
+                                <textarea
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                    rows="2"
+                                    placeholder="Ссылка на похожий отчет или описание того, как вы представляете результат"></textarea>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Частота обновления данных
+                                </label>
+                                <select class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+                                    <option>Выберите вариант</option>
+                                    <option>Реального времени (онлайн)</option>
+                                    <option>Каждый час</option>
+                                    <option>Ежедневно</option>
+                                    <option>Еженедельно</option>
+                                    <option>Ежемесячно</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2">
+                                    Дополнительные комментарии
+                                </label>
+                                <textarea
+                                    class="w-full px-4 py-3 rounded-lg border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+                                    rows="3"
+                                    placeholder="Любая дополнительная информация, которая может быть полезна"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    
+
+                    <!-- Tips Section -->
+                    <div class="bg-green-50 border-l-4 border-green-500 p-6 rounded-lg">
+                        <h4 class="font-bold text-green-900 mb-3 flex items-center gap-2">
+                            <span class="text-xl">💡</span>
+                            Полезные советы
+                        </h4>
+                        <ul class="space-y-2 text-sm text-slate-700">
+                            <li class="flex gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Чем конкретнее вы опишете задачу, тем точнее будет результат</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Укажите примеры решений, которые вам нравятся</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Не стесняйтесь задавать вопросы аналитикам — мы здесь, чтобы помочь</span>
+                            </li>
+                            <li class="flex gap-2">
+                                <span class="text-green-600">✓</span>
+                                <span>Среднее время разработки отчета: 3-5 рабочих дней для стандартных задач</span>
+                            </li>
+                        </ul>
+                    </div>
+
                 </div>
             </div>
         </section>
