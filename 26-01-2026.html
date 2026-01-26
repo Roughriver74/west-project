@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерактивный отчет IT-отдела West: Q4 2025 и Стратегия 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F5F5F4 0%, #E7E5E4 100%);
+            color: #44403C;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+        }
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        .nav-link.active {
+            color: #1c1917;
+            border-bottom-color: #78716C;
+            font-weight: 600;
+        }
+        .plan-tab.active {
+            background: linear-gradient(135deg, #78716C 0%, #57534E 100%);
+            color: #FFFFFF;
+            transform: translateX(4px);
+        }
+        .card {
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #F5F5F4 100%);
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+        .progress-bar {
+            height: 8px;
+            background-color: #E7E5E4;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #78716C 0%, #A8A29E 100%);
+            transition: width 1s ease-out;
+        }
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .badge-success { background-color: #86EFAC; color: #166534; }
+        .badge-warning { background-color: #FCD34D; color: #92400E; }
+        .badge-info { background-color: #A5B4FC; color: #3730A3; }
+        .badge-danger { background-color: #FCA5A5; color: #991B1B; }
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+        .org-level {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .org-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            min-width: 200px;
+            max-width: 280px;
+            text-align: center;
+            border-top: 4px solid;
+        }
+        .org-card.director { border-top-color: #7C3AED; }
+        .org-card.product-owner { border-top-color: #2563EB; }
+        .org-card.scrum-master { border-top-color: #059669; }
+        .org-card.developer { border-top-color: #DC2626; }
+        .org-card.analyst { border-top-color: #EA580C; }
+        .org-card.sysadmin { border-top-color: #0891B2; }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #D6D3D1;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 2rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2.375rem;
+            top: 0.375rem;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #78716C;
+            border: 3px solid #F5F5F4;
+        }
+        .pillar-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, #FAFAF9 100%);
+            border-radius: 16px;
+            padding: 2rem;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .pillar-card:hover {
+            border-color: #78716C;
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="app" class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+
+        <header class="py-8 text-center">
+            <div class="inline-block mb-4 px-4 py-2 bg-stone-800 text-white rounded-full text-sm font-semibold">
+                Компания WEST
+            </div>
+            <h1 class="text-5xl font-bold text-stone-800 mb-2">Отчет IT-отдела</h1>
+            <p class="text-xl text-stone-600">Итоги Q4 2025 и Стратегия на 2026</p>
+            <div class="mt-4 flex justify-center gap-4 text-sm text-stone-500 flex-wrap">
+                <span>📅 Период: Октябрь - Декабрь 2025</span>
+                <span>•</span>
+                <span>📊 Выполнено задач: 1,518</span>
+                <span>•</span>
+                <span>🎯 Философия 2026: Точность. Порядок. Эффективность</span>
+            </div>
+        </header>
+
+        <nav class="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-stone-300 shadow-sm mb-8">
+            <div class="flex justify-center items-center overflow-x-auto">
+                <div class="flex space-x-1 sm:space-x-4 px-4">
+                    <a href="#overview" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">📊 Обзор</a>
+                    <a href="#team" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">👥 Команда</a>
+                    <a href="#achievements" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">🎯 Достижения</a>
+                    <a href="#tasks" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">📋 Задачи</a>
+                    <a href="#projects" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">💼 Проекты</a>
+                    <a href="#roadmap" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">🗓️ Roadmap</a>
+                    <a href="#vision2026" class="nav-link text-stone-600 hover:text-stone-900 border-b-2 border-transparent py-4 px-3 text-sm sm:text-base font-semibold whitespace-nowrap">🚀 Видение 2026</a>
+                </div>
+            </div>
+        </nav>
+
+        <main class="pb-12">
+            <!-- OVERVIEW SECTION -->
+            <section id="overview" class="app-section space-y-8">
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-center text-stone-700 mb-6">Executive Summary</h2>
+                    <div class="bg-gradient-to-r from-stone-800 to-stone-600 text-white p-8 rounded-xl shadow-xl mb-8">
+                        <p class="text-lg leading-relaxed">
+                            В Q4 2025 IT-отдел компании West достиг значительных результатов: выполнено <strong>1,518 задач</strong>, реализована маршрутизация WestVisit, запущена система заявок в закупки, интегрированы Битрикс24 и 1С. Успешно обновлена платформа 1С и Windows 10 → 11. Ключевые проекты включают Power BI аналитику, распознавание товаров AI, автоматизацию склада и улучшение безопасности сети.
+                        </p>
+                        <p class="text-lg leading-relaxed mt-4">
+                            <strong>2026 год — год порядка и оптимизации.</strong> Философия: «Точность. Порядок. Эффективность». Фокус на завершении начатых проектов, создании DWH, наведении порядка в номенклатуре и автоматизации склада. Бюджет IT: 16.2 млн ₽.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Ключевые показатели Q4 2025</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-amber-500 card">
+                            <p class="text-5xl font-bold text-stone-800">1,518</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Выполнено задач</p>
+                            <div class="mt-3 text-xs text-stone-500">~17 в день</div>
+                        </div>
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-blue-500 card">
+                            <p class="text-5xl font-bold text-stone-800">94.4%</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Средняя выполняемость</p>
+                            <div class="mt-3 text-xs text-stone-500">За октябрь-декабрь</div>
+                        </div>
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-purple-500 card">
+                            <p class="text-5xl font-bold text-stone-800">8</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Активных проектов</p>
+                            <div class="mt-3 text-xs text-stone-500">Стратегические инициативы</div>
+                        </div>
+                        <div class="stat-card p-6 rounded-xl shadow-lg text-center border-t-4 border-green-500 card">
+                            <p class="text-5xl font-bold text-stone-800">16.2М</p>
+                            <p class="text-base text-stone-600 mt-2 font-medium">Бюджет IT 2026</p>
+                            <div class="mt-3 text-xs text-stone-500">CAPEX + OPEX</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 fade-in">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-2xl mr-2">📈</span> Динамика выполнения задач
+                        </h3>
+                        <div class="space-y-3">
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Октябрь 2025</span>
+                                    <span class="font-semibold text-stone-800">529/550 (96.2%)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 96.2%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Ноябрь 2025</span>
+                                    <span class="font-semibold text-stone-800">399/417 (95.7%)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 95.7%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Декабрь 2025</span>
+                                    <span class="font-semibold text-stone-800">412/449 (91.8%)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 91.8%"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="flex justify-between text-sm mb-1">
+                                    <span class="text-stone-600">Январь 2026 (в процессе)</span>
+                                    <span class="font-semibold text-stone-800">200/241 (83.0%)</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 83%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-2xl mr-2">💰</span> Структура бюджета 2026
+                        </h3>
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center p-3 bg-blue-50 rounded-lg">
+                                <span class="text-stone-700 font-medium">CAPEX (Развитие)</span>
+                                <span class="font-bold text-blue-700">9,510,000 ₽</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-green-50 rounded-lg">
+                                <span class="text-stone-700 font-medium">OPEX (Операционные)</span>
+                                <span class="font-bold text-green-700">6,722,600 ₽</span>
+                            </div>
+                            <div class="border-t pt-3 mt-3">
+                                <div class="text-sm text-stone-600 space-y-1">
+                                    <div class="flex justify-between"><span>Компьютерное оборудование</span><span>2,100,000 ₽</span></div>
+                                    <div class="flex justify-between"><span>Аналитика и AI</span><span>1,860,000 ₽</span></div>
+                                    <div class="flex justify-between"><span>CRM и Битрикс24</span><span>1,970,000 ₽</span></div>
+                                    <div class="flex justify-between"><span>Мобильная связь</span><span>1,800,000 ₽</span></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TEAM SECTION -->
+            <section id="team" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Структура IT-отдела и результаты</h2>
+
+                <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-xl shadow-lg border-2 border-purple-200 mb-8">
+                    <h3 class="text-2xl font-bold text-purple-900 mb-4 text-center">Операционная модель: Scrum</h3>
+                    <p class="text-purple-800 text-center mb-6">
+                        Двухнедельные спринты | Ежедневные стендапы 15 минут | Прозрачность и предсказуемость
+                    </p>
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-center">
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-3xl mb-2">📋</div>
+                            <div class="font-semibold text-stone-800">Product Backlog</div>
+                            <div class="text-sm text-stone-600 mt-1">Приоритизация задач</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-3xl mb-2">🏃</div>
+                            <div class="font-semibold text-stone-800">Sprint Planning</div>
+                            <div class="text-sm text-stone-600 mt-1">Каждые 2 недели</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-3xl mb-2">👥</div>
+                            <div class="font-semibold text-stone-800">Daily Standup</div>
+                            <div class="text-sm text-stone-600 mt-1">15 минут ежедневно</div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg">
+                            <div class="text-3xl mb-2">🎯</div>
+                            <div class="font-semibold text-stone-800">Sprint Review</div>
+                            <div class="text-sm text-stone-600 mt-1">Демонстрация результатов</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">📊 Выполнение задач по сотрудникам (Q4 2025)</h3>
+                    <div class="chart-container" style="height: 350px;">
+                        <canvas id="teamChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="org-chart">
+                    <div class="org-level">
+                        <div class="org-card director">
+                            <div class="text-4xl mb-3">👔</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Евгений Шикунов</div>
+                            <div class="text-sm font-semibold text-purple-600 mb-2">IT Director</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Стратегия отдела</div>
+                                <div>• Бюджетирование</div>
+                                <div>• Взаимодействие с бизнесом</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-purple-50 p-2 rounded font-semibold">
+                                155 задач в Q4
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="org-level">
+                        <div class="org-card product-owner">
+                            <div class="text-4xl mb-3">🎯</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Ринат Загидулин</div>
+                            <div class="text-sm font-semibold text-blue-600 mb-2">Product Owner 1С</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Координация задач 1С</div>
+                                <div>• Управление бэклогом</div>
+                                <div>• Держатель базы</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-blue-50 p-2 rounded font-semibold">
+                                136 задач в Q4
+                            </div>
+                        </div>
+
+                        <div class="org-card scrum-master">
+                            <div class="text-4xl mb-3">🏃</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Никита Замятин</div>
+                            <div class="text-sm font-semibold text-green-600 mb-2">Scrum Master</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Организация Scrum</div>
+                                <div>• 1-я линия поддержки</div>
+                                <div>• Оценка задач (SP)</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-green-50 p-2 rounded font-semibold">
+                                467 задач в Q4 🏆
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="org-level">
+                        <div class="org-card developer">
+                            <div class="text-4xl mb-3">💻</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Павел Свистунов</div>
+                            <div class="text-sm font-semibold text-red-600 mb-2">Developer 1С</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Разработка 1С</div>
+                                <div>• Доработки систем</div>
+                                <div>• Реестр доработок</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-red-50 p-2 rounded font-semibold">
+                                79 задач в Q4
+                            </div>
+                        </div>
+
+                        <div class="org-card analyst">
+                            <div class="text-4xl mb-3">📊</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Никита Колегов</div>
+                            <div class="text-sm font-semibold text-orange-600 mb-2">BI Analyst</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Разработка BI</div>
+                                <div>• Дизайн отчетов</div>
+                                <div>• Визуализация данных</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-orange-50 p-2 rounded font-semibold">
+                                147 задач в Q4
+                            </div>
+                        </div>
+
+                        <div class="org-card analyst">
+                            <div class="text-4xl mb-3">📋</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Денис Жилев</div>
+                            <div class="text-sm font-semibold text-orange-600 mb-2">Business Analyst</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Описание процессов</div>
+                                <div>• Системный анализ</div>
+                                <div>• Оптимизация BPM</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-orange-50 p-2 rounded font-semibold">
+                                69 задач в Q4
+                            </div>
+                        </div>
+
+                        <div class="org-card sysadmin">
+                            <div class="text-4xl mb-3">🔧</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Александр Волохов</div>
+                            <div class="text-sm font-semibold text-cyan-600 mb-2">System Admin</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Сеть и безопасность</div>
+                                <div>• Серверы</div>
+                                <div>• Инфраструктура</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-cyan-50 p-2 rounded font-semibold">
+                                336 задач в Q4
+                            </div>
+                        </div>
+
+                        <div class="org-card analyst">
+                            <div class="text-4xl mb-3">👩‍💻</div>
+                            <div class="font-bold text-lg text-stone-800 mb-1">Евгения Садыкова</div>
+                            <div class="text-sm font-semibold text-pink-600 mb-2">Specialist</div>
+                            <div class="text-xs text-stone-600 space-y-1">
+                                <div>• Поддержка пользователей</div>
+                                <div>• Работа с заявками</div>
+                                <div>• Документация</div>
+                            </div>
+                            <div class="mt-3 text-xs bg-pink-50 p-2 rounded font-semibold">
+                                129 задач в Q4
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ACHIEVEMENTS SECTION -->
+            <section id="achievements" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Основные достижения Q4 2025</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg card border-l-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">✅</span>
+                            <h3 class="text-lg font-semibold text-stone-800">Обновление 1С</h3>
+                        </div>
+                        <p class="text-stone-600 text-sm mb-3">Успешное обновление платформы 1С</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-success">Завершено</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card border-l-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">📝</span>
+                            <h3 class="text-lg font-semibold text-stone-800">Система заявок в закупки</h3>
+                        </div>
+                        <p class="text-stone-600 text-sm mb-3">Централизованная обработка заявок в отдел закупок</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-success">Запущено</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card border-l-4 border-green-500">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">💰</span>
+                            <h3 class="text-lg font-semibold text-stone-800">Работа с наличкой</h3>
+                        </div>
+                        <p class="text-stone-600 text-sm mb-3">Запущена централизованная работа с наличкой в 1С</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-success">Внедрено</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card border-l-4 border-blue-500">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">🔗</span>
+                            <h3 class="text-lg font-semibold text-stone-800">Интеграция Битрикс24 и 1С</h3>
+                        </div>
+                        <p class="text-stone-600 text-sm mb-3">Заказы и сделки синхронизируются между системами</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-success">Работает</span>
+                            <span class="badge badge-info">Интеграция</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card border-l-4 border-purple-500">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">💻</span>
+                            <h3 class="text-lg font-semibold text-stone-800">Windows 10 → 11</h3>
+                        </div>
+                        <p class="text-stone-600 text-sm mb-3">Обновление рабочих станций на Windows 11</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-success">Завершено</span>
+                            <span class="badge badge-info">Александр</span>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg card border-l-4 border-amber-500">
+                        <div class="flex items-center mb-3">
+                            <span class="text-3xl mr-3">📱</span>
+                            <h3 class="text-lg font-semibold text-stone-800">WestVisit</h3>
+                        </div>
+                        <p class="text-stone-600 text-sm mb-3">Реализована маршрутизация и создание задач из визита</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="badge badge-success">Внедрено</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-stone-100 to-stone-50 p-8 rounded-xl shadow-lg border border-stone-200">
+                    <h3 class="text-2xl font-bold text-stone-800 mb-6 text-center">Единое окно претензий</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-green-600 mb-2">✅</div>
+                            <div class="text-sm text-stone-600">Техническая часть реализована</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-amber-600 mb-2">🔄</div>
+                            <div class="text-sm text-stone-600">Этап внедрения</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-4xl font-bold text-blue-600 mb-2">📋</div>
+                            <div class="text-sm text-stone-600">Централизация обработки</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- TASKS SECTION -->
+            <section id="tasks" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-4">Статус задач</h2>
+                <p class="text-center text-stone-600 max-w-3xl mx-auto mb-8">
+                    Обзор текущих, запланированных и реализованных задач IT-отдела
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4">📊 Помесячная динамика выполнения</h3>
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="monthlyChart"></canvas>
+                        </div>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4">📈 Выполняемость по месяцам</h3>
+                        <div class="chart-container" style="height: 300px;">
+                            <canvas id="completionChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-red-500 mr-2">⏸️</span> Задачи, которые подвисли
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="border-l-4 border-red-400 pl-4 py-2">
+                                <div class="font-semibold text-stone-800">Торговый эквайринг</div>
+                                <div class="text-sm text-stone-600">Требует согласования</div>
+                            </li>
+                            <li class="border-l-4 border-red-400 pl-4 py-2">
+                                <div class="font-semibold text-stone-800">Средняя цена закупки</div>
+                                <div class="text-sm text-stone-600">Ожидает данных</div>
+                            </li>
+                            <li class="border-l-4 border-red-400 pl-4 py-2">
+                                <div class="font-semibold text-stone-800">Тендерный отдел</div>
+                                <div class="text-sm text-stone-600">В очереди</div>
+                            </li>
+                            <li class="border-l-4 border-amber-400 pl-4 py-2">
+                                <div class="font-semibold text-stone-800">Реестр доработок 1С</div>
+                                <div class="text-sm text-stone-600">3 месяца — Павел</div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-amber-500 mr-2">📋</span> Запланированы (не начаты)
+                        </h3>
+                        <ul class="space-y-2 text-sm text-stone-700">
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Перенос сервера</li>
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Обновление платформы</li>
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Добавление новых стадий в заказы (отгружен, доставлен)</li>
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Работа с ПДЗ и ДЗ</li>
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Омниканальность — Объединение телефонии, email, мессенджеров</li>
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Полноценное внедрение CRM</li>
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Описание процессов As-is (Денис Жилев)</li>
+                            <li class="flex items-start"><span class="text-stone-400 mr-2">○</span>Каталог услуг IT (ROI) — Описание услуг с ценами и временем</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- PROJECTS SECTION -->
+            <section id="projects" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Стратегические проекты</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg border-2 border-green-300 text-center">
+                        <div class="text-4xl font-bold text-green-700 mb-2">5</div>
+                        <div class="text-lg font-semibold text-green-800">Реализовано</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg border-2 border-blue-300 text-center">
+                        <div class="text-4xl font-bold text-blue-700 mb-2">8</div>
+                        <div class="text-lg font-semibold text-blue-800">Активных</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg border-2 border-amber-300 text-center">
+                        <div class="text-4xl font-bold text-amber-700 mb-2">4</div>
+                        <div class="text-lg font-semibold text-amber-800">Цели 2026</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl shadow-lg border-2 border-purple-300 text-center">
+                        <div class="text-4xl font-bold text-purple-700 mb-2">16.2М</div>
+                        <div class="text-lg font-semibold text-purple-800">Бюджет ₽</div>
+                    </div>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-2xl font-semibold text-stone-800 mb-6">🚀 Активные проекты</h3>
+                        <div class="space-y-4">
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">WestVisit — Маршрутизация и задачи</div>
+                                    <span class="badge badge-success">Внедрено</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Реализована маршрутизация и создание задач из визита</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 100%"></div>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">Power BI — DWH</div>
+                                    <span class="badge badge-warning">В работе</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Оперативная работа, план по созданию единой базы данных</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 60%"></div>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">Приложение для логистики</div>
+                                    <span class="badge badge-warning">В работе</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Работа с водителями, подсчет ЗП, интеграция с Яндекс</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 50%"></div>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">AI Распознавание товаров</div>
+                                    <span class="badge badge-info">Настройка</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Настройка системы, далее интеграция на сайт и ТГ бот для клиентов</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 70%"></div>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">Улучшение безопасности сети</div>
+                                    <span class="badge badge-info">Совместный</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Совместный проект с СБ</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 40%"></div>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">Внедрение ТСД</div>
+                                    <span class="badge badge-warning">Q1 2026</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Основной проект для повышения точности комплектации</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 30%"></div>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">Единое окно претензий</div>
+                                    <span class="badge badge-success">Техническая часть готова</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Этап внедрения</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 85%"></div>
+                                </div>
+                            </div>
+
+                            <div class="border border-stone-200 rounded-lg p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <div class="font-semibold text-stone-800">Речевая аналитика</div>
+                                    <span class="badge badge-info">Планирование</span>
+                                </div>
+                                <div class="text-sm text-stone-600 mb-2">Подключение речевой аналитики и генерация заказов из разговоров</div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 20%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ROADMAP SECTION -->
+            <section id="roadmap" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-8">Roadmap 2026</h2>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl shadow-lg text-center border-2 border-blue-300">
+                        <div class="text-2xl font-bold text-blue-800 mb-2">Q1 2026</div>
+                        <div class="text-sm text-blue-700">"Фундамент"</div>
+                        <div class="text-xs text-blue-600 mt-2">DWH + Честный знак + Аудит</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-xl shadow-lg text-center border-2 border-green-300">
+                        <div class="text-2xl font-bold text-green-800 mb-2">Q2 2026</div>
+                        <div class="text-sm text-green-700">"Данные"</div>
+                        <div class="text-xs text-green-600 mt-2">ETL + Power BI + Речевая аналитика</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-purple-50 to-purple-100 p-6 rounded-xl shadow-lg text-center border-2 border-purple-300">
+                        <div class="text-2xl font-bold text-purple-800 mb-2">Q3 2026</div>
+                        <div class="text-sm text-purple-700">"Автоматизация"</div>
+                        <div class="text-xs text-purple-600 mt-2">ТСД + AI + ЗП водителей</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-amber-50 to-amber-100 p-6 rounded-xl shadow-lg text-center border-2 border-amber-300">
+                        <div class="text-2xl font-bold text-amber-800 mb-2">Q4 2026</div>
+                        <div class="text-sm text-amber-700">"Результаты"</div>
+                        <div class="text-xs text-amber-600 mt-2">ROI + Стабилизация + 2027</div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-semibold text-stone-800 mb-6">🗓️ Детальный план по кварталам</h3>
+
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <h4 class="text-xl font-bold text-blue-700 mb-3">Q1 2026: Фундамент</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Ключевые задачи</div>
+                                    <ul class="text-sm text-stone-600 space-y-1 ml-4">
+                                        <li>🔄 Запуск проекта DWH — проектирование архитектуры</li>
+                                        <li>🔄 Завершение интеграции с Честным знаком</li>
+                                        <li>🔄 Аудит и очистка номенклатуры — первый этап</li>
+                                        <li>🔄 Стабилизация Scrum-процессов</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Бюджет</div>
+                                    <div class="text-sm text-stone-600">
+                                        <div class="bg-blue-50 p-3 rounded-lg">
+                                            <div class="font-semibold">DWH: 500,000 ₽</div>
+                                            <div class="text-xs mt-1">Единое хранилище данных</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4 class="text-xl font-bold text-green-700 mb-3">Q2 2026: Данные</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Ключевые задачи</div>
+                                    <ul class="text-sm text-stone-600 space-y-1 ml-4">
+                                        <li>📊 Внедрение DWH — ETL-процессы, первые витрины</li>
+                                        <li>📊 Миграция отчётов Power BI на DWH</li>
+                                        <li>🎤 Внедрение речевой аналитики звонков</li>
+                                        <li>🧹 Очистка номенклатуры — второй этап</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Ожидаемые результаты</div>
+                                    <div class="text-sm text-stone-600 space-y-2">
+                                        <div class="flex justify-between"><span>Время обработки заказа:</span><span class="font-semibold text-green-600">-40%</span></div>
+                                        <div class="flex justify-between"><span>Единый источник данных:</span><span class="font-semibold text-green-600">Внедрён</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4 class="text-xl font-bold text-purple-700 mb-3">Q3 2026: Автоматизация</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Ключевые задачи</div>
+                                    <ul class="text-sm text-stone-600 space-y-1 ml-4">
+                                        <li>📦 Полная автоматизация склада — ТСД во всех зонах</li>
+                                        <li>🤖 AI-распознавание товаров — продуктивный запуск</li>
+                                        <li>💰 Система расчёта ЗП водителей — внедрение</li>
+                                        <li>🔐 Модернизация сетевой безопасности</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Бюджет автоматизации</div>
+                                    <div class="text-sm text-stone-600">
+                                        <div class="bg-purple-50 p-3 rounded-lg">
+                                            <div class="font-semibold">Склад: 1,260,000 ₽</div>
+                                            <div class="text-xs mt-1">Безбумажный документооборот на 3 складах</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4 class="text-xl font-bold text-amber-700 mb-3">Q4 2026: Результаты</h4>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Ключевые задачи</div>
+                                    <ul class="text-sm text-stone-600 space-y-1 ml-4">
+                                        <li>📈 Подведение итогов — измерение ROI всех проектов</li>
+                                        <li>✅ Стабилизация всех внедрённых систем</li>
+                                        <li>📚 Документирование процессов и передача знаний</li>
+                                        <li>🎯 Планирование 2027 на основе данных</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <div class="font-semibold text-stone-700 mb-2">Целевые метрики</div>
+                                    <div class="text-sm text-stone-600 space-y-2">
+                                        <div class="flex justify-between"><span>Документация процессов:</span><span class="font-semibold">50+</span></div>
+                                        <div class="flex justify-between"><span>Качество номенклатуры:</span><span class="font-semibold">95%</span></div>
+                                        <div class="flex justify-between"><span>Скорость склада:</span><span class="font-semibold">+30%</span></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISION 2026 SECTION -->
+            <section id="vision2026" class="app-section hidden space-y-8">
+                <h2 class="text-3xl font-bold text-center text-stone-700 mb-4">Стратегическое видение 2026</h2>
+                <p class="text-center text-xl text-stone-600 max-w-3xl mx-auto mb-8">
+                    «Точность. Порядок. Эффективность»
+                </p>
+
+                <div class="bg-gradient-to-r from-stone-800 to-stone-700 text-white p-8 rounded-xl shadow-xl mb-8">
+                    <h3 class="text-2xl font-bold mb-4 text-center">Философия года</h3>
+                    <p class="text-lg leading-relaxed text-center max-w-4xl mx-auto">
+                        2026 год — это год оптимизации, экономии и точечной работы. Мы не распыляемся на множество инициатив, а концентрируемся на том, что приносит <strong>измеримую ценность</strong> бизнесу. Каждое решение обосновано данными. Каждый проект приносит измеримую ценность.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="pillar-card shadow-lg">
+                        <div class="text-5xl mb-4">⚙️</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">ОПТИМИЗАЦИЯ</h3>
+                        <ul class="text-sm text-stone-600 space-y-2 text-left">
+                            <li>✓ Улучшение текущих процессов вместо создания новых</li>
+                            <li>✓ Экономия ресурсов</li>
+                            <li>✓ Точечные решения</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card shadow-lg">
+                        <div class="text-5xl mb-4">📊</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">ДАННЫЕ</h3>
+                        <ul class="text-sm text-stone-600 space-y-2 text-left">
+                            <li>✓ Правильность и корректность данных</li>
+                            <li>✓ Единое хранилище (DWH)</li>
+                            <li>✓ Обоснованные решения</li>
+                        </ul>
+                    </div>
+                    <div class="pillar-card shadow-lg">
+                        <div class="text-5xl mb-4">📁</div>
+                        <h3 class="text-xl font-bold text-stone-800 mb-3">ПОРЯДОК</h3>
+                        <ul class="text-sm text-stone-600 space-y-2 text-left">
+                            <li>✓ Порядок в системах</li>
+                            <li>✓ Чистая номенклатура</li>
+                            <li>✓ Документированные процессы</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-green-500 mr-2">✅</span> Что мы ДЕЛАЕМ
+                        </h3>
+                        <ul class="space-y-2 text-sm text-stone-700">
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✓</span>Завершаем начатые проекты до конца</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✓</span>Оптимизируем существующие процессы</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✓</span>Наводим порядок в данных и системах</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✓</span>Принимаем решения на основе данных</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✓</span>Документируем все процессы и решения</li>
+                            <li class="flex items-start"><span class="text-green-500 mr-2">✓</span>Измеряем ROI каждой инициативы</li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-semibold text-stone-800 mb-4 flex items-center">
+                            <span class="text-red-500 mr-2">✗</span> Что мы НЕ ДЕЛАЕМ
+                        </h3>
+                        <ul class="space-y-2 text-sm text-stone-700">
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✗</span>Не запускаем новые проекты «впрок»</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✗</span>Не распыляемся на множество инициатив</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✗</span>Не внедряем технологии ради технологий</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✗</span>Не принимаем задачи без обоснования ценности</li>
+                            <li class="flex items-start"><span class="text-red-500 mr-2">✗</span>Не игнорируем технический долг</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">🎯 Стратегические цели 2026</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="border-l-4 border-blue-500 pl-4 py-3 bg-blue-50 rounded-r-lg">
+                            <div class="font-semibold text-stone-800 mb-2">Цель 1: Единое хранилище данных (DWH)</div>
+                            <p class="text-sm text-stone-600 mb-2">Создание единого облака данных для агрегации из 1С, Ройстата, Битрикс24</p>
+                            <div class="text-xs font-semibold text-blue-700">Бюджет: 500,000 ₽</div>
+                        </div>
+
+                        <div class="border-l-4 border-green-500 pl-4 py-3 bg-green-50 rounded-r-lg">
+                            <div class="font-semibold text-stone-800 mb-2">Цель 2: Порядок в номенклатуре</div>
+                            <p class="text-sm text-stone-600 mb-2">Очистка дубликатов, структурирование данных, единые справочники</p>
+                            <div class="text-xs font-semibold text-green-700">Результат: 95% чистых данных</div>
+                        </div>
+
+                        <div class="border-l-4 border-purple-500 pl-4 py-3 bg-purple-50 rounded-r-lg">
+                            <div class="font-semibold text-stone-800 mb-2">Цель 3: Автоматизация склада</div>
+                            <p class="text-sm text-stone-600 mb-2">Завершение интеграции с Честным знаком, переход на ТСД и ЭДО</p>
+                            <div class="text-xs font-semibold text-purple-700">Бюджет: 1,260,000 ₽ | Результат: +30% скорость</div>
+                        </div>
+
+                        <div class="border-l-4 border-amber-500 pl-4 py-3 bg-amber-50 rounded-r-lg">
+                            <div class="font-semibold text-stone-800 mb-2">Цель 4: AI для оптимизации</div>
+                            <p class="text-sm text-stone-600 mb-2">Речевая аналитика звонков, AI-распознавание товаров по фото</p>
+                            <div class="text-xs font-semibold text-amber-700">Бюджет: 1,860,000 ₽ | Эффект: -40% время заказа</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-lg mb-8">
+                    <h3 class="text-xl font-semibold text-stone-800 mb-4">📊 Метрики успеха 2026</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b-2 border-stone-200">
+                                    <th class="text-left py-3 px-4 font-semibold text-stone-700">Метрика</th>
+                                    <th class="text-center py-3 px-4 font-semibold text-stone-700">Текущее</th>
+                                    <th class="text-center py-3 px-4 font-semibold text-stone-700">Цель 2026</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border-b border-stone-100">
+                                    <td class="py-3 px-4">Время обработки заказа (AI)</td>
+                                    <td class="text-center py-3 px-4 text-stone-500">5 минут</td>
+                                    <td class="text-center py-3 px-4 font-semibold text-green-600">3 минуты (-40%)</td>
+                                </tr>
+                                <tr class="border-b border-stone-100">
+                                    <td class="py-3 px-4">Скорость приёмки/отгрузки склада</td>
+                                    <td class="text-center py-3 px-4 text-stone-500">Базовый</td>
+                                    <td class="text-center py-3 px-4 font-semibold text-green-600">+30%</td>
+                                </tr>
+                                <tr class="border-b border-stone-100">
+                                    <td class="py-3 px-4">Единый источник данных (DWH)</td>
+                                    <td class="text-center py-3 px-4 text-stone-500">Нет</td>
+                                    <td class="text-center py-3 px-4 font-semibold text-green-600">Внедрён</td>
+                                </tr>
+                                <tr class="border-b border-stone-100">
+                                    <td class="py-3 px-4">Качество данных в номенклатуре</td>
+                                    <td class="text-center py-3 px-4 text-stone-500">Много дубликатов</td>
+                                    <td class="text-center py-3 px-4 font-semibold text-green-600">95% чистых</td>
+                                </tr>
+                                <tr>
+                                    <td class="py-3 px-4">Документация процессов</td>
+                                    <td class="text-center py-3 px-4 text-stone-500">31 процесс</td>
+                                    <td class="text-center py-3 px-4 font-semibold text-green-600">50+ процессов</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-stone-700 to-stone-800 text-white p-8 rounded-xl shadow-xl text-center">
+                    <h3 class="text-2xl font-bold mb-4">ИТОГ: Философия 2026</h3>
+                    <p class="text-lg leading-relaxed max-w-3xl mx-auto">
+                        2026 год — это не год экспериментов. Это год <strong>порядка, данных и оптимизации</strong>. Мы завершаем начатое, наводим порядок в системах и создаём фундамент для устойчивого роста.
+                    </p>
+                    <div class="mt-6 text-3xl font-bold text-amber-400">
+                        «Точность. Порядок. Эффективность»
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="py-8 text-center text-stone-600 border-t border-stone-300 mt-12">
+            <p class="mb-2 font-semibold">IT-отдел компании WEST | Q4 2025 — Видение 2026</p>
+            <p class="text-sm text-stone-500">Подготовлено для руководителей отделов</p>
+            <p class="text-xs text-stone-400 mt-2">Версия от 26 января 2026 года</p>
+        </footer>
+    </div>
+
+    <script>
+        (function() {
+            'use strict';
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', init);
+            } else {
+                init();
+            }
+
+            function init() {
+                initNavigation();
+                initCharts();
+                animateProgressBars();
+            }
+
+            function initNavigation() {
+                const navLinks = document.querySelectorAll('.nav-link');
+                const sections = document.querySelectorAll('.app-section');
+
+                function updateActiveNav(targetId) {
+                    navLinks.forEach(link => {
+                        const href = link.getAttribute('href');
+                        if (href === '#' + targetId) {
+                            link.classList.add('active');
+                        } else {
+                            link.classList.remove('active');
+                        }
+                    });
+
+                    sections.forEach(section => {
+                        if (section.id === targetId) {
+                            section.classList.remove('hidden');
+                        } else {
+                            section.classList.add('hidden');
+                        }
+                    });
+                }
+
+                navLinks.forEach(link => {
+                    link.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const href = this.getAttribute('href');
+                        const targetId = href.replace('#', '');
+                        updateActiveNav(targetId);
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    });
+                });
+
+                updateActiveNav('overview');
+            }
+
+            function initCharts() {
+                // Team Performance Chart
+                const teamCtx = document.getElementById('teamChart');
+                if (teamCtx && typeof Chart !== 'undefined') {
+                    new Chart(teamCtx.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: [
+                                'Никита Замятин',
+                                'Александр Волохов',
+                                'Евгений Шикунов',
+                                'Никита Колегов',
+                                'Ринат Загидулин',
+                                'Евгения Садыкова',
+                                'Павел Свистунов',
+                                'Денис Жилев'
+                            ],
+                            datasets: [{
+                                label: 'Выполнено задач',
+                                data: [467, 336, 155, 147, 136, 129, 79, 69],
+                                backgroundColor: [
+                                    '#059669',
+                                    '#0891B2',
+                                    '#7C3AED',
+                                    '#EA580C',
+                                    '#2563EB',
+                                    '#EC4899',
+                                    '#DC2626',
+                                    '#F59E0B'
+                                ],
+                                borderRadius: 6,
+                                barPercentage: 0.7
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            indexAxis: 'y',
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    grid: { color: '#E7E5E4' }
+                                },
+                                y: {
+                                    grid: { display: false }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Monthly Tasks Chart
+                const monthlyCtx = document.getElementById('monthlyChart');
+                if (monthlyCtx && typeof Chart !== 'undefined') {
+                    new Chart(monthlyCtx.getContext('2d'), {
+                        type: 'bar',
+                        data: {
+                            labels: ['Окт 2025', 'Ноя 2025', 'Дек 2025', 'Янв 2026'],
+                            datasets: [
+                                {
+                                    label: 'Всего задач',
+                                    data: [550, 417, 449, 241],
+                                    backgroundColor: '#A8A29E',
+                                    borderRadius: 6
+                                },
+                                {
+                                    label: 'Выполнено',
+                                    data: [529, 399, 412, 200],
+                                    backgroundColor: '#059669',
+                                    borderRadius: 6
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { position: 'bottom' }
+                            },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: { color: '#E7E5E4' }
+                                },
+                                x: {
+                                    grid: { display: false }
+                                }
+                            }
+                        }
+                    });
+                }
+
+                // Completion Rate Chart
+                const completionCtx = document.getElementById('completionChart');
+                if (completionCtx && typeof Chart !== 'undefined') {
+                    new Chart(completionCtx.getContext('2d'), {
+                        type: 'line',
+                        data: {
+                            labels: ['Окт 2025', 'Ноя 2025', 'Дек 2025', 'Янв 2026'],
+                            datasets: [{
+                                label: 'Выполняемость %',
+                                data: [96.2, 95.7, 91.8, 83.0],
+                                borderColor: '#2563EB',
+                                backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                                fill: true,
+                                tension: 0.3,
+                                pointBackgroundColor: '#2563EB',
+                                pointRadius: 6,
+                                pointHoverRadius: 8
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: { display: false }
+                            },
+                            scales: {
+                                y: {
+                                    min: 70,
+                                    max: 100,
+                                    ticks: {
+                                        callback: function(value) {
+                                            return value + '%';
+                                        }
+                                    },
+                                    grid: { color: '#E7E5E4' }
+                                },
+                                x: {
+                                    grid: { display: false }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+
+            function animateProgressBars() {
+                const progressBars = document.querySelectorAll('.progress-fill');
+                progressBars.forEach(bar => {
+                    const width = bar.style.width;
+                    bar.style.width = '0';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 500);
+                });
+            }
+        })();
+    </script>
+</body>
+</html>
