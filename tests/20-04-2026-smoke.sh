@@ -45,4 +45,11 @@ for needle in \
   grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
 done
 
+for needle in \
+  'Подтвердить тестовую команду по складу' \
+  'Не задерживать оплату шаблона и лицензии' \
+  'Сохранить быстрый цикл обратной связи'; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+
 echo "Smoke check passed"

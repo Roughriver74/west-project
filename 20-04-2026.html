@@ -262,7 +262,26 @@
           </div>
         </article>
       </section>
-      <section id="decisions"></section>
+      <section id="decisions" class="space-y-6">
+        <div class="rounded-[2rem] bg-gradient-to-r from-stone-900 to-stone-700 p-8 text-white shadow-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300">Next step</p>
+          <h2 class="mt-3 text-3xl font-bold">Решения, которые нужны на встрече</h2>
+          <div class="mt-6 grid gap-4 lg:grid-cols-3">
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">1. Подтвердить тестовую команду по складу</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Без этого старт первичного тестирования размещения сместится.</p>
+            </article>
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">2. Не задерживать оплату шаблона и лицензии</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Это прямой блокер для визуальной сборки нового сайта.</p>
+            </article>
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">3. Сохранить быстрый цикл обратной связи</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Оба проекта сейчас в фазе, где решения и обратная связь влияют на срок сильнее всего.</p>
+            </article>
+          </div>
+        </div>
+      </section>
     </main>
   </div>
 
@@ -309,6 +328,20 @@
         }
       });
     }
+  </script>
+  <script>
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+
+    const setActiveLink = () => {
+      const current = sections.findLast((section) => window.scrollY >= section.offsetTop - 140) || sections[0];
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current.id}`);
+      });
+    };
+
+    setActiveLink();
+    window.addEventListener('scroll', setActiveLink, { passive: true });
   </script>
 </body>
 </html>
