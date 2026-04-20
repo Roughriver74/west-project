@@ -1,0 +1,701 @@
+# Weekly IT Executive Report Implementation Plan
+
+> **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
+
+**Goal:** Build a short, polished HTML executive report at `20-04-2026.html` for the leadership meeting, using the existing `13-10-2025.html` visual language but with weekly-report scope.
+
+**Architecture:** The deliverable is a single static HTML page with inline styles and plain JavaScript, plus one lightweight smoke test script that verifies section anchors, mandatory numbers, and the site CTA link. The page keeps existing repo conventions: CDN-delivered Tailwind and Chart.js, no build step, no backend, and local-open compatibility.
+
+**Tech Stack:** Static HTML, Tailwind CDN, Chart.js CDN, plain JavaScript, Bash smoke test
+
+---
+
+## File map
+
+- Create: `20-04-2026.html`
+  Standalone report page with hero, KPI cards, focus section, incidents chart, warehouse/site sections, and leadership decisions.
+- Create: `tests/20-04-2026-smoke.sh`
+  Small Bash script that fails fast if the file is missing, required anchors/text are missing, or the Google Sheet CTA is absent.
+- Read-only reference: `13-10-2025.html`
+  Existing visual template to borrow structure, spacing, navigation, and styling direction from.
+- Read-only reference: `docs/superpowers/specs/2026-04-20-it-weekly-exec-report-design.md`
+  Approved design spec; every section below maps directly to that document.
+
+### Task 1: Add the smoke test and minimal page scaffold
+
+**Files:**
+- Create: `tests/20-04-2026-smoke.sh`
+- Create: `20-04-2026.html`
+- Reference: `13-10-2025.html`
+
+- [ ] **Step 1: Write the failing smoke test**
+
+Create `tests/20-04-2026-smoke.sh` with this exact content:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+FILE="20-04-2026.html"
+
+[[ -f "$FILE" ]] || { echo "Missing $FILE"; exit 1; }
+
+for needle in \
+  'id="overview"' \
+  'id="focus"' \
+  'id="incidents"' \
+  'id="warehouse"' \
+  'id="website"' \
+  'id="decisions"' \
+  'Отчет IT-отдела' \
+  'Итоги недели и ключевые проекты'; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+
+echo "Smoke check passed"
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+Run:
+
+```bash
+chmod +x tests/20-04-2026-smoke.sh
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: FAIL with `Missing 20-04-2026.html`.
+
+- [ ] **Step 3: Create the minimal HTML scaffold**
+
+Create `20-04-2026.html` with this minimal working structure:
+
+```html
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отчет IT-отдела West: 20 апреля 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%);
+      color: #44403c;
+    }
+    .nav-link.active {
+      color: #1c1917;
+      border-bottom-color: #78716c;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header class="py-8 text-center">
+      <div class="inline-block rounded-full bg-stone-800 px-4 py-2 text-sm font-semibold text-white">Компания WEST</div>
+      <h1 class="mt-4 text-5xl font-bold text-stone-800">Отчет IT-отдела</h1>
+      <p class="mt-2 text-xl text-stone-600">Итоги недели и ключевые проекты</p>
+    </header>
+
+    <nav class="sticky top-0 z-20 mb-8 border-b border-stone-300 bg-white/90 shadow-sm backdrop-blur-md">
+      <div class="flex justify-center overflow-x-auto px-4">
+        <a href="#overview" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Обзор</a>
+        <a href="#focus" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Фокус недели</a>
+        <a href="#incidents" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Инциденты</a>
+        <a href="#warehouse" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Склад</a>
+        <a href="#website" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Сайт</a>
+        <a href="#decisions" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Решения</a>
+      </div>
+    </nav>
+
+    <main class="space-y-16 pb-16">
+      <section id="overview"></section>
+      <section id="focus"></section>
+      <section id="incidents"></section>
+      <section id="warehouse"></section>
+      <section id="website"></section>
+      <section id="decisions"></section>
+    </main>
+  </div>
+</body>
+</html>
+```
+
+- [ ] **Step 4: Run the smoke test to verify the scaffold passes**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: PASS with `Smoke check passed`.
+
+- [ ] **Step 5: Commit the scaffold**
+
+Run:
+
+```bash
+git add 20-04-2026.html tests/20-04-2026-smoke.sh
+git commit -m "feat: add scaffold for weekly IT exec report"
+```
+
+### Task 2: Populate hero, KPI cards, and focus-week section
+
+**Files:**
+- Modify: `20-04-2026.html`
+- Modify: `tests/20-04-2026-smoke.sh`
+
+- [ ] **Step 1: Extend the smoke test with required KPI and focus content**
+
+Replace the `for needle in \` block in `tests/20-04-2026-smoke.sh` with this version:
+
+```bash
+for needle in \
+  'id="overview"' \
+  'id="focus"' \
+  'id="incidents"' \
+  'id="warehouse"' \
+  'id="website"' \
+  'id="decisions"' \
+  'Отчет IT-отдела' \
+  'Итоги недели и ключевые проекты' \
+  '532' \
+  '81,02%' \
+  'готовимся к тестированию' \
+  'визуальная сборка' \
+  'Что сделано' \
+  'Что в работе' \
+  'Что требуется от руководителей'; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+```
+
+- [ ] **Step 2: Run the test to verify it fails on missing content**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: FAIL with the first missing KPI or focus label.
+
+- [ ] **Step 3: Replace `#overview` and `#focus` with real content**
+
+Replace the two empty sections in `20-04-2026.html` with this markup:
+
+```html
+<section id="overview" class="space-y-8">
+  <div class="rounded-3xl bg-gradient-to-r from-stone-800 to-stone-600 p-8 text-white shadow-xl">
+    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Executive summary</p>
+    <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Ключевой результат недели</h2>
+    <p class="mt-4 max-w-4xl text-lg leading-relaxed text-stone-100">
+      IT-отдел закрыл критичные задачи по поддержке, довел до точки тестирования проект склада и подготовил следующий шаг по новому сайту.
+      Основной управленческий фокус на встрече: быстро принять решения по тестовой команде для склада и по оплате шаблона/лицензии для нового сайта.
+    </p>
+    <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
+      <span>📅 Период: 13–20 апреля 2026</span>
+      <span>📊 532 обращения в работе отдела</span>
+      <span>🚚 2 ключевых проекта в активной фазе</span>
+    </div>
+  </div>
+
+  <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+    <article class="rounded-2xl border-t-4 border-blue-500 bg-white p-6 shadow-lg">
+      <p class="text-5xl font-bold text-stone-800">532</p>
+      <p class="mt-2 font-medium text-stone-600">Обращения и инциденты</p>
+      <p class="mt-3 text-sm text-stone-500">431 решено в срок, 101 с превышением</p>
+    </article>
+    <article class="rounded-2xl border-t-4 border-emerald-500 bg-white p-6 shadow-lg">
+      <p class="text-5xl font-bold text-stone-800">81,02%</p>
+      <p class="mt-2 font-medium text-stone-600">Общий SLA</p>
+      <p class="mt-3 text-sm text-stone-500">Нагрузка выросла, качество удержано</p>
+    </article>
+    <article class="rounded-2xl border-t-4 border-amber-500 bg-white p-6 shadow-lg">
+      <p class="text-2xl font-bold text-stone-800">Склад</p>
+      <p class="mt-2 font-medium text-stone-600">готовимся к тестированию</p>
+      <p class="mt-3 text-sm text-stone-500">Нужна тестовая команда и доступы</p>
+    </article>
+    <article class="rounded-2xl border-t-4 border-fuchsia-500 bg-white p-6 shadow-lg">
+      <p class="text-2xl font-bold text-stone-800">Сайт</p>
+      <p class="mt-2 font-medium text-stone-600">визуальная сборка</p>
+      <p class="mt-3 text-sm text-stone-500">Шаблон, лицензия и макет в работе</p>
+    </article>
+  </div>
+</section>
+
+<section id="focus" class="space-y-6">
+  <div class="text-center">
+    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Фокус недели</p>
+    <h2 class="mt-2 text-3xl font-bold text-stone-800">Два проекта, которые определяют повестку встречи</h2>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-2">
+    <article class="rounded-3xl bg-white p-8 shadow-xl">
+      <h3 class="text-2xl font-bold text-stone-800">Склад</h3>
+      <div class="mt-6 space-y-5">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что сделано</p>
+          <p class="mt-2 text-stone-700">Собран Гант, зафиксированы этапы, подготовлен переход к первичному тестированию размещения.</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что в работе</p>
+          <p class="mt-2 text-stone-700">Финализируются ТЗ по размещению, карта склада, НСИ и тестовая копия базы.</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что требуется от руководителей</p>
+          <p class="mt-2 text-stone-700">Назначить тестовую команду и ускорить старт тестирования в базе разработки.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="rounded-3xl bg-white p-8 shadow-xl">
+      <h3 class="text-2xl font-bold text-stone-800">Сайт</h3>
+      <div class="mt-6 space-y-5">
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что сделано</p>
+          <p class="mt-2 text-stone-700">Исправлены критичные ошибки старого сайта, протестированы оплата и передача записи в Bitrix24 по учебному центру.</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что в работе</p>
+          <p class="mt-2 text-stone-700">Запрошены счет на шаблон и лицензия, разработчику переданы референсы для подготовки макета.</p>
+        </div>
+        <div>
+          <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что требуется от руководителей</p>
+          <p class="mt-2 text-stone-700">Не задерживать оплату шаблона и лицензии, чтобы не тормозить визуальную сборку нового сайта.</p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+```
+
+- [ ] **Step 4: Run the smoke test to verify the content passes**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: PASS with `Smoke check passed`.
+
+- [ ] **Step 5: Commit the overview content**
+
+Run:
+
+```bash
+git add 20-04-2026.html tests/20-04-2026-smoke.sh
+git commit -m "feat: add executive summary and focus blocks"
+```
+
+### Task 3: Add incidents section with chart and operating metrics
+
+**Files:**
+- Modify: `20-04-2026.html`
+- Modify: `tests/20-04-2026-smoke.sh`
+
+- [ ] **Step 1: Extend the smoke test for incident metrics and chart hooks**
+
+Append these checks before `echo "Smoke check passed"`:
+
+```bash
+for needle in \
+  '431 решено в срок' \
+  '101 с превышением' \
+  '80,00%' \
+  '81,70%' \
+  'canvas id="incidentsChart"' \
+  'new Chart('; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: FAIL on one of the new incident needles.
+
+- [ ] **Step 3: Implement the incidents section and chart script**
+
+Replace the empty `#incidents` section with this markup:
+
+```html
+<section id="incidents" class="space-y-6">
+  <div class="text-center">
+    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Инциденты</p>
+    <h2 class="mt-2 text-3xl font-bold text-stone-800">Операционная поддержка без перегруза деталями</h2>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+    <article class="rounded-3xl bg-white p-6 shadow-xl">
+      <div class="mb-4 flex items-center justify-between">
+        <div>
+          <h3 class="text-xl font-semibold text-stone-800">Динамика нагрузки</h3>
+          <p class="text-sm text-stone-500">Январь и февраль 2026</p>
+        </div>
+        <span class="rounded-full bg-stone-100 px-3 py-1 text-sm font-medium text-stone-700">SLA 81,02%</span>
+      </div>
+      <div class="h-[320px]">
+        <canvas id="incidentsChart"></canvas>
+      </div>
+    </article>
+
+    <article class="rounded-3xl bg-white p-6 shadow-xl">
+      <h3 class="text-xl font-semibold text-stone-800">Ключевые факты</h3>
+      <div class="mt-5 space-y-4">
+        <div class="rounded-2xl bg-stone-50 p-4">
+          <p class="text-sm text-stone-500">Решено в срок</p>
+          <p class="mt-1 text-3xl font-bold text-stone-800">431</p>
+          <p class="mt-1 text-sm text-stone-600">431 решено в срок</p>
+        </div>
+        <div class="rounded-2xl bg-stone-50 p-4">
+          <p class="text-sm text-stone-500">Превышение SLA</p>
+          <p class="mt-1 text-3xl font-bold text-stone-800">101</p>
+          <p class="mt-1 text-sm text-stone-600">101 с превышением</p>
+        </div>
+        <div class="rounded-2xl bg-gradient-to-r from-stone-800 to-stone-600 p-4 text-white">
+          <p class="text-sm text-stone-200">Вывод</p>
+          <p class="mt-2 text-base leading-relaxed">
+            Нагрузка выросла с 215 до 317 обращений, но команда удержала SLA: 80,00% в январе и 81,70% в феврале.
+          </p>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+```
+
+Add this script block before `</body>`:
+
+```html
+<script>
+  const incidentsCtx = document.getElementById('incidentsChart');
+  if (incidentsCtx) {
+    new Chart(incidentsCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Январь', 'Февраль'],
+        datasets: [
+          {
+            label: 'Обращения',
+            data: [215, 317],
+            backgroundColor: ['#94a3b8', '#57534e'],
+            borderRadius: 12
+          },
+          {
+            label: 'SLA',
+            type: 'line',
+            data: [80.0, 81.7],
+            yAxisID: 'y1',
+            borderColor: '#0f766e',
+            backgroundColor: '#0f766e',
+            tension: 0.35
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: { position: 'bottom' }
+        },
+        scales: {
+          y: { beginAtZero: true },
+          y1: {
+            position: 'right',
+            min: 75,
+            max: 85,
+            grid: { drawOnChartArea: false }
+          }
+        }
+      }
+    });
+  }
+</script>
+```
+
+- [ ] **Step 4: Run the smoke test to verify it passes**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: PASS with `Smoke check passed`.
+
+- [ ] **Step 5: Commit the incidents block**
+
+Run:
+
+```bash
+git add 20-04-2026.html tests/20-04-2026-smoke.sh
+git commit -m "feat: add incidents section and chart"
+```
+
+### Task 4: Add warehouse and website project sections with links
+
+**Files:**
+- Modify: `20-04-2026.html`
+- Modify: `tests/20-04-2026-smoke.sh`
+
+- [ ] **Step 1: Extend the smoke test for project-specific copy and links**
+
+Append these checks before the final `echo`:
+
+```bash
+for needle in \
+  'Назначить тестовую команду' \
+  'база разработки' \
+  'Готов переходить к первичному тестированию размещения' \
+  'https://docs.google.com/spreadsheets/d/1CZ-ygVjbFeDR7BgL9zayrUSIvyO-gr-FetGvewdDqZE/edit?gid=2137234415#gid=2137234415' \
+  'w-study.ru' \
+  'w-stom.ru (старый)' \
+  'w-stom.ru (новый)'; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: FAIL on warehouse copy or the Google Sheet URL.
+
+- [ ] **Step 3: Implement `#warehouse` and `#website`**
+
+Replace the empty sections with this markup:
+
+```html
+<section id="warehouse" class="space-y-6">
+  <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Проект</p>
+      <h2 class="mt-2 text-3xl font-bold text-stone-800">Склад</h2>
+    </div>
+    <span class="inline-flex w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800">Этап: подготовка завершена, старт тестирования</span>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+    <article class="rounded-3xl bg-white p-8 shadow-xl">
+      <h3 class="text-xl font-semibold text-stone-800">Текущий статус</h3>
+      <p class="mt-4 text-stone-700">
+        Готов переходить к первичному тестированию размещения. Подготовительный этап формализован: согласованы этапы,
+        собран Гант, зафиксированы ТЗ, карта склада и правила подготовки НСИ.
+      </p>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl bg-stone-50 p-4">
+          <p class="text-sm font-semibold text-stone-500">Апрель</p>
+          <p class="mt-2 text-stone-700">Подготовка, финализация ТЗ, карта склада, тестовая копия базы.</p>
+        </div>
+        <div class="rounded-2xl bg-stone-50 p-4">
+          <p class="text-sm font-semibold text-stone-500">Май</p>
+          <p class="mt-2 text-stone-700">Первая версия алгоритма, правила размещения, первичное тестирование.</p>
+        </div>
+        <div class="rounded-2xl bg-stone-50 p-4">
+          <p class="text-sm font-semibold text-stone-500">Июнь</p>
+          <p class="mt-2 text-stone-700">Доработка логики, опытная эксплуатация, обучение сотрудников.</p>
+        </div>
+        <div class="rounded-2xl bg-stone-50 p-4">
+          <p class="text-sm font-semibold text-stone-500">Среда тестов</p>
+          <p class="mt-2 text-stone-700">По согласованию с Ринатом — база разработки.</p>
+        </div>
+      </div>
+    </article>
+
+    <aside class="rounded-3xl bg-gradient-to-br from-stone-800 to-stone-600 p-8 text-white shadow-xl">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300">Нужно решение</p>
+      <ul class="mt-6 space-y-4 text-base leading-relaxed text-stone-100">
+        <li>Назначить тестовую команду со стороны склада.</li>
+        <li>Подтвердить использование базы разработки для первых тестов.</li>
+        <li>Обеспечить быстрый цикл обратной связи по результатам размещения.</li>
+      </ul>
+    </aside>
+  </div>
+</section>
+
+<section id="website" class="space-y-6">
+  <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+    <div>
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Проект</p>
+      <h2 class="mt-2 text-3xl font-bold text-stone-800">Сайт</h2>
+    </div>
+    <a
+      href="https://docs.google.com/spreadsheets/d/1CZ-ygVjbFeDR7BgL9zayrUSIvyO-gr-FetGvewdDqZE/edit?gid=2137234415#gid=2137234415"
+      target="_blank"
+      rel="noreferrer"
+      class="inline-flex w-fit items-center rounded-full bg-stone-800 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-stone-700"
+    >
+      Открыть задачи по сайту
+    </a>
+  </div>
+
+  <div class="grid gap-6 lg:grid-cols-3">
+    <article class="rounded-3xl bg-white p-6 shadow-xl">
+      <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Старый сайт</p>
+      <p class="mt-4 text-stone-700">Критичные ошибки закрыты. Сайт стабилизирован до момента запуска нового решения.</p>
+    </article>
+    <article class="rounded-3xl bg-white p-6 shadow-xl">
+      <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Новый сайт</p>
+      <p class="mt-4 text-stone-700">Запрошены счет на шаблон и лицензия. Разработчику переданы референсы для подготовки макета.</p>
+    </article>
+    <article class="rounded-3xl bg-white p-6 shadow-xl">
+      <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Учебный центр</p>
+      <p class="mt-4 text-stone-700">Оплата и передача записи в Bitrix24 протестированы. Команда переходит к визуальной части.</p>
+    </article>
+  </div>
+
+  <article class="rounded-3xl bg-white p-8 shadow-xl">
+    <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+      <div>
+        <h3 class="text-xl font-semibold text-stone-800">Быстрые ссылки</h3>
+        <p class="mt-2 text-stone-600">Рабочие ресурсы из таблицы задач, которые могут понадобиться на встрече.</p>
+      </div>
+      <span class="rounded-full bg-fuchsia-100 px-4 py-2 text-sm font-semibold text-fuchsia-800">Спринт 13.04–19.04</span>
+    </div>
+    <div class="mt-6 flex flex-wrap gap-3">
+      <a href="https://w-study.ru" target="_blank" rel="noreferrer" class="rounded-full bg-stone-100 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200">w-study.ru</a>
+      <a href="https://w-stom.ru" target="_blank" rel="noreferrer" class="rounded-full bg-stone-100 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200">w-stom.ru (старый)</a>
+      <a href="https://w-stom.ru" target="_blank" rel="noreferrer" class="rounded-full bg-stone-100 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200">w-stom.ru (новый)</a>
+    </div>
+  </article>
+</section>
+```
+
+- [ ] **Step 4: Run the smoke test to verify it passes**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: PASS with `Smoke check passed`.
+
+- [ ] **Step 5: Commit the project sections**
+
+Run:
+
+```bash
+git add 20-04-2026.html tests/20-04-2026-smoke.sh
+git commit -m "feat: add warehouse and website project sections"
+```
+
+### Task 5: Add decisions block, navigation behavior, and final QA
+
+**Files:**
+- Modify: `20-04-2026.html`
+- Modify: `tests/20-04-2026-smoke.sh`
+
+- [ ] **Step 1: Extend the smoke test for the decisions block**
+
+Append these checks before the final `echo`:
+
+```bash
+for needle in \
+  'Подтвердить тестовую команду по складу' \
+  'Не задерживать оплату шаблона и лицензии' \
+  'Сохранить быстрый цикл обратной связи'; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+```
+
+- [ ] **Step 2: Run the test to verify it fails**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+```
+
+Expected: FAIL on one of the leadership decision lines.
+
+- [ ] **Step 3: Implement the final section and nav-active script**
+
+Replace the empty `#decisions` section and add this script before `</body>`:
+
+```html
+<section id="decisions" class="space-y-6">
+  <div class="rounded-[2rem] bg-gradient-to-r from-stone-900 to-stone-700 p-8 text-white shadow-2xl">
+    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300">Next step</p>
+    <h2 class="mt-3 text-3xl font-bold">Решения, которые нужны на встрече</h2>
+    <div class="mt-6 grid gap-4 lg:grid-cols-3">
+      <article class="rounded-2xl bg-white/10 p-5">
+        <p class="text-lg font-semibold">1. Подтвердить тестовую команду по складу</p>
+        <p class="mt-2 text-sm leading-relaxed text-stone-200">Без этого старт первичного тестирования размещения сместится.</p>
+      </article>
+      <article class="rounded-2xl bg-white/10 p-5">
+        <p class="text-lg font-semibold">2. Не задерживать оплату шаблона и лицензии</p>
+        <p class="mt-2 text-sm leading-relaxed text-stone-200">Это прямой блокер для визуальной сборки нового сайта.</p>
+      </article>
+      <article class="rounded-2xl bg-white/10 p-5">
+        <p class="text-lg font-semibold">3. Сохранить быстрый цикл обратной связи</p>
+        <p class="mt-2 text-sm leading-relaxed text-stone-200">Оба проекта сейчас в фазе, где решения и обратная связь влияют на срок сильнее всего.</p>
+      </article>
+    </div>
+  </div>
+</section>
+```
+
+```html
+<script>
+  const sections = [...document.querySelectorAll('main section[id]')];
+  const navLinks = [...document.querySelectorAll('.nav-link')];
+
+  const setActiveLink = () => {
+    const current = sections.findLast((section) => window.scrollY >= section.offsetTop - 140) || sections[0];
+    navLinks.forEach((link) => {
+      link.classList.toggle('active', link.getAttribute('href') === `#${current.id}`);
+    });
+  };
+
+  setActiveLink();
+  window.addEventListener('scroll', setActiveLink, { passive: true });
+<\/script>
+```
+
+- [ ] **Step 4: Run automated smoke check and manual QA**
+
+Run:
+
+```bash
+bash tests/20-04-2026-smoke.sh
+python3 -m http.server 8000
+```
+
+Then manually verify in a browser:
+
+- open `http://localhost:8000/20-04-2026.html`;
+- desktop check: hero, KPI cards, chart, warehouse/site sections, and decisions block all visible and readable;
+- mobile check via browser device emulation: nav scrolls horizontally, cards stack cleanly, CTA button stays visible;
+- console check: no JavaScript errors;
+- visual check: the page feels shorter and lighter than `13-10-2025.html`, but still clearly related in style.
+
+Expected: smoke test passes, chart renders, no layout collisions, nav highlights active section.
+
+- [ ] **Step 5: Commit the final page**
+
+Run:
+
+```bash
+git add 20-04-2026.html tests/20-04-2026-smoke.sh
+git commit -m "feat: build weekly IT exec report page"
+```
