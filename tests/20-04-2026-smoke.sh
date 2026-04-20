@@ -7,48 +7,34 @@ FILE="20-04-2026.html"
 
 for needle in \
   'id="overview"' \
-  'id="focus"' \
+  'id="abc"' \
+  'id="results"' \
   'id="incidents"' \
   'id="warehouse"' \
   'id="website"' \
   'id="decisions"' \
-  'Отчет IT-отдела' \
-  'Итоги недели и ключевые проекты' \
-  '532' \
-  '81,02%' \
-  'готовимся к тестированию' \
-  'визуальная сборка' \
-  'Что сделано' \
-  'Что в работе' \
-  'Что требуется от руководителей'; do
-  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
-done
-
-for needle in \
-  '431 решено в срок' \
-  '101 с превышением' \
-  '80,00%' \
-  '81,70%' \
-  'canvas id="incidentsChart"' \
-  'new Chart('; do
-  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
-done
-
-for needle in \
-  'Назначить тестовую команду' \
-  'база разработки' \
-  'Готов переходить к первичному тестированию размещения' \
+  'ABC-клиенты в 1С' \
+  'Этап 1 завершён' \
+  'Этап 2 на неделе' \
+  'Автоматизация в очереди' \
+  '43' \
+  '23' \
+  '15' \
+  '3' \
+  '2' \
+  '230 Гб → 140 Гб' \
+  '400–500' \
+  '2000' \
+  'KPI для сборщиков' \
+  'QR-код' \
+  'Подготовка' \
+  'Разработка' \
+  'Тестирование' \
+  'Доработка' \
+  'Эксплуатация' \
+  'Завершение' \
   'https://docs.google.com/spreadsheets/d/1CZ-ygVjbFeDR7BgL9zayrUSIvyO-gr-FetGvewdDqZE/edit?gid=2137234415#gid=2137234415' \
-  'w-study.ru' \
-  'w-stom.ru (старый)' \
-  'w-stom.ru (новый)'; do
-  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
-done
-
-for needle in \
-  'Подтвердить тестовую команду по складу' \
-  'Не задерживать оплату шаблона и лицензии' \
-  'Сохранить быстрый цикл обратной связи'; do
+  'Подтвердить тестовую команду по складу'; do
   grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
 done
 
