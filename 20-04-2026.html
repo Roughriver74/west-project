@@ -33,7 +33,8 @@
     <nav class="sticky top-0 z-20 mb-8 border-b border-stone-300 bg-white/90 shadow-sm backdrop-blur-md">
       <div class="flex justify-center overflow-x-auto px-4">
         <a href="#overview" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Обзор</a>
-        <a href="#focus" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Фокус недели</a>
+        <a href="#abc" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">ABC</a>
+        <a href="#results" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Результаты</a>
         <a href="#incidents" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Инциденты</a>
         <a href="#warehouse" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Склад</a>
         <a href="#website" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Сайт</a>
@@ -45,28 +46,32 @@
       <section id="overview" class="space-y-8">
         <div class="rounded-3xl bg-gradient-to-r from-stone-800 to-stone-600 p-8 text-white shadow-xl">
           <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Executive summary</p>
-          <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Ключевой результат недели</h2>
+          <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Неделя с переходом от задач к внедрению</h2>
           <p class="mt-4 max-w-4xl text-lg leading-relaxed text-stone-100">
-            IT-отдел закрыл критичные задачи по поддержке, довел до точки тестирования проект склада и подготовил следующий шаг по новому сайту.
-            Основной управленческий фокус на встрече: быстро принять решения по тестовой команде для склада и по оплате шаблона/лицензии для нового сайта.
+            Ключевые темы недели: завершён первый этап ABC-классификации клиентов в 1С, складовой проект вышел к старту тестирования, по сайту команда перешла к подготовке визуальной сборки.
           </p>
           <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
             <span>📅 Период: 13–20 апреля 2026</span>
-            <span>📊 532 обращения в работе отдела</span>
-            <span>🚚 2 ключевых проекта в активной фазе</span>
+            <span>📊 43 задачи в недельном контуре</span>
+            <span>🚚 3 ключевых направления недели</span>
           </div>
         </div>
 
-        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
           <article class="rounded-2xl border-t-4 border-blue-500 bg-white p-6 shadow-lg">
-            <p class="text-5xl font-bold text-stone-800">532</p>
-            <p class="mt-2 font-medium text-stone-600">Обращения и инциденты</p>
-            <p class="mt-3 text-sm text-stone-500">431 решено в срок, 101 с превышением</p>
+            <p class="text-5xl font-bold text-stone-800">43</p>
+            <p class="mt-2 font-medium text-stone-600">Задачи недели</p>
+            <p class="mt-3 text-sm text-stone-500">23 выполнено, 15 в работе</p>
           </article>
           <article class="rounded-2xl border-t-4 border-emerald-500 bg-white p-6 shadow-lg">
             <p class="text-5xl font-bold text-stone-800">81,02%</p>
             <p class="mt-2 font-medium text-stone-600">Общий SLA</p>
-            <p class="mt-3 text-sm text-stone-500">Нагрузка выросла, качество удержано</p>
+            <p class="mt-3 text-sm text-stone-500">Нагрузка выросла, SLA удержан</p>
+          </article>
+          <article class="rounded-2xl border-t-4 border-violet-500 bg-white p-6 shadow-lg">
+            <p class="text-2xl font-bold text-stone-800">ABC в 1С</p>
+            <p class="mt-2 font-medium text-stone-600">Этап 1 завершён</p>
+            <p class="mt-3 text-sm text-stone-500">Этап 2 на неделе, автоматизация следом</p>
           </article>
           <article class="rounded-2xl border-t-4 border-amber-500 bg-white p-6 shadow-lg">
             <p class="text-2xl font-bold text-stone-800">Склад</p>
@@ -81,45 +86,114 @@
         </div>
       </section>
 
-      <section id="focus" class="space-y-6">
-        <div class="text-center">
-          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Фокус недели</p>
-          <h2 class="mt-2 text-3xl font-bold text-stone-800">Два проекта, которые определяют повестку встречи</h2>
+      <section id="abc" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">1С / ERP</p>
+            <h2 class="mt-2 text-3xl font-bold text-stone-800">ABC-клиенты в 1С</h2>
+          </div>
+          <span class="inline-flex w-fit rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-violet-800">Приоритет недели</span>
         </div>
 
-        <div class="grid gap-6 lg:grid-cols-2">
+        <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <article class="rounded-3xl bg-white p-8 shadow-xl">
-            <h3 class="text-2xl font-bold text-stone-800">Склад</h3>
-            <div class="mt-6 space-y-5">
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что сделано</p>
-                <p class="mt-2 text-stone-700">Собран Гант, зафиксированы этапы, подготовлен переход к первичному тестированию размещения.</p>
+            <p class="max-w-3xl text-stone-700">
+              Реализуется автоматическая сегментация клиентов по валовой прибыли с отображением категории в карточке клиента, историей изменений, подсказками в документах и регламентным расчётом.
+            </p>
+
+            <div class="mt-8 grid gap-4 md:grid-cols-3">
+              <div class="rounded-2xl bg-violet-50 p-5">
+                <p class="text-sm font-semibold text-violet-700">Этап 1 завершён</p>
+                <p class="mt-2 text-sm text-stone-700">Регистр, карточка клиента, роль и базовое отображение закрыты.</p>
               </div>
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что в работе</p>
-                <p class="mt-2 text-stone-700">Финализируются ТЗ по размещению, карта склада, НСИ и тестовая копия базы.</p>
+              <div class="rounded-2xl bg-amber-50 p-5">
+                <p class="text-sm font-semibold text-amber-700">Этап 2 на неделе</p>
+                <p class="mt-2 text-sm text-stone-700">Подсказки, блокировки и правила в документах выходят следующим шагом.</p>
               </div>
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что требуется от руководителей</p>
-                <p class="mt-2 text-stone-700">Назначить тестовую команду и ускорить старт тестирования в базе разработки.</p>
+              <div class="rounded-2xl bg-stone-100 p-5">
+                <p class="text-sm font-semibold text-stone-700">Автоматизация в очереди</p>
+                <p class="mt-2 text-sm text-stone-700">Регзадание и автопростановка категории ожидаются к концу недели или началу следующей.</p>
+              </div>
+            </div>
+
+            <div class="mt-8">
+              <div class="mb-3 flex items-center justify-between text-sm font-semibold text-stone-600">
+                <span>Прогресс по этапам</span>
+                <span>1 из 3 этапов закрыт</span>
+              </div>
+              <div class="h-4 overflow-hidden rounded-full bg-stone-200">
+                <div class="h-full rounded-full bg-gradient-to-r from-violet-600 to-violet-400" style="width: 33.33%"></div>
               </div>
             </div>
           </article>
 
-          <article class="rounded-3xl bg-white p-8 shadow-xl">
-            <h3 class="text-2xl font-bold text-stone-800">Сайт</h3>
-            <div class="mt-6 space-y-5">
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что сделано</p>
-                <p class="mt-2 text-stone-700">Исправлены критичные ошибки старого сайта, протестированы оплата и передача записи в Bitrix24 по учебному центру.</p>
+          <aside class="rounded-3xl bg-gradient-to-br from-violet-700 to-stone-800 p-8 text-white shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-violet-200">Текущий статус</p>
+            <div class="mt-6 space-y-4">
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-sm text-violet-100">Этап</p>
+                <p class="mt-1 text-2xl font-bold">1 / 3</p>
               </div>
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что в работе</p>
-                <p class="mt-2 text-stone-700">Запрошены счет на шаблон и лицензия, разработчику переданы референсы для подготовки макета.</p>
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-sm text-violet-100">Расчёт</p>
+                <p class="mt-1 text-base font-semibold">по валовой прибыли за 100 дней</p>
               </div>
-              <div>
-                <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Что требуется от руководителей</p>
-                <p class="mt-2 text-stone-700">Не задерживать оплату шаблона и лицензии, чтобы не тормозить визуальную сборку нового сайта.</p>
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-sm text-violet-100">Ближайший результат</p>
+                <p class="mt-1 text-base font-semibold">вторая итерация на этой неделе</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="results" class="space-y-6">
+        <div class="text-center">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Результаты недели</p>
+          <h2 class="mt-2 text-3xl font-bold text-stone-800">Что сделал отдел за 13–17 апреля</h2>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Задачи</p>
+            <div class="mt-4 grid grid-cols-2 gap-3 text-sm">
+              <div class="rounded-2xl bg-stone-50 p-4"><div class="text-3xl font-bold text-stone-800">23</div><div class="mt-1 text-stone-600">Выполнено</div></div>
+              <div class="rounded-2xl bg-stone-50 p-4"><div class="text-3xl font-bold text-stone-800">15</div><div class="mt-1 text-stone-600">В работе</div></div>
+              <div class="rounded-2xl bg-stone-50 p-4"><div class="text-3xl font-bold text-stone-800">3</div><div class="mt-1 text-stone-600">Заблокировано</div></div>
+              <div class="rounded-2xl bg-stone-50 p-4"><div class="text-3xl font-bold text-stone-800">2</div><div class="mt-1 text-stone-600">Запланировано</div></div>
+            </div>
+          </article>
+
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">База 1С</p>
+            <p class="mt-4 text-4xl font-bold text-stone-800">230 Гб → 140 Гб</p>
+            <p class="mt-3 text-sm text-stone-600">Вложения вынесены на диск, снят риск нехватки места под резервные копии.</p>
+          </article>
+
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Bitrix24</p>
+            <div class="mt-4 space-y-3">
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <div class="text-3xl font-bold text-stone-800">400–500</div>
+                <div class="mt-1 text-sm text-stone-600">дублей контактов обработано</div>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <div class="text-3xl font-bold text-stone-800">2000</div>
+                <div class="mt-1 text-sm text-stone-600">старых сделок обработано по ортодонтии</div>
+              </div>
+            </div>
+          </article>
+
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Склад и аналитика</p>
+            <div class="mt-4 space-y-3">
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <div class="text-base font-semibold text-stone-800">KPI для сборщиков</div>
+                <div class="mt-1 text-sm text-stone-600">завершён и сдан</div>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <div class="text-base font-semibold text-stone-800">QR-код</div>
+                <div class="mt-1 text-sm text-stone-600">склад тестировал задание уже 2 дня</div>
               </div>
             </div>
           </article>
@@ -180,27 +254,66 @@
         <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
           <article class="rounded-3xl bg-white p-8 shadow-xl">
             <h3 class="text-xl font-semibold text-stone-800">Текущий статус</h3>
-            <p class="mt-4 text-stone-700">
-              Готов переходить к первичному тестированию размещения. Подготовительный этап формализован: согласованы этапы,
-              собран Гант, зафиксированы ТЗ, карта склада и правила подготовки НСИ.
-            </p>
+            <div class="mt-4 grid gap-4 md:grid-cols-3">
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-500">Текущий этап</p>
+                <p class="mt-2 text-base font-semibold text-stone-800">Готов переходить к первичному тестированию размещения</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-500">Среда</p>
+                <p class="mt-2 text-base font-semibold text-stone-800">база разработки</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-500">Следующее решение</p>
+                <p class="mt-2 text-base font-semibold text-stone-800">назначить тестовую команду</p>
+              </div>
+            </div>
 
-            <div class="mt-6 grid gap-4 sm:grid-cols-2">
-              <div class="rounded-2xl bg-stone-50 p-4">
-                <p class="text-sm font-semibold text-stone-500">Апрель</p>
-                <p class="mt-2 text-stone-700">Подготовка, финализация ТЗ, карта склада, тестовая копия базы.</p>
+            <div class="mt-8 overflow-hidden rounded-3xl border border-stone-200">
+              <div class="grid grid-cols-[1.1fr_repeat(3,0.8fr)] bg-stone-100 text-xs font-semibold uppercase tracking-wide text-stone-500">
+                <div class="px-4 py-3">Этап</div>
+                <div class="px-4 py-3">Апрель</div>
+                <div class="px-4 py-3">Май</div>
+                <div class="px-4 py-3">Июнь</div>
               </div>
-              <div class="rounded-2xl bg-stone-50 p-4">
-                <p class="text-sm font-semibold text-stone-500">Май</p>
-                <p class="mt-2 text-stone-700">Первая версия алгоритма, правила размещения, первичное тестирование.</p>
-              </div>
-              <div class="rounded-2xl bg-stone-50 p-4">
-                <p class="text-sm font-semibold text-stone-500">Июнь</p>
-                <p class="mt-2 text-stone-700">Доработка логики, опытная эксплуатация, обучение сотрудников.</p>
-              </div>
-              <div class="rounded-2xl bg-stone-50 p-4">
-                <p class="text-sm font-semibold text-stone-500">Среда тестов</p>
-                <p class="mt-2 text-stone-700">По согласованию с Ринатом — база разработки.</p>
+
+              <div class="divide-y divide-stone-200 bg-white">
+                <div class="grid grid-cols-[1.1fr_repeat(3,0.8fr)] items-center">
+                  <div class="px-4 py-4 font-medium text-stone-800">Подготовка</div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-amber-400"></div></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"></div>
+                </div>
+                <div class="grid grid-cols-[1.1fr_repeat(3,0.8fr)] items-center">
+                  <div class="px-4 py-4 font-medium text-stone-800">Разработка</div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-stone-400"></div></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-stone-400"></div></div>
+                  <div class="px-4 py-4"></div>
+                </div>
+                <div class="grid grid-cols-[1.1fr_repeat(3,0.8fr)] items-center">
+                  <div class="px-4 py-4 font-medium text-stone-800">Тестирование</div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-emerald-500"></div></div>
+                  <div class="px-4 py-4"></div>
+                </div>
+                <div class="grid grid-cols-[1.1fr_repeat(3,0.8fr)] items-center">
+                  <div class="px-4 py-4 font-medium text-stone-800">Доработка</div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-fuchsia-400"></div></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-fuchsia-400"></div></div>
+                </div>
+                <div class="grid grid-cols-[1.1fr_repeat(3,0.8fr)] items-center">
+                  <div class="px-4 py-4 font-medium text-stone-800">Эксплуатация</div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-cyan-500"></div></div>
+                </div>
+                <div class="grid grid-cols-[1.1fr_repeat(3,0.8fr)] items-center">
+                  <div class="px-4 py-4 font-medium text-stone-800">Завершение</div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-stone-700"></div></div>
+                </div>
               </div>
             </div>
           </article>
@@ -235,15 +348,15 @@
         <div class="grid gap-6 lg:grid-cols-3">
           <article class="rounded-3xl bg-white p-6 shadow-xl">
             <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Старый сайт</p>
-            <p class="mt-4 text-stone-700">Критичные ошибки закрыты. Сайт стабилизирован до момента запуска нового решения.</p>
+            <p class="mt-4 text-stone-700">Критичные ошибки старого сайта закрыты.</p>
           </article>
           <article class="rounded-3xl bg-white p-6 shadow-xl">
             <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Новый сайт</p>
-            <p class="mt-4 text-stone-700">Запрошены счет на шаблон и лицензия. Разработчику переданы референсы для подготовки макета.</p>
+            <p class="mt-4 text-stone-700">По новому сайту запрошены счёт и лицензия, разработчик получил референсы на макет.</p>
           </article>
           <article class="rounded-3xl bg-white p-6 shadow-xl">
             <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Учебный центр</p>
-            <p class="mt-4 text-stone-700">Оплата и передача записи в Bitrix24 протестированы. Команда переходит к визуальной части.</p>
+            <p class="mt-4 text-stone-700">По учебному центру подтверждены оплата и передача записи в Bitrix24, команда переходит к визуальной части.</p>
           </article>
         </div>
 
