@@ -34,4 +34,15 @@ for needle in \
   grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
 done
 
+for needle in \
+  'Назначить тестовую команду' \
+  'база разработки' \
+  'Готов переходить к первичному тестированию размещения' \
+  'https://docs.google.com/spreadsheets/d/1CZ-ygVjbFeDR7BgL9zayrUSIvyO-gr-FetGvewdDqZE/edit?gid=2137234415#gid=2137234415' \
+  'w-study.ru' \
+  'w-stom.ru (старый)' \
+  'w-stom.ru (новый)'; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+
 echo "Smoke check passed"

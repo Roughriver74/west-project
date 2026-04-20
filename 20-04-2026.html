@@ -168,8 +168,100 @@
           </article>
         </div>
       </section>
-      <section id="warehouse"></section>
-      <section id="website"></section>
+      <section id="warehouse" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Проект</p>
+            <h2 class="mt-2 text-3xl font-bold text-stone-800">Склад</h2>
+          </div>
+          <span class="inline-flex w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800">Этап: подготовка завершена, старт тестирования</span>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <article class="rounded-3xl bg-white p-8 shadow-xl">
+            <h3 class="text-xl font-semibold text-stone-800">Текущий статус</h3>
+            <p class="mt-4 text-stone-700">
+              Готов переходить к первичному тестированию размещения. Подготовительный этап формализован: согласованы этапы,
+              собран Гант, зафиксированы ТЗ, карта склада и правила подготовки НСИ.
+            </p>
+
+            <div class="mt-6 grid gap-4 sm:grid-cols-2">
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-500">Апрель</p>
+                <p class="mt-2 text-stone-700">Подготовка, финализация ТЗ, карта склада, тестовая копия базы.</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-500">Май</p>
+                <p class="mt-2 text-stone-700">Первая версия алгоритма, правила размещения, первичное тестирование.</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-500">Июнь</p>
+                <p class="mt-2 text-stone-700">Доработка логики, опытная эксплуатация, обучение сотрудников.</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-500">Среда тестов</p>
+                <p class="mt-2 text-stone-700">По согласованию с Ринатом — база разработки.</p>
+              </div>
+            </div>
+          </article>
+
+          <aside class="rounded-3xl bg-gradient-to-br from-stone-800 to-stone-600 p-8 text-white shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300">Нужно решение</p>
+            <ul class="mt-6 space-y-4 text-base leading-relaxed text-stone-100">
+              <li>Назначить тестовую команду со стороны склада.</li>
+              <li>Подтвердить использование базы разработки для первых тестов.</li>
+              <li>Обеспечить быстрый цикл обратной связи по результатам размещения.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+
+      <section id="website" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Проект</p>
+            <h2 class="mt-2 text-3xl font-bold text-stone-800">Сайт</h2>
+          </div>
+          <a
+            href="https://docs.google.com/spreadsheets/d/1CZ-ygVjbFeDR7BgL9zayrUSIvyO-gr-FetGvewdDqZE/edit?gid=2137234415#gid=2137234415"
+            target="_blank"
+            rel="noreferrer"
+            class="inline-flex w-fit items-center rounded-full bg-stone-800 px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:-translate-y-0.5 hover:bg-stone-700"
+          >
+            Открыть задачи по сайту
+          </a>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Старый сайт</p>
+            <p class="mt-4 text-stone-700">Критичные ошибки закрыты. Сайт стабилизирован до момента запуска нового решения.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Новый сайт</p>
+            <p class="mt-4 text-stone-700">Запрошены счет на шаблон и лицензия. Разработчику переданы референсы для подготовки макета.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Учебный центр</p>
+            <p class="mt-4 text-stone-700">Оплата и передача записи в Bitrix24 протестированы. Команда переходит к визуальной части.</p>
+          </article>
+        </div>
+
+        <article class="rounded-3xl bg-white p-8 shadow-xl">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <h3 class="text-xl font-semibold text-stone-800">Быстрые ссылки</h3>
+              <p class="mt-2 text-stone-600">Рабочие ресурсы из таблицы задач, которые могут понадобиться на встрече.</p>
+            </div>
+            <span class="rounded-full bg-fuchsia-100 px-4 py-2 text-sm font-semibold text-fuchsia-800">Спринт 13.04–19.04</span>
+          </div>
+          <div class="mt-6 flex flex-wrap gap-3">
+            <a href="https://w-study.ru" target="_blank" rel="noreferrer" class="rounded-full bg-stone-100 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200">w-study.ru</a>
+            <a href="https://w-stom.ru" target="_blank" rel="noreferrer" class="rounded-full bg-stone-100 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200">w-stom.ru (старый)</a>
+            <a href="https://w-stom.ru" target="_blank" rel="noreferrer" class="rounded-full bg-stone-100 px-4 py-2 text-sm font-medium text-stone-700 hover:bg-stone-200">w-stom.ru (новый)</a>
+          </div>
+        </article>
+      </section>
       <section id="decisions"></section>
     </main>
   </div>
