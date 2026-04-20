@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отчет IT-отдела West: 20 апреля 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%);
+      color: #44403c;
+    }
+    .nav-link.active {
+      color: #1c1917;
+      border-bottom-color: #78716c;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <header class="py-8 text-center">
+      <div class="inline-block rounded-full bg-stone-800 px-4 py-2 text-sm font-semibold text-white">Компания WEST</div>
+      <h1 class="mt-4 text-5xl font-bold text-stone-800">Отчет IT-отдела</h1>
+      <p class="mt-2 text-xl text-stone-600">Итоги недели и ключевые проекты</p>
+    </header>
+
+    <nav class="sticky top-0 z-20 mb-8 border-b border-stone-300 bg-white/90 shadow-sm backdrop-blur-md">
+      <div class="flex justify-center overflow-x-auto px-4">
+        <a href="#overview" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Обзор</a>
+        <a href="#focus" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Фокус недели</a>
+        <a href="#incidents" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Инциденты</a>
+        <a href="#warehouse" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Склад</a>
+        <a href="#website" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Сайт</a>
+        <a href="#decisions" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Решения</a>
+      </div>
+    </nav>
+
+    <main class="space-y-16 pb-16">
+      <section id="overview"></section>
+      <section id="focus"></section>
+      <section id="incidents"></section>
+      <section id="warehouse"></section>
+      <section id="website"></section>
+      <section id="decisions"></section>
+    </main>
+  </div>
+</body>
+</html>
