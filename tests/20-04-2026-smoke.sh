@@ -24,4 +24,14 @@ for needle in \
   grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
 done
 
+for needle in \
+  '431 решено в срок' \
+  '101 с превышением' \
+  '80,00%' \
+  '81,70%' \
+  'canvas id="incidentsChart"' \
+  'new Chart('; do
+  grep -q "$needle" "$FILE" || { echo "Missing: $needle"; exit 1; }
+done
+
 echo "Smoke check passed"

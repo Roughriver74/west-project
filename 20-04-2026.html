@@ -125,11 +125,98 @@
           </article>
         </div>
       </section>
-      <section id="incidents"></section>
+      <section id="incidents" class="space-y-6">
+        <div class="text-center">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Инциденты</p>
+          <h2 class="mt-2 text-3xl font-bold text-stone-800">Операционная поддержка без перегруза деталями</h2>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.4fr_0.9fr]">
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <div class="mb-4 flex items-center justify-between">
+              <div>
+                <h3 class="text-xl font-semibold text-stone-800">Динамика нагрузки</h3>
+                <p class="text-sm text-stone-500">Январь и февраль 2026</p>
+              </div>
+              <span class="rounded-full bg-stone-100 px-3 py-1 text-sm font-medium text-stone-700">SLA 81,02%</span>
+            </div>
+            <div class="h-[320px]">
+              <canvas id="incidentsChart"></canvas>
+            </div>
+          </article>
+
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <h3 class="text-xl font-semibold text-stone-800">Ключевые факты</h3>
+            <div class="mt-5 space-y-4">
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm text-stone-500">Решено в срок</p>
+                <p class="mt-1 text-3xl font-bold text-stone-800">431</p>
+                <p class="mt-1 text-sm text-stone-600">431 решено в срок</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm text-stone-500">Превышение SLA</p>
+                <p class="mt-1 text-3xl font-bold text-stone-800">101</p>
+                <p class="mt-1 text-sm text-stone-600">101 с превышением</p>
+              </div>
+              <div class="rounded-2xl bg-gradient-to-r from-stone-800 to-stone-600 p-4 text-white">
+                <p class="text-sm text-stone-200">Вывод</p>
+                <p class="mt-2 text-base leading-relaxed">
+                  Нагрузка выросла с 215 до 317 обращений, но команда удержала SLA: 80,00% в январе и 81,70% в феврале.
+                </p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
       <section id="warehouse"></section>
       <section id="website"></section>
       <section id="decisions"></section>
     </main>
   </div>
+
+  <script>
+    const incidentsCtx = document.getElementById('incidentsChart');
+    if (incidentsCtx) {
+      new Chart(incidentsCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Январь', 'Февраль'],
+          datasets: [
+            {
+              label: 'Обращения',
+              data: [215, 317],
+              backgroundColor: ['#94a3b8', '#57534e'],
+              borderRadius: 12
+            },
+            {
+              label: 'SLA',
+              type: 'line',
+              data: [80.0, 81.7],
+              yAxisID: 'y1',
+              borderColor: '#0f766e',
+              backgroundColor: '#0f766e',
+              tension: 0.35
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom' }
+          },
+          scales: {
+            y: { beginAtZero: true },
+            y1: {
+              position: 'right',
+              min: 75,
+              max: 85,
+              grid: { drawOnChartArea: false }
+            }
+          }
+        }
+      });
+    }
+  </script>
 </body>
 </html>
