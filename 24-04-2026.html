@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отчет IT-отдела West: 20-24 апреля 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #64748b;
+      --paper: #f7f3ea;
+      --line: #e2d8c8;
+      --blue: #2563eb;
+      --green: #10b981;
+      --amber: #f59e0b;
+      --red: #ef4444;
+      --violet: #7c3aed;
+      --cyan: #06b6d4;
+    }
+
+    body {
+      font-family: 'Manrope', sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.16), transparent 34rem),
+        radial-gradient(circle at 86% 14%, rgba(245, 158, 11, 0.18), transparent 30rem),
+        linear-gradient(135deg, #fbf7ef 0%, #ecf1f8 100%);
+    }
+
+    .glass {
+      min-width: 0;
+      background: rgba(255, 255, 255, 0.78);
+      border: 1px solid rgba(255, 255, 255, 0.75);
+      box-shadow: 0 22px 70px rgba(15, 23, 42, 0.12);
+      backdrop-filter: blur(18px);
+    }
+
+    canvas {
+      max-width: 100% !important;
+    }
+
+    .nav-link.active {
+      color: #0f172a;
+      background: #ffffff;
+      box-shadow: 0 12px 35px rgba(15, 23, 42, 0.12);
+    }
+
+    .metric-card {
+      border: 1px solid rgba(226, 216, 200, 0.9);
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72));
+    }
+
+    .timeline-dot::before {
+      content: '';
+      position: absolute;
+      left: 0.9rem;
+      top: 2.3rem;
+      bottom: -1.7rem;
+      width: 2px;
+      background: #d6cbb8;
+    }
+
+    .timeline-dot:last-child::before {
+      display: none;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+    <header class="overflow-hidden rounded-[2rem] bg-slate-950 text-white shadow-2xl">
+      <div class="grid gap-8 p-8 lg:grid-cols-[1.2fr_0.8fr] lg:p-10">
+        <div>
+          <div class="flex flex-wrap gap-3 text-sm font-semibold text-slate-300">
+            <span class="rounded-full bg-white/10 px-4 py-2">WEST IT</span>
+            <span class="rounded-full bg-white/10 px-4 py-2">20-24 апреля 2026</span>
+            <span class="rounded-full bg-white/10 px-4 py-2">короткий отчет для встречи</span>
+          </div>
+          <h1 class="mt-8 max-w-4xl text-4xl font-extrabold leading-tight sm:text-6xl">
+            Рабочая неделя: проекты, SLA и решения для руководителей
+          </h1>
+          <p class="mt-5 max-w-3xl text-lg leading-relaxed text-slate-300">
+            Основной фокус: ABC-клиенты в 1С, старт тестирования складского размещения,
+            сайт и операционная поддержка. Текст сокращен, акцент на метриках и визуальных блоках.
+          </p>
+        </div>
+
+        <div class="grid content-end gap-4 sm:grid-cols-2 lg:grid-cols-1">
+          <div class="rounded-3xl bg-white p-6 text-slate-950">
+            <p class="text-sm font-bold uppercase tracking-[0.22em] text-slate-500">Главный вывод</p>
+            <p class="mt-3 text-2xl font-extrabold">SLA держится около 81%, но апрель просел до 78,11%</p>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Нужен контроль длинных задач и быстрые решения по складу, сайту и правилам ABC.
+            </p>
+          </div>
+          <div class="rounded-3xl bg-amber-400 p-6 text-slate-950">
+            <p class="text-sm font-bold uppercase tracking-[0.22em] text-amber-900/70">Нужны решения</p>
+            <p class="mt-3 text-3xl font-extrabold">4</p>
+            <p class="mt-2 text-sm font-semibold">тестовая команда, лицензия сайта, правила ABC, SLA-долги</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <nav class="sticky top-3 z-20 my-6 overflow-x-auto rounded-full border border-white/80 bg-white/70 p-2 shadow-lg backdrop-blur">
+      <div class="flex min-w-max gap-2">
+        <a href="#overview" class="nav-link rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition">Обзор</a>
+        <a href="#metrics" class="nav-link rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition">Метрики</a>
+        <a href="#work" class="nav-link rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition">Отдел</a>
+        <a href="#abc" class="nav-link rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition">ABC</a>
+        <a href="#warehouse" class="nav-link rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition">Склад</a>
+        <a href="#website" class="nav-link rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition">Сайт</a>
+        <a href="#decisions" class="nav-link rounded-full px-4 py-2 text-sm font-bold text-slate-600 transition">Решения</a>
+      </div>
+    </nav>
+
+    <main class="space-y-12 pb-16">
+      <section id="overview" class="space-y-6">
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          <article class="metric-card rounded-3xl p-6 lg:col-span-1">
+            <p class="text-sm font-bold text-slate-500">Всего</p>
+            <p class="mt-2 text-4xl font-extrabold">1159</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">обращений на дашборде</p>
+          </article>
+          <article class="metric-card rounded-3xl p-6 lg:col-span-1">
+            <p class="text-sm font-bold text-slate-500">Превышение</p>
+            <p class="mt-2 text-4xl font-extrabold text-emerald-600">216</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">заявок выше SLA</p>
+          </article>
+          <article class="metric-card rounded-3xl p-6 lg:col-span-1">
+            <p class="text-sm font-bold text-slate-500">SLA</p>
+            <p class="mt-2 text-4xl font-extrabold">81,04%</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">общий показатель</p>
+          </article>
+          <article class="metric-card rounded-3xl p-6 lg:col-span-1">
+            <p class="text-sm font-bold text-slate-500">В срок</p>
+            <p class="mt-2 text-4xl font-extrabold">923</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">решено в SLA-таблице</p>
+          </article>
+          <article class="metric-card rounded-3xl p-6 lg:col-span-1">
+            <p class="text-sm font-bold text-slate-500">Апрель</p>
+            <p class="mt-2 text-4xl font-extrabold">233</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">заявки за месяц</p>
+          </article>
+          <article class="metric-card rounded-3xl p-6 lg:col-span-1">
+            <p class="text-sm font-bold text-slate-500">1С</p>
+            <p class="mt-2 text-4xl font-extrabold">54,62%</p>
+            <p class="mt-2 text-xs font-semibold uppercase tracking-wide text-slate-500">основной источник</p>
+          </article>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-4">
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-blue-700">ABC / 1C</p>
+            <h2 class="mt-3 text-2xl font-extrabold">Клиентская классификация</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Закрыт базовый этап, выполнены ключевые доработки по пересчету и загрузке клиентов.
+            </p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-amber-700">Склад</p>
+            <h2 class="mt-3 text-2xl font-extrabold">Готовность к тестам</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Разработчик готов начинать тестирование размещения в базе разработки.
+            </p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-emerald-700">Сайт</p>
+            <h2 class="mt-3 text-2xl font-extrabold">Визуальная сборка</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Критичные ошибки старого сайта закрыты, по новому сайту идут шаблон, лицензия и макет.
+            </p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-violet-700">Bitrix24</p>
+            <h2 class="mt-3 text-2xl font-extrabold">Воронки и сделки</h2>
+            <p class="mt-3 text-sm leading-relaxed text-slate-600">
+              Прорабатывается связка 1С → Bitrix24 для клиентов в проработке и учебного центра.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="metrics" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-slate-500">Операционные метрики</p>
+            <h2 class="mt-2 text-3xl font-extrabold">Инциденты и SLA</h2>
+          </div>
+          <span class="w-fit rounded-full bg-white px-4 py-2 text-sm font-bold text-slate-700 shadow">Источник: Power BI, 24.04.2026</span>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+          <article class="glass rounded-3xl p-6">
+            <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h3 class="text-xl font-extrabold">Заявки по месяцам и SLA</h3>
+                <p class="text-sm text-slate-500">Январь-апрель 2026</p>
+              </div>
+              <span class="rounded-full bg-red-100 px-3 py-1 text-sm font-bold text-red-700">Апрель: 78,11%</span>
+            </div>
+            <div class="h-[330px]">
+              <canvas id="monthlySlaChart"></canvas>
+            </div>
+          </article>
+
+          <article class="glass rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold">Системы</h3>
+            <p class="mt-1 text-sm text-slate-500">Основная нагрузка остается в 1С</p>
+            <div class="mt-4 h-[300px]">
+              <canvas id="systemsChart"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
+          <article class="glass rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold">Крупнейшие отделы-инициаторы</h3>
+            <p class="mt-1 text-sm text-slate-500">Топ по количеству обращений</p>
+            <div class="mt-4 h-[330px]">
+              <canvas id="departmentsChart"></canvas>
+            </div>
+          </article>
+
+          <article class="glass rounded-3xl p-6">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <div>
+                <h3 class="text-xl font-extrabold">Длинные задачи на контроле</h3>
+                <p class="mt-1 text-sm text-slate-500">Большой вклад в просадку SLA и MTTR</p>
+              </div>
+              <span class="rounded-full bg-amber-100 px-3 py-1 text-sm font-bold text-amber-800">топ из дашборда</span>
+            </div>
+            <div class="mt-5 overflow-x-auto rounded-2xl border border-slate-200 bg-white/70">
+              <table class="w-full min-w-[760px] text-left text-sm">
+                <thead class="bg-slate-900 text-white">
+                  <tr>
+                    <th class="px-4 py-3">ID</th>
+                    <th class="px-4 py-3">Автор</th>
+                    <th class="px-4 py-3">Тема</th>
+                    <th class="px-4 py-3 text-right">Время</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-200 text-slate-700">
+                  <tr><td class="px-4 py-3 font-bold">3621</td><td class="px-4 py-3">Мария Слепченко</td><td class="px-4 py-3">долгая задача без описания на скрине</td><td class="px-4 py-3 text-right font-bold">3364,64</td></tr>
+                  <tr><td class="px-4 py-3 font-bold">4300</td><td class="px-4 py-3">Евгения Васильева</td><td class="px-4 py-3">пустые / незаполненные счета при выгрузке</td><td class="px-4 py-3 text-right font-bold">2981,57</td></tr>
+                  <tr><td class="px-4 py-3 font-bold">3598</td><td class="px-4 py-3">Мария Слепченко</td><td class="px-4 py-3">долгая задача без описания на скрине</td><td class="px-4 py-3 text-right font-bold">2758,29</td></tr>
+                  <tr><td class="px-4 py-3 font-bold">4182</td><td class="px-4 py-3">Алла Щитникова</td><td class="px-4 py-3">УПД обработан с ошибками</td><td class="px-4 py-3 text-right font-bold">1987,64</td></tr>
+                  <tr><td class="px-4 py-3 font-bold">3425</td><td class="px-4 py-3">Мария Мишанина</td><td class="px-4 py-3">отчет по закупаемой не в России номенклатуре</td><td class="px-4 py-3 text-right font-bold">1914,38</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </div>
+
+        <article class="glass overflow-hidden rounded-3xl p-4">
+          <img src="assets/it-dashboard-2026-04-24.png" alt="Power BI дашборд инцидентов за 24 апреля 2026" class="w-full rounded-2xl border border-slate-200">
+        </article>
+      </section>
+
+      <section id="work" class="space-y-6">
+        <div class="text-center">
+          <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-slate-500">Работа отдела</p>
+          <h2 class="mt-2 text-3xl font-extrabold">Что делали на неделе</h2>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-blue-700">1С / ERP</p>
+            <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-700">
+              <li>ABC-классификация: карточка клиента, история изменений, роли и права.</li>
+              <li>Правила заказов: клиенты без классификации считаются классом C.</li>
+              <li>Обсуждены ограничения по сумме заказа и доставке для C-клиентов.</li>
+            </ul>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-violet-700">CRM / Bitrix24</p>
+            <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-700">
+              <li>Новая воронка по ортодонтии и сценарий создания сделок из 1С.</li>
+              <li>Разбор дублей, задач базы знаний и форматов в карточках.</li>
+              <li>Проработка передачи заявок и участников с сайта учебного центра.</li>
+            </ul>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-amber-700">Склад / логистика</p>
+            <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-700">
+              <li>Подготовлен переход к тестированию размещения в базе разработки.</li>
+              <li>Обсуждены тесты ТСД, распродажи и корректность работы с маркировкой.</li>
+              <li>Продолжено описание процессов сервиса и выездов к клиентам.</li>
+            </ul>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-emerald-700">Сайт</p>
+            <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-700">
+              <li>Закрыты критичные ошибки на старом сайте.</li>
+              <li>Запрошены счет на шаблон и лицензия для нового сайта.</li>
+              <li>Референсы переданы разработчику для подготовки макета.</li>
+            </ul>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-cyan-700">Учебный центр</p>
+            <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-700">
+              <li>Протестированы оплата и передача записи в Bitrix24.</li>
+              <li>Начат переход к визуальной части сайта учебного центра.</li>
+              <li>События и участники сопоставляются с ID мероприятия сайта.</li>
+            </ul>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold uppercase tracking-[0.2em] text-red-700">Инфраструктура</p>
+            <ul class="mt-4 space-y-3 text-sm leading-relaxed text-slate-700">
+              <li>Ринат тестировал подключение к бизнес-сети и тестовому серверу.</li>
+              <li>Продолжены задачи по деловым линиям и техническим ответам.</li>
+              <li>Контроль долгих заявок нужен отдельно из-за влияния на SLA.</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section id="abc" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-slate-500">Ключевой проект</p>
+            <h2 class="mt-2 text-3xl font-extrabold">ABC-клиенты в 1С</h2>
+          </div>
+          <span class="w-fit rounded-full bg-blue-600 px-4 py-2 text-sm font-bold text-white">Приоритет недели</span>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1fr_1fr]">
+          <article class="glass rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold">Статус по этапам</h3>
+            <div class="mt-6 space-y-5">
+              <div>
+                <div class="mb-2 flex items-center justify-between text-sm font-bold"><span>Этап 1: базовая передача ABC в 1С</span><span>100%</span></div>
+                <div class="h-4 overflow-hidden rounded-full bg-slate-200"><div class="h-full rounded-full bg-green-500" style="width:100%"></div></div>
+              </div>
+              <div>
+                <div class="mb-2 flex items-center justify-between text-sm font-bold"><span>Этап 2: правила, пересчет, роли</span><span>70%</span></div>
+                <div class="h-4 overflow-hidden rounded-full bg-slate-200"><div class="h-full rounded-full bg-blue-500" style="width:70%"></div></div>
+              </div>
+              <div>
+                <div class="mb-2 flex items-center justify-between text-sm font-bold"><span>Автоматизация простановки</span><span>ожидается</span></div>
+                <div class="h-4 overflow-hidden rounded-full bg-slate-200"><div class="h-full rounded-full bg-amber-400" style="width:25%"></div></div>
+              </div>
+            </div>
+          </article>
+
+          <article class="glass rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold">Что важно зафиксировать</h3>
+            <div class="mt-5 space-y-4">
+              <div class="rounded-2xl bg-white/70 p-4">
+                <p class="font-extrabold">Клиенты без категории = класс C</p>
+                <p class="mt-1 text-sm text-slate-600">Это влияет на ограничения заказа и правила доставки.</p>
+              </div>
+              <div class="rounded-2xl bg-white/70 p-4">
+                <p class="font-extrabold">Заказы считаются за день суммарно</p>
+                <p class="mt-1 text-sm text-slate-600">Если клиент делает несколько заказов, логика должна учитывать общий дневной объем.</p>
+              </div>
+              <div class="rounded-2xl bg-white/70 p-4">
+                <p class="font-extrabold">Нужна сверка до запуска</p>
+                <p class="mt-1 text-sm text-slate-600">Отчет должен показать будущие категории до массовой замены данных.</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="warehouse" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-slate-500">Ключевой проект</p>
+            <h2 class="mt-2 text-3xl font-extrabold">Склад: тестирование размещения</h2>
+          </div>
+          <span class="w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-bold text-amber-900">Нужна тестовая команда</span>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+          <article class="glass rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold">Gantt по складу</h3>
+            <p class="mt-1 text-sm text-slate-500">Компактная версия для встречи</p>
+            <div class="mt-5 overflow-x-auto rounded-3xl border border-slate-200 bg-white/70">
+              <div class="grid min-w-[760px] grid-cols-[1.25fr_repeat(4,0.75fr)] bg-slate-900 text-xs font-extrabold uppercase tracking-wide text-white">
+                <div class="px-4 py-3">Этап</div>
+                <div class="px-4 py-3">Апрель</div>
+                <div class="px-4 py-3">Май</div>
+                <div class="px-4 py-3">Июнь</div>
+                <div class="px-4 py-3">Статус</div>
+              </div>
+              <div class="divide-y divide-slate-200 text-sm">
+                <div class="grid min-w-[760px] grid-cols-[1.25fr_repeat(4,0.75fr)] items-center">
+                  <div class="px-4 py-4 font-bold">Подготовка</div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-green-500"></div></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4 font-bold text-green-700">закрыто</div>
+                </div>
+                <div class="grid min-w-[760px] grid-cols-[1.25fr_repeat(4,0.75fr)] items-center">
+                  <div class="px-4 py-4 font-bold">Разработка размещения</div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-blue-500"></div></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-blue-500"></div></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4 font-bold text-blue-700">почти готово</div>
+                </div>
+                <div class="grid min-w-[760px] grid-cols-[1.25fr_repeat(4,0.75fr)] items-center">
+                  <div class="px-4 py-4 font-bold">Первичное тестирование</div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-amber-400"></div></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4 font-bold text-amber-700">старт</div>
+                </div>
+                <div class="grid min-w-[760px] grid-cols-[1.25fr_repeat(4,0.75fr)] items-center">
+                  <div class="px-4 py-4 font-bold">Доработки по тестам</div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-violet-500"></div></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-violet-500"></div></div>
+                  <div class="px-4 py-4 font-bold text-violet-700">план</div>
+                </div>
+                <div class="grid min-w-[760px] grid-cols-[1.25fr_repeat(4,0.75fr)] items-center">
+                  <div class="px-4 py-4 font-bold">Ввод в эксплуатацию</div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"></div>
+                  <div class="px-4 py-4"><div class="h-3 rounded-full bg-cyan-500"></div></div>
+                  <div class="px-4 py-4 font-bold text-cyan-700">план</div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <aside class="glass rounded-3xl p-6">
+            <h3 class="text-xl font-extrabold">Следующий шаг</h3>
+            <div class="mt-5 space-y-4">
+              <div class="rounded-2xl bg-amber-100 p-4">
+                <p class="font-extrabold text-amber-900">Определить тестовую команду</p>
+                <p class="mt-1 text-sm text-amber-900/80">Со стороны склада нужны пользователи, которые реально понимают ячейки и размещение.</p>
+              </div>
+              <div class="rounded-2xl bg-white/70 p-4">
+                <p class="font-extrabold">Дать доступ в копию базы</p>
+                <p class="mt-1 text-sm text-slate-600">Тестирование согласовано в базе разработки.</p>
+              </div>
+              <div class="rounded-2xl bg-white/70 p-4">
+                <p class="font-extrabold">Собрать обратную связь</p>
+                <p class="mt-1 text-sm text-slate-600">Нужен короткий цикл: тест → дефект → доработка → повторный тест.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section id="website" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-slate-500">Ключевой проект</p>
+            <h2 class="mt-2 text-3xl font-extrabold">Сайт и учебный центр</h2>
+          </div>
+          <a href="https://docs.google.com/spreadsheets/d/1CZ-ygVjbFeDR7BgL9zayrUSIvyO-gr-FetGvewdDqZE/edit?gid=2137234415#gid=2137234415" target="_blank" rel="noreferrer" class="w-fit rounded-full bg-slate-950 px-5 py-3 text-sm font-bold text-white shadow-lg transition hover:-translate-y-0.5">
+            Таблица задач сайта
+          </a>
+        </div>
+
+        <div class="grid gap-4 lg:grid-cols-4">
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold text-slate-500">Старый сайт</p>
+            <p class="mt-3 text-2xl font-extrabold">Критичные ошибки закрыты</p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold text-slate-500">Новый сайт</p>
+            <p class="mt-3 text-2xl font-extrabold">Счет и лицензия запрошены</p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold text-slate-500">Макет</p>
+            <p class="mt-3 text-2xl font-extrabold">Референсы переданы разработчику</p>
+          </article>
+          <article class="glass rounded-3xl p-6">
+            <p class="text-sm font-extrabold text-slate-500">Учебный центр</p>
+            <p class="mt-3 text-2xl font-extrabold">Оплата и Bitrix24 протестированы</p>
+          </article>
+        </div>
+
+        <article class="glass rounded-3xl p-6">
+          <h3 class="text-xl font-extrabold">Что ожидаем дальше</h3>
+          <div class="mt-5 grid gap-4 md:grid-cols-3">
+            <div class="rounded-2xl bg-white/70 p-4">
+              <p class="font-extrabold">Оплата шаблона и лицензии</p>
+              <p class="mt-1 text-sm text-slate-600">Блокер для полноценной визуальной сборки.</p>
+            </div>
+            <div class="rounded-2xl bg-white/70 p-4">
+              <p class="font-extrabold">Макет нового сайта</p>
+              <p class="mt-1 text-sm text-slate-600">Разработчик готовит визуальную основу по референсам.</p>
+            </div>
+            <div class="rounded-2xl bg-white/70 p-4">
+              <p class="font-extrabold">Визуальная часть учебного центра</p>
+              <p class="mt-1 text-sm text-slate-600">Функциональные тесты оплаты и записи завершены.</p>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <section id="decisions" class="space-y-6">
+        <div class="rounded-[2rem] bg-slate-950 p-8 text-white shadow-2xl">
+          <p class="text-sm font-extrabold uppercase tracking-[0.25em] text-slate-400">Для встречи</p>
+          <h2 class="mt-3 text-3xl font-extrabold">Решения и контрольные вопросы</h2>
+          <div class="mt-8 grid gap-4 lg:grid-cols-4">
+            <article class="rounded-3xl bg-white/10 p-5">
+              <p class="text-3xl font-extrabold text-amber-300">1</p>
+              <h3 class="mt-3 text-lg font-extrabold">Склад</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-300">Подтвердить тестовую команду и доступы в базу разработки.</p>
+            </article>
+            <article class="rounded-3xl bg-white/10 p-5">
+              <p class="text-3xl font-extrabold text-amber-300">2</p>
+              <h3 class="mt-3 text-lg font-extrabold">Сайт</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-300">Не задерживать оплату шаблона и лицензии.</p>
+            </article>
+            <article class="rounded-3xl bg-white/10 p-5">
+              <p class="text-3xl font-extrabold text-amber-300">3</p>
+              <h3 class="mt-3 text-lg font-extrabold">ABC</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-300">Зафиксировать правила по C-клиентам, сумме заказа и предоплате.</p>
+            </article>
+            <article class="rounded-3xl bg-white/10 p-5">
+              <p class="text-3xl font-extrabold text-amber-300">4</p>
+              <h3 class="mt-3 text-lg font-extrabold">SLA</h3>
+              <p class="mt-2 text-sm leading-relaxed text-slate-300">Разобрать топ долгих задач, чтобы вернуть апрель выше 80%.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    Chart.defaults.font.family = 'Manrope';
+    Chart.defaults.color = '#475569';
+
+    const monthlySlaChart = document.getElementById('monthlySlaChart');
+    if (monthlySlaChart) {
+      new Chart(monthlySlaChart, {
+        data: {
+          labels: ['Январь', 'Февраль', 'Март', 'Апрель'],
+          datasets: [
+            {
+              type: 'bar',
+              label: 'Количество заявок',
+              data: [215, 360, 331, 233],
+              backgroundColor: ['#93c5fd', '#2563eb', '#2563eb', '#60a5fa'],
+              borderRadius: 14,
+              yAxisID: 'y'
+            },
+            {
+              type: 'line',
+              label: 'SLA, %',
+              data: [80, 82.78, 81.87, 78.11],
+              borderColor: '#ef4444',
+              backgroundColor: '#ef4444',
+              borderWidth: 3,
+              pointRadius: 5,
+              tension: 0.35,
+              yAxisID: 'y1'
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { usePointStyle: true } }
+          },
+          scales: {
+            y: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+            y1: {
+              position: 'right',
+              min: 74,
+              max: 85,
+              ticks: { callback: (value) => `${value}%` },
+              grid: { drawOnChartArea: false }
+            }
+          }
+        }
+      });
+    }
+
+    const systemsChart = document.getElementById('systemsChart');
+    if (systemsChart) {
+      new Chart(systemsChart, {
+        type: 'doughnut',
+        data: {
+          labels: ['1С', 'Техника/программы', 'Bitrix24', 'Проблемы обмена', 'Прочее'],
+          datasets: [{
+            data: [633, 263, 105, 90, 68],
+            backgroundColor: ['#2563eb', '#10b981', '#f59e0b', '#8b5cf6', '#94a3b8'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          cutout: '62%',
+          plugins: {
+            legend: { position: 'bottom', labels: { usePointStyle: true } }
+          }
+        }
+      });
+    }
+
+    const departmentsChart = document.getElementById('departmentsChart');
+    if (departmentsChart) {
+      new Chart(departmentsChart, {
+        type: 'bar',
+        data: {
+          labels: ['Розница', 'Бухгалтерия', 'Пусто', 'Склад', 'Группа служ.', 'Отдел зак.', 'Направл.', 'Отдел пр.'],
+          datasets: [{
+            label: 'Обращения',
+            data: [166, 134, 114, 62, 55, 48, 45, 43],
+            backgroundColor: ['#2563eb', '#10b981', '#facc15', '#f59e0b', '#8b5cf6', '#06b6d4', '#fca5a5', '#ef4444'],
+            borderRadius: 10
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: {
+            x: { beginAtZero: true, grid: { color: '#e2e8f0' } },
+            y: { grid: { display: false } }
+          }
+        }
+      });
+    }
+
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+    const setActiveLink = () => {
+      const current = sections.findLast((section) => window.scrollY >= section.offsetTop - 140) || sections[0];
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === `#${current.id}`);
+      });
+    };
+    setActiveLink();
+    window.addEventListener('scroll', setActiveLink, { passive: true });
+  </script>
+</body>
+</html>
