@@ -1,0 +1,1285 @@
+<!doctype html>
+<html lang="ru" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Отчет IT-отдела West: 12 — 18 мая 2026</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+				font-family: 'Inter', sans-serif;
+				background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%);
+				color: #44403c;
+			}
+			.nav-link.active {
+				color: #1c1917;
+				border-bottom-color: #78716c;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body class="antialiased">
+		<div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<header class="py-8 text-center">
+				<div
+					class="inline-block rounded-full bg-stone-800 px-4 py-2 text-sm font-semibold text-white"
+				>
+					Компания WEST
+				</div>
+				<h1 class="mt-4 text-5xl font-bold text-stone-800">Отчет IT-отдела</h1>
+				<p class="mt-2 text-xl text-stone-600">
+					Итоги недели и ключевые проекты
+				</p>
+			</header>
+
+			<nav
+				class="sticky top-0 z-20 mb-8 border-b border-stone-300 bg-white/90 shadow-sm backdrop-blur-md"
+			>
+				<div class="flex justify-center overflow-x-auto px-4">
+					<a
+						href="#overview"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Обзор</a
+					>
+					<a
+						href="#sla"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>SLA</a
+					>
+					<a
+						href="#site"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Сайт</a
+					>
+					<a
+						href="#warehouse"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Склад / WMS</a
+					>
+					<a
+						href="#1c"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>1С</a
+					>
+					<a
+						href="#bitrix"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Битрикс24</a
+					>
+					<a
+						href="#results"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Результаты</a
+					>
+					<a
+						href="#decisions"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Решения</a
+					>
+				</div>
+			</nav>
+
+			<main class="space-y-16 pb-16">
+				<!-- ═══════ OVERVIEW ═══════ -->
+				<section id="overview" class="space-y-8">
+					<div
+						class="rounded-3xl bg-gradient-to-r from-stone-800 to-stone-600 p-8 text-white shadow-xl"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200"
+						>
+							Executive summary
+						</p>
+						<h2 class="mt-3 text-3xl font-bold sm:text-4xl">
+							Сайт сдвинулся с мёртвой точки, ТЗ переписано, DataMobile на копии
+						</h2>
+						<p class="mt-4 max-w-4xl text-lg leading-relaxed text-stone-100">
+							По проекту сайта оплачен шаблон, новая версия ТЗ переписана под
+							сервисную архитектуру, стартанули работы по инфраструктуре —
+							разворачиваем дев-сервер. На сайте учебного центра запущена
+							автоматическая запись с передачей в Битрикс24 с привязкой к
+							конкретному мероприятию — тестируем до конца мая, далее включаем
+							оплату для клиента. Параллельно WMS-альтернатива DataMobile
+							установлена на тестовую копию, режим совместимости подходит.
+							Клеверенс — выдана новая лицензия после кривой, ТСД переставлены
+							на более производительные устройства. Болели Никита Замятин и
+							Денис.
+						</p>
+						<div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
+							<span>📅 12 — 18 мая 2026</span>
+							<span>📊 1 278 заявок с начала года</span>
+							<span>📈 Май: 68 заявок, SLA 76,47%</span>
+							<span>🌐 Сайт: шаблон оплачен</span>
+						</div>
+					</div>
+
+					<div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
+						<article
+							class="rounded-2xl border-t-4 border-blue-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-5xl font-bold text-stone-800">1 278</p>
+							<p class="mt-2 font-medium text-stone-600">Заявок 2026</p>
+							<p class="mt-1 text-sm font-semibold text-red-500">
+								235 превышений (18,4%)
+							</p>
+							<p class="mt-1 text-xs text-stone-400">+38 за неделю</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-amber-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-5xl font-bold text-stone-800">76,5%</p>
+							<p class="mt-2 font-medium text-stone-600">SLA май (68 заявок)</p>
+							<p class="mt-1 text-sm font-semibold text-emerald-600">
+								↑ +2,1 п.п. к прош. отчёту
+							</p>
+							<p class="mt-1 text-xs text-stone-400">Месяц ещё в процессе</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-emerald-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">Сайт ✓</p>
+							<p class="mt-2 font-medium text-stone-600">ТЗ + шаблон</p>
+							<p class="mt-3 text-sm text-emerald-600">Дев-сервер в работе</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-violet-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">Учебный центр</p>
+							<p class="mt-2 font-medium text-stone-600">Автозапись → Б24</p>
+							<p class="mt-3 text-sm text-amber-600">Тест до конца мая</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-cyan-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">DataMobile</p>
+							<p class="mt-2 font-medium text-stone-600">На тестовой копии</p>
+							<p class="mt-3 text-sm text-stone-500">
+								Совместимость 8.3.22 — ок
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ SLA ═══════ -->
+				<section id="sla" class="space-y-6">
+					<div class="text-center">
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+						>
+							Операционная поддержка
+						</p>
+						<h2 class="mt-2 text-3xl font-bold text-stone-800">
+							SLA и нагрузка 2026
+						</h2>
+						<p class="mt-2 text-sm text-stone-500">
+							Данные за январь–май 2026. Май: 68 заявок, SLA 76,47%
+						</p>
+					</div>
+
+					<div class="grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<div class="mb-4 flex items-center justify-between">
+								<div>
+									<h3 class="text-xl font-semibold text-stone-800">
+										Динамика по месяцам
+									</h3>
+									<p class="text-sm text-stone-500">
+										Заявки и SLA, январь–май 2026
+									</p>
+								</div>
+								<span
+									class="rounded-full bg-amber-50 px-3 py-1 text-sm font-medium text-amber-700"
+									>Год SLA ≈ 81,17%</span
+								>
+							</div>
+							<div class="h-[320px]">
+								<canvas id="slaChart"></canvas>
+							</div>
+						</article>
+
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<h3 class="text-xl font-semibold text-stone-800">
+								Распределение
+							</h3>
+							<p class="text-sm text-stone-500">По системам за 2026</p>
+							<div class="mt-4 h-[260px]">
+								<canvas id="systemsChart"></canvas>
+							</div>
+						</article>
+					</div>
+
+					<div class="grid gap-6 sm:grid-cols-4">
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Всего 2026</p>
+							<p class="mt-1 text-3xl font-bold text-stone-800">1 278</p>
+							<p class="mt-1 text-sm text-stone-500">заявок</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Решено в срок</p>
+							<p class="mt-1 text-3xl font-bold text-emerald-700">1 013</p>
+							<p class="mt-1 text-sm text-stone-500">81,17% SLA (год)</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Превышение</p>
+							<p class="mt-1 text-3xl font-bold text-red-700">235</p>
+							<p class="mt-1 text-sm text-stone-500">18,39%</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Май (в процессе)</p>
+							<p class="mt-1 text-3xl font-bold text-stone-800">68</p>
+							<p class="mt-1 text-sm text-amber-600">SLA 76,47%</p>
+						</div>
+					</div>
+
+					<article class="rounded-3xl bg-white p-6 shadow-xl">
+						<h3 class="text-xl font-semibold text-stone-800">
+							Топ-категории обращений
+						</h3>
+						<p class="text-sm text-stone-500">
+							По системам и обратившимся отделам — данные с дашборда 2026
+						</p>
+						<div class="mt-5 grid gap-4 md:grid-cols-2">
+							<div>
+								<p
+									class="text-xs font-semibold uppercase tracking-wide text-stone-500"
+								>
+									Системы
+								</p>
+								<ul class="mt-3 space-y-2 text-sm text-stone-700">
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>1С</span
+										><span class="font-semibold">701 (54,85%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Техника / программа</span
+										><span class="font-semibold">281 (21,99%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Битрикс24</span
+										><span class="font-semibold">119 (9,31%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Проблема оборудования</span
+										><span class="font-semibold">103 (8,06%)</span>
+									</li>
+									<li class="flex justify-between">
+										<span>Отчёты / прочее</span
+										><span class="font-semibold">74 (5,79%)</span>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<p
+									class="text-xs font-semibold uppercase tracking-wide text-stone-500"
+								>
+									Отделы (ТОП)
+								</p>
+								<ul class="mt-3 space-y-2 text-sm text-stone-700">
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Розничные продажи</span
+										><span class="font-semibold">187 (14,63%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Бухгалтерия</span
+										><span class="font-semibold">143 (11,19%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Склад</span
+										><span class="font-semibold">115 (9,00%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Группа сопровождения</span
+										><span class="font-semibold">62 (4,85%)</span>
+									</li>
+									<li class="flex justify-between">
+										<span>Отдел закупок</span
+										><span class="font-semibold">49 (3,83%)</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</article>
+				</section>
+
+				<!-- ═══════ SITE ═══════ -->
+				<section id="site" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Проект
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								Сайт и учебный центр
+							</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-800"
+							>✓ Шаблон оплачен</span
+						>
+					</div>
+
+					<div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+						<article class="rounded-3xl bg-white p-8 shadow-xl">
+							<h3 class="text-xl font-semibold text-stone-800">
+								Основной сайт — следующий этап
+							</h3>
+							<div class="mt-6 grid gap-4 md:grid-cols-2">
+								<div class="rounded-2xl bg-emerald-50 p-5">
+									<p class="text-sm font-semibold text-emerald-700">ТЗ v2 ✓</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Подготовлена новая версия ТЗ с учётом сервисной архитектуры
+										— разделение на независимые сервисы вместо монолита.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-emerald-50 p-5">
+									<p class="text-sm font-semibold text-emerald-700">Шаблон ✓</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Оплата прошла. Заявка, висевшая ~30 дней, закрыта — можем
+										стартовать дальнейшие работы.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-blue-50 p-5">
+									<p class="text-sm font-semibold text-blue-700">
+										Инфраструктура
+									</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Стартанули работы по инфраструктуре — разворачивание
+										дев-сервера для разработки и тестирования.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-amber-50 p-5">
+									<p class="text-sm font-semibold text-amber-700">C-сегмент</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Бурмистрова: вопрос ограничения клиентов C-сегмента заказами
+										только через сайт. Денис подключается к проработке с
+										архитектором.
+									</p>
+								</div>
+							</div>
+
+							<div class="mt-8">
+								<p class="text-sm font-semibold text-stone-600">
+									Поэтапная дорожная карта
+								</p>
+								<div
+									class="mt-4 overflow-hidden rounded-3xl border border-stone-200"
+								>
+									<div
+										class="grid grid-cols-[1.2fr_repeat(3,0.8fr)] bg-stone-100 text-xs font-semibold uppercase tracking-wide text-stone-500"
+									>
+										<div class="px-4 py-3">Этап</div>
+										<div class="px-4 py-3">Май</div>
+										<div class="px-4 py-3">Июнь</div>
+										<div class="px-4 py-3">Июль+</div>
+									</div>
+									<div class="divide-y divide-stone-200 bg-white">
+										<div
+											class="grid grid-cols-[1.2fr_repeat(3,0.8fr)] items-center"
+										>
+											<div class="px-4 py-4 font-medium text-stone-800">
+												ТЗ + оплата шаблона
+											</div>
+											<div class="px-4 py-4">
+												<div class="h-3 rounded-full bg-emerald-500"></div>
+											</div>
+											<div class="px-4 py-4"></div>
+											<div class="px-4 py-4"></div>
+										</div>
+										<div
+											class="grid grid-cols-[1.2fr_repeat(3,0.8fr)] items-center"
+										>
+											<div class="px-4 py-4 font-medium text-stone-800">
+												Дев-сервер
+											</div>
+											<div class="px-4 py-4">
+												<div class="h-3 rounded-full bg-blue-500"></div>
+											</div>
+											<div class="px-4 py-4">
+												<div class="h-3 rounded-full bg-blue-300"></div>
+											</div>
+											<div class="px-4 py-4"></div>
+										</div>
+										<div
+											class="grid grid-cols-[1.2fr_repeat(3,0.8fr)] items-center"
+										>
+											<div class="px-4 py-4 font-medium text-stone-800">
+												Разработка сервисов
+											</div>
+											<div class="px-4 py-4"></div>
+											<div class="px-4 py-4">
+												<div class="h-3 rounded-full bg-violet-400"></div>
+											</div>
+											<div class="px-4 py-4">
+												<div class="h-3 rounded-full bg-violet-400"></div>
+											</div>
+										</div>
+										<div
+											class="grid grid-cols-[1.2fr_repeat(3,0.8fr)] items-center"
+										>
+											<div class="px-4 py-4 font-medium text-stone-800">
+												Прод-релиз
+											</div>
+											<div class="px-4 py-4"></div>
+											<div class="px-4 py-4"></div>
+											<div class="px-4 py-4">
+												<div class="h-3 rounded-full bg-cyan-500"></div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</article>
+
+						<aside
+							class="rounded-3xl bg-gradient-to-br from-emerald-700 to-stone-800 p-8 text-white shadow-xl"
+						>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-200"
+							>
+								🎓 Учебный центр
+							</p>
+							<h3 class="mt-3 text-2xl font-bold">
+								Автоматическая запись запущена
+							</h3>
+							<p class="mt-3 text-sm leading-relaxed text-emerald-50">
+								На сайте учебного центра настроена автозапись с передачей лидов
+								в Битрикс24 — каждая запись привязывается к конкретному
+								мероприятию. На сайт выкатили новую формочку, далее добавим
+								кнопку в основную секцию и перекинем старые мероприятия на новый
+								функционал.
+							</p>
+							<div class="mt-6 space-y-4">
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">Тестовый режим</p>
+									<p class="mt-2 text-sm text-emerald-50">
+										Тестируем до конца мая 2026.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">Если всё ОК</p>
+									<p class="mt-2 text-sm text-emerald-50">
+										Включаем платный тариф для клиента (юзер-сценарий
+										полноценно).
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">Описание процессов</p>
+									<p class="mt-2 text-sm text-emerald-50">
+										Денис закончил описание учебного центра, передал Богаткиной
+										на проверку, ждёт правки.
+									</p>
+								</div>
+							</div>
+						</aside>
+					</div>
+				</section>
+
+				<!-- ═══════ СКЛАД / WMS ═══════ -->
+				<section id="warehouse" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Проект
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								Склад и WMS
+							</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-violet-800"
+							>DataMobile на копии</span
+						>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								DataMobile
+							</p>
+							<p class="mt-3 text-stone-700">
+								Поставили на копию (Пашина база). По инструкции: совместимость
+								8.3.17 — у нас 8.3.22, ок. Начинаем тестировать. Расширением
+								идёт, в конфигурацию вроде бы серьёзно не лезет.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Клеверенс — лицензия ✓
+							</p>
+							<p class="mt-3 text-stone-700">
+								Была кривая лицензия (показывал «Магазин 15»), 1Бит выдал
+								корректное продление.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Доработки маршрутизации и статусами
+							</p>
+							<p class="mt-3 text-stone-700">
+								Алексей подтвердил план доработок и сроки. Считает трудозатраты,
+								на сегодня передаст всю информацию по задачам.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Старый сервер 1С
+							</p>
+							<p class="mt-3 text-stone-700">
+								Александр почистил и подключил сервер. Привязка IP,
+								переименование, чтобы не путался с текущим. Агент 1С отключён,
+								чтобы не было конфликтов.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Возвраты маркированных
+							</p>
+							<p class="mt-3 text-stone-700">
+								Корректировка реализации — Паша подтвердил, что функционал
+								работает (включается в настройках). Проблема: подписывается в
+								бухгалтерии, торговля не видит — Ринат прорабатывает передачу
+								корректировок обратно в торговлю.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Костя Буланов
+							</p>
+							<p class="mt-3 text-stone-700">
+								Обучение по Честному знаку. Критичный вопрос по орагнизации
+								перевода сотрудка. Готовим перевод в отдел закупок — потребуется
+								переквалификация и подготовка замены.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Транспортные компании
+							</p>
+							<p class="mt-3 text-stone-700">
+								Ринат накатил доработки на боевую. Места теперь собираются из
+								реализации, не из заказа. Тестируем повторно с логистами.
+								Параллельно — изучение 1С: Бизнес.Сеть (через неё идут СДЭК и
+								ДЛ).
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Яндекс.Доставка
+							</p>
+							<p class="mt-3 text-stone-700">
+								Переставлена выгрузка определения зоны доставки. Ошибок и задач
+								не было — работает стабильно. Бекап-вариант на dadata готов на
+								случай отключения.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ 1С ═══════ -->
+				<section id="1c" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								1С / ERP
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								Что сделали в учётке
+							</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800"
+							>Регламент пересортицы сломан</span
+						>
+					</div>
+
+					<div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+						<article class="rounded-3xl bg-white p-8 shadow-xl">
+							<h3 class="text-xl font-semibold text-stone-800">
+								Сделано / в работе
+							</h3>
+							<div class="mt-5 grid gap-4 md:grid-cols-2">
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										Юр.отдел — макеты соглашений ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Паша переделал шаблоны 2 соглашений, добавил логику
+										склонения.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										Помощник закупок ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Поправлена ошибка при «заменять на аналоги» — Соколовские
+										доработки снова работают.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										Комментарий ЧЗ в реализации ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Не писался для моторного масла — Паша поправил.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										План-факт АСК с НДС ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Залит в рабочую, отображается с НДС. Никита/Денис
+										договорились писать объявления чаще.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										Отчёт по заказам ниже минимальных ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Паша сделал, передал на проверку.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										Подбор остатков в закупке ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Перенесён функционал из продаж — показывает остатки
+										организации.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										Дубликаты по выписке
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Подтвердили, что дубликаты в Битриксе создаются из-за
+										загрузки банковской выписки — нужно искать механизм
+										предотвращения.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<p class="text-sm font-semibold text-stone-700">
+										Расчётный листок (зуб)
+									</p>
+									<p class="mt-2 text-sm text-stone-600">
+										Паша делает внешний отчёт. Потребуется ещё автоматическая
+										рассылка на почту сотрудников (по закону).
+									</p>
+								</div>
+								<div class="rounded-2xl bg-green-100 p-4">
+									<p class="text-lg font-semibold">Предварительное закрытие</p>
+									<p class="mt-2 text-sm text-black-50">
+										Начинаем делать предварительное закрытие каждый день чтобы
+										рентабельность больше соответствовала правде .
+									</p>
+								</div>
+							</div>
+						</article>
+
+						<aside
+							class="rounded-3xl bg-gradient-to-br from-rose-700 to-stone-800 p-8 text-white shadow-xl"
+						>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-rose-200"
+							>
+								⚠️ Проблемы
+							</p>
+							<div class="mt-6 space-y-4">
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">Регламент пересортицы</p>
+									<p class="mt-2 text-sm text-rose-50">
+										С января не делает ни одной записи. Имеющиеся записи
+										рассчитаны криво (средняя 17 вместо 24). Нужно решить с
+										Ринатом: чинить расчёт или полностью убирать пересортицу из
+										механизма.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">Курс валют не грузится</p>
+									<p class="mt-2 text-sm text-rose-50">
+										После перехода на новую платформу регламентное задание
+										падает. Проблема со служебным пользователем — Паша запускает
+										курс вручную.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">
+										Назначение в приходный ордер
+									</p>
+									<p class="mt-2 text-sm text-rose-50">
+										При создании на основании заказа поставщику назначение не
+										подтягивается, склад вставляет вручную. Воспроизвести на
+										копии не получается — собираем живые примеры.
+									</p>
+								</div>
+							</div>
+						</aside>
+					</div>
+				</section>
+
+				<!-- ═══════ БИТРИКС ═══════ -->
+				<section id="bitrix" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								CRM
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">Битрикс24</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800"
+							>Воронка тендеров «гуляет»</span
+						>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Опрос для HR
+							</p>
+							<p class="mt-3 text-stone-700">
+								Евгения доделала форму опроса для эйчара в Битриксе. Хайхаб (200
+								тыс ₽) отклонили — сделаем своими силами + Excel-выгрузка
+								результатов.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Воронка тендеров
+							</p>
+							<p class="mt-3 text-stone-700">
+								Воронка меняется «сама», через 2 минуты после действий, не
+								воспроизводится. Поддержка Битрикса отвечает медленно — Евгения
+								ищет причину параллельно.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Сидорова — ограничение задач
+							</p>
+							<p class="mt-3 text-stone-700">
+								Запрос «запретить сотрудникам ставить задачи определённым
+								отделам». Поставили робота с уведомлением + удалением. Решено
+								пересмотреть подход (не удалять).
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Заявки «по нашему направлению»
+							</p>
+							<p class="mt-3 text-stone-700">
+								Очень много чужих заявок попадает к IT (склад, закупки). После
+								обновы что-то сломалось, нужно поправить бизнес-процессы и
+								почистить.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ РЕЗУЛЬТАТЫ ═══════ -->
+				<section id="results" class="space-y-6">
+					<div class="text-center">
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+						>
+							Результаты недели
+						</p>
+						<h2 class="mt-2 text-3xl font-bold text-stone-800">
+							Что сделал отдел за 12 — 18 мая
+						</h2>
+					</div>
+
+					<div class="grid gap-6 lg:grid-cols-[1fr_1fr]">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Задачи по статусам
+							</p>
+							<div class="mt-4 h-[260px]">
+								<canvas id="tasksChart"></canvas>
+							</div>
+						</article>
+
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Нагрузка по сотрудникам
+							</p>
+							<div class="mt-4 h-[260px]">
+								<canvas id="peopleChart"></canvas>
+							</div>
+						</article>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Сайт / клиенты
+							</p>
+							<div class="mt-4 space-y-3">
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										ТЗ v2 ✓
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Сервисная архитектура
+									</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Шаблон ✓
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Оплата проведена
+									</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Учебный центр
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Автозапись в Б24
+									</div>
+								</div>
+							</div>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								1С / отчёты
+							</p>
+							<div class="mt-4 space-y-3">
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Юр.отдел макеты ✓
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Шаблоны соглашений
+									</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										План-факт АСК ✓
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										С НДС, на боевой
+									</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Отчёт логистики
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Никита — 40% готовности
+									</div>
+								</div>
+							</div>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Склад / WMS
+							</p>
+							<div class="mt-4 space-y-3">
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										DataMobile
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										На копии, тестируем
+									</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Клеверенс лиц. ✓
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Новая корректная лицензия
+									</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Старый сервер ✓
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Подключён, переименован
+									</div>
+								</div>
+							</div>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Битрикс24 / прочее
+							</p>
+							<div class="mt-4 space-y-3">
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Опрос HR ✓
+									</div>
+									<div class="mt-1 text-sm text-stone-600">Форма в Б24</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Билайн
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										+11 карт заблокировано
+									</div>
+								</div>
+								<div class="rounded-2xl bg-stone-50 p-4">
+									<div class="text-base font-semibold text-stone-800">
+										Москва (зам ком.)
+									</div>
+									<div class="mt-1 text-sm text-stone-600">
+										Ноут настроен, диски
+									</div>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ РЕШЕНИЯ ═══════ -->
+				<section id="decisions" class="space-y-6">
+					<div
+						class="rounded-[2rem] bg-gradient-to-r from-stone-900 to-stone-700 p-8 text-white shadow-2xl"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+						>
+							Next step
+						</p>
+						<h2 class="mt-3 text-3xl font-bold">
+							Решения, которые нужны на встрече
+						</h2>
+						<div class="mt-6 grid gap-4 lg:grid-cols-3">
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									1. Учебный центр — переход на оплату
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Если тестирование автозаписи пройдёт штатно до конца мая —
+									согласовать переход к коммерческому тарифу и подключить
+									клиента.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">2. Регламент пересортицы</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Решение: чинить расчёт или вообще убрать пересортицу из
+									механизма цен партий. Нужен ответ от Рината о том, что было
+									сделано с регистром после обновления.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">3. C-сегмент через сайт</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Запрос Бурмистровой: ограничить клиентов C-сегмента заказами
+									только через сайт. Нужно решение по архитектуре и приоритет в
+									дорожной карте.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									4. Корректировки реализации в торговле
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Маркированные возвраты «теряются»: подписывается в
+									бухгалтерии, торговля не видит. Согласовать передачу
+									транспортных контейнеров обратно в торговлю.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									5. Курс валют — служебный пользователь
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Регламентное задание падает. Пока — ручной запуск. Нужна
+									доработка аутентификации служебного пользователя на новой
+									платформе.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">6. Подведение итогов 22 мая</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Встреча по итогам месяца попадает на пятницу — переносим на
+									следующую неделю, готовим срез апрель+май.
+								</p>
+							</article>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<script>
+			// ── SLA Chart (bar + line) ──
+			new Chart(document.getElementById('slaChart'), {
+				type: 'bar',
+				data: {
+					labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май*'],
+					datasets: [
+						{
+							label: 'Заявки',
+							data: [215, 360, 331, 274, 68],
+							backgroundColor: [
+								'#a8a29e',
+								'#78716c',
+								'#57534e',
+								'#44403c',
+								'#d6d3d1',
+							],
+							borderRadius: 12,
+						},
+						{
+							label: 'SLA %',
+							type: 'line',
+							data: [80.0, 82.78, 81.87, 80.29, 76.47],
+							yAxisID: 'y1',
+							borderColor: '#d97706',
+							backgroundColor: '#d97706',
+							tension: 0.35,
+							pointRadius: 6,
+							pointBackgroundColor: '#d97706',
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: { position: 'bottom' },
+						tooltip: {
+							callbacks: {
+								title: ctx =>
+									ctx[0].label +
+									(ctx[0].label === 'Май*' ? ' (месяц в процессе)' : ''),
+							},
+						},
+					},
+					scales: {
+						y: { beginAtZero: true, title: { display: true, text: 'Заявки' } },
+						y1: {
+							position: 'right',
+							min: 70,
+							max: 90,
+							grid: { drawOnChartArea: false },
+							title: { display: true, text: 'SLA %' },
+						},
+					},
+				},
+			})
+
+			// ── Systems Doughnut ──
+			new Chart(document.getElementById('systemsChart'), {
+				type: 'doughnut',
+				data: {
+					labels: [
+						'1С (54,9%)',
+						'Техника (22,0%)',
+						'Битрикс24 (9,3%)',
+						'Оборудование (8,1%)',
+						'Прочее (5,8%)',
+					],
+					datasets: [
+						{
+							data: [701, 281, 119, 103, 74],
+							backgroundColor: [
+								'#57534e',
+								'#a8a29e',
+								'#d6d3d1',
+								'#78716c',
+								'#e7e5e4',
+							],
+							borderWidth: 0,
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: {
+							position: 'bottom',
+							labels: { boxWidth: 12, padding: 10, font: { size: 11 } },
+						},
+					},
+					cutout: '60%',
+				},
+			})
+
+			// ── Tasks Doughnut ──
+			new Chart(document.getElementById('tasksChart'), {
+				type: 'doughnut',
+				data: {
+					labels: [
+						'Выполнено (17)',
+						'В работе (20)',
+						'Заблокировано (4)',
+						'Запланировано (5)',
+					],
+					datasets: [
+						{
+							data: [17, 20, 4, 5],
+							backgroundColor: ['#16a34a', '#ca8a04', '#dc2626', '#2563eb'],
+							borderWidth: 0,
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: {
+							position: 'bottom',
+							labels: { boxWidth: 12, padding: 10, font: { size: 12 } },
+						},
+					},
+					cutout: '55%',
+				},
+			})
+
+			// ── People Bar ──
+			new Chart(document.getElementById('peopleChart'), {
+				type: 'bar',
+				data: {
+					labels: [
+						'Никита Замятин',
+						'Ринат',
+						'Павел',
+						'Евгения',
+						'Денис',
+						'Александр',
+						'Никита (ассистент)',
+					],
+					datasets: [
+						{
+							label: 'Выполнено',
+							data: [4, 3, 5, 3, 2, 3, 1],
+							backgroundColor: '#16a34a',
+							borderRadius: 6,
+						},
+						{
+							label: 'В работе',
+							data: [4, 3, 3, 3, 3, 2, 3],
+							backgroundColor: '#ca8a04',
+							borderRadius: 6,
+						},
+						{
+							label: 'Заблок./Запл.',
+							data: [2, 1, 1, 2, 1, 1, 0],
+							backgroundColor: '#94a3b8',
+							borderRadius: 6,
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					indexAxis: 'y',
+					plugins: {
+						legend: {
+							position: 'bottom',
+							labels: { boxWidth: 12, font: { size: 11 } },
+						},
+					},
+					scales: {
+						x: { stacked: true, beginAtZero: true },
+						y: { stacked: true },
+					},
+				},
+			})
+
+			// ── Active nav link ──
+			const sections = [...document.querySelectorAll('main section[id]')]
+			const navLinks = [...document.querySelectorAll('.nav-link')]
+			const setActiveLink = () => {
+				const current =
+					sections.findLast(s => window.scrollY >= s.offsetTop - 140) ||
+					sections[0]
+				navLinks.forEach(l =>
+					l.classList.toggle(
+						'active',
+						l.getAttribute('href') === `#${current.id}`,
+					),
+				)
+			}
+			setActiveLink()
+			window.addEventListener('scroll', setActiveLink, { passive: true })
+		</script>
+	</body>
+</html>
