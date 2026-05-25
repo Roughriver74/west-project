@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отчет IT-отдела West: 19 — 25 мая 2026</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%); color: #44403c; }
+    .nav-link.active { color: #1c1917; border-bottom-color: #78716c; font-weight: 600; }
+  </style>
+</head>
+<body class="antialiased">
+  <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+    <header class="py-8 text-center">
+      <div class="inline-block rounded-full bg-stone-800 px-4 py-2 text-sm font-semibold text-white">Компания WEST</div>
+      <h1 class="mt-4 text-5xl font-bold text-stone-800">Отчет IT-отдела</h1>
+      <p class="mt-2 text-xl text-stone-600">Итоги недели и ключевые проекты</p>
+    </header>
+
+    <nav class="sticky top-0 z-20 mb-8 border-b border-stone-300 bg-white/90 shadow-sm backdrop-blur-md">
+      <div class="flex justify-center overflow-x-auto px-4">
+        <a href="#overview" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Обзор</a>
+        <a href="#sla" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">SLA</a>
+        <a href="#site" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Сайт</a>
+        <a href="#warehouse" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Склад / WMS</a>
+        <a href="#1c" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">1С</a>
+        <a href="#reports" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Аналитика</a>
+        <a href="#quarter" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Квартал</a>
+        <a href="#decisions" class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600">Решения</a>
+      </div>
+    </nav>
+
+    <main class="space-y-16 pb-16">
+
+      <!-- ═══════ OVERVIEW ═══════ -->
+      <section id="overview" class="space-y-8">
+        <div class="rounded-3xl bg-gradient-to-r from-stone-800 to-stone-600 p-8 text-white shadow-xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Executive summary</p>
+          <h2 class="mt-3 text-3xl font-bold sm:text-4xl">Сайт на микросервисах, DataMobile на хранилище, итоги квартала подведены</h2>
+          <p class="mt-4 max-w-4xl text-lg leading-relaxed text-stone-100">
+            Главное за неделю — переход проекта сайта на сервисную (микросервисную) архитектуру: отдельный сайт торгующей организации и отдельный личный кабинет, взаимодействие через наши сервисы. ТЗ v2 готово, шаблон оплачен, развёрнут дев-сервер. Сайт учебного центра: автозапись с передачей в Битрикс24 и привязкой к мероприятию — тест до конца мая, далее платный тариф для клиента. DataMobile накатили на хранилище (это подсистема, а не расширение). Новое требование ВЭД: документ о предстоящих поставках — срок до 1 июня. Подвели итоги квартала и распределили работу на период отпусков (Никита Замятин и Евгения уходят).
+          </p>
+          <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
+            <span>📅 19 — 25 мая 2026</span>
+            <span>📊 1 330 заявок с начала года</span>
+            <span>📈 Май: 119 заявок, SLA 79,83%</span>
+            <span>🌐 Сайт: микросервисы</span>
+          </div>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
+          <article class="rounded-2xl border-t-4 border-blue-500 bg-white p-6 shadow-lg">
+            <p class="text-5xl font-bold text-stone-800">1 330</p>
+            <p class="mt-2 font-medium text-stone-600">Заявок 2026</p>
+            <p class="mt-1 text-sm font-semibold text-red-500">243 превышения (18,3%)</p>
+            <p class="mt-1 text-xs text-stone-400">+52 за неделю</p>
+          </article>
+          <article class="rounded-2xl border-t-4 border-amber-500 bg-white p-6 shadow-lg">
+            <p class="text-5xl font-bold text-stone-800">79,8%</p>
+            <p class="mt-2 font-medium text-stone-600">SLA май (119 заявок)</p>
+            <p class="mt-1 text-sm font-semibold text-emerald-600">↑ +3,4 п.п. к прош. отчёту</p>
+            <p class="mt-1 text-xs text-stone-400">Месяц ещё в процессе</p>
+          </article>
+          <article class="rounded-2xl border-t-4 border-emerald-500 bg-white p-6 shadow-lg">
+            <p class="text-2xl font-bold text-stone-800">Сайт ✓</p>
+            <p class="mt-2 font-medium text-stone-600">Микросервисы</p>
+            <p class="mt-3 text-sm text-emerald-600">ТЗ v2 + дев-сервер</p>
+          </article>
+          <article class="rounded-2xl border-t-4 border-violet-500 bg-white p-6 shadow-lg">
+            <p class="text-2xl font-bold text-stone-800">DataMobile</p>
+            <p class="mt-2 font-medium text-stone-600">Накатан на хранилище</p>
+            <p class="mt-3 text-sm text-amber-600">Донастройка веб-сервера</p>
+          </article>
+          <article class="rounded-2xl border-t-4 border-rose-500 bg-white p-6 shadow-lg">
+            <p class="text-2xl font-bold text-stone-800">ВЭД</p>
+            <p class="mt-2 font-medium text-stone-600">Документ о поставках</p>
+            <p class="mt-3 text-sm text-rose-600">Срок до 1 июня</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════ SLA ═══════ -->
+      <section id="sla" class="space-y-6">
+        <div class="text-center">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Операционная поддержка</p>
+          <h2 class="mt-2 text-3xl font-bold text-stone-800">SLA и нагрузка 2026</h2>
+          <p class="mt-2 text-sm text-stone-500">Данные за январь–май 2026. Май: 119 заявок, SLA 79,83%</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <div class="mb-4 flex items-center justify-between">
+              <div>
+                <h3 class="text-xl font-semibold text-stone-800">Динамика по месяцам</h3>
+                <p class="text-sm text-stone-500">Заявки и SLA, январь–май 2026</p>
+              </div>
+              <span class="rounded-full bg-amber-50 px-3 py-1 text-sm font-medium text-amber-700">Год SLA ≈ 81,29%</span>
+            </div>
+            <div class="h-[320px]">
+              <canvas id="slaChart"></canvas>
+            </div>
+          </article>
+
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <h3 class="text-xl font-semibold text-stone-800">Распределение</h3>
+            <p class="text-sm text-stone-500">По системам за 2026</p>
+            <div class="mt-4 h-[260px]">
+              <canvas id="systemsChart"></canvas>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-4">
+          <div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+            <p class="text-sm text-stone-500">Всего 2026</p>
+            <p class="mt-1 text-3xl font-bold text-stone-800">1 330</p>
+            <p class="mt-1 text-sm text-stone-500">заявок</p>
+          </div>
+          <div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+            <p class="text-sm text-stone-500">Решено в срок</p>
+            <p class="mt-1 text-3xl font-bold text-emerald-700">1 056</p>
+            <p class="mt-1 text-sm text-stone-500">81,29% SLA (год)</p>
+          </div>
+          <div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+            <p class="text-sm text-stone-500">Превышение</p>
+            <p class="mt-1 text-3xl font-bold text-red-700">243</p>
+            <p class="mt-1 text-sm text-stone-500">18,27%</p>
+          </div>
+          <div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+            <p class="text-sm text-stone-500">Май (в процессе)</p>
+            <p class="mt-1 text-3xl font-bold text-stone-800">119</p>
+            <p class="mt-1 text-sm text-amber-600">SLA 79,83%</p>
+          </div>
+        </div>
+
+        <article class="rounded-3xl bg-white p-6 shadow-xl">
+          <h3 class="text-xl font-semibold text-stone-800">Топ-категории обращений</h3>
+          <p class="text-sm text-stone-500">По системам и обратившимся отделам — данные с дашборда 2026</p>
+          <div class="mt-5 grid gap-4 md:grid-cols-2">
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">Системы</p>
+              <ul class="mt-3 space-y-2 text-sm text-stone-700">
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>1С</span><span class="font-semibold">732 (55,04%)</span></li>
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>Техника / программа</span><span class="font-semibold">293 (22,03%)</span></li>
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>Битрикс24</span><span class="font-semibold">124 (9,32%)</span></li>
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>Проблема оборудования</span><span class="font-semibold">105 (7,89%)</span></li>
+                <li class="flex justify-between"><span>Отчёты / прочее</span><span class="font-semibold">76 (5,72%)</span></li>
+              </ul>
+            </div>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">Отделы (ТОП)</p>
+              <ul class="mt-3 space-y-2 text-sm text-stone-700">
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>Розничные продажи</span><span class="font-semibold">189 (14,21%)</span></li>
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>Бухгалтерия</span><span class="font-semibold">146 (10,98%)</span></li>
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>Склад</span><span class="font-semibold">122 (9,17%)</span></li>
+                <li class="flex justify-between border-b border-stone-100 pb-1"><span>Группа сопровождения</span><span class="font-semibold">75 (5,64%)</span></li>
+                <li class="flex justify-between"><span>Отдел закупок</span><span class="font-semibold">63 (4,74%)</span></li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- ═══════ SITE ═══════ -->
+      <section id="site" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Флагманский проект</p>
+            <h2 class="mt-2 text-3xl font-bold text-stone-800">Сайт и учебный центр</h2>
+          </div>
+          <span class="inline-flex w-fit rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-800">✓ Сервисная архитектура</span>
+        </div>
+
+        <div class="rounded-3xl bg-gradient-to-r from-blue-700 to-stone-700 p-8 text-white shadow-xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-blue-100">🏗️ Новая архитектура</p>
+          <h3 class="mt-2 text-2xl font-bold">Микросервисы вместо монолита</h3>
+          <p class="mt-3 max-w-4xl text-base leading-relaxed text-blue-50">
+            Подготовлена новая версия ТЗ. Вместо единого сайта — два независимых ресурса: сайт торгующей организации и отдельный личный кабинет. 1С взаимодействует только с сайтом личного кабинета, заказы ходят через наши сервисы. Возможно, будем переписывать логику обмена. Фронт по сайту делают подрядчики, личный кабинет и сторону 1С — мы.
+          </p>
+          <div class="mt-6 grid gap-4 md:grid-cols-3">
+            <div class="rounded-2xl bg-white/10 p-4">
+              <p class="text-sm font-semibold">Сайт торг. организации</p>
+              <p class="mt-1 text-sm text-blue-50">Витрина, подрядчики</p>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-4">
+              <p class="text-sm font-semibold">Личный кабинет</p>
+              <p class="mt-1 text-sm text-blue-50">Отдельный ресурс, сторона 1С — мы</p>
+            </div>
+            <div class="rounded-2xl bg-white/10 p-4">
+              <p class="text-sm font-semibold">Слой сервисов</p>
+              <p class="mt-1 text-sm text-blue-50">Заказы через наши сервисы (возможно — шина)</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <article class="rounded-3xl bg-white p-8 shadow-xl">
+            <h3 class="text-xl font-semibold text-stone-800">Статус и следующие шаги</h3>
+            <div class="mt-6 grid gap-4 md:grid-cols-2">
+              <div class="rounded-2xl bg-emerald-50 p-5">
+                <p class="text-sm font-semibold text-emerald-700">ТЗ v2 ✓</p>
+                <p class="mt-2 text-sm text-stone-700">Готово с учётом сервисной архитектуры. Будет разослано команде на ознакомление.</p>
+              </div>
+              <div class="rounded-2xl bg-emerald-50 p-5">
+                <p class="text-sm font-semibold text-emerald-700">Шаблон оплачен ✓</p>
+                <p class="mt-2 text-sm text-stone-700">Зависшая заявка закрыта — работы разблокированы.</p>
+              </div>
+              <div class="rounded-2xl bg-blue-50 p-5">
+                <p class="text-sm font-semibold text-blue-700">Дев-сервер ✓</p>
+                <p class="mt-2 text-sm text-stone-700">Стартовали работы по инфраструктуре — разворачивание дев-сервера.</p>
+              </div>
+              <div class="rounded-2xl bg-amber-50 p-5">
+                <p class="text-sm font-semibold text-amber-700">Куратор продукта</p>
+                <p class="mt-2 text-sm text-stone-700">Денис в роли руководителя продукта — коммуникация между отделами и исполнителем. C-сегмент: ограничить заказами через сайт.</p>
+              </div>
+            </div>
+            <div class="mt-6 rounded-2xl bg-stone-50 p-4 text-sm text-stone-600">
+              На следующей неделе определяется исполнитель-фаворит по фронту. Интеграция «личный кабинет ↔ 1С» — крупная задача, вероятно с разработкой шины, фокус 3-го квартала.
+            </div>
+          </article>
+
+          <aside class="rounded-3xl bg-gradient-to-br from-emerald-700 to-stone-800 p-8 text-white shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-emerald-200">🎓 Учебный центр</p>
+            <h3 class="mt-3 text-2xl font-bold">Автозапись работает</h3>
+            <p class="mt-3 text-sm leading-relaxed text-emerald-50">
+              Автоматическая запись с сайта передаётся в Битрикс24 и привязывается к конкретному мероприятию (участники). Процесс от заявки до обработки идёт корректно, поля заполняются.
+            </p>
+            <div class="mt-6 space-y-4">
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-lg font-semibold">Тест до конца мая</p>
+                <p class="mt-2 text-sm text-emerald-50">Если всё ОК — включаем платный тариф для клиента.</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-lg font-semibold">Новый сертификат ✓</p>
+                <p class="mt-2 text-sm text-emerald-50">Готов новый дизайн. С Олегом Дроздовым — обсудить удобный ввод участников (сейчас вручную).</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-lg font-semibold">Описание процессов</p>
+                <p class="mt-2 text-sm text-emerald-50">Денис передал Богаткиной, вносит правки.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ═══════ СКЛАД / WMS ═══════ -->
+      <section id="warehouse" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Проект</p>
+            <h2 class="mt-2 text-3xl font-bold text-stone-800">Склад и WMS</h2>
+          </div>
+          <span class="inline-flex w-fit rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-violet-800">DataMobile на хранилище</span>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">DataMobile</p>
+            <p class="mt-3 text-stone-700">Ринат накатил на наше хранилище, изучает документацию. Это подсистема (как Битрикс/МДЛП), а не расширение — нужна донастройка веб-сервера. ТСД для тестов передаёт Максим. Внимание: после внедрения на боевую выкрутить будет сложно.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Клеверенс — серии</p>
+            <p class="mt-3 text-stone-700">Подмена серий продолжается на старых документах (середина апреля). Костя пояснил: менеджер указывает партию, со склада берут предыдущую. Нужна именно проверка серий на ТСД.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Сущев / аутсорс</p>
+            <p class="mt-3 text-stone-700">Никита Замятин напишет Сущеву: для полного расчёта нужно доделать контроль серий. Если не сделает — экономим и переходим на DataMobile.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Подбор / отбор (Пигузов)</p>
+            <p class="mt-3 text-stone-700">Запуск подбора согласован (оптимизация склада). По размещению — аналогичную настройку сделать для отбора. Тестирование у Пигузова идёт штатно.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Приходные с сериями</p>
+            <p class="mt-3 text-stone-700">Идея — поставщики присылают электронный документ/структурный файл с сериями до прихода товара. Денис организует встречу с Пигузовым; есть скепсис по реализуемости.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">AI-приёмка (альтернатива)</p>
+            <p class="mt-3 text-stone-700">Прорабатываем своё решение: сканирование/фото приходных документов с автосозданием в 1С (агент/AI). Денис замеряет метрики ручного ввода серий для сравнения.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Wi-Fi на складе ✓</p>
+            <p class="mt-3 text-stone-700">Провод + коммутатор сделаны, покрытие полное, работает стабильно.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Возвраты маркированных</p>
+            <p class="mt-3 text-stone-700">Корректировки реализации подписываются в бухгалтерии, торговля не видит. Ринат прорабатывает передачу контейнеров обратно в торговлю.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════ 1С ═══════ -->
+      <section id="1c" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">1С / ERP</p>
+            <h2 class="mt-2 text-3xl font-bold text-stone-800">Учётка: сделано и проблемы</h2>
+          </div>
+          <span class="inline-flex w-fit rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-800">Документ ВЭД до 1 июня</span>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+          <article class="rounded-3xl bg-white p-8 shadow-xl">
+            <h3 class="text-xl font-semibold text-stone-800">Сделано / в работе</h3>
+            <div class="mt-5 grid gap-4 md:grid-cols-2">
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-700">Яндекс — статусы доставки ✓</p>
+                <p class="mt-2 text-sm text-stone-600">Механизм Алексея Соколова залит в боевую. Трек-номер и статус доставки прямо в заказе (наши водители).</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-700">Проверка ЭДО у контрагента</p>
+                <p class="mt-2 text-sm text-stone-600">Сервис проверки подключения к ЭДО (бесплатно). Далее — запрет продаж клиентам без ЭДО.</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-700">Скидка на документ % ✓</p>
+                <p class="mt-2 text-sm text-stone-600">Нашли механизм «изменить цену на процент» в заказе (запрос Виктории Замуловой).</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-700">Отчёт для склада (адреса/остатки) ✓</p>
+                <p class="mt-2 text-sm text-stone-600">Паша сделал, Красуцкий принял. Расчётный листок (зуб) — через расширение.</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-700">Недостачи: ячейка/упаковка ✓</p>
+                <p class="mt-2 text-sm text-stone-600">В ордере при выборе серии автоматически подставляется ячейка и упаковка.</p>
+              </div>
+              <div class="rounded-2xl bg-stone-50 p-4">
+                <p class="text-sm font-semibold text-stone-700">Складские группы из Excel</p>
+                <p class="mt-2 text-sm text-stone-600">Обработка для Красуцкого — загрузка номенклатуры и складских групп.</p>
+              </div>
+            </div>
+          </article>
+
+          <aside class="rounded-3xl bg-gradient-to-br from-rose-700 to-stone-800 p-8 text-white shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-rose-200">⚠️ Проблемы и срочное</p>
+            <div class="mt-6 space-y-4">
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-lg font-semibold">Документ ВЭД о поставках</p>
+                <p class="mt-2 text-sm text-rose-50">Новое требование ФЗ — за 2 дня до ввоза в РФ. Бухгалтерия не может (нет заказов). Делаем выгрузку XML из торговли для загрузки в налоговую. Срок до 1 июня.</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-lg font-semibold">Регламент пересортицы</p>
+                <p class="mt-2 text-sm text-rose-50">Не работает с января, цены кривые (средняя 17 ₽ вместо 24 ₽). Ринат чинит расчёт (пересортицу оставляем — видеть ошибки склада).</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-lg font-semibold">Дубликаты контрагентов</p>
+                <p class="mt-2 text-sm text-rose-50">3 источника: выписки банка, заказы сайта, приглашения ЭДО. Начинаем с выписок — отключить автосоздание, обучить бухгалтеров.</p>
+              </div>
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-lg font-semibold">Счёт-фактуры и курс валют</p>
+                <p class="mt-2 text-sm text-rose-50">Задвоились номера СФ — сверяем с менеджерами/Еленой (книга покупок). Курс валют падает — Паша допиливает аутентификацию служебного пользователя.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <!-- ═══════ АНАЛИТИКА / BITRIX ═══════ -->
+      <section id="reports" class="space-y-6">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Аналитика и CRM</p>
+            <h2 class="mt-2 text-3xl font-bold text-stone-800">Отчёты, дашборды, Битрикс24</h2>
+          </div>
+          <span class="inline-flex w-fit rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800">Дашборд склада: +5 вкладок</span>
+        </div>
+
+        <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Дашборд склада</p>
+            <p class="mt-3 text-stone-700">Никита К.: +5 новых вкладок — приёмка, кладовщики, доставка, зоны. Автоматизированный борт для Красуцкого (часть показателей).</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Отчёт по логистике</p>
+            <p class="mt-3 text-stone-700">Готов на ~90%. Проблема задвоения сумм по заданиям на перевозку — Ринат проверяет привязку к реализации. Данные сильно расходятся с тем, что присылали раньше.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Опрос HR + воронки</p>
+            <p class="mt-3 text-stone-700">Опрос для эйчара готов. Воронка тендеров «гуляет» — даже код не помогает; ждём Битрикс/привлекаем Alia. Заявки чужих отделов попадают в IT.</p>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Ортодонтия</p>
+            <p class="mt-3 text-stone-700">Воронка проработки клиентов запущена. Задачи: выгрузка ABC и сумм заказов в карточку, загрузка старых заказов 2023–2025 для полной картины.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════ КВАРТАЛ ═══════ -->
+      <section id="quarter" class="space-y-6">
+        <div class="text-center">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Стратегия</p>
+          <h2 class="mt-2 text-3xl font-bold text-stone-800">Итоги квартала и фокусы Q2</h2>
+          <p class="mt-2 text-sm text-stone-500">Подведены на индивидуальных встречах с командой</p>
+        </div>
+
+        <div class="grid gap-6 lg:grid-cols-3">
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-emerald-700">Сделано (Q1–Q2)</p>
+            <ul class="mt-4 space-y-2 text-sm text-stone-700">
+              <li>• Каталог услуг, сценарий выхода</li>
+              <li>• Описание закупок и логистики</li>
+              <li>• Метрики водителей</li>
+              <li>• Платёжный календарь, маркировка</li>
+              <li>• СДЭК / Деловые линии (Ринат)</li>
+              <li>• Учебный центр, воронка ортодонтии</li>
+              <li>• Wi-Fi и резерв-связь на складе</li>
+            </ul>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-amber-700">Фокусы до конца Q2 (июнь)</p>
+            <ul class="mt-4 space-y-2 text-sm text-stone-700">
+              <li>• Аудит по финансам — подготовка</li>
+              <li>• Описание оборудования и сервиса</li>
+              <li>• Статусы доставки из Яндекса (финал)</li>
+              <li>• Документ ВЭД о поставках</li>
+              <li>• Старт интеграции ЛК ↔ 1С</li>
+              <li>• Резервные копии (раз в неделю)</li>
+            </ul>
+          </article>
+          <article class="rounded-3xl bg-white p-6 shadow-xl">
+            <p class="text-sm font-semibold uppercase tracking-wide text-violet-700">Команда и люди</p>
+            <ul class="mt-4 space-y-2 text-sm text-stone-700">
+              <li>• Никита Замятин — отпуск 2 недели</li>
+              <li>• Евгения — отпуск с 8-го (2 недели)</li>
+              <li>• Павел замещает по 1С, Ринат+Паша на 1 линии</li>
+              <li>• Денис курирует сайт + аудит</li>
+              <li>• Никита К. растёт, обсуждение ЗП</li>
+              <li>• Александр — машина для аудиторов (Jump)</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- ═══════ РЕШЕНИЯ ═══════ -->
+      <section id="decisions" class="space-y-6">
+        <div class="rounded-[2rem] bg-gradient-to-r from-stone-900 to-stone-700 p-8 text-white shadow-2xl">
+          <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300">Next step</p>
+          <h2 class="mt-3 text-3xl font-bold">Решения, которые нужны на встрече</h2>
+          <div class="mt-6 grid gap-4 lg:grid-cols-3">
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">1. Документ ВЭД о поставках</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Жёсткий срок до 1 июня. Согласовать механизм: выгрузка XML из торговли → бухгалтерия загружает в налоговую. Нужен пример XML.</p>
+            </article>
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">2. Учебный центр → оплата</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Если тест автозаписи пройдёт до конца мая — переводим клиента на платный тариф.</p>
+            </article>
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">3. WMS: DataMobile vs Клеверенс</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">DataMobile сложно «выкрутить» после боевой. Решить: даём Сущеву последний шанс на контроль серий или переходим на DataMobile.</p>
+            </article>
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">4. Приёмка серий: модуль vs AI</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Встреча с Пигузовым по приходным документам + оценка своего AI-решения (сканирование). Выбрать направление по метрикам.</p>
+            </article>
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">5. Покрытие отпусков</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Никита Замятин и Евгения уходят. Чётко собрать спринт для Павла, распределить 1 линию (Ринат/Паша), взаимозаменяемость по серверам.</p>
+            </article>
+            <article class="rounded-2xl bg-white/10 p-5">
+              <p class="text-lg font-semibold">6. Коммуникации и ответственные</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Внедрить процесс «идея → согласование руководителем → заявка → рабочая группа». Назначать ответственного-заказчика (кейс ABC завис без владельца).</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    // ── SLA Chart (bar + line) ──
+    new Chart(document.getElementById('slaChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май*'],
+        datasets: [
+          { label: 'Заявки', data: [215, 360, 331, 274, 119], backgroundColor: ['#a8a29e','#78716c','#57534e','#44403c','#d6d3d1'], borderRadius: 12 },
+          { label: 'SLA %', type: 'line', data: [80.0, 82.78, 81.87, 80.29, 79.83], yAxisID: 'y1', borderColor: '#d97706', backgroundColor: '#d97706', tension: 0.35, pointRadius: 6, pointBackgroundColor: '#d97706' }
+        ]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { title: (ctx) => ctx[0].label + (ctx[0].label === 'Май*' ? ' (месяц в процессе)' : '') } } },
+        scales: {
+          y: { beginAtZero: true, title: { display: true, text: 'Заявки' } },
+          y1: { position: 'right', min: 70, max: 90, grid: { drawOnChartArea: false }, title: { display: true, text: 'SLA %' } }
+        }
+      }
+    });
+
+    // ── Systems Doughnut ──
+    new Chart(document.getElementById('systemsChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['1С (55,0%)', 'Техника (22,0%)', 'Битрикс24 (9,3%)', 'Оборудование (7,9%)', 'Прочее (5,7%)'],
+        datasets: [{ data: [732, 293, 124, 105, 76], backgroundColor: ['#57534e','#a8a29e','#d6d3d1','#78716c','#e7e5e4'], borderWidth: 0 }]
+      },
+      options: {
+        responsive: true, maintainAspectRatio: false,
+        plugins: { legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } } },
+        cutout: '60%'
+      }
+    });
+
+    // ── Active nav link ──
+    const sections = [...document.querySelectorAll('main section[id]')];
+    const navLinks = [...document.querySelectorAll('.nav-link')];
+    const setActiveLink = () => {
+      const current = sections.findLast(s => window.scrollY >= s.offsetTop - 140) || sections[0];
+      navLinks.forEach(l => l.classList.toggle('active', l.getAttribute('href') === `#${current.id}`));
+    };
+    setActiveLink();
+    window.addEventListener('scroll', setActiveLink, { passive: true });
+  </script>
+</body>
+</html>
