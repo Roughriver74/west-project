@@ -1,0 +1,936 @@
+<!doctype html>
+<html lang="ru" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Отчет IT-отдела West: 26 мая — 1 июня 2026</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+				font-family: 'Inter', sans-serif;
+				background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%);
+				color: #44403c;
+			}
+			.nav-link.active {
+				color: #1c1917;
+				border-bottom-color: #78716c;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body class="antialiased">
+		<div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<header class="py-8 text-center">
+				<div
+					class="inline-block rounded-full bg-stone-800 px-4 py-2 text-sm font-semibold text-white"
+				>
+					Компания WEST
+				</div>
+				<h1 class="mt-4 text-5xl font-bold text-stone-800">Отчет IT-отдела</h1>
+				<p class="mt-2 text-xl text-stone-600">
+					Итоги недели и ключевые проекты
+				</p>
+			</header>
+
+			<nav
+				class="sticky top-0 z-20 mb-8 border-b border-stone-300 bg-white/90 shadow-sm backdrop-blur-md"
+			>
+				<div class="flex justify-center overflow-x-auto px-4">
+					<a
+						href="#overview"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Обзор</a
+					>
+					<a
+						href="#sla"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>SLA</a
+					>
+					<a
+						href="#1c"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>1С / ВЭД</a
+					>
+					<a
+						href="#audit"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Аудит</a
+					>
+					<a
+						href="#bitrix"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Битрикс24</a
+					>
+					<a
+						href="#site"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Сайт</a
+					>
+					<a
+						href="#infra"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Инфраструктура</a
+					>
+					<a
+						href="#decisions"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600"
+						>Решения</a
+					>
+				</div>
+			</nav>
+
+			<main class="space-y-16 pb-16">
+				<!-- ═══════ OVERVIEW ═══════ -->
+				<section id="overview" class="space-y-8">
+					<div
+						class="rounded-3xl bg-gradient-to-r from-stone-800 to-stone-600 p-8 text-white shadow-xl"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200"
+						>
+							Executive summary
+						</p>
+						<h2 class="mt-3 text-3xl font-bold sm:text-4xl">
+							ЭДО на боевую, ВЭД-выгрузка к финишу, старт аудита по финансам
+						</h2>
+						<p class="mt-4 max-w-4xl text-lg leading-relaxed text-stone-100">
+							Никита Замятин в отпуске — нагрузку держат Павел и Ринат. Павел
+							завершил интеграцию проверки контрагентов через СБИС
+							(идентификатор хранится в настройках, обновляется автоматически) —
+							завтра выкатываем на боевую. Документ ВЭД о предстоящих поставках
+							готов, бета-версия с выгрузкой XML из торговли. Старый сервер
+							подключён, Ринат поднимает копии УТ/бухгалтерии/УПП для
+							финансового аудита. Ринат завершил доработки транспортных компаний
+							и взялся за маркируемую продукцию (распутывание заказов Жанны).
+							Евгения вернула в работу заявки по новой воронке сайтов Вест
+							Групп.
+						</p>
+						<div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
+							<span>📅 26 мая — 1 июня 2026</span>
+							<span>📊 1 378 заявок с начала года</span>
+							<span>📈 Май: 160 заявок, SLA 78,13%</span>
+							<span>🏖️ Никита Замятин в отпуске</span>
+						</div>
+					</div>
+
+					<div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
+						<article
+							class="rounded-2xl border-t-4 border-blue-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-5xl font-bold text-stone-800">1 378</p>
+							<p class="mt-2 font-medium text-stone-600">Заявок 2026</p>
+							<p class="mt-1 text-sm font-semibold text-red-500">
+								254 превышения (18,4%)
+							</p>
+							<p class="mt-1 text-xs text-stone-400">+48 за неделю</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-amber-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-5xl font-bold text-stone-800">78,1%</p>
+							<p class="mt-2 font-medium text-stone-600">
+								SLA май (160 заявок)
+							</p>
+							<p class="mt-1 text-sm font-semibold text-red-500">
+								↓ −1,7 п.п. к прош. отчёту
+							</p>
+							<p class="mt-1 text-xs text-stone-400">Месяц закрывается</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-emerald-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">ЭДО ✓</p>
+							<p class="mt-2 font-medium text-stone-600">
+								Проверка контрагентов
+							</p>
+							<p class="mt-3 text-sm text-emerald-600">Завтра на боевую</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-rose-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">ВЭД</p>
+							<p class="mt-2 font-medium text-stone-600">XML о поставках</p>
+							<p class="mt-3 text-sm text-rose-600">Бета завтра, отладка</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-violet-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">Аудит</p>
+							<p class="mt-2 font-medium text-stone-600">Финансовый</p>
+							<p class="mt-3 text-sm text-violet-600">Старый сервер ✓</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ SLA ═══════ -->
+				<section id="sla" class="space-y-6">
+					<div class="text-center">
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+						>
+							Операционная поддержка
+						</p>
+						<h2 class="mt-2 text-3xl font-bold text-stone-800">
+							SLA и нагрузка 2026
+						</h2>
+						<p class="mt-2 text-sm text-stone-500">
+							Данные за январь–май + начало июня 2026. Май: 160 заявок, SLA
+							78,13%
+						</p>
+					</div>
+
+					<div class="grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<div class="mb-4 flex items-center justify-between">
+								<div>
+									<h3 class="text-xl font-semibold text-stone-800">
+										Динамика по месяцам
+									</h3>
+									<p class="text-sm text-stone-500">
+										Заявки и SLA, январь–май 2026
+									</p>
+								</div>
+								<span
+									class="rounded-full bg-amber-50 px-3 py-1 text-sm font-medium text-amber-700"
+									>Год SLA ≈ 81,06%</span
+								>
+							</div>
+							<div class="h-[320px]">
+								<canvas id="slaChart"></canvas>
+							</div>
+						</article>
+
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<h3 class="text-xl font-semibold text-stone-800">
+								Распределение
+							</h3>
+							<p class="text-sm text-stone-500">По системам за 2026</p>
+							<div class="mt-4 h-[260px]">
+								<canvas id="systemsChart"></canvas>
+							</div>
+						</article>
+					</div>
+
+					<div class="grid gap-6 sm:grid-cols-4">
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Всего 2026</p>
+							<p class="mt-1 text-3xl font-bold text-stone-800">1 378</p>
+							<p class="mt-1 text-sm text-stone-500">заявок</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Решено в срок</p>
+							<p class="mt-1 text-3xl font-bold text-emerald-700">1 087</p>
+							<p class="mt-1 text-sm text-stone-500">81,06% SLA (год)</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Превышение</p>
+							<p class="mt-1 text-3xl font-bold text-red-700">254</p>
+							<p class="mt-1 text-sm text-stone-500">18,43%</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Май (закрывается)</p>
+							<p class="mt-1 text-3xl font-bold text-stone-800">160</p>
+							<p class="mt-1 text-sm text-amber-600">SLA 78,13%</p>
+						</div>
+					</div>
+
+					<article class="rounded-3xl bg-white p-6 shadow-xl">
+						<h3 class="text-xl font-semibold text-stone-800">
+							Топ-категории обращений
+						</h3>
+						<p class="text-sm text-stone-500">
+							По системам и обратившимся отделам — данные с дашборда 2026
+						</p>
+						<div class="mt-5 grid gap-4 md:grid-cols-2">
+							<div>
+								<p
+									class="text-xs font-semibold uppercase tracking-wide text-stone-500"
+								>
+									Системы
+								</p>
+								<ul class="mt-3 space-y-2 text-sm text-stone-700">
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>1С</span
+										><span class="font-semibold">759 (55,08%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Техника / программа</span
+										><span class="font-semibold">298 (21,63%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Битрикс24</span
+										><span class="font-semibold">130 (9,43%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Проблема оборудования</span
+										><span class="font-semibold">111 (8,06%)</span>
+									</li>
+									<li class="flex justify-between">
+										<span>Отчёты / сайты / прочее</span
+										><span class="font-semibold">43 (3,12%)</span>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<p
+									class="text-xs font-semibold uppercase tracking-wide text-stone-500"
+								>
+									Отделы (ТОП)
+								</p>
+								<ul class="mt-3 space-y-2 text-sm text-stone-700">
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Розничные продажи</span
+										><span class="font-semibold">198 (14,37%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Бухгалтерия</span
+										><span class="font-semibold">151 (10,96%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Склад</span
+										><span class="font-semibold">128 (9,29%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Группа сопровождения</span
+										><span class="font-semibold">66 (4,79%)</span>
+									</li>
+									<li class="flex justify-between">
+										<span>Отдел продаж</span
+										><span class="font-semibold">54 (3,92%)</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</article>
+				</section>
+
+				<!-- ═══════ 1С / ВЭД ═══════ -->
+				<section id="1c" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								1С / ERP
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								Финальная неделя по ВЭД и ЭДО
+							</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-800"
+							>ЭДО — завтра на боевую</span
+						>
+					</div>
+
+					<div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+						<article class="rounded-3xl bg-white p-8 shadow-xl">
+							<h3 class="text-xl font-semibold text-stone-800">
+								Ключевые задачи Павла
+							</h3>
+							<div class="mt-5 grid gap-4 md:grid-cols-2">
+								<div class="rounded-2xl bg-emerald-50 p-5">
+									<p class="text-sm font-semibold text-emerald-700">
+										Проверка контрагентов через СБИС ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Обработка собирает все данные, идентификатор СБИС
+										сохраняется в настройках конфигурации, если протух —
+										автоматически обновляется. Сегодня — наведение красоты,
+										завтра — накат на боевую.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-amber-50 p-5">
+									<p class="text-sm font-semibold text-amber-700">
+										Документ ВЭД (доп)
+									</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Сбор данных из торговли для выгрузки Excel/XML о предстоящей
+										поставке. К завтрашнему утру — бета на рабочей через
+										обработку заполнения. Далее отладка: что/как отправляется в
+										налоговую (бухгалтерия или сами).
+									</p>
+								</div>
+								<div class="rounded-2xl bg-blue-50 p-5">
+									<p class="text-sm font-semibold text-blue-700">
+										Загрузка из внешнего файла ✓
+									</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Типовой механизм перенесён в «Заказ на перемещение» — теперь
+										не только внешними обработками: ищет номенклатуру и
+										составляет документы.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-stone-100 p-5">
+									<p class="text-sm font-semibold text-stone-700">
+										Геокодирование (мелочь)
+									</p>
+									<p class="mt-2 text-sm text-stone-700">
+										Один адрес не определяется зонами доставки, хотя
+										долгота/широта есть. Разбирается сегодня.
+									</p>
+								</div>
+							</div>
+						</article>
+
+						<aside
+							class="rounded-3xl bg-gradient-to-br from-stone-800 to-stone-600 p-8 text-white shadow-xl"
+						>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+							>
+								Параллельно — Ринат
+							</p>
+							<div class="mt-6 space-y-4">
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">Транспортные компании ✓</p>
+									<p class="mt-2 text-sm text-stone-200">
+										На выходных доделал доработки, отписался в группе.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">Маркируемая продукция</p>
+									<p class="mt-2 text-sm text-stone-200">
+										«Распутывает клубок» по неизвестным реализациям. Жанна
+										уточнила — клиент забирает всё, нужно перераспределить.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">1 линия</p>
+									<p class="mt-2 text-sm text-stone-200">
+										Большой поток в личных сообщениях + заявки/почта —
+										разгребает за двоих, Павла подключает.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="text-lg font-semibold">
+										Закрытие мая + бухгалтерия
+									</p>
+									<p class="mt-2 text-sm text-stone-200">
+										Обновление бухгалтерии запустит вечером; удаление объектов —
+										на ночь (днём нагрузка на сервер доходила до 100%).
+									</p>
+								</div>
+							</div>
+						</aside>
+					</div>
+				</section>
+
+				<!-- ═══════ АУДИТ ═══════ -->
+				<section id="audit" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Корпоративные проекты
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								Финансовый аудит — старт инфраструктуры
+							</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-violet-100 px-4 py-2 text-sm font-semibold text-violet-800"
+							>Старый сервер: доступ выдан</span
+						>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Доступ и копии
+							</p>
+							<p class="mt-3 text-stone-700">
+								Александр выдал Ринату доступ к старому серверу. Ринат поднимает
+								копии УТ, бухгалтерий, УПП. Аудиторов в нашу боевую систему не
+								пускаем — работают на изолированной копии.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Машина для аудиторов
+							</p>
+							<p class="mt-3 text-stone-700">
+								Александр готовит отдельную рабочую машину с 1С, доступ к
+								бухгалтерии/УТ/гайке + Jump для внешнего входа.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Описание процессов
+							</p>
+							<p class="mt-3 text-stone-700">
+								Денис обновляет базу знаний по финансам, согласовывает
+								актуальность с Калабековой. Подключение к интервью аудиторов — в
+								июне.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ БИТРИКС ═══════ -->
+				<section id="bitrix" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								CRM
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">Битрикс24</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-emerald-100 px-4 py-2 text-sm font-semibold text-emerald-800"
+							>Заявки чинены</span
+						>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Заявки и воронка ✓
+							</p>
+							<p class="mt-3 text-stone-700">
+								Евгения разобралась с заявками с помощью Alia. Старые заявки
+								перераспределила (кроме тех, что в работе — после закрытия).
+								Воронка пошла корректно.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Сайты Вест Групп — новая воронка
+							</p>
+							<p class="mt-3 text-stone-700">
+								Запрос восстановить блок в IT-воронке: новая группа «Сайты Вест
+								Групп», ответственная — Алёна, автомаршрутизация. Заявок стало
+								много.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Ортодонтия — загрузка старых
+							</p>
+							<p class="mt-3 text-stone-700">
+								Старые заказы с 2023 г. — задача висит на руководителе, начнём
+								на следующей неделе. Сложность: нужно временно отключать
+								интеграцию для перевыгрузки. Далее — генератор продаж для
+								проработки.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Лиды учебного центра
+							</p>
+							<p class="mt-3 text-stone-700">
+								Заявка с сайта прицепилась к чужому мероприятию — Евгения
+								собирает пример, разбираемся, как выгружают.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								⚠️ Удаление компаний
+							</p>
+							<p class="mt-3 text-stone-700">
+								С аккаунта Евгении загадочно удалены 3 компании. Разбираемся в
+								причинах.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Новый интерфейс
+							</p>
+							<p class="mt-3 text-stone-700">
+								Жалобы Рината: лаги, неудобно открывать/закрывать задачи, читать
+								старые сообщения. Похоже на ограничение иностранного трафика.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Встреча с руководителями ✓
+							</p>
+							<p class="mt-3 text-stone-700">
+								Все довольны воронкой ортодонтии. В июне — тестовая работа, в
+								июле подключают других менеджеров и отделы.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								График отпусков (HR)
+							</p>
+							<p class="mt-3 text-stone-700">
+								Евгения готовит реализацию на базе готового бизнес-процесса.
+								Алла ищет старую версию для переиспользования.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ САЙТ ═══════ -->
+				<section id="site" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Проект
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								Сайт и подрядчики
+							</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800"
+							>Обзвон по программе лояльности</span
+						>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Программа лояльности
+							</p>
+							<p class="mt-3 text-stone-700">
+								Денис берёт на себя обзвон подрядчиков: какие предложения, цены,
+								сроки. Параллельно идёт выбор фаворита-разработчика сайта/ЛК.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Оборудование (описание)
+							</p>
+							<p class="mt-3 text-stone-700">
+								Денис почти закончил, едет на склад дописать детали. Шемякина
+								действительно уходит — успеть собрать инфу. Жизненный цикл
+								клиента — задел на июнь-июль.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								База знаний
+							</p>
+							<p class="mt-3 text-stone-700">
+								Дополнение описаниями процессов (метрики водителей, узкие
+								места). Сбор единого реестра узких мест по отделам.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ ИНФРАСТРУКТУРА / ЛЮДИ ═══════ -->
+				<section id="infra" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Инфраструктура и команда
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								Серверы, отчёты, новые сотрудники
+							</h2>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800"
+							>Никита З. в отпуске</span
+						>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Александр
+							</p>
+							<p class="mt-3 text-stone-700">
+								Новые сотрудники: подключение, инструкции, рабочие места. Старый
+								сервер: учётки и базы. Подготовка машины для аудиторов.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Никита Колегов
+							</p>
+							<p class="mt-3 text-stone-700">
+								Доработка отчёта по логистике (объединение заказов). Новая
+								задача — анализ изменения закупочных цен в разрезе поставщиков
+								за 2 года. Учёба SQL/iFlow.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Бэкапы и инфра
+							</p>
+							<p class="mt-3 text-stone-700">
+								Подготовка резервных копий раз в неделю на сервер Рината
+								(целевой срок — 10 июня). Резервные роутеры — после отпуска.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Команда продаж
+							</p>
+							<p class="mt-3 text-stone-700">
+								Уходят несколько менеджеров; вместо Бурмистровой никого не нашли
+								— из 4 сотрудников реально остаётся 1. Решение — на новом
+								руководителе.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ РЕШЕНИЯ ═══════ -->
+				<section id="decisions" class="space-y-6">
+					<div
+						class="rounded-[2rem] bg-gradient-to-r from-stone-900 to-stone-700 p-8 text-white shadow-2xl"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+						>
+							Next step
+						</p>
+						<h2 class="mt-3 text-3xl font-bold">
+							Решения, которые нужны на встрече
+						</h2>
+						<div class="mt-6 grid gap-4 lg:grid-cols-3">
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									1. Маршрутизация XML в налоговую (ВЭД)
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Бухгалтерия хочет сбросить с себя формирование. Решить: кто и
+									как отправляет XML — бухгалтерия, торговля или айтишка через
+									сервис.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									2. Удаление компаний из Битрикса
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									3 компании удалены из аккаунта Евгении без её действий. Нужен
+									разбор: причина, восстановление, защита.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									3. Подрядчики сайта / лояльность
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Согласовать критерии выбора подрядчика по программе лояльности
+									(Денис обзванивает). Выбор фаворита по фронту — на этой
+									неделе.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">4. Замена Бурмистровой</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Бренд-менеджер по оборудованию — решение за новым
+									руководителем. Без замены — риски для коммуникации с IT.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">5. Нагрузка на сервер</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Удаление объектов днём перегрузило сервер до 100%. Перенесли
+									на ночь — но нужен мониторинг и план «больших» операций.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									6. Ортодонтия — старые заказы
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Перевыгрузка требует отключения интеграции — подобрать окно,
+									оценить риски, согласовать срок (план: следующая неделя).
+								</p>
+							</article>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<script>
+			// ── SLA Chart (bar + line) ──
+			new Chart(document.getElementById('slaChart'), {
+				type: 'bar',
+				data: {
+					labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь*'],
+					datasets: [
+						{
+							label: 'Заявки',
+							data: [215, 360, 331, 274, 160, 1],
+							backgroundColor: [
+								'#a8a29e',
+								'#78716c',
+								'#57534e',
+								'#44403c',
+								'#d6d3d1',
+								'#e7e5e4',
+							],
+							borderRadius: 12,
+						},
+						{
+							label: 'SLA %',
+							type: 'line',
+							data: [80.0, 82.78, 81.87, 80.29, 78.13],
+							yAxisID: 'y1',
+							borderColor: '#d97706',
+							backgroundColor: '#d97706',
+							tension: 0.35,
+							pointRadius: 6,
+							pointBackgroundColor: '#d97706',
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: { position: 'bottom' },
+						tooltip: {
+							callbacks: {
+								title: ctx =>
+									ctx[0].label +
+									(ctx[0].label === 'Июнь*' ? ' (только стартовал)' : ''),
+							},
+						},
+					},
+					scales: {
+						y: { beginAtZero: true, title: { display: true, text: 'Заявки' } },
+						y1: {
+							position: 'right',
+							min: 70,
+							max: 105,
+							grid: { drawOnChartArea: false },
+							title: { display: true, text: 'SLA %' },
+						},
+					},
+				},
+			})
+
+			// ── Systems Doughnut ──
+			new Chart(document.getElementById('systemsChart'), {
+				type: 'doughnut',
+				data: {
+					labels: [
+						'1С (55,1%)',
+						'Техника (21,6%)',
+						'Битрикс24 (9,4%)',
+						'Оборудование (8,1%)',
+						'Сайты/отчёты (3,1%)',
+					],
+					datasets: [
+						{
+							data: [759, 298, 130, 111, 43],
+							backgroundColor: [
+								'#57534e',
+								'#a8a29e',
+								'#d6d3d1',
+								'#78716c',
+								'#e7e5e4',
+							],
+							borderWidth: 0,
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: {
+							position: 'bottom',
+							labels: { boxWidth: 12, padding: 10, font: { size: 11 } },
+						},
+					},
+					cutout: '60%',
+				},
+			})
+
+			// ── Active nav link ──
+			const sections = [...document.querySelectorAll('main section[id]')]
+			const navLinks = [...document.querySelectorAll('.nav-link')]
+			const setActiveLink = () => {
+				const current =
+					sections.findLast(s => window.scrollY >= s.offsetTop - 140) ||
+					sections[0]
+				navLinks.forEach(l =>
+					l.classList.toggle(
+						'active',
+						l.getAttribute('href') === `#${current.id}`,
+					),
+				)
+			}
+			setActiveLink()
+			window.addEventListener('scroll', setActiveLink, { passive: true })
+		</script>
+	</body>
+</html>
