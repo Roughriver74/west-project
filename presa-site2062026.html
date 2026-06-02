@@ -1,0 +1,972 @@
+<!doctype html>
+<html lang="ru">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>W-STOM — Выбор стратегии запуска | 02.06.2026</title>
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+			body {
+				font-family:
+					-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial,
+					sans-serif;
+				background: #0a0a0a;
+				color: #e5e5e5;
+				line-height: 1.5;
+				overflow-x: hidden;
+			}
+			.deck {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 20px 0;
+			}
+			.slide {
+				width: 1280px;
+				min-height: 720px;
+				margin-bottom: 24px;
+				padding: 60px 80px;
+				background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+				border-radius: 16px;
+				box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+				position: relative;
+				page-break-after: always;
+			}
+			.slide-number {
+				position: absolute;
+				top: 20px;
+				right: 30px;
+				color: #6b7280;
+				font-size: 14px;
+				font-weight: 500;
+			}
+			.slide-title {
+				font-size: 44px;
+				font-weight: 700;
+				color: #fbbf24;
+				margin-bottom: 8px;
+				line-height: 1.2;
+			}
+			.slide-subtitle {
+				font-size: 22px;
+				color: #9ca3af;
+				margin-bottom: 32px;
+				font-weight: 400;
+			}
+			.slide-section {
+				font-size: 14px;
+				text-transform: uppercase;
+				letter-spacing: 2px;
+				color: #fbbf24;
+				margin-bottom: 16px;
+				font-weight: 600;
+			}
+			h2 {
+				font-size: 32px;
+				color: #fff;
+				margin-bottom: 20px;
+				font-weight: 700;
+			}
+			h3 {
+				font-size: 20px;
+				color: #fbbf24;
+				margin: 16px 0 8px;
+				font-weight: 600;
+			}
+			p,
+			li {
+				font-size: 17px;
+				line-height: 1.55;
+				margin-bottom: 10px;
+			}
+			ul {
+				margin-left: 20px;
+				margin-bottom: 12px;
+			}
+			table {
+				width: 100%;
+				border-collapse: collapse;
+				margin: 16px 0;
+				font-size: 15px;
+			}
+			th {
+				background: #fbbf24;
+				color: #0a0a0a;
+				padding: 10px 12px;
+				text-align: left;
+				font-weight: 700;
+				font-size: 14px;
+			}
+			td {
+				padding: 10px 12px;
+				border-bottom: 1px solid #2a2a2a;
+				vertical-align: top;
+			}
+			tr:nth-child(even) td {
+				background: rgba(251, 191, 36, 0.03);
+			}
+			.green {
+				color: #10b981;
+				font-weight: 600;
+			}
+			.yellow {
+				color: #fbbf24;
+				font-weight: 600;
+			}
+			.red {
+				color: #ef4444;
+				font-weight: 600;
+			}
+			.gray {
+				color: #9ca3af;
+			}
+			.grid-2 {
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 24px;
+			}
+			.grid-3 {
+				display: grid;
+				grid-template-columns: 1fr 1fr 1fr;
+				gap: 20px;
+			}
+			.card {
+				background: rgba(255, 255, 255, 0.04);
+				border: 1px solid #2a2a2a;
+				border-radius: 12px;
+				padding: 20px;
+			}
+			.card-green {
+				border-left: 4px solid #10b981;
+			}
+			.card-yellow {
+				border-left: 4px solid #fbbf24;
+			}
+			.card-red {
+				border-left: 4px solid #ef4444;
+			}
+			.card-blue {
+				border-left: 4px solid #3b82f6;
+			}
+			.big-number {
+				font-size: 48px;
+				font-weight: 700;
+				color: #fbbf24;
+				line-height: 1;
+			}
+			.big-label {
+				font-size: 13px;
+				color: #9ca3af;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				margin-top: 4px;
+			}
+			.cover {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+				background: linear-gradient(135deg, #1a1a1a 0%, #000 100%);
+			}
+			.cover h1 {
+				font-size: 60px;
+				color: #fbbf24;
+				margin-bottom: 16px;
+				font-weight: 800;
+			}
+			.cover .subtitle {
+				font-size: 26px;
+				color: #e5e5e5;
+				margin-bottom: 32px;
+			}
+			.winner-badge {
+				display: inline-block;
+				background: #fbbf24;
+				color: #0a0a0a;
+				padding: 3px 10px;
+				border-radius: 5px;
+				font-size: 12px;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				margin-bottom: 6px;
+			}
+			.rec-badge {
+				display: inline-block;
+				background: #10b981;
+				color: #fff;
+				padding: 3px 10px;
+				border-radius: 5px;
+				font-size: 12px;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+			.loser-badge {
+				display: inline-block;
+				background: #ef4444;
+				color: #fff;
+				padding: 3px 10px;
+				border-radius: 5px;
+				font-size: 12px;
+				font-weight: 700;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+			}
+			.nav {
+				position: fixed;
+				right: 20px;
+				top: 50%;
+				transform: translateY(-50%);
+				display: flex;
+				flex-direction: column;
+				gap: 8px;
+				z-index: 100;
+			}
+			.nav a {
+				width: 12px;
+				height: 12px;
+				border-radius: 50%;
+				background: #2a2a2a;
+				transition: all 0.2s;
+			}
+			.nav a:hover {
+				background: #fbbf24;
+				transform: scale(1.3);
+			}
+			.footer-note {
+				position: absolute;
+				bottom: 20px;
+				left: 80px;
+				right: 80px;
+				font-size: 12px;
+				color: #6b7280;
+				display: flex;
+				justify-content: space-between;
+				padding-top: 12px;
+				border-top: 1px solid #1a1a1a;
+			}
+			.option-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 8px;
+				font-size: 14px;
+			}
+			.option-row {
+				display: flex;
+				justify-content: space-between;
+				padding: 8px 12px;
+				background: rgba(255, 255, 255, 0.03);
+				border-radius: 6px;
+				border-left: 2px solid #2a2a2a;
+			}
+			.option-row.mvp {
+				border-left-color: #10b981;
+				background: rgba(16, 185, 129, 0.05);
+			}
+			.option-row.critical {
+				border-left-color: #fbbf24;
+				background: rgba(251, 191, 36, 0.05);
+			}
+			.option-row.optional {
+				border-left-color: #6b7280;
+			}
+			.option-row .price {
+				color: #fbbf24;
+				font-weight: 600;
+				white-space: nowrap;
+			}
+			.price-tag {
+				display: inline-block;
+				background: rgba(251, 191, 36, 0.15);
+				color: #fbbf24;
+				padding: 2px 8px;
+				border-radius: 4px;
+				font-weight: 700;
+				font-size: 14px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="deck">
+			<!-- Слайд 1: Обложка -->
+			<div class="slide cover" id="slide-1">
+				<div class="slide-number">1 / 13</div>
+				<div class="slide-section">Проект W-STOM</div>
+				<h1>Стратегия запуска</h1>
+				<div class="subtitle">Личный кабинет и доработка сайтов</div>
+				<div style="font-size: 20px; color: #9ca3af; margin-top: 20px">
+					Конструктор опций vs фикс-прайс
+				</div>
+				<div
+					class="meta"
+					style="font-size: 16px; color: #6b7280; margin-top: 48px"
+				>
+					02.06.2026 • Подготовлено к встрече с учредителями<br />
+					<span style="font-size: 13px"
+						>На основе ТЗ v.1.0 и трёх коммерческих предложений:<br />Coding
+						Team • Panfilov.digital • Hart Digital (myhart.ru)</span
+					>
+				</div>
+			</div>
+
+			<!-- Слайд 2: Суть проекта -->
+			<div class="slide" id="slide-2">
+				<div class="slide-number">2 / 13</div>
+				<div class="slide-section">Контекст</div>
+				<h1 class="slide-title">Что мы строим</h1>
+				<div class="slide-subtitle">B2B-платформа стоматологического рынка</div>
+
+				<div class="grid-3" style="margin-top: 28px">
+					<div class="card card-yellow">
+						<h3>🌐 Сайт торговли</h3>
+						<p>
+							1С-Битрикс + Premier (Аспро). Смена шаблона, визуальные доработки,
+							интеграция с ЛК.
+						</p>
+					</div>
+					<div class="card card-yellow">
+						<h3>🎓 Сайт учебного центра</h3>
+						<p>
+							Существующий 1С/Битрикс. Минимальные доработки + интеграция с SSO.
+						</p>
+					</div>
+					<div class="card card-green">
+						<h3>🆕 Личный кабинет</h3>
+						<p>
+							Новый кастомный сервис на lk.w-stom.ru — центральная точка входа
+							клиента.
+						</p>
+					</div>
+				</div>
+
+				<h3 style="margin-top: 24px">Ключевые узлы ЛК</h3>
+				<div class="grid-2">
+					<ul>
+						<li>SSO (OAuth 2.0 / OIDC) — единая авторизация</li>
+						<li>Программа лояльности — 5 уровней, West-Coin (1–7%)</li>
+						<li>Управление заказами + статусы + СДЭК</li>
+						<li>Документы и отчётность (УПД, накладные, акты)</li>
+					</ul>
+					<ul>
+						<li><strong>AI-агент помощник</strong> (RAG-архитектура)</li>
+						<li>Уведомления (Email/SMS/Push/Telegram)</li>
+						<li><strong>Несколько юрлиц и филиалов</strong> (B2B)</li>
+						<li>Интеграции: 1С, Битрикс24, Dadata</li>
+					</ul>
+				</div>
+			</div>
+
+			<!-- Слайд 3: Три подрядчика -->
+			<div class="slide" id="slide-3">
+				<div class="slide-number">3 / 13</div>
+				<div class="slide-section">Участники</div>
+				<h1 class="slide-title">Три подрядчика</h1>
+				<div class="slide-subtitle">
+					Три внешних КП с разными профилями и ценами
+				</div>
+
+				<div class="grid-3" style="margin-top: 24px">
+					<div class="card card-yellow">
+						<span class="winner-badge">Coding Team</span>
+						<h3>🟡 Фикс-прайс «под ключ»</h3>
+						<div class="big-number" style="font-size: 32px">4 844 364 ₽</div>
+						<div class="big-label">с НДС • 5–5,5 мес. • всё включено</div>
+						<p style="margin-top: 12px">
+							<strong>Web/mobile/AI-студия</strong>, 125+ разработчиков
+						</p>
+						<p style="font-size: 14px">
+							Команда 8 чел.: PM, аналитик, TL, Backend, Frontend, QA, UX/UI,
+							DevOps
+						</p>
+						<p class="green" style="font-size: 14px">
+							<strong>Кейс Medzona</strong> (мед. маркетплейс)
+						</p>
+						<p class="red" style="font-size: 13px">
+							⚠️ КП действует до 15.06.2026
+						</p>
+					</div>
+
+					<div class="card card-green">
+						<span class="rec-badge">⭐ Panfilov</span>
+						<h3>🟢 Конструктор MVP + опции</h3>
+						<div class="big-number" style="font-size: 32px">1 960 000 ₽</div>
+						<div class="big-label">MVP за 2 мес. + 14 опций</div>
+						<p style="margin-top: 12px">
+							<strong>Продуктовая студия</strong>, ТОП-3 Рейтинга Рунета
+						</p>
+						<p style="font-size: 14px">
+							Команда 9 чел.: CEO Степан + тимлид Борис + 7 разработчиков
+						</p>
+						<p class="green" style="font-size: 14px">
+							<strong>Согаз-ОМС, B2B-CRM, образование</strong>
+						</p>
+						<p class="green" style="font-size: 13px">
+							✓ Уже созванивались, заинтересован
+						</p>
+					</div>
+
+					<div class="card card-red">
+						<span class="loser-badge">Hart Digital</span>
+						<h3>🔴 Почасовая смета (myhart.ru)</h3>
+						<div class="big-number" style="font-size: 32px">5 128 200 ₽</div>
+						<div class="big-label">только ЛК • без AI, без 2 сайтов</div>
+						<p style="margin-top: 12px">
+							<strong>VR/AR + веб-разработка</strong>, Казань, 15 чел.
+						</p>
+						<p style="font-size: 14px">
+							1 440 ч: 240 аналитика + 320 дизайн + 312 frontend + 408 backend +
+							160 QA
+						</p>
+						<p class="red" style="font-size: 14px">Нет кейсов в B2B ЛК</p>
+						<p class="red" style="font-size: 13px">
+							⚠️ Нет AI, нет Битрикс24, нет 2 сайтов
+						</p>
+					</div>
+				</div>
+
+				<p
+					class="gray"
+					style="font-size: 13px; margin-top: 16px; text-align: center"
+				>
+					💡 Все три — внешние подрядчики. Сравниваем по объёму, экспертизе,
+					цене и рискам.
+				</p>
+			</div>
+
+			<!-- Слайд 4: НОВЫЙ — Конструктор Panfilov -->
+			<div class="slide" id="slide-4">
+				<div class="slide-number">4 / 13</div>
+				<div class="slide-section">Panfilov</div>
+				<h1 class="slide-title">Конструктор: собираем первую очередь</h1>
+				<div class="slide-subtitle">
+					MVP за 1,96 млн + выбираем опции под наш scope
+				</div>
+
+				<div class="grid-2" style="margin-top: 20px">
+					<div>
+						<h3>✅ MVP (входит в 1 960 000 ₽)</h3>
+						<div class="option-row mvp">
+							<span>Авторизация и регистрация</span>
+							<span class="price">включено</span>
+						</div>
+						<div class="option-row mvp">
+							<span>Профиль пользователя</span>
+							<span class="price">включено</span>
+						</div>
+						<div class="option-row mvp">
+							<span>Каталог товаров (фильтры, карточки)</span>
+							<span class="price">включено</span>
+						</div>
+						<div class="option-row mvp">
+							<span>Оформление заказа (базовое)</span>
+							<span class="price">включено</span>
+						</div>
+
+						<h3 style="margin-top: 20px">🔐 Критичные опции ⭐</h3>
+						<div class="option-row critical">
+							<span>SSO с сайтом 1С-Битрикс</span>
+							<span class="price">280 000 ₽</span>
+						</div>
+						<div class="option-row critical">
+							<span>B2B: юрлица, филиалы, договоры</span>
+							<span class="price">360 000 ₽</span>
+						</div>
+						<div class="option-row critical">
+							<span>Управление заказами (полная)</span>
+							<span class="price">480 000 ₽</span>
+						</div>
+						<div class="option-row critical">
+							<span>Интеграция с 1С (REST API)</span>
+							<span class="price">360 000 ₽</span>
+						</div>
+					</div>
+
+					<div>
+						<h3>💎 Важные опции</h3>
+						<div class="option-row optional">
+							<span>Программа лояльности West-Coin</span>
+							<span class="price">320 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Документы и отчётность</span>
+							<span class="price">290 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Уведомления (Email/SMS/Push/TG)</span>
+							<span class="price">220 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Доставка СДЭК/Boxberry</span>
+							<span class="price">240 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Интеграция с Битрикс24</span>
+							<span class="price">180 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Возвраты и отмены</span>
+							<span class="price">180 000 ₽</span>
+						</div>
+
+						<h3 style="margin-top: 20px">🤖 Опции роста</h3>
+						<div class="option-row optional">
+							<span>ИИ-помощник (RAG)</span>
+							<span class="price">540 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Сайт Premier (1С-Битрикс)</span>
+							<span class="price">1 100 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Сайт учебного центра</span>
+							<span class="price">580 000 ₽</span>
+						</div>
+						<div class="option-row optional">
+							<span>Мобильное приложение</span>
+							<span class="price">1 100 000 ₽</span>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Слайд 5: Сценарии сборки -->
+			<div class="slide" id="slide-5">
+				<div class="slide-number">5 / 13</div>
+				<div class="slide-section">Сценарии</div>
+				<h1 class="slide-title">4 стратегии запуска</h1>
+				<div class="slide-subtitle">
+					От MVP за 2 мес. до полного цикла • По подрядчикам
+				</div>
+
+				<div class="grid-2" style="margin-top: 20px">
+					<div class="card card-blue">
+						<span class="winner-badge">Стратегия А</span>
+						<h3>🅰️ Быстрый MVP (Panfilov)</h3>
+						<div class="big-number" style="font-size: 36px">1 960 000 ₽</div>
+						<div class="big-label">2 мес. • MVP-ядро</div>
+						<p style="margin-top: 12px">
+							<strong>Что получаем:</strong> каталог + базовый заказ + профиль
+						</p>
+						<p><strong>Не получаем:</strong> SSO, B2B-логику, интеграции, AI</p>
+						<p class="gray" style="font-size: 13px">
+							Для проверки гипотезы. Не для production.
+						</p>
+					</div>
+
+					<div class="card card-green">
+						<span class="rec-badge">⭐ Рекомендую</span>
+						<h3>🅱️ MVP + критичное (Panfilov)</h3>
+						<div class="big-number" style="font-size: 36px">3 440 000 ₽</div>
+						<div class="big-label">3-4 мес. • рабочая версия</div>
+						<p style="margin-top: 12px">
+							<strong>Что получаем:</strong> MVP + SSO + B2B + заказы + 1С
+						</p>
+						<p><strong>Потом:</strong> AI, лояльность, документы, сайты</p>
+						<p class="green" style="font-size: 13px">
+							Оптимально для первого релиза в B2B
+						</p>
+					</div>
+
+					<div class="card card-yellow">
+						<span class="winner-badge">Стратегия В</span>
+						<h3>🅲️ Panfilov расширенный</h3>
+						<div class="big-number" style="font-size: 36px">5 100 000 ₽</div>
+						<div class="big-label">5-6 мес. • почти всё по ТЗ</div>
+						<p style="margin-top: 12px">
+							<strong>Что получаем:</strong> всё для ЛК (без AI, без сайтов)
+						</p>
+						<p><strong>Потом:</strong> Premier + учебный + AI (ещё 2,7 млн)</p>
+						<p class="gray" style="font-size: 13px">
+							Максимум функционала ЛК к осени 2026
+						</p>
+					</div>
+
+					<div class="card card-red">
+						<span class="winner-badge">Стратегия D</span>
+						<h3>🅳 Coding Team «под ключ»</h3>
+						<div class="big-number" style="font-size: 36px">4 844 364 ₽</div>
+						<div class="big-label">5-5,5 мес. • всё в одних руках</div>
+						<p style="margin-top: 12px">
+							<strong>Что получаем:</strong> ЛК + 2 сайта + интеграции (всё)
+						</p>
+						<p><strong>Риск:</strong> стек не зафиксирован, КП до 15.06.2026</p>
+						<p class="red" style="font-size: 13px">
+							Фикс-прайс, без возможности «собрать под себя»
+						</p>
+					</div>
+				</div>
+
+				<div
+					class="card"
+					style="margin-top: 20px; border-left: 4px solid #ef4444"
+				>
+					<h3>❌ Hart (myhart.ru) — не рекомендую как стратегию</h3>
+					<div class="big-number" style="font-size: 24px; color: #ef4444">
+						5 128 200 ₽ + 1 209 600 ₽ ТП
+					</div>
+					<p style="margin-top: 8px">
+						Только ЛК, без AI, без 2 сайтов, без Битрикс24. Основной бизнес —
+						VR/AR, нет кейсов в B2B ЛК.
+					</p>
+					<p class="gray" style="font-size: 12px">
+						Если добавить недостающее — выйдет за 6,5 млн ₽, дороже и хуже
+						остальных.
+					</p>
+				</div>
+			</div>
+
+			<!-- Слайд 7: Сравнение подходов -->
+			<div class="slide" id="slide-7">
+				<div class="slide-number">7 / 13</div>
+				<div class="slide-section">Сравнение</div>
+				<h1 class="slide-title">Конструктор vs Фикс-прайс</h1>
+
+				<div class="grid-2" style="margin-top: 24px">
+					<div class="card card-green">
+						<span class="rec-badge">Panfilov</span>
+						<h3>🟢 Подход: гибкая сборка</h3>
+						<p>✅ <strong>Минимальный порог входа:</strong> 1,96 млн за MVP</p>
+						<p>
+							✅ <strong>Быстрый time-to-market:</strong> 2 мес. до первого
+							релиза
+						</p>
+						<p>
+							✅ <strong>Можно масштабировать:</strong> добавляем опции по мере
+							готовности
+						</p>
+						<p>✅ <strong>Прямой контакт с CEO:</strong> Степан Кравчук</p>
+						<p>✅ <strong>Уже был созвон, заинтересован</strong></p>
+						<p>⚠️ Нужно самим определить scope первой очереди</p>
+						<p>⚠️ Интеграция с 1С — частично на наших 1С-никах</p>
+					</div>
+
+					<div class="card card-yellow">
+						<span class="winner-badge">Coding Team</span>
+						<h3>🟡 Подход: всё или ничего</h3>
+						<p>✅ <strong>Один контракт — одна цена</strong>: 4 844 364 ₽</p>
+						<p>
+							✅ <strong>Кейс Medzona:</strong> мед. маркетплейс (наш профиль)
+						</p>
+						<p>
+							✅ <strong>Большая команда:</strong> 8 чел. с DevOps и Team Lead
+						</p>
+						<p>✅ <strong>Прозрачность:</strong> отчёты каждые 2 недели</p>
+						<p>⚠️ <strong>Стек не зафиксирован</strong> в КП</p>
+						<p>
+							⚠️ <strong>КП действует до 15.06.2026</strong> — 2 недели на
+							решение
+						</p>
+						<p>⚠️ Нельзя «собрать только часть» — всё сразу</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Слайд 8: Рекомендуемый план -->
+			<div class="slide" id="slide-8">
+				<div class="slide-number">8 / 13</div>
+				<div class="slide-section">Рекомендация</div>
+				<h1 class="slide-title">⭐ Сценарий Б: MVP + критичные опции</h1>
+				<div class="slide-subtitle">
+					3 440 000 ₽ • 3-4 мес. • рабочая версия ЛК
+				</div>
+
+				<div class="grid-2" style="margin-top: 20px">
+					<div class="card card-green">
+						<h3>📦 Что входит в первую очередь</h3>
+						<ul style="font-size: 16px">
+							<li>
+								<strong>MVP-ядро</strong> (1 960 000 ₽): каталог, профиль,
+								базовый заказ
+							</li>
+							<li>
+								<strong>SSO с 1С-Битрикс</strong> (280 000 ₽) — единый вход
+							</li>
+							<li>
+								<strong>B2B-логика</strong> (360 000 ₽) — юрлица, филиалы,
+								договоры
+							</li>
+							<li>
+								<strong>Управление заказами</strong> (480 000 ₽) — полная версия
+							</li>
+							<li>
+								<strong>Интеграция с 1С</strong> (360 000 ₽) — REST API, маппинг
+							</li>
+						</ul>
+						<p class="gray" style="font-size: 13px">
+							⏱ Срок: 3-4 мес. (параллельная работа модулей)
+						</p>
+					</div>
+
+					<div class="card card-yellow">
+						<h3>📅 Что дотягиваем во 2-ю очередь</h3>
+						<ul style="font-size: 16px">
+							<li>Программа лояльности West-Coin (320 000 ₽)</li>
+							<li>Документы и отчётность (290 000 ₽)</li>
+							<li>Уведомления Email/SMS/Push/TG (220 000 ₽)</li>
+							<li>Доставка СДЭК/Boxberry (240 000 ₽)</li>
+							<li>Битрикс24 (180 000 ₽)</li>
+							<li>Возвраты и отмены (180 000 ₽)</li>
+						</ul>
+						<p class="gray" style="font-size: 13px">
+							⏱ + 2-3 мес. • Бюджет 2-й очереди: ~1,4 млн ₽
+						</p>
+					</div>
+				</div>
+
+				<h3 style="margin-top: 20px">🛡️ Условия успеха</h3>
+				<div class="grid-3" style="font-size: 15px">
+					<div class="card card-green">
+						<h3>Milestone-платежи</h3>
+						<p>30% аванс → 30% после MVP → 40% после приёмки</p>
+					</div>
+					<div class="card card-yellow">
+						<h3>Наши ресурсы</h3>
+						<p>1С-ники подключаются к интеграциям параллельно</p>
+					</div>
+					<div class="card card-blue">
+						<h3>Step as PM</h3>
+						<p>Степан Кравчук — еженедельные статусы, видеозвонки</p>
+					</div>
+				</div>
+			</div>
+
+			<!-- Слайд 9: Roadmap -->
+			<div class="slide" id="slide-9">
+				<div class="slide-number">9 / 13</div>
+				<div class="slide-section">Timeline</div>
+				<h1 class="slide-title">Дорожная карта</h1>
+				<div class="slide-subtitle">Если идём по сценарию Б</div>
+
+				<table>
+					<tr>
+						<th>Период</th>
+						<th>Что делаем</th>
+						<th>Бюджет</th>
+					</tr>
+					<tr>
+						<td><strong>Июнь 2026</strong></td>
+						<td>
+							Решение учредителей, согласование scope, подписание договора с
+							Panfilov
+						</td>
+						<td>—</td>
+					</tr>
+					<tr>
+						<td><strong>Июль-Август 2026</strong></td>
+						<td>
+							MVP-ядро: каталог, профиль, базовый заказ.
+							<strong>Первый релиз для внутреннего использования</strong>
+						</td>
+						<td class="green">1 960 000 ₽</td>
+					</tr>
+					<tr>
+						<td><strong>Сентябрь 2026</strong></td>
+						<td>
+							SSO + B2B-логика + управление заказами.
+							<strong>Рабочая версия для B2B-клиентов</strong>
+						</td>
+						<td class="yellow">1 120 000 ₽</td>
+					</tr>
+					<tr>
+						<td><strong>Октябрь 2026</strong></td>
+						<td>
+							Интеграция с 1С (наши программисты + Panfilov).
+							<strong>Тест с реальными данными</strong>
+						</td>
+						<td class="yellow">360 000 ₽</td>
+					</tr>
+					<tr>
+						<td><strong>Ноябрь-Декабрь 2026</strong></td>
+						<td>
+							2-я очередь: West-Coin, документы, уведомления, СДЭК, Битрикс24
+						</td>
+						<td class="gray">~1 430 000 ₽</td>
+					</tr>
+
+					<tr style="background: rgba(251, 191, 36, 0.1)">
+						<td colspan="2">
+							<strong>ИТОГО за 12 мес.</strong> (ЛК + 2 сайта + AI + интеграции)
+						</td>
+						<td><strong>~4 870 000 ₽</strong></td>
+					</tr>
+				</table>
+			</div>
+
+			<!-- Слайд 10: Рейтинг -->
+			<div class="slide" id="slide-10">
+				<div class="slide-number">10 / 13</div>
+				<div class="slide-section">Итоги</div>
+				<h1 class="slide-title">Сводный рейтинг трёх подрядчиков</h1>
+
+				<table>
+					<tr>
+						<th>Критерий</th>
+						<th>Coding Team</th>
+						<th>Panfilov</th>
+						<th>Hart Digital</th>
+					</tr>
+					<tr>
+						<td>Минимальный порог</td>
+						<td class="red">4 844 364 ₽</td>
+						<td class="green">1 960 000 ₽</td>
+						<td>5 128 200 ₽</td>
+					</tr>
+					<tr>
+						<td>Time-to-market MVP</td>
+						<td>5–5,5 мес.</td>
+						<td class="green">2 мес.</td>
+						<td>не заявлен</td>
+					</tr>
+					<tr>
+						<td>Гибкость scope</td>
+						<td>🔴 Фикс</td>
+						<td class="green">🟢 14 опций</td>
+						<td>🟡 фикс-смета</td>
+					</tr>
+					<tr>
+						<td>Релевантный опыт</td>
+						<td>Medzona</td>
+						<td class="green">Согаз-ОМС, B2B-CRM</td>
+						<td class="red">VR/AR</td>
+					</tr>
+					<tr>
+						<td>AI в scope</td>
+						<td>✅ заявлен</td>
+						<td class="green">✅ опция 540 тыс.</td>
+						<td class="red">❌ не в смете</td>
+					</tr>
+					<tr>
+						<td>Контакт с руководством</td>
+						<td>менеджер</td>
+						<td class="green">CEO Степан</td>
+						<td>менеджер</td>
+					</tr>
+					<tr>
+						<td>Прозрачность цены</td>
+						<td>общая сумма</td>
+						<td class="green">14 опций</td>
+						<td>детальная смета</td>
+					</tr>
+					<tr>
+						<td>Стек</td>
+						<td>⚠️ не зафиксирован</td>
+						<td class="green">Laravel+Vue+Nuxt</td>
+						<td>не заявлен</td>
+					</tr>
+					<tr>
+						<td>2 сайта в scope</td>
+						<td>⚠️ неясно</td>
+						<td class="red">❌ отдельные опции</td>
+						<td class="red">❌ не в смете</td>
+					</tr>
+					<tr>
+						<td>Битрикс24</td>
+						<td class="green">✅</td>
+						<td class="green">✅ опция 180 тыс.</td>
+						<td class="red">❌</td>
+					</tr>
+					<tr style="background: rgba(16, 185, 129, 0.1)">
+						<td><strong>ИТОГО</strong></td>
+						<td><strong>Для «под ключ»</strong></td>
+						<td class="green"><strong>⭐ Для поэтапного запуска</strong></td>
+						<td class="red"><strong>❌ Не рекомендую</strong></td>
+					</tr>
+				</table>
+
+				<div
+					class="card"
+					style="margin-top: 16px; border-left: 4px solid #ef4444"
+				>
+					<h3>🔴 Почему Hart не подходит</h3>
+					<ul style="font-size: 14px; margin-left: 20px">
+						<li>
+							<strong>Основной бизнес — VR/AR</strong> (Татнефть, Mercedes,
+							Минтранс РТ), не веб-разработка
+						</li>
+						<li>
+							<strong>Нет кейсов в B2B ЛК</strong> — веб-портфолио ограничено
+							сайтами турфирм на WordPress
+						</li>
+						<li>
+							<strong>Самый дорогой</strong> за самый узкий scope (5,13 млн за
+							только ЛК без AI)
+						</li>
+						<li>
+							<strong>Команда 15 чел.,</strong> из них веб — побочное
+							направление (hartcode.ru)
+						</li>
+						<li>
+							<strong>Нет репутации</strong> на профильных площадках (нет
+							отзывов на 2GIS, 1 на Хабр за 8 лет)
+						</li>
+						<li>
+							<strong>Нет AI, нет Битрикс24, нет 2 сайтов</strong> — придётся
+							дозаказывать за отдельные деньги
+						</li>
+					</ul>
+					<p class="gray" style="font-size: 12px; margin-top: 8px">
+						Если бы Hart сделал всё по ТЗ — вышло бы 6,5+ млн ₽, дольше и хуже
+						остальных.
+					</p>
+				</div>
+			</div>
+
+			<!-- Слайд 12: Дальнейшие шаги -->
+			<div class="slide" id="slide-12">
+				<div class="slide-number">12 / 13</div>
+				<div class="slide-section">Следующие шаги</div>
+				<h1 class="slide-title">Что делаем после встречи</h1>
+
+				<div class="grid-2" style="margin-top: 24px">
+					<div class="card card-green">
+						<h3>✅ Если утверждаем Panfilov (Сценарий Б)</h3>
+						<ol style="margin-left: 20px; font-size: 16px">
+							<li>Финализируем scope первой очереди (5–6 модулей)</li>
+							<li>Запрашиваем у Степана детальное КП на наш набор</li>
+							<li>Согласуем распределение работ с 1С-никами</li>
+							<li>Подписываем договор с milestone-платежами</li>
+							<li>Старт в июле 2026</li>
+						</ol>
+					</div>
+					<div class="card card-yellow">
+						<h3>⚠️ Если выбираем Coding Team</h3>
+						<ol style="margin-left: 20px; font-size: 16px">
+							<li>Срочно уточняем стек (до 15.06.2026!)</li>
+							<li>Подтверждаем покрытие 2 сайтов + ЛК + интеграций</li>
+							<li>Согласуем формат работы с 1С-никами</li>
+							<li>Подписываем договор (фикс-прайс)</li>
+							<li>Старт в июле 2026, релиз к концу года</li>
+						</ol>
+					</div>
+				</div>
+
+				<div class="footer-note">
+					<span>Аналитический отчёт • 02.06.2026</span>
+					<span>W-STOM • Выбор стратегии запуска</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="nav">
+			<a href="#slide-1" title="1"></a>
+			<a href="#slide-2" title="2"></a>
+			<a href="#slide-3" title="3"></a>
+			<a href="#slide-4" title="4"></a>
+			<a href="#slide-5" title="5"></a>
+			<a href="#slide-6" title="6"></a>
+			<a href="#slide-7" title="7"></a>
+			<a href="#slide-8" title="8"></a>
+			<a href="#slide-9" title="9"></a>
+			<a href="#slide-10" title="10"></a>
+			<a href="#slide-11" title="11"></a>
+			<a href="#slide-12" title="12"></a>
+			<a href="#slide-13" title="13"></a>
+		</div>
+	</body>
+</html>
