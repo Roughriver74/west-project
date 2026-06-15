@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="ru" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Отчет IT-отдела West: 18 мая — 15 июня 2026</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<style>
+			body {
+				font-family: 'Inter', sans-serif;
+				background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%);
+				color: #44403c;
+			}
+			.nav-link.active {
+				color: #1c1917;
+				border-bottom-color: #78716c;
+				font-weight: 600;
+			}
+		</style>
+	</head>
+	<body class="antialiased">
+		<div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+			<header class="py-8 text-center">
+				<div
+					class="inline-block rounded-full bg-stone-800 px-4 py-2 text-sm font-semibold text-white"
+				>
+					Компания WEST
+				</div>
+				<h1 class="mt-4 text-5xl font-bold text-stone-800">Отчет IT-отдела</h1>
+				<p class="mt-2 text-xl text-stone-600">
+					18 мая — 15 июня 2026 · Четыре рабочих недели
+				</p>
+			</header>
+
+			<nav
+				class="sticky top-0 z-20 mb-8 border-b border-stone-300 bg-white/90 shadow-sm backdrop-blur-md"
+			>
+				<div class="flex justify-center overflow-x-auto px-4">
+					<a
+						href="#overview"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600 whitespace-nowrap"
+						>Обзор</a
+					>
+					<a
+						href="#week1"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600 whitespace-nowrap"
+						>Нед. 1 · 18–24 мая</a
+					>
+					<a
+						href="#week2"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600 whitespace-nowrap"
+						>Нед. 2 · 25–31 мая</a
+					>
+					<a
+						href="#week3"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600 whitespace-nowrap"
+						>Нед. 3 · 1–7 июня</a
+					>
+					<a
+						href="#week4"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600 whitespace-nowrap"
+						>Нед. 4 · 8–15 июня</a
+					>
+					<a
+						href="#sla"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600 whitespace-nowrap"
+						>SLA</a
+					>
+					<a
+						href="#decisions"
+						class="nav-link border-b-2 border-transparent px-3 py-4 text-sm font-semibold text-stone-600 whitespace-nowrap"
+						>Решения</a
+					>
+				</div>
+			</nav>
+
+			<main class="space-y-16 pb-16">
+				<!-- ═══════ OVERVIEW ═══════ -->
+				<section id="overview" class="space-y-8">
+					<div
+						class="rounded-3xl bg-gradient-to-r from-stone-800 to-stone-600 p-8 text-white shadow-xl"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200"
+						>
+							Executive summary
+						</p>
+						<h2 class="mt-3 text-3xl font-bold sm:text-4xl">
+							DataMobile — пилот запущен, ЭПД в СБИС, инцидент Битрикс
+							отработан, смена юрлица 17 июня
+						</h2>
+						<p class="mt-4 max-w-4xl text-lg leading-relaxed text-stone-100">
+							За четыре недели команда прошла через запуск ТСД-пилота с
+							DataMobile на складе, инцидент с откатом базы Битрикс (8
+							потерянных заказов за ночь, восстановлены за час), закрытие мая и
+							параллельный старт четырёх направлений: ЭПД через СБИС, обучение
+							по Честному знаку, проект сайта/ЛК и подготовку к смене юрлица 17
+							июня. Павел закрыл несколько ключевых задач по 1С: печатная форма
+							для бухгалтерии, исправление чеков Тинькофф, регламент
+							периодической проверки, ограничение серий по FIFO. Никита Замятин
+							ведёт ЭПД и ЧЗ совместно с Константином.
+						</p>
+						<div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
+							<span>📅 18 мая — 15 июня 2026</span>
+							<span>📊 1 464 заявки с начала года</span>
+							<span>📈 Май закрыт: 160 заявок, SLA 78,13%</span>
+							<span>⚠️ Июнь: 95 заявок, SLA 72,63%</span>
+							<span>🚨 Инцидент Битрикс: 01–02 июня</span>
+						</div>
+					</div>
+
+					<div class="grid gap-6 sm:grid-cols-2 xl:grid-cols-5">
+						<article
+							class="rounded-2xl border-t-4 border-blue-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-5xl font-bold text-stone-800">1 464</p>
+							<p class="mt-2 font-medium text-stone-600">Заявок 2026</p>
+							<p class="mt-1 text-sm font-semibold text-red-500">
+								280 превышений (19,1%)
+							</p>
+							<p class="mt-1 text-xs text-stone-400">Данные на 15 июня</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-amber-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-5xl font-bold text-stone-800">78,1%</p>
+							<p class="mt-2 font-medium text-stone-600">
+								SLA май (160 заявок)
+							</p>
+							<p class="mt-1 text-sm font-semibold text-red-500">
+								↓ Минимум года
+							</p>
+							<p class="mt-1 text-xs text-stone-400">Апрель: 80,29%</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-red-400 bg-white p-6 shadow-lg"
+						>
+							<p class="text-5xl font-bold text-stone-800">72,6%</p>
+							<p class="mt-2 font-medium text-stone-600">
+								SLA июнь (95 заявок)
+							</p>
+							<p class="mt-1 text-sm font-semibold text-red-500">
+								↓ Под наблюдением
+							</p>
+							<p class="mt-1 text-xs text-stone-400">Месяц в процессе</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-cyan-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">ТСД ✓</p>
+							<p class="mt-2 font-medium text-stone-600">DataMobile — пилот</p>
+							<p class="mt-3 text-sm text-cyan-600">
+								Лицензии получены, тест на складе
+							</p>
+						</article>
+						<article
+							class="rounded-2xl border-t-4 border-emerald-500 bg-white p-6 shadow-lg"
+						>
+							<p class="text-2xl font-bold text-stone-800">ЭПД</p>
+							<p class="mt-2 font-medium text-stone-600">
+								СБИС синхронизирован
+							</p>
+							<p class="mt-3 text-sm text-emerald-600">
+								Настройка шаблонов в работе
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ НЕДЕЛЯ 1 ═══════ -->
+				<section id="week1" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Неделя 1
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								18 — 24 мая 2026
+							</h2>
+							<p class="mt-1 text-stone-500">
+								Возвращение команды, старт ТСД-тестирования, закупка лицензий
+							</p>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-stone-100 px-4 py-2 text-sm font-semibold text-stone-700"
+							>Команда в сборе</span
+						>
+					</div>
+
+					<div
+						class="rounded-3xl bg-gradient-to-r from-stone-700 to-stone-500 p-6 text-white shadow-lg"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+						>
+							Итог недели
+						</p>
+						<p class="mt-3 text-lg font-medium">
+							Александр и другие вернулись из отпусков. ТСД с DataMobile
+							протестирован на стенде — лицензии закуплены (1 базовая + 2 с
+							Честным знаком). Ринат сигналит о нехватке места на серверах для
+							тестовых баз.
+						</p>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-blue-600"
+							>
+								Павел
+							</p>
+							<p class="mt-3 text-stone-700">
+								Смотрит расширение ESD — исправляет ошибки. Начал разработку
+								внешней печатной формы для бухгалтерии (по запросу главбуха).
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-emerald-600"
+							>
+								Никита Замятин
+							</p>
+							<p class="mt-3 text-stone-700">
+								Вернулся из отпуска. Включил регламентное задание в 1С.
+								Обнаружен баг статуса заказов «Доставлен» — нужно исправление.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-amber-600"
+							>
+								Ринат Загидулин
+							</p>
+							<p class="mt-3 text-stone-700">
+								Зависания в Битрикс — нужно обновление несовместимого модуля.
+								Нехватка места на серверах для тестовых баз → поставлена задача
+								заказать 2–3 SSD по 2 ТБ.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Александр Волохов
+							</p>
+							<p class="mt-3 text-stone-700">
+								Вернулся из отпуска. Берёт задачу по закупке SSD. Инвентаризация
+								оборудования.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-violet-600"
+							>
+								Денис
+							</p>
+							<p class="mt-3 text-stone-700">
+								Собирает материалы по жизненному циклу клиента интернет-магазина
+								для подготовки к передаче задач.
+							</p>
+						</article>
+						<article
+							class="rounded-3xl bg-gradient-to-br from-stone-800 to-stone-600 p-6 shadow-xl text-white"
+						>
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-300"
+							>
+								IT / Руководитель
+							</p>
+							<p class="mt-3 text-stone-100">
+								Тестирование ТСД + DataMobile на складе с Костей. Закуплены
+								лицензии DataMobile (1 базовая + 2 с Честным знаком).
+								Согласовано обучение по ЧЗ.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ НЕДЕЛЯ 2 ═══════ -->
+				<section id="week2" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Неделя 2
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								25 — 31 мая 2026
+							</h2>
+							<p class="mt-1 text-stone-500">
+								Обновление платформы планируется, роудмап сайта, ЭПД — тестовая
+								среда
+							</p>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800"
+							>Планирование обновлений</span
+						>
+					</div>
+
+					<div
+						class="rounded-3xl bg-gradient-to-r from-stone-700 to-stone-500 p-6 text-white shadow-lg"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+						>
+							Итог недели
+						</p>
+						<p class="mt-3 text-lg font-medium">
+							Команда готовится к обновлению платформы 1С. Модуль Битрикс —
+							несовместимость. Денис провёл встречу по роудмапу сайта. Никита
+							Замятин прорабатывает ЭПД с тестовой средой Тензор. Намечено
+							обучение по Честному знаку с 1Бит.
+						</p>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-blue-600"
+							>
+								Павел
+							</p>
+							<p class="mt-3 text-stone-700">
+								Завершение печатной формы для бухгалтерии. Изучение RabbitMQ.
+								Продолжение работы по расширению ESD.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-emerald-600"
+							>
+								Никита Замятин
+							</p>
+							<p class="mt-3 text-stone-700">
+								Встречи с Пигузовым и Кузнецовым по складу и отчётам.
+								Прорабатывает тестовую среду Тензор для ЭПД. Обучение ЧЗ с 1Бит
+								запланировано.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-indigo-600"
+							>
+								Никита К.
+							</p>
+							<p class="mt-3 text-stone-700">
+								Подготовка отчёта по логистике для Юлии Калабековой. Описывает
+								источники данных для анализа.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-amber-600"
+							>
+								Ринат Загидулин
+							</p>
+							<p class="mt-3 text-stone-700">
+								Готовит план обновления платформы 1С. Выявил несовместимость
+								модуля Битрикс после обновления — ищет решение. Предложил
+								мониторинг сервера 1С.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Александр Волохов
+							</p>
+							<p class="mt-3 text-stone-700">
+								Обновление IP для VPN. Инвентаризация оборудования продолжается.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-violet-600"
+							>
+								Денис
+							</p>
+							<p class="mt-3 text-stone-700">
+								Подготовка материалов по сайту и личному кабинету. Провёл
+								встречу по роудмапу сайта в 12:00 — согласованы приоритеты
+								проекта.
+							</p>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ НЕДЕЛЯ 3 ═══════ -->
+				<section id="week3" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Неделя 3
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								1 — 7 июня 2026
+							</h2>
+							<p class="mt-1 text-stone-500">
+								Инцидент Битрикс, DataMobile лицензии получены, смена юрлица 17
+								июня
+							</p>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-800"
+							>⚠ Инцидент</span
+						>
+					</div>
+
+					<!-- Incident block -->
+					<div
+						class="rounded-3xl border-2 border-red-200 bg-red-50 p-6 shadow-lg"
+					>
+						<div class="flex items-start gap-4">
+							<div class="text-3xl">🚨</div>
+							<div>
+								<p class="text-lg font-bold text-red-800">
+									ИНЦИДЕНТ: Откат базы Битрикс — 1 июня, 00:00–08:20
+								</p>
+								<p class="mt-2 text-stone-700">
+									При обновлении коннектора Битрикс произошёл откат базы данных.
+									8 заказов, оформленных в ночь с 31 мая на 1 июня
+									(00:00–08:20), не попали в 1С. Ринат Загидулин оперативно
+									восстановил данные — заказы переданы на ручную загрузку. Время
+									реакции и восстановления: менее одного рабочего утра.
+								</p>
+								<div class="mt-3 flex flex-wrap gap-3 text-sm">
+									<span
+										class="rounded-full bg-red-100 px-3 py-1 font-medium text-red-700"
+										>8 потерянных заказов</span
+									>
+									<span
+										class="rounded-full bg-amber-100 px-3 py-1 font-medium text-amber-700"
+										>Восстановлено вручную</span
+									>
+									<span
+										class="rounded-full bg-emerald-100 px-3 py-1 font-medium text-emerald-700"
+										>Бизнес-процесс не остановлен</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="rounded-3xl bg-gradient-to-r from-stone-700 to-stone-500 p-6 text-white shadow-lg"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+						>
+							Итог недели
+						</p>
+						<p class="mt-3 text-lg font-medium">
+							Саша и Никита Замятин уходят в отпуск — Денис берёт сисадминские
+							задачи. Получены лицензии DataMobile. Павел закрыл ключевые
+							1С-задачи. Обучение ЧЗ вечером. Смена юрлица 17 июня — нужны новые
+							сертификаты.
+						</p>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-blue-600"
+							>
+								Павел
+							</p>
+							<ul class="mt-3 space-y-2 text-sm text-stone-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-emerald-500">✓</span
+									><span>Печатная форма «Заявка на возврат ДС» — готова</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-emerald-500">✓</span
+									><span
+										>Чеки Тинькофф исправлены: GET→POST (сайт изменил
+										метод)</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Отчёт для Юлии Калабековой (выплаты поставщикам по
+										поставщику/бренду) — в работе</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Роль для иностранных контрагентов (обход проверки
+										банковских реквизитов)</span
+									>
+								</li>
+							</ul>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-emerald-600"
+							>
+								Никита Замятин
+							</p>
+							<p class="mt-3 text-stone-700">
+								Встречи по ЭПД. Обучение ЧЗ вечером с командой. Работа с
+								Соколовым по доставкам.
+								<span class="text-amber-700 font-medium"
+									>→ Уходит в отпуск.</span
+								>
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-amber-600"
+							>
+								Ринат Загидулин
+							</p>
+							<p class="mt-3 text-stone-700">
+								Ликвидация последствий инцидента. Ревизия компьютеров перед
+								обновлением ПО. Работа с CSV-кодами Честного знака.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-500"
+							>
+								Александр Волохов
+							</p>
+							<p class="mt-3 text-stone-700">
+								Обновление IP VPN. Инвентаризация. Подготовка QR-кодов для
+								Москвы и Краснодара.
+								<span class="text-amber-700 font-medium"
+									>→ Уходит в отпуск.</span
+								>
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-violet-600"
+							>
+								Денис
+							</p>
+							<p class="mt-3 text-stone-700">
+								Временно прикрывает сисадминские задачи (Александр в отпуске).
+								Участвует в обучении ЧЗ вечером.
+							</p>
+						</article>
+						<article
+							class="rounded-3xl bg-gradient-to-br from-stone-800 to-stone-600 p-6 shadow-xl text-white"
+						>
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-300"
+							>
+								IT / Руководитель
+							</p>
+							<ul class="mt-3 space-y-2 text-sm text-stone-100">
+								<li class="flex items-start gap-2">
+									<span class="text-emerald-400">✓</span
+									><span
+										>Лицензии DataMobile получены — пилот на складе идёт</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="text-amber-400">⚠</span
+									><span
+										>Смена юрлица 17 июня — необходимо перевыпустить
+										сертификаты</span
+									>
+								</li>
+							</ul>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ НЕДЕЛЯ 4 ═══════ -->
+				<section id="week4" class="space-y-6">
+					<div
+						class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between"
+					>
+						<div>
+							<p
+								class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+							>
+								Неделя 4
+							</p>
+							<h2 class="mt-2 text-3xl font-bold text-stone-800">
+								8 — 15 июня 2026
+							</h2>
+							<p class="mt-1 text-stone-500">
+								ЭПД в СБИС, регламент Тинькофф, FIFO-серии, Денис уходит в
+								отпуск
+							</p>
+						</div>
+						<span
+							class="inline-flex w-fit rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-800"
+							>Текущая неделя</span
+						>
+					</div>
+
+					<div
+						class="rounded-3xl bg-gradient-to-r from-stone-700 to-stone-500 p-6 text-white shadow-lg"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+						>
+							Итог недели
+						</p>
+						<p class="mt-3 text-lg font-medium">
+							Павел сдал отчёт по Юлии Калабековой и разрабатывает регламент
+							периодической проверки чеков Тинькофф. Никита Замятин настраивает
+							шаблоны ЭПД в СБИС, обучение ЧЗ с Константином. Денис готовится к
+							отпуску: инструкция по Билайн, курс. IT добивает учебный центр
+							(синхронизация метаданных) и создаёт задачу для Паши по проекту
+							ЛК.
+						</p>
+					</div>
+
+					<div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-blue-600"
+							>
+								Павел
+							</p>
+							<ul class="mt-3 space-y-2 text-sm text-stone-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-emerald-500">✓</span
+									><span
+										>Отчёт для Юлии Калабековой: выплаты поставщикам в разрезе
+										поставщика и бренда — сдан</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Регламент «Тинькофф-чеки»: периодическая проверка появления
+										информации и перезапись в эквайринг</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Ограничение серий по FIFO в заказах (задача Сергея
+										Климачева) — менеджеры не смогут выбирать серии
+										вручную</span
+									>
+								</li>
+							</ul>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-emerald-600"
+							>
+								Никита Замятин
+							</p>
+							<ul class="mt-3 space-y-2 text-sm text-stone-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-emerald-500">✓</span
+									><span
+										>Зашёл в СБИС — ЭПД-документы отправляются,
+										отображаются</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Настройка шаблонов в 1С для корректного жизненного цикла
+										ЭПД</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Работа с Соколовым по статусу доставок. Обучение ЧЗ с
+										Константином</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-amber-400">!</span
+									><span
+										>Отчёт Паши по Юлии — нужна донастройка (недостаточно
+										информативен)</span
+									>
+								</li>
+							</ul>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-indigo-600"
+							>
+								Никита К.
+							</p>
+							<p class="mt-3 text-stone-700">
+								Подготовка каталога анализов для торговли (Сбер). Добавление
+								ABC-анализа клиентам. Закрывает доступные задачи.
+							</p>
+						</article>
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-violet-600"
+							>
+								Денис
+							</p>
+							<ul class="mt-3 space-y-2 text-sm text-stone-700">
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span>Инструкция по Билайн — оформляется</span>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Купил и проходит курс (рекомендован Никитой). Планирует
+										продолжить в отпуске</span
+									>
+								</li>
+								<li class="flex items-start gap-2">
+									<span class="mt-0.5 text-blue-400">→</span
+									><span
+										>Создаёт задачу для Паши по ЛК-проекту (мини-ТЗ от
+										подрядчиков)</span
+									>
+								</li>
+							</ul>
+						</article>
+						<article
+							class="rounded-3xl bg-gradient-to-br from-stone-800 to-stone-600 p-6 shadow-xl text-white col-span-full xl:col-span-2"
+						>
+							<p
+								class="text-sm font-semibold uppercase tracking-wide text-stone-300"
+							>
+								IT / Руководитель
+							</p>
+							<div class="mt-4 grid gap-4 sm:grid-cols-2">
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="font-semibold">Учебный центр</p>
+									<p class="mt-2 text-sm text-stone-200">
+										Синхронизация метаданных на сайт — добивается сегодня.
+										Тестирование Евгенией по Ирине.
+									</p>
+								</div>
+								<div class="rounded-2xl bg-white/10 p-4">
+									<p class="font-semibold">Проект ЛК — Паша</p>
+									<p class="mt-2 text-sm text-stone-200">
+										Создаётся задача для Паши изучить мини-ТЗ по ЛК-проекту.
+										Денис передаёт доступы.
+									</p>
+								</div>
+							</div>
+						</article>
+					</div>
+				</section>
+
+				<!-- ═══════ SLA ═══════ -->
+				<section id="sla" class="space-y-6">
+					<div class="text-center">
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500"
+						>
+							Операционная поддержка
+						</p>
+						<h2 class="mt-2 text-3xl font-bold text-stone-800">
+							SLA и нагрузка 2026
+						</h2>
+						<p class="mt-2 text-sm text-stone-500">
+							Май закрыт — 160 заявок, SLA 78,13%. Июнь (1–15): 95 заявок, SLA
+							72,63% — под наблюдением.
+						</p>
+					</div>
+
+					<div class="grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<div class="mb-4 flex items-center justify-between">
+								<div>
+									<h3 class="text-xl font-semibold text-stone-800">
+										Динамика по месяцам
+									</h3>
+									<p class="text-sm text-stone-500">
+										Заявки и SLA, январь–июнь 2026
+									</p>
+								</div>
+								<span
+									class="rounded-full bg-amber-50 px-3 py-1 text-sm font-medium text-amber-700"
+									>Год SLA ≈ 80,49%</span
+								>
+							</div>
+							<div class="h-[320px]"><canvas id="slaChart"></canvas></div>
+						</article>
+
+						<article class="rounded-3xl bg-white p-6 shadow-xl">
+							<h3 class="text-xl font-semibold text-stone-800">
+								Распределение
+							</h3>
+							<p class="text-sm text-stone-500">По системам за 2026</p>
+							<div class="mt-4 h-[260px]">
+								<canvas id="systemsChart"></canvas>
+							</div>
+						</article>
+					</div>
+
+					<div class="grid gap-6 sm:grid-cols-4">
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Всего 2026</p>
+							<p class="mt-1 text-3xl font-bold text-stone-800">1 464</p>
+							<p class="mt-1 text-sm text-stone-500">заявок</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Решено в срок</p>
+							<p class="mt-1 text-3xl font-bold text-emerald-700">1 184</p>
+							<p class="mt-1 text-sm text-stone-500">80,87% SLA (год)</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Превышение</p>
+							<p class="mt-1 text-3xl font-bold text-red-700">280</p>
+							<p class="mt-1 text-sm text-stone-500">19,13%</p>
+						</div>
+						<div class="rounded-2xl bg-white p-5 shadow-lg text-center">
+							<p class="text-sm text-stone-500">Июнь (1–15)</p>
+							<p class="mt-1 text-3xl font-bold text-stone-800">95</p>
+							<p class="mt-1 text-sm text-red-500">SLA 72,63% ↓</p>
+						</div>
+					</div>
+
+					<article class="rounded-3xl bg-white p-6 shadow-xl">
+						<h3 class="text-xl font-semibold text-stone-800">
+							Топ-категории обращений
+						</h3>
+						<p class="text-sm text-stone-500">
+							По системам и обратившимся отделам — данные с дашборда 2026
+						</p>
+						<div class="mt-5 grid gap-4 md:grid-cols-2">
+							<div>
+								<p
+									class="text-xs font-semibold uppercase tracking-wide text-stone-500"
+								>
+									Системы
+								</p>
+								<ul class="mt-3 space-y-2 text-sm text-stone-700">
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>1С</span
+										><span class="font-semibold">799 (55,37%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Техника / программа</span
+										><span class="font-semibold">310 (21,48%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Битрикс24</span
+										><span class="font-semibold">136 (9,42%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Проблема оборудования</span
+										><span class="font-semibold">113 (7,83%)</span>
+									</li>
+									<li class="flex justify-between">
+										<span>Отчёты / сайты / прочее</span
+										><span class="font-semibold">85 (5,89%)</span>
+									</li>
+								</ul>
+							</div>
+							<div>
+								<p
+									class="text-xs font-semibold uppercase tracking-wide text-stone-500"
+								>
+									Отделы (ТОП)
+								</p>
+								<ul class="mt-3 space-y-2 text-sm text-stone-700">
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Розничные продажи</span
+										><span class="font-semibold">210 (14,55%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>(Пусто) — без категории</span
+										><span class="font-semibold">165 (11,43%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Бухгалтерия</span
+										><span class="font-semibold">158 (10,95%)</span>
+									</li>
+									<li
+										class="flex justify-between border-b border-stone-100 pb-1"
+									>
+										<span>Склад</span
+										><span class="font-semibold">82 (5,68%)</span>
+									</li>
+									<li class="flex justify-between">
+										<span>Группа сопровождения</span
+										><span class="font-semibold">63 (4,37%)</span>
+									</li>
+								</ul>
+								<p class="mt-3 text-xs text-amber-700">
+									⚠️ «Пусто» резко выросло (77 → 165) — возможна пересортировка
+									категорий, нужна проверка.
+								</p>
+							</div>
+						</div>
+					</article>
+				</section>
+
+				<!-- ═══════ РЕШЕНИЯ ═══════ -->
+				<section id="decisions" class="space-y-6">
+					<div
+						class="rounded-[2rem] bg-gradient-to-r from-stone-900 to-stone-700 p-8 text-white shadow-2xl"
+					>
+						<p
+							class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300"
+						>
+							Next step
+						</p>
+						<h2 class="mt-3 text-3xl font-bold">Решения и открытые вопросы</h2>
+						<div class="mt-6 grid gap-4 lg:grid-cols-3">
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">1. Смена юрлица — 17 июня</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Перевыпустить сертификаты после смены. Составить список всех
+									систем и контрагентов, где нужна замена (ЭДО, ЭПД, банки, ЧЗ).
+									Ответственный: Ринат + Никита Замятин.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									2. ТСД DataMobile — итог пилота
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									После тестирования на боевых данных — принять решение о
+									переводе склада с Клеверенса на DataMobile. Зафиксировать
+									сроки и план миграции.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									3. ЭПД — настройка завершить
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Никита Замятин: настроить шаблоны, прогнать полный жизненный
+									цикл ЭПД в СБИС. Запись встречи от Софии Стензор — запросить.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									4. SLA июня — под наблюдением
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									72,63% — минимум 2026. Разобрать причины: влияние инцидента
+									Битрикс, нагрузка при сокращённой команде (отпуска). Принять
+									меры до конца месяца.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									5. Сертификаты и обновление платформы
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Согласовать окно для обновления платформы 1С после выходных.
+									Ревизия компьютеров (Ринат) — завершить перед обновлением.
+								</p>
+							</article>
+							<article class="rounded-2xl bg-white/10 p-5">
+								<p class="text-lg font-semibold">
+									6. Денис в отпуске — покрытие задач
+								</p>
+								<p class="mt-2 text-sm leading-relaxed text-stone-200">
+									Сисадминские задачи и поддержка ЛК-проекта — распределить
+									между командой. Паша — изучить ТЗ по ЛК (задача создаётся).
+									Задача по Билайн-инструкции: передать коллегам.
+								</p>
+							</article>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+
+		<script>
+			// SLA chart
+			new Chart(document.getElementById('slaChart'), {
+				type: 'bar',
+				data: {
+					labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь*'],
+					datasets: [
+						{
+							label: 'Заявки',
+							data: [215, 360, 331, 274, 160, 95],
+							backgroundColor: [
+								'#a8a29e',
+								'#78716c',
+								'#57534e',
+								'#44403c',
+								'#d6d3d1',
+								'#fca5a5',
+							],
+							borderRadius: 12,
+						},
+						{
+							label: 'SLA %',
+							type: 'line',
+							data: [80.0, 82.78, 81.87, 80.29, 78.13, 72.63],
+							yAxisID: 'y1',
+							borderColor: '#d97706',
+							backgroundColor: '#d97706',
+							tension: 0.35,
+							pointRadius: 6,
+							pointBackgroundColor: '#d97706',
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: { position: 'bottom' },
+						tooltip: {
+							callbacks: {
+								title: ctx =>
+									ctx[0].label +
+									(ctx[0].label === 'Июнь*' ? ' (месяц в процессе)' : ''),
+							},
+						},
+					},
+					scales: {
+						y: { beginAtZero: true, title: { display: true, text: 'Заявки' } },
+						y1: {
+							position: 'right',
+							min: 65,
+							max: 90,
+							grid: { drawOnChartArea: false },
+							title: { display: true, text: 'SLA %' },
+						},
+					},
+				},
+			})
+
+			// Systems doughnut
+			new Chart(document.getElementById('systemsChart'), {
+				type: 'doughnut',
+				data: {
+					labels: ['1С', 'Техника', 'Битрикс24', 'Оборудование', 'Прочее'],
+					datasets: [
+						{
+							data: [799, 310, 136, 113, 85],
+							backgroundColor: [
+								'#44403c',
+								'#78716c',
+								'#a8a29e',
+								'#d6d3d1',
+								'#e7e5e4',
+							],
+							borderWidth: 0,
+						},
+					],
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					plugins: {
+						legend: { position: 'bottom', labels: { font: { size: 11 } } },
+					},
+					cutout: '65%',
+				},
+			})
+
+			// Active nav link on scroll
+			const sections = document.querySelectorAll('section[id]')
+			const navLinks = document.querySelectorAll('.nav-link')
+			const observer = new IntersectionObserver(
+				entries => {
+					entries.forEach(entry => {
+						if (entry.isIntersecting) {
+							navLinks.forEach(l => l.classList.remove('active'))
+							const active = document.querySelector(
+								'.nav-link[href="#' + entry.target.id + '"]',
+							)
+							if (active) active.classList.add('active')
+						}
+					})
+				},
+				{ rootMargin: '-30% 0px -60% 0px' },
+			)
+			sections.forEach(s => observer.observe(s))
+		</script>
+	</body>
+</html>
