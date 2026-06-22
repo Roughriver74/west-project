@@ -343,88 +343,57 @@
           <p class="mt-3 max-w-3xl text-stone-100">Принято решение: поменять базу с ClickHouse на Postgres для аналитической DWH. В первую очередь — аналитическая база, которая будет постоянно анализировать продажи, остатки, закупки из 1С. Промежуточная DWH-база, чтобы не крутить всё на 1С-овской базе. План реализации — на следующей неделе.</p>
         </article>
 
-        <!-- РЕКЛАМА И ПОДРЯДЧИКИ -->
+        <!-- РЕКЛАМА И ПОДРЯДЧИКИ — кратко -->
         <article class="rounded-3xl bg-white p-8 shadow-xl border-t-4 border-rose-500">
           <div class="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div>
-              <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Реклама / SEO / Подрядчики</p>
-              <h3 class="mt-3 text-2xl font-bold text-stone-800">Сайт w-stom.ru: реклама, подрядчик и SEO-аудит</h3>
+              <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-500">Реклама / Подрядчик</p>
+              <h3 class="mt-3 text-2xl font-bold text-stone-800">w-stom.ru: реклама и подрядчик</h3>
             </div>
-            <span class="inline-flex w-fit rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-800">SLA сайта + KPI рекламы</span>
+            <span class="inline-flex w-fit rounded-full bg-rose-100 px-4 py-2 text-sm font-semibold text-rose-800">CPA +54%, сайт лежал</span>
           </div>
-          <p class="mt-4 text-stone-700">Анализ подрядчика ИП Незговоров П.С. по договору № ВГ171125-1 за апрель–июнь 2026. Реклама в Яндекс.Директ расходует ~1,09 млн ₽/мес, но результат ограничен проблемами сайта и отсутствием данных от WEST.</p>
+          <p class="mt-4 text-stone-700">Анализ ИП Незговоров П.С. (договор № ВГ171125-1) за апрель–июнь 2026. Подрядчик компетентен, но результат упирается в технические проблемы сайта и отсутствие данных.</p>
 
-          <div class="mt-6 grid gap-4 lg:grid-cols-3">
-            <div class="rounded-2xl bg-stone-50 p-5">
-              <p class="text-sm font-semibold text-stone-800">Финансы за май–июнь</p>
-              <ul class="mt-3 space-y-2 text-sm text-stone-700">
-                <li class="flex justify-between border-b border-stone-200 pb-1"><span>Расход на Директ, май</span><span class="font-semibold">1 085 895 ₽</span></li>
-                <li class="flex justify-between border-b border-stone-200 pb-1"><span>Конверсий, май</span><span class="font-semibold">855</span></li>
-                <li class="flex justify-between border-b border-stone-200 pb-1"><span>CPA (цена лида), май</span><span class="font-semibold">~1 270 ₽</span></li>
-                <li class="flex justify-between text-rose-700"><span>CPA июнь (1–7 июн)</span><span class="font-semibold">~1 674 ₽ ↑54%</span></li>
-                <li class="flex justify-between border-b border-stone-200 pb-1"><span>Оплата подрядчика</span><span class="font-semibold">60 000 ₽/мес</span></li>
-              </ul>
-            </div>
-            <div class="rounded-2xl bg-stone-50 p-5">
-              <p class="text-sm font-semibold text-stone-800">Что работает ✅</p>
-              <ul class="mt-3 space-y-2 text-sm text-stone-700">
-                <li>Минусация, ретаргетинг, брошенные корзины</li>
-                <li>Регионы: ЦО, СЗ, СПб+Ленобласть</li>
-                <li>Товарные кампании (ЕПК, ОЗК, РСЯ)</li>
-                <li>Брендовая защита от конкурентов</li>
-                <li>Еженедельные PDF-отчёты + месячный сводный</li>
-              </ul>
-            </div>
-            <div class="rounded-2xl bg-rose-50 p-5">
-              <p class="text-sm font-semibold text-rose-800">Критические блокеры 🔴</p>
-              <ul class="mt-3 space-y-2 text-sm text-stone-700">
-                <li><strong>Сайт лежал 22.06:</strong> 504 Gateway Timeout — реклама сливается в пустоту</li>
-                <li><strong>404 в топе:</strong> 3 393 просмотра за май, 1 511 за июнь</li>
-                <li><strong>Отказы растут:</strong> 27% → 42% (+14 п.п. за июнь)</li>
-                <li><strong>Нет списка приоритетного оборудования</strong> — 7 недель просит подрядчик</li>
-                <li><strong>Нет Roistat/CRM-интеграции:</strong> нельзя считать ROI, только CPA</li>
-              </ul>
-            </div>
-          </div>
-
-          <div class="mt-6 grid gap-4 lg:grid-cols-2">
-            <div class="rounded-2xl bg-amber-50 p-5">
-              <p class="text-sm font-semibold text-amber-800">SEO-аудит w-stom.ru (22.06): P0-проблемы</p>
-              <ul class="mt-3 space-y-1.5 text-sm text-stone-700">
-                <li>❌ <strong>Нет H1</strong> на главной — P0</li>
-                <li>❌ <strong>Нет canonical</strong> ни на одной странице — P0</li>
-                <li>❌ <strong>Нет JSON-LD / Product schema</strong> — P0</li>
-                <li>❌ <strong>Нет llms.txt</strong> — невидим для AI-поиска — P0</li>
-                <li>❌ <strong>AI-боты не указаны в robots.txt</strong> — P0</li>
-                <li>❌ <strong>/contacts/ → 404</strong> — P0</li>
-                <li>⚠️ <strong>TTFB 0,73 сек</strong> на грани; 82–97% изображений без width/height — CLS риск</li>
-              </ul>
-            </div>
-            <div class="rounded-2xl bg-stone-50 p-5">
-              <p class="text-sm font-semibold text-stone-800">Оценка подрядчика и сайта</p>
-              <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+          <div class="mt-6 grid gap-6 lg:grid-cols-2">
+            <!-- Блок 1: Финансы и динамика -->
+            <div class="rounded-2xl bg-stone-50 p-6">
+              <p class="text-sm font-semibold text-stone-800">📊 Финансы и эффективность (май–июнь)</p>
+              <div class="mt-4 grid grid-cols-2 gap-4 text-sm">
                 <div class="rounded-xl bg-white p-3 text-center shadow-sm">
-                  <p class="text-3xl font-bold text-amber-600">6/10</p>
-                  <p class="text-stone-600">Подрядчик (Директ)</p>
+                  <p class="text-2xl font-bold text-stone-800">1,09 млн ₽</p>
+                  <p class="text-stone-600">Расход на Директ, май</p>
                 </div>
                 <div class="rounded-xl bg-white p-3 text-center shadow-sm">
-                  <p class="text-3xl font-bold text-rose-600">3/10</p>
-                  <p class="text-stone-600">Тех. состояние сайта</p>
+                  <p class="text-2xl font-bold text-stone-800">855</p>
+                  <p class="text-stone-600">Конверсий, май</p>
+                </div>
+                <div class="rounded-xl bg-white p-3 text-center shadow-sm">
+                  <p class="text-2xl font-bold text-rose-600">1 674 ₽</p>
+                  <p class="text-stone-600">CPA июнь (1–7 июн)</p>
+                </div>
+                <div class="rounded-xl bg-white p-3 text-center shadow-sm">
+                  <p class="text-2xl font-bold text-rose-600">42%</p>
+                  <p class="text-stone-600">Отказы, июнь (было 27%)</p>
                 </div>
               </div>
-              <p class="mt-3 text-sm text-stone-700"><strong>Вывод:</strong> подрядчика не менять — он компетентен в Директе. Ограничивают внутренние блокеры: сайт лежит/404, нет оборудования, нет Roistat, нет сквозной аналитики. Решено делать новый сайт на 1С-Битрикс + Premier (Аспро), договор 1506/26. Текущий — только хотфиксы.</p>
+              <p class="mt-4 text-sm text-stone-700">CPA вырос на <strong class="text-rose-700">+54%</strong> (с 1 270 ₽ до 1 674 ₽), отказы выросли на <strong class="text-rose-700">+14 п.п.</strong>. Оплата подрядчика 60 000 ₽/мес.</p>
             </div>
-          </div>
 
-          <div class="mt-6 rounded-2xl bg-stone-100 p-5">
-            <p class="text-sm font-semibold text-stone-800">📌 Рекомендации для IT-отдела на неделю 23–28 июня</p>
-            <ul class="mt-3 space-y-1.5 text-sm text-stone-700">
-              <li>1. <strong>Поднять w-stom.ru</strong> и поставить мониторинг 504 — при 270К/неделя каждый час простоя дорог</li>
-              <li>2. <strong>Починить 404</strong> и /contacts/ — проверить рекламные URL и ЧПУ каталога</li>
-              <li>3. <strong>Передать подрядчику список приоритетного оборудования</strong> (блокер 7 недель) — сегментация по марже/объёму/LTV</li>
-              <li>4. <strong>Поставить задачу на Roistat-интеграцию:</strong> Директ ↔ Roistat ↔ 1С/Bitrix24 для CPO/ROI</li>
-              <li>5. <strong>SEO P0:</strong> H1, canonical, JSON-LD Product, llms.txt, robots.txt для AI-ботов</li>
-            </ul>
+            <!-- Блок 2: Проблемы и действия -->
+            <div class="rounded-2xl bg-rose-50 p-6">
+              <p class="text-sm font-semibold text-rose-800">🔴 Главные блокеры и что делать</p>
+              <ul class="mt-4 space-y-2 text-sm text-stone-700">
+                <li><strong>Сайт лежал 22.06:</strong> 504 Gateway Timeout — реклама сливается в пустоту</li>
+                <li><strong>404 в топе:</strong> 3 393 просмотра за май, 1 511 за июнь</li>
+                <li><strong>Нет данных от WEST:</strong> 7 недель просит список приоритетного оборудования</li>
+                <li><strong>Нет сквозной аналитики:</strong> нет Roistat/CRM — нельзя считать ROI</li>
+                <li><strong>SEO P0:</strong> нет H1, canonical, JSON-LD, llms.txt; /contacts/ → 404</li>
+              </ul>
+              <div class="mt-4 rounded-xl bg-white p-3 shadow-sm">
+                <p class="text-sm font-semibold text-stone-800">Оценка:</p>
+                <p class="mt-1 text-sm text-stone-700">Подрядчик <strong class="text-amber-600">6/10</strong> — не менять. Сайт <strong class="text-rose-600">3/10</strong> — основная причина роста CPA. Решено делать новый сайт на Premier/Аспро (договор 1506/26).</p>
+              </div>
+            </div>
           </div>
         </article>
       </section>
