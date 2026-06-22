@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Юридический отдел WEST: стратегический анализ</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style> body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; } </style>
+</head>
+<body class="bg-stone-100 text-stone-800">
+<div class="min-h-screen">
+  <header class="bg-gradient-to-r from-stone-800 to-stone-600 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-300">Стратегический анализ · crmwest.ru</p>
+      <h1 class="mt-3 text-4xl font-bold">Юридический отдел WEST</h1>
+      <p class="mt-3 max-w-3xl text-lg text-stone-200">Динамика развития, эффективность, структура работы и прогноз на основе 4046 задач.</p>
+      <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-300">
+        <span>📅 Период: 2023-07 — 2026-06</span>
+        <span>👥 Сотрудники: 3</span>
+        <span>📊 Задач: 4046</span>
+        <span>✅ Выполнено: 3790</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+
+    <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <p class="text-xs font-semibold uppercase text-stone-500">Всего задач</p>
+        <p class="mt-2 text-3xl font-bold">4046</p>
+        <p class="text-xs text-stone-500">3790 выполнено · 256 в работе</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <p class="text-xs font-semibold uppercase text-stone-500">Просрочки</p>
+        <p class="mt-2 text-3xl font-bold text-rose-600">30.5%</p>
+        <p class="text-xs text-stone-500">1157 / 3790 выполненных</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <p class="text-xs font-semibold uppercase text-stone-500">Медиана выполнения</p>
+        <p class="mt-2 text-3xl font-bold">6.0 дн.</p>
+        <p class="text-xs text-stone-500">Среднее 15.6 раб. дня</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <p class="text-xs font-semibold uppercase text-stone-500">Активных просрочек</p>
+        <p class="mt-2 text-3xl font-bold text-rose-600">57</p>
+        <p class="text-xs text-stone-500">из 256 · средняя +27.9 дн.</p>
+      </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <p class="text-xs font-semibold uppercase text-stone-500">Прогноз на 12 мес.</p>
+        <p class="mt-2 text-3xl font-bold text-emerald-600">~2244</p>
+        <p class="text-xs text-stone-500">задач при текущем тренде</p>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-white p-6 shadow-lg">
+      <h2 class="text-xl font-bold text-stone-800">Эффективность по сотрудникам</h2>
+      <div class="mt-4 grid gap-4 md:grid-cols-3">
+
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Ложкин Кирилл</p>
+          <p class="text-xs text-stone-500">Директор по АПВ</p>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold">580</p>
+              <p class="text-stone-600 text-xs">Всего задач</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold text-emerald-600">568</p>
+              <p class="text-stone-600 text-xs">Выполнено</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold text-rose-600">37.3%</p>
+              <p class="text-stone-600 text-xs">Просрочка</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold">5 дн.</p>
+              <p class="text-stone-600 text-xs">Медиана</p>
+            </div>
+          </div>
+          <p class="mt-3 text-xs text-stone-600">Среднее время 22.6 дн. · Активных просрочек 10 · Учёт времени 502.2 ч</p>
+        </div>
+
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Афонина Валерия</p>
+          <p class="text-xs text-stone-500">Юрист</p>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold">2826</p>
+              <p class="text-stone-600 text-xs">Всего задач</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold text-emerald-600">2619</p>
+              <p class="text-stone-600 text-xs">Выполнено</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold text-rose-600">31.8%</p>
+              <p class="text-stone-600 text-xs">Просрочка</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold">6 дн.</p>
+              <p class="text-stone-600 text-xs">Медиана</p>
+            </div>
+          </div>
+          <p class="mt-3 text-xs text-stone-600">Среднее время 14.1 дн. · Активных просрочек 38 · Учёт времени 24.3 ч</p>
+        </div>
+
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Циндренко Анастасия</p>
+          <p class="text-xs text-stone-500">Юрисконсульт</p>
+          <div class="mt-3 grid grid-cols-2 gap-2 text-sm">
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold">640</p>
+              <p class="text-stone-600 text-xs">Всего задач</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold text-emerald-600">603</p>
+              <p class="text-stone-600 text-xs">Выполнено</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold text-rose-600">18.4%</p>
+              <p class="text-stone-600 text-xs">Просрочка</p>
+            </div>
+            <div class="rounded-lg bg-white p-2 text-center shadow-sm">
+              <p class="text-xl font-bold">4 дн.</p>
+              <p class="text-stone-600 text-xs">Медиана</p>
+            </div>
+          </div>
+          <p class="mt-3 text-xs text-stone-600">Среднее время 15.8 дн. · Активных просрочек 9 · Учёт времени 3.5 ч</p>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Динамика задач по кварталам</h2>
+        <div class="mt-4 h-72">
+          <canvas id="quarterChart"></canvas>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Динамика просрочек по кварталам</h2>
+        <div class="mt-4 h-72">
+          <canvas id="overdueQuarterChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Структура работы по типам</h2>
+        <div class="mt-4 h-72">
+          <canvas id="typeChart"></canvas>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Подтипы договоров</h2>
+        <div class="mt-4 h-72">
+          <canvas id="contractChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-white p-6 shadow-lg">
+      <h2 class="text-lg font-bold text-stone-800">Прогноз загрузки по месяцам</h2>
+      <p class="text-sm text-stone-500">Реальные данные + линейный прогноз на 6 месяцев (пунктир)</p>
+      <div class="mt-4 h-80">
+        <canvas id="forecastChart"></canvas>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-stone-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-stone-800">Структура работы и эффективность по типам</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600">
+            <tr>
+              <th class="px-4 py-3 font-semibold">Тип работ</th>
+              <th class="px-4 py-3 font-semibold">Количество</th>
+              <th class="px-4 py-3 font-semibold">Доля</th>
+              <th class="px-4 py-3 font-semibold">Просрочка</th>
+              <th class="px-4 py-3 font-semibold">Медиана</th>
+              <th class="px-4 py-3 font-semibold">Рекомендация SLA</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+
+            <tr class="">
+              <td class="px-4 py-3 font-semibold">Договор / Согласование</td>
+              <td class="px-4 py-3">3045</td>
+              <td class="px-4 py-3">75.3%</td>
+              <td class="px-4 py-3">32.7%</td>
+              <td class="px-4 py-3">6 дн.</td>
+              <td class="px-4 py-3 text-stone-600">3–5 раб. дней</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-semibold">Прочее</td>
+              <td class="px-4 py-3">587</td>
+              <td class="px-4 py-3">14.5%</td>
+              <td class="px-4 py-3">24.2%</td>
+              <td class="px-4 py-3">5 дн.</td>
+              <td class="px-4 py-3 text-stone-600">3 раб. дня</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-semibold">Закупки / Подряд</td>
+              <td class="px-4 py-3">185</td>
+              <td class="px-4 py-3">4.6%</td>
+              <td class="px-4 py-3">27.1%</td>
+              <td class="px-4 py-3">4 дн.</td>
+              <td class="px-4 py-3 text-stone-600">3–5 раб. дней</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-semibold">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3">135</td>
+              <td class="px-4 py-3">3.3%</td>
+              <td class="px-4 py-3">23.2%</td>
+              <td class="px-4 py-3">12.0 дн.</td>
+              <td class="px-4 py-3 text-stone-600">согласовывать</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-semibold">Консультация / Справка</td>
+              <td class="px-4 py-3">65</td>
+              <td class="px-4 py-3">1.6%</td>
+              <td class="px-4 py-3">13.3%</td>
+              <td class="px-4 py-3">4.0 дн.</td>
+              <td class="px-4 py-3 text-stone-600">1 раб. день</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-semibold">Интеллектуальная собственность</td>
+              <td class="px-4 py-3">18</td>
+              <td class="px-4 py-3">0.4%</td>
+              <td class="px-4 py-3">25.0%</td>
+              <td class="px-4 py-3">4.0 дн.</td>
+              <td class="px-4 py-3 text-stone-600">3–5 раб. дней</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-semibold">Кадры / Дисциплина</td>
+              <td class="px-4 py-3">10</td>
+              <td class="px-4 py-3">0.2%</td>
+              <td class="px-4 py-3">40.0%</td>
+              <td class="px-4 py-3">11.5 дн.</td>
+              <td class="px-4 py-3 text-stone-600">3 раб. дня</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-semibold">Доступ / Регистрация</td>
+              <td class="px-4 py-3">1</td>
+              <td class="px-4 py-3">0.0%</td>
+              <td class="px-4 py-3">100.0%</td>
+              <td class="px-4 py-3">47 дн.</td>
+              <td class="px-4 py-3 text-stone-600">3–5 раб. дней</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-stone-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-stone-800">Детализация договоров</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600">
+            <tr>
+              <th class="px-4 py-3 font-semibold">Подтип договора</th>
+              <th class="px-4 py-3 font-semibold">Количество</th>
+              <th class="px-4 py-3 font-semibold">Просрочка</th>
+              <th class="px-4 py-3 font-semibold">Медиана</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+
+            <tr class="">
+              <td class="px-4 py-3">Договор (прочее)</td>
+              <td class="px-4 py-3">1305</td>
+              <td class="px-4 py-3">33.3%</td>
+              <td class="px-4 py-3">5 дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3">Соглашение об отсрочке</td>
+              <td class="px-4 py-3">922</td>
+              <td class="px-4 py-3">36.5%</td>
+              <td class="px-4 py-3">9 дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3">Договор поставки (продажи)</td>
+              <td class="px-4 py-3">564</td>
+              <td class="px-4 py-3">29.7%</td>
+              <td class="px-4 py-3">7.0 дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3">Договор поставки (закупки)</td>
+              <td class="px-4 py-3">123</td>
+              <td class="px-4 py-3">19.3%</td>
+              <td class="px-4 py-3">4.5 дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3">Контракт/проверка</td>
+              <td class="px-4 py-3">95</td>
+              <td class="px-4 py-3">21.1%</td>
+              <td class="px-4 py-3">6 дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3">Договор аренды</td>
+              <td class="px-4 py-3">15</td>
+              <td class="px-4 py-3">21.4%</td>
+              <td class="px-4 py-3">6.0 дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3">Доп. соглашение</td>
+              <td class="px-4 py-3">9</td>
+              <td class="px-4 py-3">11.1%</td>
+              <td class="px-4 py-3">2 дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3">Договор подряда/услуг</td>
+              <td class="px-4 py-3">6</td>
+              <td class="px-4 py-3">66.7%</td>
+              <td class="px-4 py-3">27.5 дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3">Лизинг</td>
+              <td class="px-4 py-3">3</td>
+              <td class="px-4 py-3">33.3%</td>
+              <td class="px-4 py-3">3 дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3">Ученический договор</td>
+              <td class="px-4 py-3">2</td>
+              <td class="px-4 py-3">100.0%</td>
+              <td class="px-4 py-3">211.0 дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3">Расторжение</td>
+              <td class="px-4 py-3">1</td>
+              <td class="px-4 py-3">0%</td>
+              <td class="px-4 py-3">0 дн.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-stone-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-stone-800">Топ контрагентов</h2>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600">
+            <tr>
+              <th class="px-4 py-3 font-semibold">Контрагент</th>
+              <th class="px-4 py-3 font-semibold">Задач</th>
+              <th class="px-4 py-3 font-semibold">Просрочка</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+
+            <tr>
+              <td class="px-4 py-3">СТОМАТОЛОГИЧЕСКАЯ ПОЛИКЛИНИКА №2</td>
+              <td class="px-4 py-3">33</td>
+              <td class="px-4 py-3">6.1%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">Великий Новгород</td>
+              <td class="px-4 py-3">17</td>
+              <td class="px-4 py-3">17.6%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">ВЕСТ</td>
+              <td class="px-4 py-3">16</td>
+              <td class="px-4 py-3">12.5%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">Каневская - 2334013972</td>
+              <td class="px-4 py-3">14</td>
+              <td class="px-4 py-3">7.7%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">ЛЕКПРОФИ</td>
+              <td class="px-4 py-3">13</td>
+              <td class="px-4 py-3">7.7%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">КДЦ</td>
+              <td class="px-4 py-3">12</td>
+              <td class="px-4 py-3">12.5%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">ТД</td>
+              <td class="px-4 py-3">10</td>
+              <td class="px-4 py-3">30.0%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">ЦИФРОВАЯ СТОМАТОЛОГИЯ</td>
+              <td class="px-4 py-3">8</td>
+              <td class="px-4 py-3">37.5%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">МЦ СТОМАТОЛОГИИ</td>
+              <td class="px-4 py-3">8</td>
+              <td class="px-4 py-3">87.5%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">Керимова Гюльнар Байрам Кызы -</td>
+              <td class="px-4 py-3">8</td>
+              <td class="px-4 py-3">50.0%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">Вест</td>
+              <td class="px-4 py-3">8</td>
+              <td class="px-4 py-3">28.6%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">АЛЬФАМЕД</td>
+              <td class="px-4 py-3">7</td>
+              <td class="px-4 py-3">0.0%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">для отсрочки платежа</td>
+              <td class="px-4 py-3">7</td>
+              <td class="px-4 py-3">0.0%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">МЦ</td>
+              <td class="px-4 py-3">7</td>
+              <td class="px-4 py-3">16.7%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">ПФ</td>
+              <td class="px-4 py-3">7</td>
+              <td class="px-4 py-3">28.6%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">СК</td>
+              <td class="px-4 py-3">7</td>
+              <td class="px-4 py-3">57.1%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">Вест Групп</td>
+              <td class="px-4 py-3">7</td>
+              <td class="px-4 py-3">66.7%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">ОРБИТА-ДЕНТ</td>
+              <td class="px-4 py-3">6</td>
+              <td class="px-4 py-3">16.7%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">АЙ-М.А.К.Т.</td>
+              <td class="px-4 py-3">6</td>
+              <td class="px-4 py-3">66.7%</td>
+            </tr>
+
+            <tr>
+              <td class="px-4 py-3">СЕМЕЙНАЯ СТОМАТОЛОГИЯ</td>
+              <td class="px-4 py-3">6</td>
+              <td class="px-4 py-3">50.0%</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-rose-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-rose-900">Топ просроченных активных задач</h2>
+        <p class="text-sm text-rose-700">Всего активных просроченных: 57</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600">
+            <tr>
+              <th class="px-4 py-3 font-semibold">ID</th>
+              <th class="px-4 py-3 font-semibold">Ответственный</th>
+              <th class="px-4 py-3 font-semibold">Название</th>
+              <th class="px-4 py-3 font-semibold">Просрочка</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#41878</td>
+              <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
+              <td class="px-4 py-3">Досудебная претензия по реализации ВД0В-012046</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+177 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#28650</td>
+              <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
+              <td class="px-4 py-3">Регламент предоставления отсрочки / ПДЗ</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+124 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#9679</td>
+              <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
+              <td class="px-4 py-3">Медимпекс ознакомление</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+102 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#59331</td>
+              <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
+              <td class="px-4 py-3">Реестр судебных и исполнительных производств Вест Групп</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+102 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#59401</td>
+              <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
+              <td class="px-4 py-3">Договор ООО ЭМИ (вопросы расторжения)</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+102 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#50151</td>
+              <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
+              <td class="px-4 py-3">ИП Денисов Д.В. претензия</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+87 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#70615</td>
+              <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
+              <td class="px-4 py-3">Корректировка типовой формы договора поставки</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+67 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#29709</td>
+              <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
+              <td class="px-4 py-3">Иск к ИП Сапожниковой (ООО "Вест Фарм")</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+62 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#37543</td>
+              <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
+              <td class="px-4 py-3">Лицензирование ООО "Вест"</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+62 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#29707</td>
+              <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
+              <td class="px-4 py-3">Исполнительное производство по ИП Сапожниковой (ООО "АртБГ")</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+61 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#21986</td>
+              <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
+              <td class="px-4 py-3">Регистрация бренда Occidental</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+52 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#73916</td>
+              <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
+              <td class="px-4 py-3">Консультация / Справка - Реклама медицинских изделий (обрудования) - 7842030908</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+52 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#86293</td>
+              <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - Оленев Илья - 470320671726</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+52 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#23180</td>
+              <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
+              <td class="px-4 py-3">Иск АртБГ - ООО "ЮТС Глобал"</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+50 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#22010</td>
+              <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
+              <td class="px-4 py-3">ООО "Базис поставки" (брак RelyX U200)</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+41 раб. дн.</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="rounded-2xl bg-stone-800 p-8 text-white shadow-lg">
+      <h2 class="text-xl font-bold">Стратегические выводы и рекомендации</h2>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-amber-300">⚠️ Критический рост нагрузки</p>
+          <p class="mt-2 text-sm text-stone-200">С 17 задач в Q3 2023 до 600+ задач в квартал. Пик — Q4 2025 (649 задач). Отдел вырос в ~35 раз за 2,5 года.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-rose-300">🔴 Просрочки держатся на 30%+</p>
+          <p class="mt-2 text-sm text-stone-200">Q1 2025 — худший (48,2% просрочек). Сейчас стабилизировалось на ~28–32%, но это всё ещё каждая 3-я задача.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-stone-300">📌 75% — договоры и согласования</p>
+          <p class="mt-2 text-sm text-stone-200">3045 из 4046 задач — договорная работа. Основной поток: отсрочки (922), договоры поставки продаж (564), прочие договоры (1305).</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-emerald-300">✅ Циндренко — эталон эффективности</p>
+          <p class="mt-2 text-sm text-stone-200">640 задач, медиана 4 дня, просрочка 18,4%. Афонина обрабатывает в 4,4 раза больше задач, но медленнее и с 31,8% просрочек.</p>
+        </div>
+      </div>
+      <div class="mt-6 rounded-xl bg-stone-700 p-4">
+        <p class="font-semibold text-white">💡 План действий</p>
+        <ul class="mt-2 space-y-1 text-sm text-stone-200">
+          <li>1. <strong>Разгрузить Афонину Валерию.</strong> 2826 задач (70%) — критическая нагрузка. Передать часть шаблонных договоров поставки Циндренко или нанять ещё одного юриста.</li>
+          <li>2. <strong>Закрыть долгострои Ложкина.</strong> #59331 (реестр судебных дел) и #59401 (договор ЭМИ) — по 102 раб. дня просрочки.</li>
+          <li>3. <strong>Внедрить SLA:</strong> отсрочка — 1–2 дня, договор поставки — 3 дня, иск/суд — согласовывать, справки — 1 день.</li>
+          <li>4. <strong>Шаблонизация:</strong> 922 соглашения об отсрочке и 564 договора поставки — кандидаты для автозаполнения по шаблонам.</li>
+          <li>5. <strong>Учёт времени:</strong> сейчас всего 530.0 ч на 4046 задач (~0,3 ч/задачу). Нужно timeEstimate и реальное трекинг.</li>
+          <li>6. <strong>Прогноз:</strong> при текущем тренде впереди ~2244 задач в год. Без расширения отдела SLA не улучшится.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-8 border-t border-stone-300 bg-stone-200 py-6 text-center text-sm text-stone-600">
+    Сформировано автоматически из Битрикс24 crmwest.ru · Юридический отдел (департамент 39) · Анализ на основе 4046 задач
+  </footer>
+</div>
+
+<script>
+
+const qCtx = document.getElementById('quarterChart').getContext('2d');
+new Chart(qCtx, {
+  type: 'bar',
+  data: {
+    labels: ['2023-Q3', '2023-Q4', '2024-Q1', '2024-Q2', '2024-Q3', '2024-Q4', '2025-Q1', '2025-Q2', '2025-Q3', '2025-Q4', '2026-Q1', '2026-Q2'],
+    datasets: [{
+      label: 'Всего задач',
+      data: [17, 56, 74, 128, 442, 369, 600, 416, 351, 649, 489, 455],
+      backgroundColor: '#57534e',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+
+const qoCtx = document.getElementById('overdueQuarterChart').getContext('2d');
+new Chart(qoCtx, {
+  type: 'line',
+  data: {
+    labels: ['2023-Q3', '2023-Q4', '2024-Q1', '2024-Q2', '2024-Q3', '2024-Q4', '2025-Q1', '2025-Q2', '2025-Q3', '2025-Q4', '2026-Q1', '2026-Q2'],
+    datasets: [{
+      label: '% просрочек',
+      data: [35.3, 25.5, 12.2, 17.7, 26.0, 23.3, 48.2, 26.1, 23.2, 33.8, 31.3, 27.9],
+      borderColor: '#dc2626',
+      backgroundColor: '#fecaca',
+      fill: true,
+      tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, max: 60 } }
+  }
+});
+
+const typeCtx = document.getElementById('typeChart').getContext('2d');
+new Chart(typeCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Договор / Согласование', 'Интеллектуальная собственность', 'Прочее', 'Претензия / Иск / Суд', 'Кадры / Дисциплина', 'Закупки / Подряд', 'Консультация / Справка', 'Доступ / Регистрация'],
+    datasets: [{
+      data: [3045, 18, 587, 135, 10, 185, 65, 1],
+      backgroundColor: ['#57534e', '#78716c', '#a8a29e', '#f59e0b', '#0d9488', '#dc2626', '#7c3aed', '#ec4899']
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'right' } }
+  }
+});
+
+const contractCtx = document.getElementById('contractChart').getContext('2d');
+new Chart(contractCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Договор (прочее)', 'Соглашение об отсрочке', 'Договор поставки (продажи)', 'Лизинг', 'Контракт/проверка', 'Договор подряда/услуг', 'Доп. соглашение', 'Договор аренды', 'Договор поставки (закупки)', 'Ученический договор', 'Расторжение'],
+    datasets: [{
+      label: 'Количество',
+      data: [1305, 922, 564, 3, 95, 6, 9, 15, 123, 2, 1],
+      backgroundColor: '#78716c',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    indexAxis: 'y',
+    plugins: { legend: { display: false } },
+    scales: { x: { beginAtZero: true } }
+  }
+});
+
+const fCtx = document.getElementById('forecastChart').getContext('2d');
+new Chart(fCtx, {
+  type: 'bar',
+  data: {
+    labels: ['2023-07', '2023-08', '2023-09', '2023-10', '2023-11', '2023-12', '2024-01', '2024-02', '2024-03', '2024-04', '2024-05', '2024-06', '2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12', '2025-01', '2025-02', '2025-03', '2025-04', '2025-05', '2025-06', '2025-07', '2025-08', '2025-09', '2025-10', '2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09', '2026-10', '2026-11', '2026-12'],
+    datasets: [{
+      label: 'Задач в месяц',
+      data: [1, 4, 12, 11, 30, 15, 21, 27, 26, 26, 37, 65, 126, 214, 102, 135, 105, 129, 173, 250, 177, 177, 109, 130, 108, 105, 138, 181, 272, 196, 130, 181, 178, 186, 129, 140, 176, 178, 180, 182, 184, 186],
+      backgroundColor: ['#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#57534e', '#0d9488', '#0d9488', '#0d9488', '#0d9488', '#0d9488', '#0d9488'],
+      borderRadius: 4
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+</script>
+</body>
+</html>
