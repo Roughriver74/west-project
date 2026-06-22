@@ -42,9 +42,9 @@
       <section id="overview" class="space-y-8">
         <div class="rounded-3xl bg-gradient-to-r from-stone-800 to-stone-600 p-8 text-white shadow-xl">
           <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Executive summary</p>
-          <h2 class="mt-3 text-3xl font-bold sm:text-4xl">SLA падает третий месяц: 74,2% в июне. Взаиморасчёты 1С зависают, ТСД создаёт расхождения, серии требуют переделки</h2>
+          <h2 class="mt-3 text-3xl font-bold sm:text-4xl">SLA падает третий месяц: 74,2% в июне. Взаиморасчёты 1С зависают, DataMobile внедряется для Евгения Шикунова, серии требуют переделки</h2>
           <p class="mt-4 max-w-4xl text-lg leading-relaxed text-stone-100">
-            Главный тревожный сигнал недели — SLA рухнул до 74,22% (минимум за полгода), цели 80% не достигнут. Бухгалтерия массово жалуется на недопроведение взаиморасчетов: документы зависают в регистре с 8 июня, регламент проведения стоит лишь раз в сутки (23:00). ТСД на Кловересе продолжает создавать расхождения сумм: сканирование не той серии ломает цену реализации, аннулирования через ЭДО длятся неделями. Ринат обнаружил в коде авто-заполнение серии организацией для всех номенклатур — если не ограничить только анестетиками, подбор по ФИФО сломается. Павел завершает 1-й этап сайта (план обмена, JSON). Никита Замятин готовится к внедрению новых ТСД на складе в понедельник. Евгения в отпуске — 29 задач по Битрикс24 стоят.
+            Главный тревожный сигнал недели — SLA рухнул до 74,22% (минимум за полгода), цели 80% не достигнут. Бухгалтерия массово жалуется на недопроведение взаиморасчетов: документы зависают в регистре с 8 июня, регламент проведения стоит лишь раз в сутки (23:00). ТСД на Кловересе продолжает создавать расхождения сумм: сканирование не той серии ломает цену реализации, аннулирования через ЭДО длятся неделями. DataMobile готовится к внедрению на складе в понедельник — основной бенефициар и точка приёмки: Евгений Шикунов. Ринат обнаружил в коде авто-заполнение серии организацией для всех номенклатур — если не ограничить только анестетиками, подбор по ФИФО сломается. Павел завершает 1-й этап сайта (план обмена, JSON). Евгения в отпуске — 29 задач по Битрикс24 стоят.
           </p>
           <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
             <span>📅 15 — 22 июня 2026</span>
@@ -74,9 +74,9 @@
             <p class="mt-1 text-sm text-amber-600">Регламент 1 раз/сутки</p>
           </article>
           <article class="rounded-2xl border-t-4 border-cyan-500 bg-white p-6 shadow-lg">
-            <p class="text-2xl font-bold text-stone-800">ТСД → новое ПО</p>
+            <p class="text-2xl font-bold text-stone-800">DataMobile</p>
             <p class="mt-2 font-medium text-stone-600">Понедельник — склад</p>
-            <p class="mt-1 text-sm text-cyan-600">Никита внедряет</p>
+            <p class="mt-1 text-sm text-cyan-600">Евгений Шикунов — приёмка</p>
           </article>
           <article class="rounded-2xl border-t-4 border-violet-500 bg-white p-6 shadow-lg">
             <p class="text-2xl font-bold text-stone-800">Сайт · этап 1</p>
@@ -257,25 +257,25 @@
           </div>
           <span class="inline-flex w-fit rounded-full bg-red-100 px-4 py-2 text-sm font-semibold text-red-800">Критично для бухгалтерии</span>
         </div>
-
+        <!-- Проблема 3: ТСД / DataMobile -->
         <article class="rounded-3xl bg-white p-8 shadow-xl border-l-4 border-red-500">
           <div class="flex items-start gap-4">
             <div class="rounded-xl bg-red-100 px-3 py-2 text-sm font-bold text-red-700">🔴</div>
             <div class="flex-1">
-              <h3 class="text-xl font-semibold text-stone-800">Неправильное сканирование серий — расхождения сумм</h3>
-              <p class="mt-2 text-stone-700">При сканировании на складе берут не ту серию → создаётся лишняя строка в реализации с ценой по прайсу вместо цены заказа. Пример: перчатки в заказе 100₽, по прайсу 120₽ — при сканировании серии №2 вместо №1 разбивается строка и меняется сумма документа.</p>
+              <h3 class="text-xl font-semibold text-stone-800">Неправильное сканирование серий — расхождения сумм. Переход на DataMobile</h3>
+              <p class="mt-2 text-stone-700">При сканировании на складе берут не ту серию → создаётся лишняя строка в реализации с ценой по прайсу вместо цены заказа. Пример: перчатки в заказе 100₽, по прайсу 120₽ — при сканировании серии №2 вместо №1 разбивается строка и меняется сумма документа. Бухгалтерия массово отправляет документы на аннулирование; один УПД висел с 3 июня по 22 июня.</p>
               <div class="mt-4 grid gap-3 sm:grid-cols-3">
-                <div class="rounded-xl bg-red-50 p-4 text-sm">
-                  <p class="font-semibold text-red-700">Цепочка исправления</p>
-                  <p class="mt-1 text-stone-600">Аннулирование через ЭДО → ожидание подписания контрагентом → возврат марок → исправление → повторная отправка УПД. Один документ висит с 3 июня!</p>
+                <div class="rounded-xl bg-cyan-50 p-4 text-sm">
+                  <p class="font-semibold text-cyan-700">DataMobile — внедрение</p>
+                  <p class="mt-1 text-stone-600">В DataMobile найдена настройка: ТСД пищит при сканировании «не той» серии, не создаёт новую, а требует взять правильную с полки. Никита едет на склад в понедельник; точка приёмки и бенефициар — Евгений Шикунов.</p>
                 </div>
                 <div class="rounded-xl bg-amber-50 p-4 text-sm">
                   <p class="font-semibold text-amber-800">Объём проблемы</p>
-                  <p class="mt-1 text-stone-600">Бухгалтерия массово отправляет документы на аннулирование. Ринат сегодня отменил десяток документов. Расхождения растут.</p>
+                  <p class="mt-1 text-stone-600">Бухгалтерия массово отправляет документы на аннулирование. Ринат 22 июня отменил десяток документов. Расхождения растут.</p>
                 </div>
-                <div class="rounded-xl bg-cyan-50 p-4 text-sm">
-                  <p class="font-semibold text-cyan-700">Решение</p>
-                  <p class="mt-1 text-stone-600">Переход на новое ПО ТСД (DataMobile). Настройка «ругаться на неправильную серию» найдена. Никита едет на склад в понедельник. До конца месяца — терпим Кловер.</p>
+                <div class="rounded-xl bg-stone-50 p-4 text-sm">
+                  <p class="font-semibold text-stone-800">Кловер — до конца месяца</p>
+                  <p class="mt-1 text-stone-600">Пришло письмо от Кловера с демо новой версии. Команда хочет отказаться от Кловера и перейти на DataMobile. До конца месяца терпим.</p>
                 </div>
               </div>
             </div>
@@ -285,15 +285,15 @@
         <div class="grid gap-6 md:grid-cols-3">
           <article class="rounded-3xl bg-white p-6 shadow-xl">
             <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">DataMobile — настройка серий</p>
-            <p class="mt-3 text-stone-700">В DataMobile найдена настройка: ТСД пищит при сканировании «не той» серии — не создаёт новую, а требует взять правильную с полки. Внедрение — понедельник на складе.</p>
+            <p class="mt-3 text-stone-700">Проверка серии при сканировании. Внедрение — понедельник на складе, приёмка Евгением Шикуновым.</p>
           </article>
           <article class="rounded-3xl bg-white p-6 shadow-xl">
-            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Кловер — демо нового ПО</p>
-            <p class="mt-3 text-stone-700">Пришло письмо: Кловер готов провести демонстрацию новой версии с поддержкой Честного знака. Но команда хочет отказаться от Кловер.</p>
+            <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Кловер → отказ</p>
+            <p class="mt-3 text-stone-700">Команда намерена отказаться от Кловера. Демо новой версии не меняет решения — переход на DataMobile.</p>
           </article>
           <article class="rounded-3xl bg-white p-6 shadow-xl">
             <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Инвентаризация — QR-коды</p>
-            <p class="mt-3 text-stone-700">Волохов доделывает QR-коды. Печать в понедельник, тест в Краснодаре. Выгрузка в Excel → Cursor для оценки парка (сумма, амортизация).</p>
+            <p class="mt-3 text-stone-700">Волохов доделывает QR-коды. Печать в понедельник, тест в Краснодаре. Выгрузка в Excel → Cursor для оценки парка.</p>
           </article>
         </div>
       </section>
@@ -466,7 +466,7 @@
           </article>
           <article class="rounded-3xl bg-white p-6 shadow-xl">
             <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Ситилинк — закупка</p>
-            <p class="mt-3 text-stone-700">Клавиатуры на склад (нет в запасе). Жёсткие диски для серверов (просил Ринат).</p>
+            <p class="mt-3 text-stone-700">Клавиатуры на склад (нет в запасе). Жёсткие диски для серверов (просил Ринат). <strong class="text-emerald-700">В процессе.</strong></p>
           </article>
           <article class="rounded-3xl bg-white p-6 shadow-xl">
             <p class="text-sm font-semibold uppercase tracking-wide text-stone-500">Ростелеком — интернет</p>
@@ -506,8 +506,8 @@
               <p class="mt-2 text-sm leading-relaxed text-stone-200">Документы недопроводятся с 8 июня. Регламент стоит раз в сутки. Решение: включить фоновое проведение или учащённый регламент. Проверить константу фонового распределения.</p>
             </article>
             <article class="rounded-2xl bg-amber-500/20 p-5 border border-amber-400/30">
-              <p class="text-lg font-semibold text-amber-200">3. ТСД — переход на новое ПО</p>
-              <p class="mt-2 text-sm leading-relaxed text-stone-200">Понедельник — Никита на складе, внедрение DataMobile. До конца месяца терпим Кловер. Решение: финальное одобрение перехода и план миграции.</p>
+              <p class="text-lg font-semibold text-amber-200">3. DataMobile — внедрение на складе</p>
+              <p class="mt-2 text-sm leading-relaxed text-stone-200">Понедельник — Никита на складе. Точка приёмки и бенефициар: Евгений Шикунов. До конца месяца терпим Кловер. Решение: финальное одобрение перехода и план миграции.</p>
             </article>
             <article class="rounded-2xl bg-amber-500/20 p-5 border border-amber-400/30">
               <p class="text-lg font-semibold text-amber-200">4. Серии — ограничить авто-заполнение</p>
