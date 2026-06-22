@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анализ задач Юридического отдела WEST | 360 дней</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+  body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; }
+  .stone-gradient { background: linear-gradient(135deg, #57534e 0%, #78716c 100%); }
+</style>
+</head>
+<body class="bg-stone-100 text-stone-800">
+<div class="min-h-screen">
+  <!-- Header -->
+  <header class="stone-gradient text-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Аналитика Битрикс24</p>
+      <h1 class="mt-3 text-4xl font-bold">Юридический отдел WEST</h1>
+      <p class="mt-3 max-w-3xl text-lg text-stone-100">Анализ всех задач за последние 360 дней: время выполнения, дедлайны, просрочки, типы работ, ответственные.</p>
+      <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
+        <span>📅 15 июня 2025 — 22 июня 2026</span>
+        <span>👤 Ложкин Кирилл</span>
+        <span>📊 123 задачи</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+
+    <!-- KPI -->
+    <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Всего задач</p>
+        <p class="mt-2 text-3xl font-bold text-stone-800">123</p>
+        <p class="mt-1 text-sm text-stone-600">116 выполнено · 7 в работе</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Выполнено в срок</p>
+        <p class="mt-2 text-3xl font-bold text-emerald-700">59,6%</p>
+        <p class="mt-1 text-sm text-stone-600">68 в срок · 46 просрочено</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Медиана выполнения</p>
+        <p class="mt-2 text-3xl font-bold text-stone-800">4 дня</p>
+        <p class="mt-1 text-sm text-stone-600">Среднее: 12,1 раб. дня</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Активных просрочено</p>
+        <p class="mt-2 text-3xl font-bold text-rose-700">4/7</p>
+        <p class="mt-1 text-sm text-stone-600">2 задачи по 102 раб. дня</p>
+      </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Распределение по типам работ</h2>
+        <div class="mt-4 h-64">
+          <canvas id="typeChart"></canvas>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Время выполнения закрытых задач</h2>
+        <div class="mt-4 h-64">
+          <canvas id="leadChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Active tasks -->
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-rose-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-rose-900">Активные задачи (7)</h2>
+        <p class="text-sm text-rose-700">4 из них просрочены</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600">
+            <tr>
+              <th class="px-4 py-3 font-semibold">ID</th>
+              <th class="px-4 py-3 font-semibold">Название</th>
+              <th class="px-4 py-3 font-semibold">Тип</th>
+              <th class="px-4 py-3 font-semibold">Создана</th>
+              <th class="px-4 py-3 font-semibold">Дедлайн</th>
+              <th class="px-4 py-3 font-semibold">Просрочка</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#59331</td>
+              <td class="px-4 py-3">Реестр судебных и исполнительных производств Вест Групп</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+102 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#59401</td>
+              <td class="px-4 py-3">Договор ООО ЭМИ (вопросы расторжения)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+102 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#95431</td>
+              <td class="px-4 py-3">Согласование Положения "О дисциплинарных взысканиях ООО "Вест""</td>
+              <td class="px-4 py-3">Кадры / Дисциплина</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-18</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+3 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#91257</td>
+              <td class="px-4 py-3">Договор поставки (для отдела закупок) - Общество с ограниченной ответственностью "Ормко" - 7806182285</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-19</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#92352</td>
+              <td class="px-4 py-3">Консультация / Справка - 00000 - 00000</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-30</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">нет</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#98226</td>
+              <td class="px-4 py-3">Консультация / Справка - Росприроднадзор - -</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-16</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-22</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">нет</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#98625</td>
+              <td class="px-4 py-3">Шаблоны согласий сотрудников</td>
+              <td class="px-4 py-3">Кадры / Дисциплина</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-30</td>
+              <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">нет</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Completed tasks -->
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-stone-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-stone-800">Выполненные задачи (116)</h2>
+        <p class="text-sm text-stone-600">Отсортированы по дате закрытия (новые сверху). Просроченные подсвечены.</p>
+      </div>
+      <div class="overflow-x-auto max-h-[800px] overflow-y-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600 sticky top-0">
+            <tr>
+              <th class="px-4 py-3 font-semibold">ID</th>
+              <th class="px-4 py-3 font-semibold">Название</th>
+              <th class="px-4 py-3 font-semibold">Тип</th>
+              <th class="px-4 py-3 font-semibold">Создана</th>
+              <th class="px-4 py-3 font-semibold">Закрыта</th>
+              <th class="px-4 py-3 font-semibold">Время</th>
+              <th class="px-4 py-3 font-semibold">Дедлайн</th>
+              <th class="px-4 py-3 font-semibold">Просрочка</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#98640</td>
+              <td class="px-4 py-3">Документы о простое</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-22</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-19</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#97777</td>
+              <td class="px-4 py-3">Консультация / Справка - ПАО Сбербанк Протоколы / Решения об одобрении крупных сделок - 7707083893</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-10</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">8 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#97520</td>
+              <td class="px-4 py-3">Согласование шаблона договора транспортных услуг</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-09</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">7 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-17</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#97719</td>
+              <td class="px-4 py-3">Консультация / Справка - тест после исправления - тест после исправления</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-10</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#97779</td>
+              <td class="px-4 py-3">Консультация / Справка - Тест - 000000</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-10</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#94665</td>
+              <td class="px-4 py-3">Запрос ОРП СУ УМВД по г. Краснодару</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">18 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-03</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+7 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#96106</td>
+              <td class="px-4 py-3">Консультация / Справка - ООО «ФКМ Лизинг»  - 7710443169</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-09</td>
+              <td class="px-4 py-3 whitespace-nowrap">8 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-11</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#96390</td>
+              <td class="px-4 py-3">Премия за май 2026 г- Юридический отдел</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-01</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-03</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#92963</td>
+              <td class="px-4 py-3">Формы для постановки задач и планов сотрудникам</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-07</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-06-01</td>
+              <td class="px-4 py-3 whitespace-nowrap">18 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-15</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+12 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#95638</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - Финансовый отдел - ООО «АГ «Капитал»   
+- 6658149843</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-28</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#94980</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - Отдел кадров - ООО "СК "Сбербанк страхование"
+- 7706810747</td>
+              <td class="px-4 py-3">Кадры / Дисциплина</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-20</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-22</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#95137</td>
+              <td class="px-4 py-3">Договор АГ Капитал (налоговые риски) + NDA</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-25</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#95435</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - Финансовый отдел - ООО «АГ «Капитал»
+- 6658149843</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-27</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#75050</td>
+              <td class="px-4 py-3">Договор поставки (для отдела закупок) - АО ПРОТЕКО - 7816441517</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-13</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">93 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-15</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+5 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#94375</td>
+              <td class="px-4 py-3">Договор МИПО обучение Биктимировой и Евграфовой</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#84104</td>
+              <td class="px-4 py-3">Предоставление доступа в Консультант+</td>
+              <td class="px-4 py-3">Доступ / Регистрация</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-14</td>
+              <td class="px-4 py-3 whitespace-nowrap">47 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-03</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+30 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#93746</td>
+              <td class="px-4 py-3">Досудебная претензия</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-13</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-13</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-25</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#71640</td>
+              <td class="px-4 py-3">Консультация / Справка - Вест - 7221000224</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">112 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-27</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+31 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#92841</td>
+              <td class="px-4 py-3">Консультация / Справка - N - N</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-06</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-06</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-13</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#90046</td>
+              <td class="px-4 py-3">Ринат(договорные)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-05-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">12 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-28</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+5 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#71202</td>
+              <td class="px-4 py-3">Претензия - ООО "Технотрон" - Уведомление об отказе от продления аренды (Мск)</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">101 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-08</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+10 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#90390</td>
+              <td class="px-4 py-3">Консультация / Справка - ВЕСТ ООО - ВЕСТ</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-20</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-27</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#88311</td>
+              <td class="px-4 py-3">Претензия - Автоклавчик - 7729732319</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-14</td>
+              <td class="px-4 py-3 whitespace-nowrap">5 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-13</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#85860</td>
+              <td class="px-4 py-3">Заполните авансовый отчет, и передайте отчетные документы по командировке в Москва с 10.03.2026 00:00:00 по 11.03.2026 00:00:00</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-23</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-16</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+9 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#86604</td>
+              <td class="px-4 py-3">Консультация / Справка - Таджиева Менгли - 0В0В-038000 - номер счета</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-04-02</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#78800</td>
+              <td class="px-4 py-3">Консультация / Справка - ВЕСТ ГРУПП ООО - 7806623324</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-05</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">26 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-20</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+15 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#78801</td>
+              <td class="px-4 py-3">Консультация / Справка - Вест групп ОО - 7806623324</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-05</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">26 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-20</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+15 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#81696</td>
+              <td class="px-4 py-3">Изменения по Честному знаку</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">13 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-25</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+12 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#82367</td>
+              <td class="px-4 py-3">Консультация / Справка - Реестр Импортёров - Порядок ввоза медизделий</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">11 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-12</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#82598</td>
+              <td class="px-4 py-3">Решение по ФЗ от 24.06.2025 № 168‑ФЗ / март 2026</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-10</td>
+              <td class="px-4 py-3 whitespace-nowrap">7 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-06</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+3 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#83266</td>
+              <td class="px-4 py-3">Доп. соглашения, акты и др. (для отдела закупок) - ВЕСТ - 7842030908</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-10</td>
+              <td class="px-4 py-3 whitespace-nowrap">5 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-03-06</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+3 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#80978</td>
+              <td class="px-4 py-3">Консультация / Справка - Частное лицо - 7806623324</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">7 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-25</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#81429</td>
+              <td class="px-4 py-3">Консультация / Справка - Перемещение через границу - Доставка - возврат товаров Калининград</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-20</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-27</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#80545</td>
+              <td class="px-4 py-3">тест</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-16</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-17</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+3 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#77250</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - МИРОШИН НИКИТА АНАТОЛЬЕВИЧ - 782022367454</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">17 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-28</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+16 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#78261</td>
+              <td class="px-4 py-3">Запросы по прекурсорам УНК СПб</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">13 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-17</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#80272</td>
+              <td class="px-4 py-3">Консультация / Справка - сотрудники - 0000</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-13</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-13</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-20</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#79223</td>
+              <td class="px-4 py-3">Консультация / Справка - ДЕНТЕКС ООО  - 7709847093</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-06</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-10</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-13</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#77429</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - Епифанова Ирина Александровна - 0000000000000</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-28</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-09</td>
+              <td class="px-4 py-3 whitespace-nowrap">9 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-06</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#77376</td>
+              <td class="px-4 py-3">Консультация / Справка - ООО "ВЕСТ ФАРМ" - 7806610646</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-02-03</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#66324</td>
+              <td class="px-4 py-3">Запрос УНК Архангельской области</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-31</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">62 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-26</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#76011</td>
+              <td class="px-4 py-3">Консультация / Справка - Отказ от исполнения трудовых обязанностей - Формы для актирования</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-26</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+1 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#76092</td>
+              <td class="px-4 py-3">Запрос Балтийской таможни о контракте Вест Дент с Vitta</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-26</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#74625</td>
+              <td class="px-4 py-3">Консультация / Справка - Завод в Китае Шинва (SHINVA) - завод в Китае</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-16</td>
+              <td class="px-4 py-3 whitespace-nowrap">15 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-16</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+1 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#75059</td>
+              <td class="px-4 py-3">Консультация / Справка - вест - вест</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-13</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-22</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#74184</td>
+              <td class="px-4 py-3">Проверка агентского договора</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-14</td>
+              <td class="px-4 py-3 whitespace-nowrap">16 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-13</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#73167</td>
+              <td class="px-4 py-3">доверенность на Дроздова О.</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">21 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-31</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+9 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#73168</td>
+              <td class="px-4 py-3">Доверенность И.Богаткина</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">21 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-31</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+9 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#73366</td>
+              <td class="px-4 py-3">Протоколы крупных сделок</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">9 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2026-01-12</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#69432</td>
+              <td class="px-4 py-3">Заявка в IT: Отчеты\Планы\BI | Изменение отчета | ПДЗ</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">26 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-12</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+11 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#69731</td>
+              <td class="px-4 py-3">Согласование договоров поставки оборудования (процесс)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">25 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-22</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+5 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#73331</td>
+              <td class="px-4 py-3">Претензия - ООО "Касабу" - 7842522956</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-16</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">9 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-19</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+6 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#73519</td>
+              <td class="px-4 py-3">Консультация / Справка - вест - вест</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-25</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#73548</td>
+              <td class="px-4 py-3">Консультация / Справка - Мирумед - Мирумед</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-25</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#72201</td>
+              <td class="px-4 py-3">Консультация / Справка - ООО ВАЛО Сервис - 7813287634</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-15</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#72126</td>
+              <td class="px-4 py-3">Согласование формы Трудового договора</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-12</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#65522</td>
+              <td class="px-4 py-3">Претензия - ИП Кудрина Дарья Сергеевна - 910706777720</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-03</td>
+              <td class="px-4 py-3 whitespace-nowrap">28 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-05</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#70060</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - Маркосян Е.М. - отсутствует</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-28</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-28</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#70430</td>
+              <td class="px-4 py-3">Консультация / Справка - 0 - 1</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-12-04</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#65377</td>
+              <td class="px-4 py-3">Договор поставки (для отдела закупок) - АО "ЕПЗ" - 6204001412</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">21 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-21</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#65378</td>
+              <td class="px-4 py-3">Договор поставки (для отдела закупок) - АО "ЕПЗ" - 6204001412</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">21 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-21</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#69034</td>
+              <td class="px-4 py-3">Консультация / Справка - ИП Бектемиров Залимхан Арсланалиевич - 056001751605</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-20</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-26</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#68783</td>
+              <td class="px-4 py-3">Офиц ответ по прекурсорам</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-19</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#52298</td>
+              <td class="px-4 py-3">Ormco Corporation интеллектуальная собственность</td>
+              <td class="px-4 py-3">Интеллектуальная собственность</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">90 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-07</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+30 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#68589</td>
+              <td class="px-4 py-3">Заявка в IT: Битрикс24 (от Ложкин Кирилл)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-19</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#68265</td>
+              <td class="px-4 py-3">Консультация / Справка - ООО "СТОМАТОЛОГИЧЕСКАЯ КЛИНИКА БРЕКЕТ" - 4705105190</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-14</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-14</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-21</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#67355</td>
+              <td class="px-4 py-3">Консультация / Справка - вест груп - 7806623324</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#67769</td>
+              <td class="px-4 py-3">Консультация / Справка - 7817313765 - ООО "Вест"</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-12</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-19</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#57740</td>
+              <td class="px-4 py-3">Наумов С.В. (иск к ООО "Вест Логистик")</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">53 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-10</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#67069</td>
+              <td class="px-4 py-3">Консультация / Справка - ВЕСТ - 7842030908</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-07</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-10</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-14</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#66125</td>
+              <td class="px-4 py-3">Консультация / Справка - ИП Меликов А. Ф. - 402201842146</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-07</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#65345</td>
+              <td class="px-4 py-3">Консультация / Справка - ООО "Глобал Электро" - 7802523551</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-31</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#65905</td>
+              <td class="px-4 py-3">Консультация / Справка - Учёт (журнал) прекурсоров - 7842030908</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-06</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#64621</td>
+              <td class="px-4 py-3">вопрос  по  спреям  КАВО</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-20</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-10</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#64261</td>
+              <td class="px-4 py-3">Запрос по прекурсорам</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-16</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">7 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-24</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#64911</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - Пашазаде Вусал Тахир оглы - 781629896376</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-27</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#63491</td>
+              <td class="px-4 py-3">Консультация / Справка (для руководителей) - Таиров Валерий Владиславович - 11111111111</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-13</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-23</td>
+              <td class="px-4 py-3 whitespace-nowrap">9 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-22</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#62884</td>
+              <td class="px-4 py-3">Регистрация  ТЗ Gapadent, Occidental, Flox</td>
+              <td class="px-4 py-3">Интеллектуальная собственность</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-09</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-11-28</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#62822</td>
+              <td class="px-4 py-3">Консультация / Справка (для руководителей) - - - -</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-07</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-14</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#62013</td>
+              <td class="px-4 py-3">СДЭК и другие ТК (ЭЦП и электронные доверенности)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-03</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-10</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#61282</td>
+              <td class="px-4 py-3">Договор по услугам/подряду - ИП Горшкова Анна Сергеевна - 325310000069600</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-30</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+3 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#54716</td>
+              <td class="px-4 py-3">Как экспортировать flox, при условии, что РУ принадлежит ЭМИ</td>
+              <td class="px-4 py-3">Интеллектуальная собственность</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-06</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-01</td>
+              <td class="px-4 py-3 whitespace-nowrap">41 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-26</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+4 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#61677</td>
+              <td class="px-4 py-3">Услуги / Подряд / Закупки для внутренних нужд - ООО "Вавилон" - 7820061902</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-01</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-10-01</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#61199</td>
+              <td class="px-4 py-3">Договор по услугам/подряду - Поважная Эвридика Федоровна - 561407899272</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-30</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+1 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#60708</td>
+              <td class="px-4 py-3">Консультация / Справка (для руководителей подразделений) - Бабанина Ольга Валерьевна - 323310000083192</td>
+              <td class="px-4 py-3">Консультация / Справка</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-22</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-29</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#60773</td>
+              <td class="px-4 py-3">Внутреннее обучение. Юридический отдел</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-22</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">6 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-26</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#60217</td>
+              <td class="px-4 py-3">Прописать в Договоре с покупателем условия по РУ</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">7 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">—</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#60778</td>
+              <td class="px-4 py-3">Договор по услугам/подряду - Общество с ограниченной ответственностью «БЕНЕФИС» - 7804682010</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-22</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">4 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-25</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+1 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#59301</td>
+              <td class="px-4 py-3">Ответственность за нарушение оборота маркируемой продукции</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-12</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#58816</td>
+              <td class="px-4 py-3">Варианты распространения остатков немаркированной продукции</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-09</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-09</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#51962</td>
+              <td class="px-4 py-3">Служебное расследование в отделе Логистики</td>
+              <td class="px-4 py-3">Кадры / Дисциплина</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-14</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">41 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+37 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#58379</td>
+              <td class="px-4 py-3">Заявка в юр.отдел: договор поставки для отдела закупок (7807356030)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-09</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#58083</td>
+              <td class="px-4 py-3">доп соглашение по работе с эдо и мдлп (перчатки и деза)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-03</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-09-05</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#54762</td>
+              <td class="px-4 py-3">досудебное письмо</td>
+              <td class="px-4 py-3">Претензия / Иск / Суд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-06</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-29</td>
+              <td class="px-4 py-3 whitespace-nowrap">18 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-15</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+11 раб. дн.</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#54480</td>
+              <td class="px-4 py-3">Westcode патент</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">17 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-19</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+6 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#57258</td>
+              <td class="px-4 py-3">Договор ГОБУЗ «Центральная городская клиническая больница»</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-26</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-26</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#54071</td>
+              <td class="px-4 py-3">Подарочный сертификат на инструменты flox</td>
+              <td class="px-4 py-3">Интеллектуальная собственность</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-31</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">18 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-29</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#56761</td>
+              <td class="px-4 py-3">Пройдите опрос для сотрудников</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-22</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-22</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-29</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#52366</td>
+              <td class="px-4 py-3">Смена владельца сайта https://w-stom.ru/</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-16</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-18</td>
+              <td class="px-4 py-3 whitespace-nowrap">24 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-15</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#52429</td>
+              <td class="px-4 py-3">Договор аренды Вест 1212 - ИП Докучаев (Амбер Холл)</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-16</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">18 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-19</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#51705</td>
+              <td class="px-4 py-3">дополнительное соглашение к контракту flox</td>
+              <td class="px-4 py-3">Интеллектуальная собственность</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-09</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-05</td>
+              <td class="px-4 py-3 whitespace-nowrap">20 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-04</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#52964</td>
+              <td class="px-4 py-3">Перевоз архива в Амбер холл</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-22</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-31</td>
+              <td class="px-4 py-3 whitespace-nowrap">8 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-15</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#51901</td>
+              <td class="px-4 py-3">Аренда дополнительного склада/ангара</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-11</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-28</td>
+              <td class="px-4 py-3 whitespace-nowrap">12 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">—</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#53353</td>
+              <td class="px-4 py-3">Заключение договора с транспортной компанией ITECO</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-25</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-24</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#53352</td>
+              <td class="px-4 py-3">Заключение договора с транспортной компанией ITECO</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-24</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-24</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#52495</td>
+              <td class="px-4 py-3">Подготовить договор подряда для  Горшкова Анна по ()</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-21</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-22</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#52551</td>
+              <td class="px-4 py-3">Форест медиа</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-17</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-18</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#52297</td>
+              <td class="px-4 py-3">Ormco Corporation интеллектуальная собственность</td>
+              <td class="px-4 py-3">Интеллектуальная собственность</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-15</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-08-01</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#51134</td>
+              <td class="px-4 py-3">ООО "Мегапак" поставка брендированных пакетов маек-гигантов. Проверить документы (договор, спецификация) от поставщика.</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-07</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-08</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-11</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#51164</td>
+              <td class="px-4 py-3">Договор Торговый Дом Гекса ООО на ВЕСТ</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-07</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-07</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-07</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="bg-rose-50">
+              <td class="px-4 py-3 font-mono">#50438</td>
+              <td class="px-4 py-3">Договор БМП Технолоджи</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-04</td>
+              <td class="px-4 py-3 whitespace-nowrap">5 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-03</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">+2 раб. дн.</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#50702</td>
+              <td class="px-4 py-3">Подготовьте допсоглашение по предоплате ООО "РЕГИНАДЕНТАЛ"</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-02</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-02</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#50250</td>
+              <td class="px-4 py-3">Подготовить договор поставки для отдела закупок</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-01</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-02</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#50339</td>
+              <td class="px-4 py-3">Подготовить договор подряда для  Теребов Данил по (4807005163)</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-01</td>
+              <td class="px-4 py-3 whitespace-nowrap">3 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-07-02</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#50246</td>
+              <td class="px-4 py-3">ООО "Миран" (услуги предоставления сервера)</td>
+              <td class="px-4 py-3">Закупки / Подряд</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-27</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">2 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-30</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+            <tr class="">
+              <td class="px-4 py-3 font-mono">#50390</td>
+              <td class="px-4 py-3">Договор БМП Технолоджи</td>
+              <td class="px-4 py-3">Договор / Согласование</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-30</td>
+              <td class="px-4 py-3 whitespace-nowrap">1 дн.</td>
+              <td class="px-4 py-3 whitespace-nowrap">2025-06-30</td>
+              <td class="px-4 py-3 font-semibold whitespace-nowrap">в срок</td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Insights -->
+    <section class="rounded-2xl bg-stone-800 p-8 text-white shadow-lg">
+      <h2 class="text-xl font-bold">Выводы и рекомендации</h2>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-amber-300">⚠️ Просрочки — 40,4%</p>
+          <p class="mt-2 text-sm text-stone-200">Почти каждая вторая закрытая задача опаздывает. Средняя просрочка 7,5 раб. дней, медиана 3 дня.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-rose-300">🔴 2 долгостроя по 102 раб. дня</p>
+          <p class="mt-2 text-sm text-stone-200">Реестр судебных/исполнительных производств и договор ООО ЭМИ висят больше 4 месяцев без закрытия.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-stone-300">📌 Основная нагрузка</p>
+          <p class="mt-2 text-sm text-stone-200">50% — договоры/согласования, 29% — консультации/справки. Всё на одном человеке.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-emerald-300">✅ Положительный момент</p>
+          <p class="mt-2 text-sm text-stone-200">94,3% задач доводятся до закрытия. Медиана 4 дня — быстро.</p>
+        </div>
+      </div>
+      <div class="mt-6 rounded-xl bg-stone-700 p-4">
+        <p class="font-semibold text-white">💡 Рекомендации</p>
+        <ul class="mt-2 space-y-1 text-sm text-stone-200">
+          <li>1. Разобрать 2 долгостроя (#59331 и #59401) — назначить чёткие шаги и новый дедлайн.</li>
+          <li>2. Ввести SLA по типам: справка — 2 дня, договор — 5 дней, сложный/суд — согласовывать отдельно.</li>
+          <li>3. Начать ставить timeEstimate в задачи, чтобы видеть реальную загрузку.</li>
+          <li>4. Подумать о втором юристе / внешнем консультанте для покрытия пиков и отпусков.</li>
+          <li>5. Еженедельный review активных задач — сейчас 4 из 7 просрочены.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="mt-8 border-t border-stone-300 bg-stone-200 py-6 text-center text-sm text-stone-600">
+    Сформировано автоматически из Битрикс24 crmwest.ru | Юридический отдел (департамент 39) | Ложкин Кирилл
+  </footer>
+</div>
+
+<script>
+
+const typeCtx = document.getElementById('typeChart').getContext('2d');
+new Chart(typeCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Закупки / Подряд', 'Договор / Согласование', 'Интеллектуальная собственность', 'Кадры / Дисциплина', 'Претензия / Иск / Суд', 'Консультация / Справка', 'Доступ / Регистрация'],
+    datasets: [{
+      data: [13, 54, 6, 4, 9, 36, 1],
+      backgroundColor: ['#57534e', '#78716c', '#a8a29e', '#f59e0b', '#0d9488', '#dc2626', '#7c3aed']
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'right' } }
+  }
+});
+
+const leadCtx = document.getElementById('leadChart').getContext('2d');
+new Chart(leadCtx, {
+  type: 'bar',
+  data: {
+    labels: ['1 день', '2-3 дня', '4-7 дней', '8-14 дней', '15-30 дней', '31-60 дней', '60+ дней'],
+    datasets: [{
+      label: 'Количество задач',
+      data: [23, 25, 27, 12, 20, 4, 5],
+      backgroundColor: '#78716c',
+      borderRadius: 6
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } }
+  }
+});
+</script>
+</body>
+</html>
