@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отдел закупок WEST — анализ задач за год</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style> body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; } </style>
+</head>
+<body class="bg-stone-100 text-stone-800">
+<div class="min-h-screen">
+  <header class="bg-gradient-to-r from-stone-700 to-stone-500 text-white">
+    <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Bitrix24 crmwest.ru · Отдел закупок</p>
+      <h1 class="mt-3 text-4xl font-bold">Отдел закупок WEST</h1>
+      <p class="mt-3 max-w-3xl text-lg text-stone-100">Полный анализ задач по отделу за последний год. 9 сотрудников: Данилин, Янкин, Ахмедова, Биушкина, Сивинюк, Комарова, Семиколенова, Азарова, Подгорецкий.</p>
+      <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
+        <span>📅 Период: 2025-06-29 → 2026-06-29</span>
+        <span>👥 Сотрудников: 9</span>
+        <span>📊 Всего задач: 15 424</span>
+        <span>✅ Выполнено: 15 055</span>
+        <span>🔴 Активных просроченных: 77</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 space-y-8">
+
+    <!-- KPI cards -->
+    <section class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Всего задач</p>
+        <p class="mt-2 text-3xl font-bold text-stone-800">15 424</p>
+        <p class="mt-1 text-sm text-stone-600">15 055 выполнено · 369 в работе</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Просроченные (выполненные)</p>
+        <p class="mt-2 text-3xl font-bold text-rose-700">23.1%</p>
+        <p class="mt-1 text-sm text-stone-600">3 479 из 15 055 задач</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Медиана выполнения</p>
+        <p class="mt-2 text-3xl font-bold text-stone-800">6 раб.дн.</p>
+        <p class="mt-1 text-sm text-stone-600">Среднее: 7.7 раб.дн. · P90: 15 · P95: 22</p>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <p class="text-sm font-semibold uppercase text-stone-500">Активных просроченных</p>
+        <p class="mt-2 text-3xl font-bold text-rose-700">77 / 369</p>
+        <p class="mt-1 text-sm text-stone-600">Средняя просрочка: 15.6 раб.дн.</p>
+      </div>
+    </section>
+
+    <!-- Employee cards -->
+    <section class="rounded-2xl bg-white p-6 shadow-lg">
+      <h2 class="text-xl font-bold text-stone-800">Сравнение по сотрудникам</h2>
+      <p class="mt-1 text-sm text-stone-500">8 активных менеджеров + 1 руководитель. Сортировка по объёму задач.</p>
+      <div class="mt-4 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+
+        <!-- Сергей Янкин -->
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Сергей Янкин</p>
+          <p class="text-xs text-stone-500">Менеджер отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">3 268</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">3 212</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">5.5%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">6 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>7.1 раб.дн.</strong> · Активных: <strong>56</strong> · Активных просроченных: <strong class="text-rose-700">~10</strong></p>
+        </div>
+
+        <!-- Алина Биушкина -->
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Алина Биушкина</p>
+          <p class="text-xs text-stone-500">Менеджер отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">2 515</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">2 459</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-amber-600">25.3%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">5 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>6.7 раб.дн.</strong> · Активных: <strong>56</strong> · Активных просроченных: <strong class="text-rose-700">~12</strong></p>
+        </div>
+
+        <!-- Артур Сивинюк -->
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Артур Сивинюк</p>
+          <p class="text-xs text-stone-500">Бывший помощник менеджера</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">2 112</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">2 066</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">9.1%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">6 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>6.9 раб.дн.</strong> · Активных: <strong>46</strong></p>
+        </div>
+
+        <!-- Патя Ахмедова -->
+        <div class="rounded-xl bg-amber-50 p-5 ring-2 ring-amber-200">
+          <p class="text-lg font-bold text-stone-800">Патя Ахмедова</p>
+          <p class="text-xs text-stone-500">Ведущий менеджер отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">1 940</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">1 918</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-rose-600">49.4%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">4.5 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>7.7 раб.дн.</strong> · Активных: <strong>22</strong> · ⚠️ Highest overdue rate</p>
+        </div>
+
+        <!-- Максим Данилин — CRITICAL -->
+        <div class="rounded-xl bg-rose-50 p-5 ring-2 ring-rose-300">
+          <p class="text-lg font-bold text-stone-800">Максим Данилин</p>
+          <p class="text-xs text-stone-500">Менеджер отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">1 919</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">1 823</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-rose-600">63.4%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">8 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-rose-700 font-semibold">🔴 Критическая зона: 1 156 просрочек · 96 активных · ~60 просроченных активных · 8 долгостроев &gt;60 дн.</p>
+        </div>
+
+        <!-- Марина Комарова -->
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Марина Комарова</p>
+          <p class="text-xs text-stone-500">Менеджер отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">1 668</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">1 639</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">7.9%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">6 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>6.4 раб.дн.</strong> · Активных: <strong>29</strong></p>
+        </div>
+
+        <!-- Мария Семиколенова -->
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Мария Семиколенова</p>
+          <p class="text-xs text-stone-500">Ассистент отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">1 345</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">1 314</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-amber-600">14.8%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">6 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>7.6 раб.дн.</strong> · Активных: <strong>31</strong></p>
+        </div>
+
+        <!-- Кристина Азарова -->
+        <div class="rounded-xl bg-stone-50 p-5">
+          <p class="text-lg font-bold text-stone-800">Кристина Азарова</p>
+          <p class="text-xs text-stone-500">Менеджер отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">653</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">621</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">10.3%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">7 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>8.8 раб.дн.</strong> · Активных: <strong>32</strong> · С ноября 2025</p>
+        </div>
+
+        <!-- Андрей Подгорецкий -->
+        <div class="rounded-xl bg-stone-50 p-5 opacity-60">
+          <p class="text-lg font-bold text-stone-800">Андрей Подгорецкий</p>
+          <p class="text-xs text-stone-500">Руководитель отдела закупок</p>
+          <div class="mt-3 grid grid-cols-2 gap-3 text-sm">
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">4</p><p class="text-stone-600">Всего задач</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-emerald-600">3</p><p class="text-stone-600">Выполнено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">0%</p><p class="text-stone-600">Просрочено</p></div>
+            <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">5 дн.</p><p class="text-stone-600">Медиана</p></div>
+          </div>
+          <p class="mt-3 text-sm text-stone-700">⚠️ Руководитель не работает в задачах Битрикс24</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Charts -->
+    <section class="grid gap-6 lg:grid-cols-2">
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Типы задач</h2>
+        <p class="mt-1 text-sm text-stone-500">Классификация по названиям</p>
+        <div class="mt-4 h-72">
+          <canvas id="typeChart"></canvas>
+        </div>
+      </div>
+      <div class="rounded-2xl bg-white p-6 shadow-lg">
+        <h2 class="text-lg font-bold text-stone-800">Динамика по месяцам</h2>
+        <p class="mt-1 text-sm text-stone-500">Создано задач по сотрудникам</p>
+        <div class="mt-4 h-72">
+          <canvas id="monthChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Overdue by employee chart -->
+    <section class="rounded-2xl bg-white p-6 shadow-lg">
+      <h2 class="text-lg font-bold text-stone-800">Просрочки по сотрудникам</h2>
+      <p class="mt-1 text-sm text-stone-500">Доля просроченных среди выполненных задач</p>
+      <div class="mt-4 h-64">
+        <canvas id="overdueChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Time distribution -->
+    <section class="rounded-2xl bg-white p-6 shadow-lg">
+      <h2 class="text-lg font-bold text-stone-800">Распределение времени выполнения</h2>
+      <p class="mt-1 text-sm text-stone-500">Рабочие дни · P25=3 · P50=6 · P75=9 · P90=15 · P95=22 · Max=232</p>
+      <div class="mt-4 h-56">
+        <canvas id="percentileChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Active overdue tasks table -->
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-rose-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-rose-900">🔴 Активные просроченные задачи (77)</h2>
+        <p class="text-sm text-rose-700">Из 369 активных задач 77 просрочены. Показаны все, отсортированы по убыванию просрочки.</p>
+      </div>
+      <div class="overflow-x-auto max-h-[600px]">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600 sticky top-0">
+            <tr>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">ID</th>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">Ответственный</th>
+              <th class="px-4 py-3 font-semibold">Название</th>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">Дедлайн</th>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">Просрочка</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#88087</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | GC</td><td class="px-4 py-2 whitespace-nowrap">2026-04-08</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+59 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#90631</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Maillefer (НЕ ИСПОЛЬЗОВАТЬ)</td><td class="px-4 py-2 whitespace-nowrap">2026-04-22</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+49 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#91260</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Ivoclar Vivadent</td><td class="px-4 py-2 whitespace-nowrap">2026-04-24</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+47 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#91323</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | РусМед</td><td class="px-4 py-2 whitespace-nowrap">2026-04-27</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+46 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#66103</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | Maillefer | К-Files nitiflex 15-40, 25мм, 6шт.</td><td class="px-4 py-2 whitespace-nowrap">2026-04-30</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+43 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#92303</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ТОР ВМ</td><td class="px-4 py-2 whitespace-nowrap">2026-05-03</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+41 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#92727</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ТОР ВМ</td><td class="px-4 py-2 whitespace-nowrap">2026-05-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+40 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#93321</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Владмива</td><td class="px-4 py-2 whitespace-nowrap">2026-05-11</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+36 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#93652</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Curaden AG</td><td class="px-4 py-2 whitespace-nowrap">2026-05-13</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+34 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#94050</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | Kagayaki | Ensmart Pin 70 — полиры диски, средняя</td><td class="px-4 py-2 whitespace-nowrap">2026-05-14</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+33 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#94023</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Maillefer (НЕ ИСПОЛЬЗОВАТЬ)</td><td class="px-4 py-2 whitespace-nowrap">2026-05-14</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+33 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#93849</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ТОР ВМ</td><td class="px-4 py-2 whitespace-nowrap">2026-05-14</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+33 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#89029</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Посчитать цену и сроки поставки | ТОР ВМ</td><td class="px-4 py-2 whitespace-nowrap">2026-05-18</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+31 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#88785</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ТОР ВМ</td><td class="px-4 py-2 whitespace-nowrap">2026-05-18</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+31 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#85586</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | GC</td><td class="px-4 py-2 whitespace-nowrap">2026-05-18</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+31 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#94644</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | Maillefer | PathFile™, 25мм/№019, (6 шт.)</td><td class="px-4 py-2 whitespace-nowrap">2026-05-19</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+30 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#94615</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Dentsply Sirona</td><td class="px-4 py-2 whitespace-nowrap">2026-05-19</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+30 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95484</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | VDW (Германия)</td><td class="px-4 py-2 whitespace-nowrap">2026-05-25</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+26 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96009</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ТОР ВМ</td><td class="px-4 py-2 whitespace-nowrap">2026-05-27</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+24 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95767</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | GC</td><td class="px-4 py-2 whitespace-nowrap">2026-05-27</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+24 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95755</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | ТОР ВМ | Диски шлифовальные с метал. втулкой</td><td class="px-4 py-2 whitespace-nowrap">2026-05-27</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+24 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95655</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | GC</td><td class="px-4 py-2 whitespace-nowrap">2026-05-27</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+24 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95859</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | Eurofile | Spreaders/Спредеры, 31мм/№25</td><td class="px-4 py-2 whitespace-nowrap">2026-05-28</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+23 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96866</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | VDW (Германия)</td><td class="px-4 py-2 whitespace-nowrap">2026-06-02</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+20 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96811</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | VDW | Гуттаперчевые штифты эндоканальные</td><td class="px-4 py-2 whitespace-nowrap">2026-06-03</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+19 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97194</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ALPHADENT N.V.</td><td class="px-4 py-2 whitespace-nowrap">2026-06-04</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+18 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97028</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Kagayaki</td><td class="px-4 py-2 whitespace-nowrap">2026-06-04</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+18 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96925</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Dentsply Sirona</td><td class="px-4 py-2 whitespace-nowrap">2026-06-04</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+18 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97174</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Посчитать цену и сроки поставки | VDW (Германия)</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97098</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ТОР ВМ</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96457</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | Maillefer | Thermafil/Термафил, 25мм, обтураторы</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95953</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | Eurofile | DK-Files 25мм 0.4 №35</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95616</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | VDW | M2 Тейпер МТУ (Mtwo NiTi) L21 №30</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95444</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Договор поставки (для отдела закупок) — Стоматорг</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95391</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | Eurofile | UltraRec Blue, 25мм, R25</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95153</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Доп. соглашения, акты и др. — Стоматор</td><td class="px-4 py-2 whitespace-nowrap">2026-06-05</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+17 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97312</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | ITENA</td><td class="px-4 py-2 whitespace-nowrap">2026-06-08</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+16 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96960</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | Dentsply Sirona | Spectrum TPH3, А1</td><td class="px-4 py-2 whitespace-nowrap">2026-06-09</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+15 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96959</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | Maillefer | ProFile.06, 25мм/№15-40</td><td class="px-4 py-2 whitespace-nowrap">2026-06-09</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+15 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97648</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | Ivoclar | Tetric N-Flow Bulk Fill, 2г</td><td class="px-4 py-2 whitespace-nowrap">2026-06-10</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+14 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97241</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | Eurofile | GP — термоплаггер для горячей обтурации</td><td class="px-4 py-2 whitespace-nowrap">2026-06-10</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+14 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#88997</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Претензия — ЗАО «ЮНИДЕНТ» — прекращение оборота Ультракаин</td><td class="px-4 py-2 whitespace-nowrap">2026-06-10</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+14 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98138</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Реестр поставщиков</td><td class="px-4 py-2 whitespace-nowrap">2026-06-18</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+8 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99198</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Посчитать цену и сроки поставки | Dentsply Sirona</td><td class="px-4 py-2 whitespace-nowrap">2026-06-22</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+6 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98982</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Посчитать цену и сроки поставки | AERS MED</td><td class="px-4 py-2 whitespace-nowrap">2026-06-22</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+6 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97655</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | GC | G-aenial Anterior, XBW, 4.7г.</td><td class="px-4 py-2 whitespace-nowrap">2026-06-23</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+5 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#92300</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Закупка | Диспенсер Дэзикс для салфеток 3,8л — 23 шт</td><td class="px-4 py-2 whitespace-nowrap">2026-06-23</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+5 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99352</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Эстэйд-Сервисгруп</td><td class="px-4 py-2 whitespace-nowrap">2026-06-24</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+4 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99311</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Dentsply Sirona</td><td class="px-4 py-2 whitespace-nowrap">2026-06-24</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+4 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97600</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Закупить | Woodpecker (Китай)</td><td class="px-4 py-2 whitespace-nowrap">2026-06-24</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+4 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98814</td><td class="px-4 py-2 whitespace-nowrap">Андрей Подгорецкий</td><td class="px-4 py-2">Пройдите тестирование по результатам обучения</td><td class="px-4 py-2 whitespace-nowrap">2026-06-25</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+3 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99590</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | РусМед | Mirum цемент стоматологический</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99561</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | H.Nordin</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99525</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупка | Eurofile | Ultratapers Gold SX, маш.файлы, 19мм</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99501</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Запросить регистрационные документы | Эстэйд-Сервисгруп</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99481</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Neo Dental International</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99310</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Посчитать цену и сроки поставки | VDW (Германия)</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99300</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Посчитать цену и сроки поставки | Dentsply Sirona</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#96697</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Просчет | EuroType | Пакеты медицинские с индикатором, 135х280мм</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99542</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Закупка | NTI | боры любимый доктор</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99480</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Посчитать цену и сроки поставки | Zhonghong Pulin</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99440</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Закупить | NTI</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99428</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Закупить | NTI</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99336</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Посчитать цену и сроки поставки | THE Graft</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99050</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Закупить | NTI</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98733</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Просчет | Serag Wiessner | Seralon Nylon 6/0</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98644</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Закупить | Meisinger</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97972</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Просчет | FGM | Opus Bulk Fill Flow APS, A1, 2г</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#95038</td><td class="px-4 py-2 whitespace-nowrap">Алина Биушкина</td><td class="px-4 py-2">Посчитать цену и сроки поставки | Resorba</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99503</td><td class="px-4 py-2 whitespace-nowrap">Мария Семиколенова</td><td class="px-4 py-2">Просчет | Stea | Лезвие хирургическое, 100шт/уп, размер 10</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99407</td><td class="px-4 py-2 whitespace-nowrap">Мария Семиколенова</td><td class="px-4 py-2">Закупить | Акцент</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98756</td><td class="px-4 py-2 whitespace-nowrap">Мария Семиколенова</td><td class="px-4 py-2">Посчитать цену и сроки поставки | HAHNENKRATT</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98081</td><td class="px-4 py-2 whitespace-nowrap">Мария Семиколенова</td><td class="px-4 py-2">ПРЕТЕНЗИЯ по качеству товара</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#97800</td><td class="px-4 py-2 whitespace-nowrap">Мария Семиколенова</td><td class="px-4 py-2">Посчитать цену и сроки поставки | HAHNENKRATT</td><td class="px-4 py-2 whitespace-nowrap">2026-06-26</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+2 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99643</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Закупить | Sanofi Aventis</td><td class="px-4 py-2 whitespace-nowrap">2026-06-28</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+1 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#99588</td><td class="px-4 py-2 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-2">Посчитать цену и сроки поставки | Dentsply Sirona</td><td class="px-4 py-2 whitespace-nowrap">2026-06-28</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+1 раб.дн.</td></tr>
+            <tr class="bg-rose-50"><td class="px-4 py-2 font-mono whitespace-nowrap">#98833</td><td class="px-4 py-2 whitespace-nowrap">Кристина Азарова</td><td class="px-4 py-2">Просчет | ВладМиВа | Боры Твердосплавные 5 шт</td><td class="px-4 py-2 whitespace-nowrap">2026-06-29</td><td class="px-4 py-2 font-semibold text-rose-700 whitespace-nowrap">+1 раб.дн.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Long-running tasks -->
+    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
+      <div class="border-b border-stone-200 bg-amber-50 px-6 py-4">
+        <h2 class="text-lg font-bold text-amber-900">⏳ Зависшие задачи (&gt;60 рабочих дней в работе)</h2>
+        <p class="text-sm text-amber-700">8 активных задач, которые висят более 60 рабочих дней. Все — у Максима Данилина (кроме одной).</p>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full text-left text-sm">
+          <thead class="bg-stone-100 text-stone-600">
+            <tr>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">ID</th>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">Ответственный</th>
+              <th class="px-4 py-3 font-semibold">Название</th>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">Создана</th>
+              <th class="px-4 py-3 font-semibold whitespace-nowrap">В работе</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-stone-200">
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#66103</td><td class="px-4 py-3 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-3">Просчет | Maillefer | К-Files nitiflex 15-40, 25мм, 6шт.</td><td class="px-4 py-3 whitespace-nowrap">2025-10-30</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">173 раб.дн.</td></tr>
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#71515</td><td class="px-4 py-3 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-3">Смазки для наконечников ЭСТЭЙД-СЕРВИСГРУП ООО</td><td class="px-4 py-3 whitespace-nowrap">2025-12-04</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">148 раб.дн.</td></tr>
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#83375</td><td class="px-4 py-3 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-3">Закупить | РусМед</td><td class="px-4 py-3 whitespace-nowrap">2026-03-05</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">83 раб.дн.</td></tr>
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#85093</td><td class="px-4 py-3 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-3">Заполнить даты отсрочек в соглашениях</td><td class="px-4 py-3 whitespace-nowrap">2026-03-17</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">75 раб.дн.</td></tr>
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#85586</td><td class="px-4 py-3 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-3">Закупить | GC</td><td class="px-4 py-3 whitespace-nowrap">2026-03-19</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">73 раб.дн.</td></tr>
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#86065</td><td class="px-4 py-3 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-3">Закупить | Kagayaki</td><td class="px-4 py-3 whitespace-nowrap">2026-03-23</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">71 раб.дн.</td></tr>
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#86288</td><td class="px-4 py-3 whitespace-nowrap">Сергей Янкин</td><td class="px-4 py-3">Посчитать цену и сроки поставки | Woodpecker (Китай)</td><td class="px-4 py-3 whitespace-nowrap">2026-03-25</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">69 раб.дн.</td></tr>
+            <tr class="bg-amber-50"><td class="px-4 py-3 font-mono whitespace-nowrap">#86690</td><td class="px-4 py-3 whitespace-nowrap">Максим Данилин</td><td class="px-4 py-3">Закупить | Бинергия</td><td class="px-4 py-3 whitespace-nowrap">2026-03-27</td><td class="px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">67 раб.дн.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Conclusions -->
+    <section class="rounded-2xl bg-stone-800 p-8 text-white shadow-lg">
+      <h2 class="text-xl font-bold">Выводы и рекомендации</h2>
+      <div class="mt-4 grid gap-4 md:grid-cols-2">
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-rose-300">🔴 Максим Данилин — критическая зона</p>
+          <p class="mt-2 text-sm text-stone-200">63.4% просрочек (1 156 из 1 823). Все 25 худших активных просрочек — его. 8 зависших задач &gt;60 раб.дн. (7 из 8). Поставщики: Maillefer, GC, ТОР ВМ, VDW, Kagayaki, Dentsply Sirona. Нужен срочный разбор.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-amber-300">⚠️ Патя Ахмедова — 49.4% просрочек</p>
+          <p class="mt-2 text-sm text-stone-200">Быстро закрывает (медиана 4.5 дн.), но систематически срывает дедлайны. 948 просрочек из 1 918. Возможно, нереалистичные сроки при постановке задач.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-amber-300">⚠️ Алина Биушкина — 25.3% просрочек</p>
+          <p class="mt-2 text-sm text-stone-200">2 515 задач (2-й по объёму), 621 просрочка. 12 активных просроченных. Высокая нагрузка, нужно проверить баланс.</p>
+        </div>
+        <div class="rounded-xl bg-stone-700 p-4">
+          <p class="font-semibold text-emerald-300">✅ Эталон — Сергей Янкин и Марина Комарова</p>
+          <p class="mt-2 text-sm text-stone-200">Янкин: 3 268 задач, всего 5.5% просрочек. Комарова: 1 668 задач, 7.9% просрочек. Лучшие показатели в отделе.</p>
+        </div>
+      </div>
+      <div class="mt-6 rounded-xl bg-stone-700 p-4">
+        <p class="font-semibold text-white">💡 Рекомендации</p>
+        <ul class="mt-2 space-y-1 text-sm text-stone-200">
+          <li>1. <strong class="text-rose-300">Срочный review Максима Данилина</strong> — 60+ активных просроченных задач, 8 долгостроев. Перераспределить поставщиков (Maillefer, GC, ТОР ВМ) или добавить ресурс.</li>
+          <li>2. <strong class="text-amber-300">Разобрать просрочки Пати Ахмедовой</strong> — 49.4% при быстрой медиане. Скорее всего, проблема в нереалистичных дедлайнах при создании задач. Пересмотреть SLA.</li>
+          <li>3. <strong class="text-white">Руководитель не в задачах</strong> — Андрей Подгорецкий (4 задачи за год). Нет управленческого контроля в Битрикс24. Рекомендовать регулярный ревью просрочек.</li>
+          <li>4. <strong class="text-white">Кристина Азарова</strong> — старт с ноября 2025, 653 задачи, 10.3% просрочек. Нормальная адаптация, следить за трендом.</li>
+          <li>5. <strong class="text-white">Объём: ~1 300 задач/мес на 8 человек</strong> — ~160/чел/мес. Высокая интенсивность, но отдел справляется (97.6% завершено). Основной риск — концентрация просрочек на одном-двух сотрудниках.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="mt-8 border-t border-stone-300 bg-stone-200 py-6 text-center text-sm text-stone-600">
+    Сформировано автоматически из Битрикс24 crmwest.ru · Отдел закупок (департамент 18) · 9 сотрудников · 15 424 задачи
+  </footer>
+</div>
+
+<script>
+// Type chart
+const typeCtx = document.getElementById('typeChart').getContext('2d');
+new Chart(typeCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Счета / Оплата', 'Закупки / Поставщики', 'Прочее', 'Склад / Остатки', 'Возвраты / Претензии', 'Аналитика / Отчёты', 'Договоры / Контрагенты'],
+    datasets: [{
+      data: [7651, 4713, 2947, 98, 7, 4, 4],
+      backgroundColor: ['#78716c', '#0d9488', '#a8a29e', '#f59e0b', '#dc2626', '#7c3aed', '#ec4899']
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'right' } }
+  }
+});
+
+// Monthly chart
+const monthCtx = document.getElementById('monthChart').getContext('2d');
+new Chart(monthCtx, {
+  type: 'bar',
+  data: {
+    labels: ['2025-06', '2025-07', '2025-08', '2025-09', '2025-10', '2025-11', '2025-12', '2026-01', '2026-02', '2026-03', '2026-04', '2026-05', '2026-06'],
+    datasets: [
+      { label: 'Янкин',          data: [12, 264, 160, 339, 245, 339, 297, 269, 347, 327, 288, 236, 145], backgroundColor: '#0d9488' },
+      { label: 'Биушкина',       data: [5, 217, 138, 203, 338, 253, 217, 192, 206, 223, 206, 170, 147], backgroundColor: '#78716c' },
+      { label: 'Сивинюк',        data: [4, 92, 134, 156, 263, 245, 148, 151, 189, 172, 191, 180, 187], backgroundColor: '#a8a29e' },
+      { label: 'Ахмедова',       data: [7, 186, 133, 215, 212, 211, 136, 126, 162, 118, 137, 172, 125], backgroundColor: '#f59e0b' },
+      { label: 'Данилин',        data: [4, 130, 113, 205, 223, 149, 167, 166, 185, 178, 186, 142, 71], backgroundColor: '#dc2626' },
+      { label: 'Комарова',       data: [7, 158, 139, 86, 6, 146, 142, 142, 168, 153, 158, 170, 193], backgroundColor: '#7c3aed' },
+      { label: 'Семиколенова',   data: [5, 87, 108, 118, 162, 111, 84, 108, 128, 107, 100, 133, 94], backgroundColor: '#ec4899' },
+      { label: 'Азарова',        data: [0, 0, 0, 1, 0, 24, 78, 92, 115, 84, 89, 68, 102], backgroundColor: '#0891b2' },
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { position: 'top', labels: { boxWidth: 12, font: { size: 10 } } } },
+    scales: { y: { beginAtZero: true, stacked: true }, x: { stacked: true } }
+  }
+});
+
+// Overdue chart
+const overdueCtx = document.getElementById('overdueChart').getContext('2d');
+new Chart(overdueCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Данилин', 'Ахмедова', 'Биушкина', 'Семиколенова', 'Азарова', 'Сивинюк', 'Комарова', 'Янкин'],
+    datasets: [{
+      label: '% просрочек среди выполненных',
+      data: [63.4, 49.4, 25.3, 14.8, 10.3, 9.1, 7.9, 5.5],
+      backgroundColor: ['#dc2626', '#f59e0b', '#f59e0b', '#a8a29e', '#0d9488', '#0d9488', '#0d9488', '#0d9488']
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true, max: 70, ticks: { callback: v => v + '%' } } }
+  }
+});
+
+// Percentile chart
+const pctCtx = document.getElementById('percentileChart').getContext('2d');
+new Chart(pctCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Min', 'P25', 'P50 (медиана)', 'P75', 'P90', 'P95', 'Max'],
+    datasets: [{
+      label: 'Рабочие дни',
+      data: [0, 3, 6, 9, 15, 22, 232],
+      backgroundColor: ['#0d9488', '#0d9488', '#0d9488', '#f59e0b', '#f59e0b', '#dc2626', '#dc2626']
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: { y: { beginAtZero: true } }
+  }
+});
+</script>
+</body>
+</html>
