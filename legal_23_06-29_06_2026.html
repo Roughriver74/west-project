@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Юридический отдел WEST — отчёт за 23–29 июня 2026</title>
+<title>Юридический отдел WEST — показатели за 23–29 июня 2026</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style> body { font-family: system-ui, -apple-system, 'Segoe UI', sans-serif; } </style>
@@ -12,9 +12,9 @@
 <div class="min-h-screen">
   <header class="bg-gradient-to-r from-stone-700 to-stone-500 text-white">
     <div class="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Bitrix24 crmwest.ru · Юридический отдел · Отчёт за неделю</p>
+      <p class="text-sm font-semibold uppercase tracking-[0.25em] text-stone-200">Bitrix24 crmwest.ru · Юридический отдел · Показатели за неделю</p>
       <h1 class="mt-3 text-4xl font-bold">Юридический отдел WEST</h1>
-      <p class="mt-3 max-w-3xl text-lg text-stone-100">Отчёт за полную рабочую неделю: 23–29 июня 2026. Включает всех сотрудников отдела и отдельные разделы по Ложкину и Циндренко.</p>
+      <p class="mt-3 max-w-3xl text-lg text-stone-100">Показатели за полную рабочую неделю 23–29 июня 2026. Без списков задач — только метрики.</p>
       <div class="mt-6 flex flex-wrap gap-4 text-sm text-stone-200">
         <span>📅 Период: 23.06 — 29.06.2026</span>
         <span>👥 Сотрудники: 3</span>
@@ -62,7 +62,7 @@
             <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-rose-600">3</p><p class="text-stone-600">Просрочено</p></div>
             <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">37</p><p class="text-stone-600">Медиана</p></div>
           </div>
-          <p class="mt-3 text-sm text-stone-700">Среднее время: <strong>19.0 раб. дней</strong> · Активных: <strong>10</strong></p>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>19.0 раб. дн.</strong> · Активных: <strong>10</strong> · % просрочки среди закрытых: <strong>0.0%</strong></p>
         </div>
         <div class="rounded-xl bg-stone-50 p-5">
           <p class="text-lg font-bold text-stone-800">Афонина Валерия</p>
@@ -73,7 +73,7 @@
             <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-rose-600">38</p><p class="text-stone-600">Просрочено</p></div>
             <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">28</p><p class="text-stone-600">Медиана</p></div>
           </div>
-          <p class="mt-3 text-sm text-stone-700">Среднее время: <strong>35.6 раб. дней</strong> · Активных: <strong>211</strong></p>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>35.6 раб. дн.</strong> · Активных: <strong>211</strong> · % просрочки среди закрытых: <strong>7.1%</strong></p>
         </div>
         <div class="rounded-xl bg-stone-50 p-5">
           <p class="text-lg font-bold text-stone-800">Циндренко Анастасия</p>
@@ -84,7 +84,7 @@
             <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-rose-600">6</p><p class="text-stone-600">Просрочено</p></div>
             <div class="rounded-lg bg-white p-3 text-center shadow-sm"><p class="text-2xl font-bold text-stone-800">26</p><p class="text-stone-600">Медиана</p></div>
           </div>
-          <p class="mt-3 text-sm text-stone-700">Среднее время: <strong>22.2 раб. дней</strong> · Активных: <strong>30</strong></p>
+          <p class="mt-3 text-sm text-stone-700">Среднее: <strong>22.2 раб. дн.</strong> · Активных: <strong>30</strong> · % просрочки среди закрытых: <strong>33.3%</strong></p>
         </div>
       </div>
     </section>
@@ -100,446 +100,67 @@
       </div>
     </section>
 
-    <section class="rounded-2xl bg-white shadow-lg overflow-hidden">
-      <div class="border-b border-stone-200 bg-rose-50 px-6 py-4">
-        <h2 class="text-lg font-bold text-rose-900">Топ просроченных активных задач на конец недели</h2>
-        <p class="text-sm text-rose-700">Всего активных: 251, просроченных: 47. Показаны 20 худших.</p>
-      </div>
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-sm">
-          <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Ответственный</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Просрочка</th><th class="px-4 py-3">Дедлайн</th></tr></thead>
-          <tbody class="divide-y divide-stone-200">
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#59401</td>
-        <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
-        <td class="px-4 py-3">Договор ООО ЭМИ (вопросы расторжения)</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+107 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#59331</td>
-        <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
-        <td class="px-4 py-3">Реестр судебных и исполнительных производств Вест Групп</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+107 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#9679</td>
-        <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
-        <td class="px-4 py-3">Медимпекс ознакомление</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+107 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#70615</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Корректировка типовой формы договора поставки</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+72 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-03-20</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#21986</td>
-        <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
-        <td class="px-4 py-3">Регистрация бренда Occidental</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+57 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-04-10</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#42173</td>
-        <td class="px-4 py-3 whitespace-nowrap">Ложкин Кирилл</td>
-        <td class="px-4 py-3">Формирование положения о печатях</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+25 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-26</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#75769</td>
-        <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
-        <td class="px-4 py-3">Судебная работа - Крохмалюк Денис Витальевич ИП Туапсе - 236500722659</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+23 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-28</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#26489</td>
-        <td class="px-4 py-3 whitespace-nowrap">Циндренко Анастасия</td>
-        <td class="px-4 py-3">Регистрация товарного знака "flox"</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-30</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#86799</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ЭМАР КЛИНИК Петрозаводск - 1000014125 - Лекпрофи</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-31</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#86798</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ЭМАР КЛИНИК Петрозаводск - 1000014125 - Вест Фарм</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-31</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#86797</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ЭМАР КЛИНИК Петрозаводск - 1000014125 - ВЕСТ</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-31</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96622</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Договор поставки (отдел продаж) - ООО "ПРЕЗИДЕНТ СК №2" - 7716220063</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+17 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-05</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96146</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - АЛЕФ-ДЕНТ ООО Наличная ул - 7801191180 - Лекпрофи</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+17 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-05</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96145</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - АЛЕФ-ДЕНТ ООО Наличная ул - 7801191180 - ВЕСТ</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+17 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-05</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96446</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "ОРТОПОИНТ" - 9723101350 - Лекпрофи</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96445</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "ОРТОПОИНТ" - 9723101350 - Вест Фарм</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96444</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "ОРТОПОИНТ" - 9723101350 - ВЕСТ Стом</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96443</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "ОРТОПОИНТ" - 9723101350 - ВЕСТ</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96436</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "КДЦ "РАНМЕД"" - 9725080345 - Лекпрофи</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96435</td>
-        <td class="px-4 py-3 whitespace-nowrap">Афонина Валерия</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "КДЦ "РАНМЕД"" - 9725080345 - Вест Фарм</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-      </tr></tbody>
-        </table>
-      </div>
-    </section>
-
     
-    <section id="person100" class="space-y-6 scroll-mt-24">
+    <section id="person100" class="space-y-4 scroll-mt-24">
       <div class="flex items-center gap-4">
-        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-700 text-xl font-bold text-white">КЛ</div>
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-stone-700 text-lg font-bold text-white">КЛ</div>
         <div>
           <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">Директор по АПВ</p>
-          <h2 class="text-3xl font-bold text-stone-800">Ложкин Кирилл</h2>
+          <h2 class="text-2xl font-bold text-stone-800">Ложкин Кирилл</h2>
         </div>
       </div>
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Задач в периоде</p><p class="mt-2 text-3xl font-bold text-stone-800">5</p><p class="mt-1 text-sm text-stone-600">создано/закрыто/дедлайн</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Создано / Закрыто</p><p class="mt-2 text-3xl font-bold text-stone-800">4 / 2</p><p class="mt-1 text-sm text-stone-600">+2 прирост</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Срок закрытия</p><p class="mt-2 text-3xl font-bold text-stone-800">19.0</p><p class="mt-1 text-sm text-stone-600">медиана 37 раб. дн.</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Активных / просрочено</p><p class="mt-2 text-3xl font-bold text-rose-700">10 / 3</p><p class="mt-1 text-sm text-stone-600">0.0% просрочено среди закрытых</p></div>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">В периоде</p><p class="mt-1 text-2xl font-bold text-stone-800">5</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Создано / Закрыто</p><p class="mt-1 text-2xl font-bold text-stone-800">4 / 2</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Среднее / медиана</p><p class="mt-1 text-2xl font-bold text-stone-800">19.0 / 37</p><p class="text-xs text-stone-500">раб. дн.</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Активных</p><p class="mt-1 text-2xl font-bold text-stone-800">10</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Просрочено / % закрытых</p><p class="mt-1 text-2xl font-bold text-rose-700">3 / 0.0%</p></div>
       </div>
-      <div class="grid gap-6 lg:grid-cols-[1fr_0.5fr]">
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden">
-          <h3 class="text-lg font-bold text-stone-800">Задачи, закрытые за неделю</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Закрыта</th><th class="px-4 py-3">Дедлайн</th></tr></thead>
-            <tbody class="divide-y divide-stone-200"><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99284</td><td class='px-4 py-3'>Консультация / Справка - 1 - 1</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-01</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#92352</td><td class='px-4 py-3'>Консультация / Справка - 00000 - 00000</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-04</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td></tr></tbody>
-          </table>
-        </div>
-        <div class="rounded-2xl bg-white p-6 shadow-lg">
-          <h3 class="text-lg font-bold text-stone-800">Типы работ</h3>
-          <div class="mt-4 h-[220px]"><canvas id="chartType100"></canvas></div>
-        </div>
-      </div>
-      <div class="grid gap-6 lg:grid-cols-2">
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden">
-          <h3 class="text-lg font-bold text-stone-800">Новые задачи за неделю</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Закрыта</th><th class="px-4 py-3">Дедлайн</th></tr></thead>
-            <tbody class="divide-y divide-stone-200"><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99799</td><td class='px-4 py-3'>Договор по программе лояльности</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-29</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-06</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99743</td><td class='px-4 py-3'>Показатели эффективности</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-29</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99284</td><td class='px-4 py-3'>Консультация / Справка - 1 - 1</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-01</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99213</td><td class='px-4 py-3'>Запрос УНК ГУ МВД по Саратовской области</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td></tr></tbody>
-          </table>
-        </div>
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden border-l-4 border-rose-400">
-          <h3 class="text-lg font-bold text-stone-800">Активные просроченные задачи</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Дедлайн</th><th class="px-4 py-3">Просрочка</th></tr></thead>
-            <tbody class="divide-y divide-stone-200">
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#59401</td>
-        <td class="px-4 py-3">Договор ООО ЭМИ (вопросы расторжения)</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2025-09-12</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+107 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#59331</td>
-        <td class="px-4 py-3">Реестр судебных и исполнительных производств Вест Групп</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2025-09-11</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+107 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#42173</td>
-        <td class="px-4 py-3">Формирование положения о печатях</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2025-03-20</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-26</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+25 раб. дн.</td>
-      </tr></tbody>
-          </table>
-        </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <h3 class="text-base font-bold text-stone-800">Типы работ</h3>
+        <div class="mt-3 h-[200px]"><canvas id="chartType100"></canvas></div>
       </div>
     </section>
 
-    <section id="person499" class="space-y-6 scroll-mt-24">
+    <section id="person499" class="space-y-4 scroll-mt-24">
       <div class="flex items-center gap-4">
-        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-700 text-xl font-bold text-white">АЦ</div>
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-stone-700 text-lg font-bold text-white">АЦ</div>
         <div>
           <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">Юрисконсульт</p>
-          <h2 class="text-3xl font-bold text-stone-800">Циндренко Анастасия</h2>
+          <h2 class="text-2xl font-bold text-stone-800">Циндренко Анастасия</h2>
         </div>
       </div>
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Задач в периоде</p><p class="mt-2 text-3xl font-bold text-stone-800">15</p><p class="mt-1 text-sm text-stone-600">создано/закрыто/дедлайн</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Создано / Закрыто</p><p class="mt-2 text-3xl font-bold text-stone-800">5 / 6</p><p class="mt-1 text-sm text-stone-600">-1 прирост</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Срок закрытия</p><p class="mt-2 text-3xl font-bold text-stone-800">22.2</p><p class="mt-1 text-sm text-stone-600">медиана 26 раб. дн.</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Активных / просрочено</p><p class="mt-2 text-3xl font-bold text-rose-700">30 / 6</p><p class="mt-1 text-sm text-stone-600">33.3% просрочено среди закрытых</p></div>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">В периоде</p><p class="mt-1 text-2xl font-bold text-stone-800">15</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Создано / Закрыто</p><p class="mt-1 text-2xl font-bold text-stone-800">5 / 6</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Среднее / медиана</p><p class="mt-1 text-2xl font-bold text-stone-800">22.2 / 26</p><p class="text-xs text-stone-500">раб. дн.</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Активных</p><p class="mt-1 text-2xl font-bold text-stone-800">30</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Просрочено / % закрытых</p><p class="mt-1 text-2xl font-bold text-rose-700">6 / 33.3%</p></div>
       </div>
-      <div class="grid gap-6 lg:grid-cols-[1fr_0.5fr]">
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden">
-          <h3 class="text-lg font-bold text-stone-800">Задачи, закрытые за неделю</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Закрыта</th><th class="px-4 py-3">Дедлайн</th></tr></thead>
-            <tbody class="divide-y divide-stone-200"><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#95493</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ШАРКС ОФ ОРТОДОНТИКС ООО - 1660247060</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-29</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-03</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#96818</td><td class='px-4 py-3'>Услуги / Подряд / Закупки для внутренних нужд - ВЭД - ООО «ПАТЕНТИКА»
-- 7838324461</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-03</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#93267</td><td class='px-4 py-3'>Консультация / Справка - ООО - 7842030908 Смена ЮА Вест</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-08</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#98885</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ООО "НАСЫРОВ КЛИНИК" - 7704779675</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-22</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#97511</td><td class='px-4 py-3'>Договор поставки (для отдела закупок) - ООО «Имссторе» - 7726474620</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-09</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#92679</td><td class='px-4 py-3'>Договор поставки (для отдела закупок) - ИП Геюшов Керим-ага Халаддин Оглы - 526204372050</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-05</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td></tr></tbody>
-          </table>
-        </div>
-        <div class="rounded-2xl bg-white p-6 shadow-lg">
-          <h3 class="text-lg font-bold text-stone-800">Типы работ</h3>
-          <div class="mt-4 h-[220px]"><canvas id="chartType499"></canvas></div>
-        </div>
-      </div>
-      <div class="grid gap-6 lg:grid-cols-2">
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden">
-          <h3 class="text-lg font-bold text-stone-800">Новые задачи за неделю</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Закрыта</th><th class="px-4 py-3">Дедлайн</th></tr></thead>
-            <tbody class="divide-y divide-stone-200"><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99798</td><td class='px-4 py-3'>Услуги / Подряд / Закупки для внутренних нужд - Финансовый отдел - ООО "ФКМ Лизинг"
-- 7710443169</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-29</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-02</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99704</td><td class='px-4 py-3'>Консультация / Справка - ИП Докучаев Сергей Александрович - 318784700331934</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-29</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-06</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99600</td><td class='px-4 py-3'>Консультация / Справка - АО "Русские самоцветы" - 7806007100</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-03</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99587</td><td class='px-4 py-3'>Консультация / Справка - «ВАЛО Сервис» - 7813287634</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-03</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99367</td><td class='px-4 py-3'>Доп. соглашения, акты и др. (для отдела закупок) - ООО "БИ ПЛЮС" - 7802636146</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-30</td></tr></tbody>
-          </table>
-        </div>
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden border-l-4 border-rose-400">
-          <h3 class="text-lg font-bold text-stone-800">Активные просроченные задачи</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Дедлайн</th><th class="px-4 py-3">Просрочка</th></tr></thead>
-            <tbody class="divide-y divide-stone-200">
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#9679</td>
-        <td class="px-4 py-3">Медимпекс ознакомление</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2023-11-13</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-01-30</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+107 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#21986</td>
-        <td class="px-4 py-3">Регистрация бренда Occidental</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2024-06-06</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-04-10</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+57 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#75769</td>
-        <td class="px-4 py-3">Судебная работа - Крохмалюк Денис Витальевич ИП Туапсе - 236500722659</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-01-16</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-28</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+23 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#26489</td>
-        <td class="px-4 py-3">Регистрация товарного знака "flox"</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2024-08-13</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-30</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96903</td>
-        <td class="px-4 py-3">Внешнеторговые контракты и допсоглашения (для отдела ВЭД) - 3R INDUSTRIA E COMERCIO LTDA - 000000</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-03</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-19</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+7 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#49790</td>
-        <td class="px-4 py-3">Заключение долгосрочного договора аренды на пристройку к складу Салова, 46</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2025-06-23</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-23</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+5 раб. дн.</td>
-      </tr></tbody>
-          </table>
-        </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <h3 class="text-base font-bold text-stone-800">Типы работ</h3>
+        <div class="mt-3 h-[200px]"><canvas id="chartType499"></canvas></div>
       </div>
     </section>
 
-    <section id="person189" class="space-y-6 scroll-mt-24">
+    <section id="person189" class="space-y-4 scroll-mt-24">
       <div class="flex items-center gap-4">
-        <div class="flex h-14 w-14 items-center justify-center rounded-2xl bg-stone-700 text-xl font-bold text-white">ВА</div>
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-stone-700 text-lg font-bold text-white">ВА</div>
         <div>
           <p class="text-xs font-semibold uppercase tracking-wide text-stone-500">Юрист</p>
-          <h2 class="text-3xl font-bold text-stone-800">Афонина Валерия</h2>
+          <h2 class="text-2xl font-bold text-stone-800">Афонина Валерия</h2>
         </div>
       </div>
-      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Задач в периоде</p><p class="mt-2 text-3xl font-bold text-stone-800">31</p><p class="mt-1 text-sm text-stone-600">создано/закрыто/дедлайн</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Создано / Закрыто</p><p class="mt-2 text-3xl font-bold text-stone-800">12 / 14</p><p class="mt-1 text-sm text-stone-600">-2 прирост</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Срок закрытия</p><p class="mt-2 text-3xl font-bold text-stone-800">35.6</p><p class="mt-1 text-sm text-stone-600">медиана 28 раб. дн.</p></div>
-        <div class="rounded-2xl bg-white p-5 shadow-lg"><p class="text-sm font-semibold uppercase text-stone-500">Активных / просрочено</p><p class="mt-2 text-3xl font-bold text-rose-700">211 / 38</p><p class="mt-1 text-sm text-stone-600">7.1% просрочено среди закрытых</p></div>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-5">
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">В периоде</p><p class="mt-1 text-2xl font-bold text-stone-800">31</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Создано / Закрыто</p><p class="mt-1 text-2xl font-bold text-stone-800">12 / 14</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Среднее / медиана</p><p class="mt-1 text-2xl font-bold text-stone-800">35.6 / 28</p><p class="text-xs text-stone-500">раб. дн.</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Активных</p><p class="mt-1 text-2xl font-bold text-stone-800">211</p></div>
+        <div class="rounded-2xl bg-white p-4 shadow-lg"><p class="text-xs font-semibold uppercase text-stone-500">Просрочено / % закрытых</p><p class="mt-1 text-2xl font-bold text-rose-700">38 / 7.1%</p></div>
       </div>
-      <div class="grid gap-6 lg:grid-cols-[1fr_0.5fr]">
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden">
-          <h3 class="text-lg font-bold text-stone-800">Задачи, закрытые за неделю</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Закрыта</th><th class="px-4 py-3">Дедлайн</th></tr></thead>
-            <tbody class="divide-y divide-stone-200"><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#98742</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ООО "ДЕЛЬФИН" - 6501182024</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-19</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-29</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#82781</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - КРСП МЗ КК ГАУЗ - 2339005069</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-03-02</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-10</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#95023</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - Гутников Сергей Викторович ИП Краснодар (территория 4) - 346002047577</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-21</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#95017</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ДЕТСКАЯ СТОМ. ПОЛ. № 1 МЗ КК ГБУЗ С КАЖДОЙ ПОСТАВКОЙ ДОГОВОР!!!СЧЁТ УПД- одной дато - 2310074863</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-21</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-10</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#94868</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ДЕТСКАЯ СТОМ. ПОЛ. № 1 МЗ КК ГБУЗ С КАЖДОЙ ПОСТАВКОЙ ДОГОВОР!!!СЧЁТ УПД- одной дато - 2310074863</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-20</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-10</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99011</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - СЛАВЯНСКАЯ СТОМАТОЛОГИЧЕСКАЯ ПОЛИКЛИНИКА МЗ КК ГАУЗ Краснодар - 2349024416</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99094</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - АРКСП ГБУЗ РА Майкоп - 0105000368</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#98743</td><td class='px-4 py-3'>Соглашение об отсрочке - ООО "ДЕЛЬФИН" - 6501182024 - ВЕСТ</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-19</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99160</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ООО "НАСЫРОВ КЛИНИК" - 7704779675</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#86009</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - СТОМАТОЛОГИЧЕСКАЯ ПОЛИКЛИНИКА ГОРОДА-КУРОРТА ГЕЛЕНДЖИК МЗ КК ГБУЗ - 2304018437</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-03-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-09</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#80629</td><td class='px-4 py-3'>Договор поставки обрудования (для продажи оборудования) - ДЕНТАЛ СТУДИО ООО Армавир - 2372027528</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-02-16</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-08</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#82237</td><td class='px-4 py-3'>Договор поставки обрудования (для продажи оборудования) - ДЕНТАЛ СТУДИО ООО Армавир - 2372027528</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-02-26</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-08</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#93557</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - КСП ООО Каневская - 2334013972</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-12</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#94001</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ООО “Рокада-Дент” - 1654042272</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-05-14</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td></tr></tbody>
-          </table>
-        </div>
-        <div class="rounded-2xl bg-white p-6 shadow-lg">
-          <h3 class="text-lg font-bold text-stone-800">Типы работ</h3>
-          <div class="mt-4 h-[220px]"><canvas id="chartType189"></canvas></div>
-        </div>
-      </div>
-      <div class="grid gap-6 lg:grid-cols-2">
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden">
-          <h3 class="text-lg font-bold text-stone-800">Новые задачи за неделю</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Закрыта</th><th class="px-4 py-3">Дедлайн</th></tr></thead>
-            <tbody class="divide-y divide-stone-200"><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99555</td><td class='px-4 py-3'>Соглашение об отсрочке - ЖЕМЧУЖИНА ООО Ульяновск - 7327037996 - Лекпрофи</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99554</td><td class='px-4 py-3'>Соглашение об отсрочке - ЖЕМЧУЖИНА ООО Ульяновск - 7327037996 - ВЕСТ</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99531</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - АРКСП ГБУЗ РА Майкоп - 0105000368</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-26</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99347</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ОК ДАГОМЫС ФГАУ - 7704191019</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99312</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ООО "ФАРМА-МЕД" - 3528181431</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-24</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99160</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - ООО "НАСЫРОВ КЛИНИК" - 7704779675</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99094</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - АРКСП ГБУЗ РА Майкоп - 0105000368</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99067</td><td class='px-4 py-3'>Соглашение об отсрочке - ООО "АНКИЯР-МЕДИКАЛ" - 2311349969 - Лекпрофи</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99066</td><td class='px-4 py-3'>Соглашение об отсрочке - ООО "АНКИЯР-МЕДИКАЛ" - 2311349969 - ВЕСТ</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99059</td><td class='px-4 py-3'>Соглашение об отсрочке - ПРОФИ-ТОРГ ЯКУТСК ООО - 1400059138 - Вест Фарм</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99058</td><td class='px-4 py-3'>Соглашение об отсрочке - ПРОФИ-ТОРГ ЯКУТСК ООО - 1400059138 - ВЕСТ</td><td class='px-4 py-3 whitespace-nowrap'>В работе</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>—</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr><tr class='border-b border-stone-100 hover:bg-stone-50'><td class='px-4 py-3 font-mono'>#99011</td><td class='px-4 py-3'>Договор поставки (отдел продаж) - СЛАВЯНСКАЯ СТОМАТОЛОГИЧЕСКАЯ ПОЛИКЛИНИКА МЗ КК ГАУЗ Краснодар - 2349024416</td><td class='px-4 py-3 whitespace-nowrap'>Завершена</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-23</td><td class='px-4 py-3 whitespace-nowrap'>2026-06-25</td><td class='px-4 py-3 whitespace-nowrap'>2026-07-07</td></tr></tbody>
-          </table>
-        </div>
-        <div class="rounded-2xl bg-white p-6 shadow-lg overflow-hidden border-l-4 border-rose-400">
-          <h3 class="text-lg font-bold text-stone-800">Активные просроченные задачи</h3>
-          <table class="mt-4 w-full text-left text-sm">
-            <thead class="bg-stone-100 text-stone-600"><tr><th class="px-4 py-3">ID</th><th class="px-4 py-3">Название</th><th class="px-4 py-3">Статус</th><th class="px-4 py-3">Создана</th><th class="px-4 py-3">Дедлайн</th><th class="px-4 py-3">Просрочка</th></tr></thead>
-            <tbody class="divide-y divide-stone-200">
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#70615</td>
-        <td class="px-4 py-3">Корректировка типовой формы договора поставки</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2025-11-28</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-03-20</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+72 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#86799</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ЭМАР КЛИНИК Петрозаводск - 1000014125 - Лекпрофи</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-03-27</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-31</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#86798</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ЭМАР КЛИНИК Петрозаводск - 1000014125 - Вест Фарм</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-03-27</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-31</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#86797</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ЭМАР КЛИНИК Петрозаводск - 1000014125 - ВЕСТ</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-03-27</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-31</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+21 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96622</td>
-        <td class="px-4 py-3">Договор поставки (отдел продаж) - ООО "ПРЕЗИДЕНТ СК №2" - 7716220063</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-02</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-05</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+17 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96146</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - АЛЕФ-ДЕНТ ООО Наличная ул - 7801191180 - Лекпрофи</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-29</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-05</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+17 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96145</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - АЛЕФ-ДЕНТ ООО Наличная ул - 7801191180 - ВЕСТ</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-05-29</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-05</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+17 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96446</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "ОРТОПОИНТ" - 9723101350 - Лекпрофи</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-01</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96445</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "ОРТОПОИНТ" - 9723101350 - Вест Фарм</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-01</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-      </tr>
-      <tr class="border-b border-stone-100 hover:bg-stone-50">
-        <td class="px-4 py-3 font-mono">#96444</td>
-        <td class="px-4 py-3">Соглашение об отсрочке - ООО "ОРТОПОИНТ" - 9723101350 - ВЕСТ Стом</td>
-        <td class="px-4 py-3 whitespace-nowrap">В работе</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-01</td>
-        <td class="px-4 py-3 whitespace-nowrap">2026-06-08</td>
-        <td class="px-4 py-3 font-semibold text-rose-700 whitespace-nowrap">+16 раб. дн.</td>
-      </tr></tbody>
-          </table>
-        </div>
+      <div class="rounded-2xl bg-white p-5 shadow-lg">
+        <h3 class="text-base font-bold text-stone-800">Типы работ</h3>
+        <div class="mt-3 h-[200px]"><canvas id="chartType189"></canvas></div>
       </div>
     </section>
 
@@ -547,19 +168,10 @@
     <section class="rounded-2xl bg-stone-800 p-8 text-white shadow-lg">
       <h2 class="text-xl font-bold">Выводы и рекомендации</h2>
       <div class="mt-4 grid gap-4 md:grid-cols-2">
-        <div class="rounded-xl bg-stone-700 p-4"><p class="font-semibold text-amber-300">⚠️ Закрыто 22, создано 21</p><p class="mt-2 text-sm text-stone-200">За неделю отдел закрыл 22 задач при 21 новых — прирост +-1 задач в работе.</p></div>
+        <div class="rounded-xl bg-stone-700 p-4"><p class="font-semibold text-amber-300">⚠️ Закрыто 22, создано 21</p><p class="mt-2 text-sm text-stone-200">За неделю прирост +-1 задач в работе.</p></div>
         <div class="rounded-xl bg-stone-700 p-4"><p class="font-semibold text-rose-300">🔴 47 активных просроченных задач</p><p class="mt-2 text-sm text-stone-200">18.7% от активного портфеля на конец понедельника.</p></div>
-        <div class="rounded-xl bg-stone-700 p-4"><p class="font-semibold text-stone-300">📌 Основная нагрузка — Афонина Валерия</p><p class="mt-2 text-sm text-stone-200">Основная нагрузка на Валерию Афонину: 14 закрытых за неделю и 211 активных задач (38 просрочены).</p></div>
-        <div class="rounded-xl bg-stone-700 p-4"><p class="font-semibold text-emerald-300">✅ Рекомендации</p><p class="mt-2 text-sm text-stone-200">Разобрать долгострои Ложкина, сфокусироваться на просрочках Циндренко, разгрузить Афонину.</p></div>
-      </div>
-      <div class="mt-6 rounded-xl bg-stone-700 p-4">
-        <p class="font-semibold text-white">💡 Детальные рекомендации</p>
-        <ul class="mt-2 space-y-1 text-sm text-stone-200">
-          <li>1. Основная нагрузка на Валерию Афонину: 14 закрытых за неделю и 211 активных задач (38 просрочены).</li>
-          <li>2. У Кирилла Ложкина 3 активные просроченные задачи, включая старые договорные и реестр судебных производств.</li>
-          <li>3. У Анастасии Циндренко наиболее разнообразный спектр: договоры, консультации, закупки, согласования. 6 активных просрочек требуют внимания.</li>
-          <li>4. Средний срок закрытия по отделу — 30.5 раб. дней, медиана — 27 раб. дней.</li>
-        </ul>
+        <div class="rounded-xl bg-stone-700 p-4"><p class="font-semibold text-stone-300">📌 Основная нагрузка — Афонина Валерия</p><p class="mt-2 text-sm text-stone-200">14 закрытых за неделю, 211 активных, 38 просрочены.</p></div>
+        <div class="rounded-xl bg-stone-700 p-4"><p class="font-semibold text-emerald-300">✅ Рекомендации</p><p class="mt-2 text-sm text-stone-200">Разгрузить Афонину, разобрать долгострои Ложкина, сфокусироваться на просрочках Циндренко.</p></div>
       </div>
     </section>
   </main>
